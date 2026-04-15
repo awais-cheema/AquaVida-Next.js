@@ -23,7 +23,9 @@ const heroFrameRef = {
     },
 
     tick() {
-        for (let i = 0; i < this._subs.length; i++) this._subs[i]();
+        for (let i = 0; i < this._subs.length; i++) {
+            try { this._subs[i](); } catch (e) { /* isolate subscriber errors from main RAF */ }
+        }
     },
 };
 
