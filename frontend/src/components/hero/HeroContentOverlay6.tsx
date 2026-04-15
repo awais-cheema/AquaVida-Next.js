@@ -157,8 +157,8 @@ export default function HeroContentOverlay6() {
             <motion.div
                 className="absolute"
                 style={{
-                    left:        '59.5%',
-                    top:         '59.5%',
+                    left:        '51%',
+                    top:         '47%',
                     opacity:     dotOpacity,
                     x:           diagX,
                     y:           diagY,
