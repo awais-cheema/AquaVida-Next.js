@@ -10,9 +10,16 @@
  *
  * ScrollSmoother is only activated on the homepage ('/').
  * All other pages get native browser scroll — no inertia, no lag.
+ *
+ * Navigation fix:
+ *   ScrollSmoother.kill() does NOT revert position:fixed / overflow:hidden on the wrapper.
+ *   Those styles persist into the next page, clipping it entirely (black screen).
+ *   useLayoutEffect resets them synchronously after the DOM commit but BEFORE child
+ *   layout effects fire — so Framer Motion's useScroll never sees the clipped container.
+ *   useEffect cleanup (smoother.kill) runs later and is harmless at that point.
  */
 
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -26,13 +33,41 @@ if (typeof window !== 'undefined') {
 const MOBILE_BP      = '(max-width: 768px)';
 const SMOOTH_DESKTOP = 1.15;
 
+function resetWrapperStyles() {
+    const wrapper = document.getElementById('smooth-wrapper');
+    const content = document.getElementById('smooth-content');
+    if (wrapper) {
+        wrapper.style.position = '';
+        wrapper.style.overflow = '';
+        wrapper.style.height   = '';
+        wrapper.style.width    = '';
+        wrapper.style.top      = '';
+        wrapper.style.left     = '';
+    }
+    if (content) {
+        content.style.transform = '';
+        content.style.overflow  = '';
+        content.style.position  = '';
+    }
+}
+
 export default function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isHome   = pathname === '/';
 
-    // Kill all ScrollTrigger instances on every route change to prevent
-    // stale GSAP scroll state (especially normalizeScroll) from conflicting
-    // with Framer Motion's useScroll on non-home pages.
+    // ── Synchronous style reset (before paint, before child layout effects) ──────
+    // Must be useLayoutEffect so it runs before children's useLayoutEffect hooks.
+    // Framer Motion's useScroll (used in services/portfolio hero sections) reads
+    // scroll container geometry in its own useLayoutEffect — if the wrapper still
+    // has position:fixed from ScrollSmoother at that point it throws, causing the
+    // "page couldn't load" error on client-side navigation.
+    useLayoutEffect(() => {
+        if (isHome) return;
+        resetWrapperStyles();
+        window.scrollTo(0, 0);
+    }, [isHome]);
+
+    // ── Kill stale ScrollTrigger state on every route change ────────────────────
     useEffect(() => {
         return () => {
             ScrollTrigger.getAll().forEach(t => t.kill());
@@ -40,8 +75,8 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
         };
     }, [pathname]);
 
+    // ── ScrollSmoother — homepage desktop only ───────────────────────────────────
     useEffect(() => {
-        // Only apply ScrollSmoother on homepage — other pages use native scroll
         if (!isHome) return;
         if (window.matchMedia(MOBILE_BP).matches) return;
 
@@ -56,26 +91,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
             smoother.kill();
             ScrollTrigger.getAll().forEach(t => t.kill());
             ScrollTrigger.clearScrollMemory();
-
-            // ScrollSmoother leaves position:fixed + overflow:hidden on the wrapper
-            // and a translateY on the content. If not reset, the next page renders
-            // but is fully clipped/hidden — showing a black screen.
-            const wrapper = document.getElementById('smooth-wrapper');
-            const content = document.getElementById('smooth-content');
-            if (wrapper) {
-                wrapper.style.position   = '';
-                wrapper.style.overflow   = '';
-                wrapper.style.height     = '';
-                wrapper.style.width      = '';
-                wrapper.style.top        = '';
-                wrapper.style.left       = '';
-            }
-            if (content) {
-                content.style.transform  = '';
-                content.style.overflow   = '';
-                content.style.position   = '';
-            }
-            window.scrollTo(0, 0);
+            resetWrapperStyles();
         };
     }, [isHome]);
 
