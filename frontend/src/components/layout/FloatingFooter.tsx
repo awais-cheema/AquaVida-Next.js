@@ -212,7 +212,7 @@ export default function FloatingFooter() {
 
                             {/* ── Explore ── */}
                             <nav aria-label="Explore">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                     Explore
                                 </h4>
@@ -229,7 +229,7 @@ export default function FloatingFooter() {
 
                             {/* ── Services ── */}
                             <nav aria-label="Services">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl">
                                     Services
                                 </h4>
@@ -248,7 +248,7 @@ export default function FloatingFooter() {
 
                             {/* ── Information ── */}
                             <nav aria-label="Information">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl">
                                     Information
                                 </h4>
@@ -266,7 +266,7 @@ export default function FloatingFooter() {
                                             border-t md:border-t-0 md:border-l border-white/10
                                             pt-6 md:pt-0 md:pl-5 lg:pl-6 xl:pl-8">
                                 <div className="max-w-[520px]">
-                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-2 sm:mb-3
+                                    <h4 className="text-white font-black tracking-[0.1em] uppercase drop-shadow-md mb-2 sm:mb-3
                                                    text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                         Address
                                     </h4>
@@ -278,7 +278,7 @@ export default function FloatingFooter() {
                                 </div>
 
                                 <div className="mt-2 sm:mt-3 md:mt-4">
-                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-2 sm:mb-3
+                                    <h4 className="text-white font-black tracking-[0.1em] uppercase drop-shadow-md mb-2 sm:mb-3
                                                    text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                         Phone
                                     </h4>
@@ -326,7 +326,7 @@ export default function FloatingFooter() {
                                     gap-5 lg:gap-0">
 
                         {/* Copyright */}
-                        <p className="text-white/30 font-bold tracking-[0.2em] uppercase whitespace-nowrap
+                        <p className="text-white/30 font-bold tracking-[0.08em] uppercase whitespace-nowrap
                                       text-[11px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-sm
                                       w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                             © 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.
@@ -334,7 +334,7 @@ export default function FloatingFooter() {
 
                         {/* Center Powered By (Primary focus) */}
                         <div className="flex items-center justify-center gap-7 w-full lg:w-1/3 order-1 lg:order-2">
-                            <span className="font-allomira tracking-[0.5em] font-black uppercase text-white/20 whitespace-nowrap
+                            <span className="font-allomira tracking-[0.2em] font-black uppercase text-white/20 whitespace-nowrap
                                              text-[9px] sm:text-[10px] md:text-[10px] lg:text-[11px] xl:text-[12px]">
                                 Powered By
                             </span>
@@ -351,7 +351,7 @@ export default function FloatingFooter() {
                         <div className="w-full lg:w-1/3 flex justify-center lg:justify-end order-3">
                             <button
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
-                                className="btn font-allomira font-black uppercase tracking-[0.3em]
+                                className="btn font-allomira font-black uppercase tracking-[0.1em]
                                            text-white hover:text-white/60 transition-all duration-300
                                            flex items-center gap-4 group"
                             >
