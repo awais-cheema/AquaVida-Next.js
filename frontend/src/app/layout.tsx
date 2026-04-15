@@ -35,8 +35,11 @@ export const metadata: Metadata = {
     },
     description: 'AquaVida blends cutting-edge technology with ocean-inspired design. Interactive 3D experiences.',
     icons: {
-        icon: '/logo.avif',
+        icon: [
+            { url: '/logo.avif', type: 'image/avif' },
+        ],
         apple: '/logo.avif',
+        shortcut: '/logo.avif',
     },
     openGraph: {
         type: 'website',
