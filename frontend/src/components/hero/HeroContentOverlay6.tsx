@@ -126,7 +126,7 @@ export default function HeroContentOverlay6() {
             <motion.div
                 className="absolute left-1/2
                            flex flex-col gap-1 sm:gap-1 md:gap-2
-                           w-[min(96vw,680px)] sm:w-[min(86vw,720px)] md:w-[min(68vw,800px)]
+                           w-[min(96vw,740px)] sm:w-[min(90vw,820px)] md:w-[min(82vw,1000px)]
                            text-center pointer-events-auto select-text
                            px-4 sm:px-0"
                 style={{
