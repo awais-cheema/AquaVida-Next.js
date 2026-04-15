@@ -109,7 +109,7 @@ export default function HeroContentOverlay4() {
             >
                 <h3 className="hero-selectable font-allomira font-extrabold text-white text-right w-full
                                leading-[1.15] tracking-normal
-                               text-[clamp(18px,2.5vw,48px)]
+                               text-[clamp(22px,3vw,56px)]
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
                     And We Don&apos;t Just Build Pools,
                     <span className="block">We Craft an Experience</span>
@@ -117,7 +117,7 @@ export default function HeroContentOverlay4() {
 
                 <p className="hero-selectable font-allomira text-white text-right w-full
                               leading-relaxed tracking-wide text-balance
-                              text-[clamp(13px,1.3vw,22px)]
+                              text-[clamp(15px,1.6vw,26px)]
                               drop-shadow-[0_1px_10px_rgba(0,0,0,0.8)]">
                     AquaVida Pools and Spas specializes in building swimming pools. We focus primarily on creating a
                     unique aesthetic-based lifestyle experience for your home and skin

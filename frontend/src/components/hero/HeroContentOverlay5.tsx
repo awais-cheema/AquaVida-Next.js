@@ -113,13 +113,13 @@ export default function HeroContentOverlay5() {
             >
                 <h3 className="hero-selectable font-allomira font-extrabold text-white
                                leading-[1.1] tracking-tight
-                               text-[clamp(16px,2vw,42px)]
+                               text-[clamp(20px,2.5vw,50px)]
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.95),0_0_40px_rgba(0,0,0,0.8)]">
                     Fire Pit Installation &amp; Custom Design Services
                 </h3>
 
                 <p className="hero-selectable font-allomira text-white/90 leading-relaxed
-                              text-[clamp(13px,1.3vw,22px)] tracking-wide text-balance
+                              text-[clamp(15px,1.6vw,26px)] tracking-wide text-balance
                               drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
                     The sky is the limit with our Expert Fire Pit Installation Services, making your backyard a private
                     sanctuary, and letting us turn your outdoor patio into an all-year amenity. Perfectly paired with your

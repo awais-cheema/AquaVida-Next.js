@@ -88,13 +88,13 @@ export default function HeroContentOverlay8() {
             >
                 <h3 className="hero-selectable font-allomira font-extrabold text-white
                                leading-[1.1] tracking-tight
-                               text-[clamp(16px,2vw,42px)]
+                               text-[clamp(20px,2.5vw,50px)]
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.95),0_0_40px_rgba(0,0,0,0.8)]">
                     Professional Outdoor Grill Installation
                 </h3>
 
                 <p className="hero-selectable font-allomira text-white/90 leading-relaxed
-                              text-[clamp(13px,1.3vw,22px)] tracking-wide text-balance
+                              text-[clamp(15px,1.6vw,26px)] tracking-wide text-balance
                               drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
                     AquaVida Pools and Spas can create outdoor grills that are as luxurious and functional as the cooking
                     station. The pro crew also promises you a solid construction and reliable setup for an extraordinary

@@ -121,7 +121,7 @@ export default function HeroContentOverlay3() {
                 <h2
                     className="text-white font-allomira uppercase font-black text-center px-4"
                     style={{
-                        fontSize: isMobile ? 'clamp(1.8rem, 10vw, 3rem)' : 'clamp(2rem, 5vw, 5.5rem)',
+                        fontSize: isMobile ? 'clamp(1.8rem, 10vw, 3rem)' : 'clamp(2.5rem, 6vw, 6.5rem)',
                         letterSpacing: isMobile ? '0.03em' : '0.08em',
                         textShadow: '0 4px 60px rgba(0,0,0,0.95)',
                         pointerEvents: 'none',
@@ -284,7 +284,7 @@ function GlassCard({
                             style={{
                                 fontSize:    isMobile
                                     ? 'clamp(1.15rem, 4vw, 1.8rem)'
-                                    : 'clamp(1.1rem, 2.2vw, 2rem)',
+                                    : 'clamp(1.3rem, 2.6vw, 2.4rem)',
                                 lineHeight:  1.0,
                                 letterSpacing: '0.04em',
                                 filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.85))'

@@ -96,10 +96,10 @@ export default function HeroScrollOverlay() {
                 <h1 className="hero-selectable font-allomira font-bold text-white w-full
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]
                                leading-tight tracking-tight text-center -mt-2">
-                    <span className="block text-[clamp(26px,3.8vw,72px)] leading-[1.1] tracking-tight w-full max-w-[min(150vw,1400px)] mx-auto">
+                    <span className="block text-[clamp(30px,4.5vw,80px)] leading-[1.1] tracking-tight w-full max-w-[min(150vw,1400px)] mx-auto">
                         Aqua Vida Pools and Spas
                     </span>
-                    <span className="block text-[clamp(14px,1.6vw,26px)] font-medium text-white/95 mt-2 w-full">
+                    <span className="block text-[clamp(16px,1.9vw,30px)] font-medium text-white/95 mt-2 w-full">
                         The Ultimate Outdoor Experience
                     </span>
                 </h1>
@@ -107,7 +107,7 @@ export default function HeroScrollOverlay() {
                 {/* Subtext — selectable */}
                 <p className="hero-selectable mt-8 max-w-3xl font-allomira text-white/80 leading-relaxed
                                drop-shadow-[0_1px_10px_rgba(0,0,0,0.65)]
-                               text-[clamp(14px,1.3vw,20px)] text-center mx-auto text-balance">
+                               text-[clamp(15px,1.5vw,22px)] text-center mx-auto text-balance">
                     Elevate your lifestyle with AquaVida Pools and Spas. We deliver premium pool construction services
                     and one-of-a-kind designs, turning any backyard or commercial site into a private sanctuary of
                     relaxation.

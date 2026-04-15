@@ -107,7 +107,7 @@ export default function HeroContentOverlay7() {
                     <h3
                         className="hero-selectable font-allomira font-black text-white text-center uppercase drop-shadow-[0_20px_60px_rgba(0,0,0,1)]"
                         style={{
-                            fontSize: 'clamp(13px, 1.6vw, 28px)',
+                            fontSize: 'clamp(15px, 2vw, 34px)',
                             letterSpacing: '0.07em',
                             lineHeight: 1.1,
                             whiteSpace: 'nowrap',
