@@ -1,0 +1,43 @@
+import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell';
+
+export default function MontalcinoPage() {
+    return (
+        <PortfolioProjectShell 
+            p={{
+                id: 'montalcino',
+                title: 'Montalcino',
+                description: 'A nocturnal sanctuary designed for high-end social engagement. At the heart of this estate project is a sunken, zero-edge fire feature where the heat of the flame meets the cooling embrace of silent hydraulics.',
+                heroImage: '/images/portfolio/montalcino/hero.avif',
+                location: 'Austin, TX',
+                year: '2023',
+                category: 'Social Architecture',
+                philosophyTitle: 'The Nocturnal Glow',
+                philosophyBody: 'Design is the manipulation of light and shadow. At Montalcino, we used firelight as our primary architectural material, creating a warm, social nocturnal hearth in an onyx void.',
+                philosophyImage: '/images/portfolio/montalcino/Fire_Feature.avif',
+                gallery: [
+                    {
+                        url: '/images/portfolio/montalcino/Evening_Social.avif',
+                        title: 'Social Depth',
+                        spec: 'Sunken Firepit Enclosure',
+                        size: 'col-span-2 row-span-1'
+                    },
+                    {
+                        url: '/images/portfolio/montalcino/Kitchen_Macro.avif',
+                        title: 'Precision Surface',
+                        spec: 'Outdoor Culinary Station',
+                        size: 'col-span-1 row-span-1'
+                    },
+                    {
+                        url: '/images/portfolio/montalcino/Liquid_Light_Macro.avif',
+                        title: 'Refractive Detail',
+                        spec: 'Submerged Fire-Glass System',
+                        size: 'col-span-1 row-span-1'
+                    }
+                ],
+                technicalTitle: 'Precision Hydrology',
+                technicalBody: 'The sunken firepit area required a complex dual-channel hydraulic system to ensure that the water stayed separated from the gas lines while maintaining a seamless zero-level overflow.',
+                accentColor: '#FF8C00'
+            }}
+        />
+    );
+}

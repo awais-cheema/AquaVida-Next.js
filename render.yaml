@@ -1,0 +1,36 @@
+# Render Blueprint — Django Backend + PostgreSQL on Render
+# Frontend deploys on Vercel separately
+
+services:
+  - type: web
+    name: aquavida-api
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn aquavida.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://aqua-vida-snowy.vercel.app"
+      - key: SITE_URL
+        value: "https://aqua-vida-snowy.vercel.app"
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: aquavida-db
+          property: connectionString
+
+databases:
+  - name: aquavida-db
+    plan: free
+    region: oregon
+    databaseName: aquavida
+    user: aquavida

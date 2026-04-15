@@ -1,0 +1,103 @@
+/* ============================================
+   AquaVida — Animation Utilities
+   ============================================ */
+
+/* Fade up (used by GSAP as initial state) */
+.anim-fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.anim-fade-in {
+    opacity: 0;
+}
+
+.anim-scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Stagger children helper */
+.anim-stagger>* {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Smooth scroll indicator */
+@keyframes scroll-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+.scroll-indicator {
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* Gradient text shimmer */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-text {
+    background: var(--color-accent-gradient);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite;
+}
+
+/* Glassmorphism card */
+.glass-card {
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-lg);
+}
+
+/* Glow effect on hover */
+.glow-hover {
+    transition: box-shadow var(--transition-base);
+}
+
+.glow-hover:hover {
+    box-shadow: var(--shadow-glow);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .anim-fade-up,
+    .anim-fade-in,
+    .anim-scale-in,
+    .anim-stagger>* {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .scroll-indicator {
+        animation: none;
+    }
+
+    .gradient-text {
+        animation: none;
+    }
+}

@@ -1,0 +1,52 @@
+# === Python / Django ===
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+*.log
+db.sqlite3
+db.sqlite3-journal
+backend/media/
+backend/staticfiles/
+.env
+
+# === Node / Next.js ===
+node_modules/
+.next/
+out/
+frontend/.env.local
+frontend/.env*.local
+
+# === Media Assets (Served via Cloudflare R2) ===
+frontend/public/videos/
+frontend/public/models/
+*.mp4
+*.glb
+*.gltf
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Cloudflare / Wrangler ===
+.wrangler/
+
+# === Dev logs ===
+frontend/dev_error.txt
+frontend/dev_output.txt
+
+# === Misc ===
+*.bak
+*.tmp
+.cache/
