@@ -115,7 +115,7 @@ export default function HeroContentOverlay4() {
                     <span className="block">We Craft an Experience</span>
                 </h3>
 
-                <p className="hero-selectable font-allomira text-white text-right w-full
+                <p className="hero-selectable font-allomira text-white text-right w-full max-w-[min(80vw,420px)] md:max-w-[min(36vw,440px)]
                               leading-relaxed tracking-wide text-balance
                               text-[clamp(13px,1.3vw,22px)]
                               drop-shadow-[0_1px_10px_rgba(0,0,0,0.8)]">

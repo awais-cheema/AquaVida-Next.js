@@ -96,10 +96,10 @@ export default function HeroScrollOverlay() {
                 <h1 className="hero-selectable font-allomira font-bold text-white w-full
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]
                                leading-tight tracking-tight text-center -mt-2">
-                    <span className="block text-[clamp(22px,3.1vw,58px)] leading-[1.1] tracking-tight w-full max-w-[min(150vw,1400px)] mx-auto">
+                    <span className="block text-[clamp(22px,3.1vw,58px)] leading-[1.1] tracking-[0.04em] w-full max-w-[min(150vw,1400px)] mx-auto">
                         Aqua Vida Pools and Spas
                     </span>
-                    <span className="block text-[clamp(14px,1.65vw,27px)] font-medium text-white/95 mt-2 w-full">
+                    <span className="block text-[clamp(14px,1.65vw,27px)] font-medium text-white/95 mt-2 tracking-[0.1em] w-full">
                         The Ultimate Outdoor Experience
                     </span>
                 </h1>
