@@ -128,7 +128,7 @@ export default function HeroSection() {
         const maxFrame    = totalFrames - 1;
         const basePath    = isMobile ? `${R2_BASE}/frames-mobile` : `${R2_BASE}/frames`;
         const scrollEnd   = isMobile ? MOBILE_END : DESKTOP_END;
-        const fitMode     = isMobile ? 'contain' as const : 'cover' as const;
+        const fitMode     = 'cover' as const;   // fill viewport on all devices
         const loopZones   = isMobile ? MOBILE_LOOP_ZONES : DESKTOP_LOOP_ZONES;
 
         // ── Engine state ───────────────────────────────────────────────────────
@@ -303,7 +303,9 @@ export default function HeroSection() {
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
                     if (isMobile) {
-                        // Mobile: adaptive lerp — fast scroll → smooth lerp; near-stop → direct
+                        // Mobile: lerp toward target for smooth feel, then draw single
+                        // integer frames only — no blending. Blending two frames creates
+                        // a visible ghost/double-image that feels wrong on mobile.
                         lastDrawnFrame = -1; // invalidate idle-mode snap cache
                         if (scrollVelocity > MOBILE_SLOW_VEL) {
                             currentFrame += (proxy.targetFrame - currentFrame) * MOBILE_LERP;
@@ -311,24 +313,12 @@ export default function HeroSection() {
                             currentFrame = proxy.targetFrame;
                         }
 
-                        // Render throttle: skip draw if float frame barely moved
-                        if (Math.abs(currentFrame - lastRenderedFloat) >= MOBILE_SKIP_THRESHOLD) {
-                            lastRenderedFloat = currentFrame;
-
-                            const frameFloor = Math.max(0, Math.min(Math.floor(currentFrame), maxFrame));
-                            const frameCeil  = Math.min(frameFloor + 1, maxFrame);
-                            const alpha      = currentFrame - Math.floor(currentFrame);
-
-                            const imgA = loader.getFrame(frameFloor) ?? loader.getNearestFrame(frameFloor)?.img ?? null;
-                            const imgB = loader.getFrame(frameCeil);
-
-                            if (imgA) {
-                                // Blend gate: only blend when scroll is genuinely fast
-                                if (imgB && alpha > 0.02 && alpha < 0.98 && scrollVelocity > BLEND_MIN_VEL) {
-                                    renderer.drawBlended(imgA, frameFloor, imgB, frameCeil, alpha);
-                                } else {
-                                    renderer.drawFrame(imgA, frameFloor);
-                                }
+                        const idx = Math.max(0, Math.min(Math.floor(currentFrame), maxFrame));
+                        if (Math.abs(idx - lastRenderedFloat) >= MOBILE_SKIP_THRESHOLD) {
+                            lastRenderedFloat = idx;
+                            const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
+                            if (img) {
+                                renderer.drawFrame(img, idx);
                                 if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
                             }
                         }
