@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import heroFrameRef from '@/lib/heroFrameRef';
 import { getF, TIMELINE } from '@/lib/heroBreakpoints';
@@ -19,7 +18,6 @@ const SERVICES = [
 ];
 
 export default function HeroContentOverlay3() {
-    const router = useRouter();
     const [mounted, setMounted]   = useState(false);
     const [visible, setVisible]   = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -153,7 +151,6 @@ export default function HeroContentOverlay3() {
                         total={SERVICES.length}
                         scrollT={springT}
                         isMobile={isMobile}
-                        onNavigate={() => router.push(svc.href)}
                     />
                 ))}
             </motion.div>
@@ -170,14 +167,12 @@ function GlassCard({
     total,
     scrollT,
     isMobile,
-    onNavigate,
 }: {
     svc: { title: string; num: string; href: string; icon: string };
     index: number;
     total: number;
     scrollT: any;
     isMobile: boolean;
-    onNavigate: () => void;
 }) {
     const [st, setSt] = useState<React.CSSProperties>({
         opacity: 0,
@@ -226,7 +221,8 @@ function GlassCard({
     const padX = isMobile ? 20 : 40;
     const gap = isMobile ? 14 : 22;
     return (
-        <div
+        <Link
+            href={svc.href}
             className="absolute top-1/2 left-1/2"
             style={{
                 ...st,
@@ -236,8 +232,9 @@ function GlassCard({
                 pointerEvents: 'auto',
                 cursor: 'pointer',
                 boxShadow: '0 12px 48px rgba(0,0,0,0.55), 0 40px 80px rgba(0,0,0,0.28)',
+                display: 'block',
+                textDecoration: 'none',
             }}
-            onClick={onNavigate}
         >
             {/* Glass pane */}
             <div
@@ -295,6 +292,6 @@ function GlassCard({
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
