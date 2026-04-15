@@ -409,7 +409,8 @@ export default function HeroSection() {
             ScrollTrigger.refresh(true);
 
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            if (isMobile) ScrollTrigger.normalizeScroll(true);
+            // normalizeScroll removed — it caused iOS rubber-band bounce at the end
+            // of the pinned zone, making the animation loop back unexpectedly.
 
             gsapCtx = gsap.context(() => {
                 gsap.timeline({
@@ -417,11 +418,13 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   true,          // instant — no lag, no drag
+                        scrub:   isMobile ? 0.3 : true, // tiny lag on mobile kills bounce-back ghost
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       2,
                         invalidateOnRefresh: true,
+                        preventOverlaps:     true,
+                        fastScrollEnd:       true,
                         onRefresh: (self) => { mainST = self; },
                     },
                 }).to(proxy, { targetFrame: maxFrame, duration: 1, ease: 'none' }, 0);
