@@ -105,7 +105,7 @@ export default function HeroScrollOverlay() {
                 </h1>
 
                 {/* Subtext — selectable */}
-                <p className="hero-selectable mt-3 max-w-3xl font-allomira text-white/80 leading-relaxed
+                <p className="hero-selectable mt-3 md:my-6 max-w-3xl font-allomira text-white/80 leading-relaxed
                                drop-shadow-[0_1px_10px_rgba(0,0,0,0.65)]
                                text-[clamp(13px,1.25vw,18px)] text-center mx-auto text-balance">
                     Elevate your lifestyle with AquaVida Pools and Spas. We deliver premium pool construction services
