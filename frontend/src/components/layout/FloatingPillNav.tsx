@@ -136,7 +136,7 @@ export default function FloatingPillNav() {
                 </ul>
 
                 {/* Desktop CTA */}
-                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(12px,1.1vw,24px)] py-[clamp(5px,0.5vw,10px)] rounded-full text-[clamp(11px,0.95vw,15px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
+                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(12px,1.1vw,24px)] py-[clamp(5px,0.5vw,10px)] rounded-full text-[clamp(13px,1.2vw,19px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
                     Get a Quote
                 </Link>
 
