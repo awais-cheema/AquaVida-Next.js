@@ -270,11 +270,14 @@ export default function FloatingFooter() {
                                                    text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                         Address
                                     </h4>
-                                    <p className="text-white/80 font-medium leading-relaxed tracking-wider
-                                                  text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl">
+                                    <a href="https://maps.app.goo.gl/Vv5TYqKWVKtWKj4q7"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       className="text-white/80 hover:text-white font-medium leading-relaxed tracking-wider transition-colors duration-200
+                                                  text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl block">
                                         <span className="whitespace-nowrap">2100 N Greenville Ave.</span><br />
                                         <span className="whitespace-nowrap">Richardson, TX 75082, USA</span>
-                                    </p>
+                                    </a>
                                 </div>
 
                                 <div className="mt-2 sm:mt-3 md:mt-4">
