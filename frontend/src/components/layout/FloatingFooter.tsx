@@ -160,9 +160,9 @@ export default function FloatingFooter() {
                         // rounded
                         'rounded-2xl sm:rounded-3xl md:rounded-[2.5rem] lg:rounded-[3rem]',
                         // padding
-                        'px-4 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 md:px-10 md:pt-9 md:pb-6 lg:px-14 lg:pt-12 lg:pb-8 xl:px-18 xl:pt-13 xl:pb-9 2xl:px-20 2xl:pt-14 2xl:pb-10',
+                        'px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4 md:px-8 md:pt-7 md:pb-5 lg:px-10 lg:pt-8 lg:pb-6 xl:px-14 xl:pt-10 xl:pb-7 2xl:px-20 2xl:pt-14 2xl:pb-10',
                         // row gaps
-                        'gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12',
+                        'gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-10 2xl:gap-12',
                         isHome ? '' : '',
                     ].join(' ')}
                     style={{
@@ -196,28 +196,28 @@ export default function FloatingFooter() {
                                 src={getAssetUrl("/logo2.avif")}
                                 alt="AquaVida Pools and Spas"
                                 width={360} height={120}
-                                className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[240px] 2xl:w-[280px]
+                                className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px]
                                            h-auto object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]"
                             />
                         </div>
 
                         {/* Columns grid */}
                         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.45fr)]
-                                        gap-x-4 gap-y-5
-                                        sm:gap-x-5 sm:gap-y-6
-                                        md:gap-x-5 md:gap-y-0
-                                        lg:gap-x-7 xl:gap-x-10
+                                        gap-x-3 gap-y-4
+                                        sm:gap-x-4 sm:gap-y-5
+                                        md:gap-x-4 md:gap-y-0
+                                        lg:gap-x-5 xl:gap-x-9
                                         w-full lg:flex-1
                                         text-center md:text-left">
 
                             {/* ── Explore ── */}
                             <nav aria-label="Explore">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-4 sm:mb-6 drop-shadow-md
-                                               text-[12px] sm:text-[14px] md:text-base lg:text-lg xl:text-xl 2xl:text-3xl">
+                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                               text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-sm 2xl:text-xl">
                                     Explore
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                                               text-[14px] sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl
+                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                               text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl
                                                text-white/60 md:text-white/80 font-medium tracking-wider">
                                     <li><Link href="/"          className={lk}>Home</Link></li>
                                     <li><Link href="/portfolio" className={lk}>Portfolio</Link></li>
@@ -229,12 +229,12 @@ export default function FloatingFooter() {
 
                             {/* ── Services ── */}
                             <nav aria-label="Services">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-4 sm:mb-6 drop-shadow-md
-                                               text-[10px] sm:text-[12px] md:text-sm lg:text-base xl:text-lg 2xl:text-2xl">
+                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                               text-[10px] sm:text-[11px] md:text-[11px] lg:text-[12px] xl:text-xs 2xl:text-lg">
                                     Services
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                                               text-[12px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                               text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-xs 2xl:text-lg
                                                font-medium tracking-wider">
                                     <li><Link href="/services/pool-design"       className={lk}>Pool design</Link></li>
                                     <li><Link href="/services/pool-construction" className={lk}>Pool construction</Link></li>
@@ -248,12 +248,12 @@ export default function FloatingFooter() {
 
                             {/* ── Information ── */}
                             <nav aria-label="Information">
-                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-4 sm:mb-6 drop-shadow-md
-                                               text-[10px] sm:text-[12px] md:text-sm lg:text-base xl:text-lg 2xl:text-2xl">
+                                <h4 className="text-white font-black tracking-[0.3em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
+                                               text-[10px] sm:text-[11px] md:text-[11px] lg:text-[12px] xl:text-xs 2xl:text-lg">
                                     Information
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                                                text-[12px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                                text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-xs 2xl:text-lg
                                                 font-medium tracking-wider">
                                     <li><Link href="/privacy" className={lk}>Privacy Policy</Link></li>
                                     <li><Link href="/terms"   className={lk}>Terms &amp; Conditions</Link></li>
@@ -261,42 +261,42 @@ export default function FloatingFooter() {
                                 </ul>
                             </nav>
 
-                            <div className="flex flex-col gap-8 sm:gap-10
+                            <div className="flex flex-col gap-4 sm:gap-5 md:gap-6
                                             col-span-2 md:col-span-1
                                             border-t md:border-t-0 md:border-l border-white/10
-                                            pt-10 md:pt-0 md:pl-6 lg:pl-8 xl:pl-10">
+                                            pt-6 md:pt-0 md:pl-5 lg:pl-6 xl:pl-8">
                                 <div className="max-w-[520px]">
-                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-4
-                                                   text-[12px] sm:text-[14px] md:text-base lg:text-lg xl:text-xl 2xl:text-3xl">
+                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-2 sm:mb-3
+                                                   text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-sm 2xl:text-xl">
                                         Address
                                     </h4>
                                     <p className="text-white/80 font-medium leading-relaxed tracking-wider
-                                                  text-[12px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+                                                  text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-sm 2xl:text-lg">
                                         <span className="whitespace-nowrap">2100 N Greenville Ave.</span><br />
                                         <span className="whitespace-nowrap">Richardson, TX 75082, USA</span>
                                     </p>
                                 </div>
 
-                                <div className="mt-12">
-                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-4
-                                                   text-[12px] sm:text-[14px] md:text-base lg:text-lg xl:text-xl 2xl:text-3xl">
+                                <div className="mt-2 sm:mt-3 md:mt-4">
+                                    <h4 className="text-white font-black tracking-[0.4em] uppercase drop-shadow-md mb-2 sm:mb-3
+                                                   text-[11px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-sm 2xl:text-xl">
                                         Phone
                                     </h4>
                                     <a href="tel:+14695876255"
                                        className="text-white font-black hover:text-white/70 transition-colors duration-200 drop-shadow-md block
-                                                  text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl whitespace-nowrap">
+                                                  text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl whitespace-nowrap">
                                         +1&nbsp;469-587-6255
                                     </a>
                                 </div>
 
-                                <div className="h-px bg-white/20 mt-12 mb-8" />
+                                <div className="h-px bg-white/20 mt-2 sm:mt-3 mb-2" />
 
-                                <ul className="flex items-center justify-center md:justify-start gap-8" role="list">
+                                <ul className="flex items-center justify-center md:justify-start gap-5 sm:gap-6" role="list">
                                     {[
-                                        { label: 'Instagram', icon: <InstagramIcon className="w-6 h-6 sm:w-8 sm:h-8" /> },
-                                        { label: 'Facebook',  icon: <FacebookIcon  className="w-6 h-6 sm:w-8 sm:h-8" /> },
-                                        { label: 'LinkedIn',  icon: <LinkedInIcon size={32} /> },
-                                        { label: 'TikTok',    icon: <TikTokIcon   size={32} /> },
+                                        { label: 'Instagram', icon: <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" /> },
+                                        { label: 'Facebook',  icon: <FacebookIcon  className="w-5 h-5 sm:w-6 sm:h-6" /> },
+                                        { label: 'LinkedIn',  icon: <LinkedInIcon size={24} /> },
+                                        { label: 'TikTok',    icon: <TikTokIcon   size={24} /> },
                                     ].map(({ label, icon }) => (
                                         <li key={label}>
                                             <a href="#"
@@ -322,12 +322,12 @@ export default function FloatingFooter() {
                     ══════════════════════════════════════ */}
                     <div className="flex flex-col lg:flex-row items-center justify-between
                                     border-t border-white/10
-                                    pt-12 sm:pt-16 pb-4
-                                    gap-12 lg:gap-0">
+                                    pt-5 sm:pt-6 md:pt-8 pb-2
+                                    gap-5 lg:gap-0">
 
                         {/* Copyright */}
                         <p className="text-white/30 font-bold tracking-[0.2em] uppercase whitespace-nowrap
-                                      text-[11px] sm:text-xs md:text-sm xl:text-base
+                                      text-[9px] sm:text-[10px] md:text-[11px] lg:text-[11px] xl:text-xs
                                       w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                             © 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.
                         </p>
@@ -335,14 +335,14 @@ export default function FloatingFooter() {
                         {/* Center Powered By (Primary focus) */}
                         <div className="flex items-center justify-center gap-7 w-full lg:w-1/3 order-1 lg:order-2">
                             <span className="font-allomira tracking-[0.5em] font-black uppercase text-white/20 whitespace-nowrap
-                                             text-[7.5px] sm:text-[9.5px] md:text-[11px] lg:text-[12.5px] xl:text-[14px]">
+                                             text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px]">
                                 Powered By
                             </span>
                             <Image
                                 src={getAssetUrl("/CXT.gif")}
                                 alt="Control X Tech"
                                 width={300} height={100}
-                                className="h-[70px] sm:h-[85px] md:h-[100px] lg:h-[115px] xl:h-[130px]
+                                className="h-[45px] sm:h-[55px] md:h-[65px] lg:h-[72px] xl:h-[88px] 2xl:h-[110px]
                                            w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-opacity"
                             />
                         </div>
@@ -355,7 +355,7 @@ export default function FloatingFooter() {
                                            text-white hover:text-white/60 transition-all duration-300
                                            flex items-center gap-4 group"
                             >
-                                <span className="text-[11px] sm:text-xs md:text-sm xl:text-base whitespace-nowrap">
+                                <span className="text-[9px] sm:text-[10px] md:text-[11px] lg:text-[11px] xl:text-xs whitespace-nowrap">
                                     Back to Top
                                 </span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4"
