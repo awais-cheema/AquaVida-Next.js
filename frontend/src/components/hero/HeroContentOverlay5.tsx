@@ -105,7 +105,7 @@ export default function HeroContentOverlay5() {
             {/* Top-left text block with padding from top */}
             <motion.div
                 className="absolute top-[18%] left-0
-                           flex flex-col gap-3 md:gap-5
+                           flex flex-col gap-1 md:gap-2
                            pl-6 sm:pl-10 md:pl-14
                            pr-4 sm:pr-6 md:pr-8
                            w-[min(92vw,580px)] md:w-[min(46vw,580px)]"

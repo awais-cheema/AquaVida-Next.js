@@ -102,7 +102,7 @@ export default function HeroContentOverlay4() {
 
             {/* Text block — slides only, opacity always 1 */}
             <motion.div
-                className="relative z-10 flex flex-col items-end gap-5 md:gap-7
+                className="relative z-10 flex flex-col items-end gap-2 md:gap-3
                            max-w-xl md:max-w-2xl text-right
                            pointer-events-auto select-text cursor-text"
                 style={{ x: textX, opacity: textOpacity }}

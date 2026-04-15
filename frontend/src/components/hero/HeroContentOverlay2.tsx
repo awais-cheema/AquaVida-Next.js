@@ -73,7 +73,7 @@ export default function HeroContentOverlay2() {
         >
             {/* Inner content: translateY only — selectable for SEO */}
             <motion.div
-                className="w-full max-w-5xl flex flex-col items-center gap-6 md:gap-10
+                className="w-full max-w-5xl flex flex-col items-center gap-2 md:gap-3
                            px-6 md:px-10 text-center
                            pointer-events-auto select-text cursor-text"
                 style={{ y: translateY }}

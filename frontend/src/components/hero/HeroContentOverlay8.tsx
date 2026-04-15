@@ -79,7 +79,7 @@ export default function HeroContentOverlay8() {
         >
             <motion.div
                 className="absolute top-[15%] right-0
-                           flex flex-col gap-2 sm:gap-3 md:gap-4
+                           flex flex-col gap-1 sm:gap-1 md:gap-2
                            pr-4 sm:pr-8 md:pr-14
                            pl-4 sm:pl-6 md:pl-8
                            w-[min(92vw,500px)] sm:w-[min(65vw,520px)] md:w-[min(42vw,540px)]

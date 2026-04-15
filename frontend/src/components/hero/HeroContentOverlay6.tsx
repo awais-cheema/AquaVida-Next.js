@@ -125,7 +125,7 @@ export default function HeroContentOverlay6() {
             {/* Text block — responsive, slides in along diagonal */}
             <motion.div
                 className="absolute left-1/2
-                           flex flex-col gap-2 sm:gap-3 md:gap-4
+                           flex flex-col gap-1 sm:gap-1 md:gap-2
                            w-[min(92vw,580px)] sm:w-[min(78vw,600px)] md:w-[min(54vw,620px)]
                            text-center pointer-events-auto select-text
                            px-4 sm:px-0"

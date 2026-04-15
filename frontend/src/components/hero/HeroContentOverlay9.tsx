@@ -89,7 +89,7 @@ export default function HeroContentOverlay9() {
                            w-[min(92vw,580px)] sm:w-[min(70vw,600px)] md:w-[min(46vw,620px)]"
                 style={{ opacity, x: textX, y: textY }}
             >
-                <div className="flex flex-col gap-2 sm:gap-3 md:gap-5 text-right shadow-2xl">
+                <div className="flex flex-col gap-1 sm:gap-1 md:gap-2 text-right shadow-2xl">
                     <h3 className="hero-selectable font-allomira font-extrabold text-white
                                    leading-[1.1] tracking-tight
                                    text-[clamp(20px,2.5vw,52px)]

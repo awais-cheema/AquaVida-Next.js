@@ -92,7 +92,7 @@ export default function HeroContentOverlay10() {
             {/* Content — slightly above center to leave footer room */}
             <div className="relative z-10 flex items-center justify-center w-full h-full">
                 <motion.div
-                    className="flex flex-col items-center text-center gap-4 sm:gap-6
+                    className="flex flex-col items-center text-center gap-1 sm:gap-2
                                px-4 sm:px-8 md:px-12
                                w-full max-w-[min(96vw,960px)] sm:max-w-[min(88vw,1020px)] md:max-w-[min(78vw,1100px)]
                                -translate-y-[8%] pointer-events-auto select-text"
