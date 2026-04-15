@@ -56,6 +56,26 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
             smoother.kill();
             ScrollTrigger.getAll().forEach(t => t.kill());
             ScrollTrigger.clearScrollMemory();
+
+            // ScrollSmoother leaves position:fixed + overflow:hidden on the wrapper
+            // and a translateY on the content. If not reset, the next page renders
+            // but is fully clipped/hidden — showing a black screen.
+            const wrapper = document.getElementById('smooth-wrapper');
+            const content = document.getElementById('smooth-content');
+            if (wrapper) {
+                wrapper.style.position   = '';
+                wrapper.style.overflow   = '';
+                wrapper.style.height     = '';
+                wrapper.style.width      = '';
+                wrapper.style.top        = '';
+                wrapper.style.left       = '';
+            }
+            if (content) {
+                content.style.transform  = '';
+                content.style.overflow   = '';
+                content.style.position   = '';
+            }
+            window.scrollTo(0, 0);
         };
     }, [isHome]);
 
