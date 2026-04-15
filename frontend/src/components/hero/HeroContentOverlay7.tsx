@@ -100,7 +100,7 @@ export default function HeroContentOverlay7() {
             />
 
             <motion.div
-                className="flex items-center justify-center w-max max-w-[94vw] mx-auto px-6"
+                className="flex items-center justify-center w-full max-w-[94vw] mx-auto px-6"
                 style={{ opacity: textOpacity, scale }}
             >
                 <div className="flex items-center justify-center">
@@ -110,7 +110,8 @@ export default function HeroContentOverlay7() {
                             fontSize: 'clamp(18px, 2.4vw, 44px)',
                             letterSpacing: '0.07em',
                             lineHeight: 1.1,
-                            whiteSpace: 'nowrap',
+                            whiteSpace: 'normal',
+                            textAlign: 'center',
                         }}
                     >
                         THE SUMMER SOLUTION IS WHAT WE ALWAYS KEEP IN MIND

@@ -9,21 +9,6 @@ import heroFrameRef from '@/lib/heroFrameRef';
 import { getF, TIMELINE } from '@/lib/heroBreakpoints';
 import { getAssetUrl } from '@/lib/constants';
 
-function LinkedInIcon({ size = 20 }: { size?: number }) {
-    return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-    );
-}
-
-function TikTokIcon({ size = 20 }: { size?: number }) {
-    return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z" />
-        </svg>
-    );
-}
 
 function InstagramIcon({ className }: { className?: string }) {
     return (
@@ -293,17 +278,13 @@ export default function FloatingFooter() {
 
                                 <ul className="flex items-center justify-center md:justify-start gap-5 sm:gap-6" role="list">
                                     {[
-                                        { label: 'Instagram', icon: <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" /> },
-                                        { label: 'Facebook',  icon: <FacebookIcon  className="w-5 h-5 sm:w-6 sm:h-6" /> },
-                                        { label: 'LinkedIn',  icon: <LinkedInIcon size={24} /> },
-                                        { label: 'TikTok',    icon: <TikTokIcon   size={24} /> },
-                                    ].map(({ label, icon }) => (
+                                        { label: 'Instagram', href: 'https://www.instagram.com/aquavida.us?igsh=MWxxOGE1a3I3MGp5', icon: <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" /> },
+                                        { label: 'Facebook',  href: 'https://www.facebook.com/share/17zSuCHyWT/',                   icon: <FacebookIcon  className="w-5 h-5 sm:w-6 sm:h-6" /> },
+                                    ].map(({ label, href, icon }) => (
                                         <li key={label}>
-                                            <a href="#"
-                                               onClick={(e) => {
-                                                   e.preventDefault();
-                                                   window.scrollTo({ top: 0, behavior: 'smooth' });
-                                               }}
+                                            <a href={href}
+                                               target="_blank"
+                                               rel="noopener noreferrer"
                                                aria-label={label}
                                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-300 inline-flex items-center">
                                                 {icon}
