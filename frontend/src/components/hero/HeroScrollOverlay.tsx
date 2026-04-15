@@ -122,14 +122,14 @@ export default function HeroScrollOverlay() {
                 <div className="mt-12 flex flex-col sm:flex-row items-center gap-5 pointer-events-auto">
                     <Link
                         href="/contact"
-                        className="btn px-10 py-4 bg-[#63b589] text-white font-allomira font-bold text-xl rounded-full
+                        className="btn px-10 py-4 bg-[#63b589] text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
                                    shadow-[0_10px_30px_rgba(99,181,137,0.35)] hover:scale-110 active:scale-95 transition-all duration-300"
                     >
                         Upgrade Your Lifestyle
                     </Link>
                     <Link
                         href="/portfolio"
-                        className="btn px-10 py-4 bg-white/10 text-white font-allomira font-bold text-xl rounded-full
+                        className="btn px-10 py-4 bg-white/10 text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
                                    backdrop-blur-xl border border-white/20 hover:scale-110 active:scale-95 transition-all duration-300"
                     >
                         Start Exploring

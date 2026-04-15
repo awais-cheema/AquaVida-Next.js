@@ -135,7 +135,7 @@ export default function HeroContentOverlay3() {
                 {/* Explore CTA — no font color change on hover, scales up */}
                 <Link
                     href="/services"
-                    className="btn mt-4 px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-lg md:text-xl rounded-full
+                    className="btn mt-4 px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
                                shadow-[0_10px_30px_rgba(99,181,137,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 pointer-events-auto"
                 >
                     Explore All Services
