@@ -62,21 +62,18 @@ export default function FloatingFooter() {
 
     useEffect(() => {
         if (!isHome) return;
-        let rafId: number;
-        let alive = true;
         const tick = () => {
-            if (!alive) return;
             const f     = heroFrameRef.current;
             const isM   = heroFrameRef.isMobile;
             const total = heroFrameRef.total;
-            const APPEAR_F = getF(596, isM, total);
+            // Desktop: appear at frame 582 (OV10 start). Mobile: lower threshold
+            // so the footer isn't gated behind the very last 2 frames.
+            const APPEAR_F = isM ? getF(560, isM, total) : getF(582, isM, total);
 
             if (f < APPEAR_F) { setVisible(false); setOpacity(0); }
-            else { setVisible(true); setOpacity(Math.min((f - APPEAR_F) / 3, 1)); }
-            rafId = requestAnimationFrame(tick);
+            else { setVisible(true); setOpacity(Math.min((f - APPEAR_F) / 4, 1)); }
         };
-        rafId = requestAnimationFrame(tick);
-        return () => { alive = false; cancelAnimationFrame(rafId); };
+        return heroFrameRef.subscribe(tick);
     }, [isHome]);
 
     if (!mounted) return null;
