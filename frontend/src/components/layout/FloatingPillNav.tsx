@@ -30,7 +30,6 @@ const NAV_LINKS_BEFORE: { href: string; label: string }[] = [
 const NAV_LINKS_AFTER: { href: string; label: string }[] = [
     { href: '/finance',   label: 'Finance' },
     { href: '/contact',   label: 'Contact Us' },
-    { href: '/blog',      label: 'Blogs' },
 ];
 
 export default function FloatingPillNav() {
