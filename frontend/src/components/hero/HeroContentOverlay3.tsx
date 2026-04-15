@@ -59,7 +59,7 @@ export default function HeroContentOverlay3() {
 
             if (f < T1_START || f > T2_EXIT) {
                 if (visible) setVisible(false);
-                return void (rafId = requestAnimationFrame(tick));
+                return;
             }
 
             if (!visible) setVisible(true);
