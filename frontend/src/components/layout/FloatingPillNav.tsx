@@ -49,7 +49,7 @@ export default function FloatingPillNav() {
         setMobileProjectsOpen(false);
     };
 
-    const linkCls = `text-white/75 hover:text-white text-[clamp(12px,1.05vw,17px)] font-medium
+    const linkCls = `text-white/75 hover:text-white text-[clamp(13px,1.2vw,19px)] font-medium
                      tracking-wide transition-colors duration-150 font-allomira py-2 cursor-pointer`;
 
     const mobileLinkCls = `block w-full px-4 py-3 rounded-xl text-[clamp(14px,1.3vw,20px)] font-medium
@@ -62,7 +62,7 @@ export default function FloatingPillNav() {
     return (
         <nav
             ref={navRef}
-            className="fixed top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-[86rem] z-[200]
+            className="fixed top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 w-[88%] max-w-[78rem] z-[200]
                        rounded-full px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-[9px] lg:px-8 lg:py-[11px] pointer-events-auto"
             style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(13, 86, 153, 0.05) 50%, rgba(0,0,0,0.2) 100%)',
@@ -79,7 +79,7 @@ export default function FloatingPillNav() {
                 </Link>
 
                 {/* Desktop Nav */}
-                <ul className="hidden md:flex items-center gap-[clamp(8px,1.2vw,36px)] flex-1 justify-center" role="list">
+                <ul className="hidden md:flex items-center gap-[clamp(14px,2vw,42px)] flex-1 justify-center" role="list">
                     {NAV_LINKS_BEFORE.map(({ href, label }) => (
                         <li key={href}><Link href={href} className={linkCls}>{label}</Link></li>
                     ))}
