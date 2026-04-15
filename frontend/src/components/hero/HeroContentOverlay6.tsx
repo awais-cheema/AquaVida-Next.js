@@ -55,8 +55,6 @@ export default function HeroContentOverlay6() {
     }, [visible]);
 
     useEffect(() => {
-        let rafId: number;
-
         const tick = () => {
             const f     = heroFrameRef.current;
             const isM   = heroFrameRef.isMobile;
@@ -112,11 +110,9 @@ export default function HeroContentOverlay6() {
                 diagY.set(-SLIDE_Y);
             }
 
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(rafId);
+        return heroFrameRef.subscribe(tick);
     }, [textOpacity, dotOpacity, diagX, diagY]);
 
     if (!mounted) return null;

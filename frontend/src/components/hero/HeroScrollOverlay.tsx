@@ -32,8 +32,6 @@ export default function HeroScrollOverlay() {
     useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
-        let rafId: number;
-
         const tick = () => {
             const frame = heroFrameRef.current;
             const isM   = heroFrameRef.isMobile;
@@ -57,12 +55,9 @@ export default function HeroScrollOverlay() {
                 opacity.set(0);
                 translateY.set(-150);
             }
-
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(rafId);
+        return heroFrameRef.subscribe(tick);
     }, [opacity, translateY]);
 
     if (!mounted) return null;

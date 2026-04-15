@@ -26,7 +26,6 @@ export default function HeroContentOverlay7() {
     useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
-        let rafId: number;
         let alive = true;
 
         const tick = () => {
@@ -82,11 +81,10 @@ export default function HeroContentOverlay7() {
                 textOpacity.set(0);
             }
 
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => { alive = false; cancelAnimationFrame(rafId); };
+        const unsub = heroFrameRef.subscribe(tick);
+        return () => { alive = false; unsub(); };
     }, [visible, bgOpacity, textOpacity, scaleRAW]);
 
     if (!mounted) return null;

@@ -382,10 +382,12 @@ export default function HeroSection() {
                     }
                 }
 
-                // Publish displayed frame for overlay sync.
+                // Publish displayed frame for overlay sync, then drive all overlay ticks
+                // from this single RAF loop — eliminates per-overlay RAF overhead.
                 heroFrameRef.isMobile = isMobile;
                 heroFrameRef.total = totalFrames;
                 heroFrameRef.current = lastDrawnFrame >= 0 ? lastDrawnFrame : Math.round(currentFrame);
+                heroFrameRef.tick();
 
                 // Scroll-ahead preload — boost priority for upcoming frames
                 const refIdx = Math.round(currentFrame);

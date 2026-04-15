@@ -29,8 +29,6 @@ export default function HeroContentOverlay2() {
     useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
-        let rafId: number;
-
         const tick = () => {
             const f     = heroFrameRef.current;
             const isM   = heroFrameRef.isMobile;
@@ -42,34 +40,26 @@ export default function HeroContentOverlay2() {
             const EXIT_END    = getF(TIMELINE.OV2.exitEnd,    isM, total);
 
             if (f < ENTER_START) {
-                // Before window — hidden above
                 opacity.set(0);
                 translateY.set(-120);
             } else if (f <= ENTER_END) {
-                // Fade in from high above
                 const t = (f - ENTER_START) / (ENTER_END - ENTER_START);
                 opacity.set(t);
                 translateY.set(-120 * (1 - t));
             } else if (f <= EXIT_START) {
-                // Fully visible
                 opacity.set(1);
                 translateY.set(0);
             } else if (f <= EXIT_END) {
-                // Fade out downward
                 const t = (f - EXIT_START) / (EXIT_END - EXIT_START);
                 opacity.set(1 - t);
                 translateY.set(40 * t);
             } else {
-                // After window — hidden below
                 opacity.set(0);
                 translateY.set(40);
             }
-
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(rafId);
+        return heroFrameRef.subscribe(tick);
     }, [opacity, translateY]);
 
     if (!mounted) return null;

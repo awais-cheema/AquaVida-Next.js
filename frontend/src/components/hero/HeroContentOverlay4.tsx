@@ -36,8 +36,6 @@ export default function HeroContentOverlay4() {
     useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
-        let rafId: number;
-
         const tick = () => {
             const f     = heroFrameRef.current;
             const isM   = heroFrameRef.isMobile;
@@ -81,11 +79,9 @@ export default function HeroContentOverlay4() {
                 textX.set(EXIT_TO);
             }
 
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(rafId);
+        return heroFrameRef.subscribe(tick);
     }, [bgOpacity, textX, textOpacity]);
 
     if (!mounted) return null;

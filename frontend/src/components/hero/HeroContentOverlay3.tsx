@@ -40,7 +40,6 @@ export default function HeroContentOverlay3() {
     }, []);
 
     useEffect(() => {
-        let rafId: number;
         let alive = true;
 
         const tick = () => {
@@ -101,11 +100,10 @@ export default function HeroContentOverlay3() {
                 cardsOpacity.set(0);
             }
 
-            rafId = requestAnimationFrame(tick);
         };
 
-        rafId = requestAnimationFrame(tick);
-        return () => { alive = false; cancelAnimationFrame(rafId); };
+        const unsub = heroFrameRef.subscribe(tick);
+        return () => { alive = false; unsub(); };
     }, [visible, osOpacity, osY, cardsOpacity, cardsX, scrollT]);
 
     if (!mounted) return null;
