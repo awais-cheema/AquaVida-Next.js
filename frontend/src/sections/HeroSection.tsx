@@ -56,8 +56,8 @@ const BLUR_REMOVE_AT    = 20;   // remove canvas blur after N frames loaded
 
 // ── Scroll ─────────────────────────────────────────────────────────────────────
 const DESKTOP_END            = '+=1100%';  // slower hero scrub: spread 600 frames across more scroll distance
-const MOBILE_END             = '+=700%';   // keep mobile slower too, but shorter than desktop for usability
-const MOBILE_LERP            = 0.14;       // mobile adaptive lerp (fast scroll)
+const MOBILE_END             = '+=1100%';  // slower mobile scrub: more scroll distance per frame
+const MOBILE_LERP            = 0.10;       // mobile adaptive lerp (fast scroll)
 const MOBILE_SLOW_VEL        = 0.01;       // velocity threshold: direct assign below this
 const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame moved less than this
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
