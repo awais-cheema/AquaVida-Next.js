@@ -143,13 +143,13 @@ export default function HeroContentOverlay6() {
             >
                 <h3 className="hero-selectable font-allomira font-extrabold text-white
                                leading-[1.1] tracking-tight
-                               text-[clamp(18px,2.8vw,48px)]
+                               text-[clamp(14px,1.9vw,38px)]
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.95),0_0_40px_rgba(0,0,0,0.8)]">
                     Soft Edges, Excellent Quality Because We CARE!
                 </h3>
 
                 <p className="hero-selectable font-allomira text-white/90 leading-relaxed
-                              text-[clamp(17px,1.8vw,28px)] tracking-wide text-balance
+                              text-[clamp(13px,1.2vw,20px)] tracking-wide text-balance
                               drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
                     We believe that safety and comfort come before anything else, which is why we design pools with
                     smooth, soft edges. We are devoted to quality workmanship, so you can rest assured that the finished

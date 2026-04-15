@@ -123,7 +123,7 @@ export default function HeroContentOverlay3() {
                 <h2
                     className="text-white font-allomira uppercase font-black text-center px-4"
                     style={{
-                        fontSize: isMobile ? 'clamp(1.8rem, 10vw, 3rem)' : 'clamp(3rem, 9vw, 7.5rem)',
+                        fontSize: isMobile ? 'clamp(1.8rem, 10vw, 3rem)' : 'clamp(2rem, 5vw, 5.5rem)',
                         letterSpacing: isMobile ? '0.03em' : '0.08em',
                         textShadow: '0 4px 60px rgba(0,0,0,0.95)',
                         pointerEvents: 'none',
@@ -135,7 +135,7 @@ export default function HeroContentOverlay3() {
                 {/* Explore CTA — no font color change on hover, scales up */}
                 <Link
                     href="/services"
-                    className="btn mt-4 px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
+                    className="btn mt-4 px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
                                shadow-[0_10px_30px_rgba(99,181,137,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 pointer-events-auto"
                 >
                     Explore All Services
@@ -286,7 +286,7 @@ function GlassCard({
                             style={{
                                 fontSize:    isMobile
                                     ? 'clamp(1.15rem, 4vw, 1.8rem)'
-                                    : 'clamp(1.5rem, 4vw, 2.5rem)',
+                                    : 'clamp(1.1rem, 2.2vw, 2rem)',
                                 lineHeight:  1.0,
                                 letterSpacing: '0.04em',
                                 filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.85))'

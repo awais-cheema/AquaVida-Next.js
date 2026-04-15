@@ -101,10 +101,10 @@ export default function HeroScrollOverlay() {
                 <h1 className="hero-selectable font-allomira font-bold text-white w-full
                                drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]
                                leading-tight tracking-tight text-center -mt-2">
-                    <span className="block text-[clamp(50px,7.5vw,80px)] leading-[1.1] tracking-tight w-full max-w-[min(150vw,1400px)] mx-auto">
+                    <span className="block text-[clamp(26px,3.8vw,72px)] leading-[1.1] tracking-tight w-full max-w-[min(150vw,1400px)] mx-auto">
                         Aqua Vida Pools and Spas
                     </span>
-                    <span className="block text-[clamp(24px,4vw,36px)] font-medium text-white/95 mt-2 w-full">
+                    <span className="block text-[clamp(14px,1.6vw,26px)] font-medium text-white/95 mt-2 w-full">
                         The Ultimate Outdoor Experience
                     </span>
                 </h1>
@@ -112,7 +112,7 @@ export default function HeroScrollOverlay() {
                 {/* Subtext — selectable */}
                 <p className="hero-selectable mt-8 max-w-3xl font-allomira text-white/80 leading-relaxed
                                drop-shadow-[0_1px_10px_rgba(0,0,0,0.65)]
-                               text-[clamp(24px,3.75vw,30px)] text-center mx-auto text-balance">
+                               text-[clamp(14px,1.3vw,20px)] text-center mx-auto text-balance">
                     Elevate your lifestyle with AquaVida Pools and Spas. We deliver premium pool construction services
                     and one-of-a-kind designs, turning any backyard or commercial site into a private sanctuary of
                     relaxation.
@@ -122,14 +122,14 @@ export default function HeroScrollOverlay() {
                 <div className="mt-12 flex flex-col sm:flex-row items-center gap-5 pointer-events-auto">
                     <Link
                         href="/contact"
-                        className="btn px-10 py-4 bg-[#63b589] text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
+                        className="btn px-10 py-4 bg-[#63b589] text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
                                    shadow-[0_10px_30px_rgba(99,181,137,0.35)] hover:scale-110 active:scale-95 transition-all duration-300"
                     >
                         Upgrade Your Lifestyle
                     </Link>
                     <Link
                         href="/portfolio"
-                        className="btn px-10 py-4 bg-white/10 text-white font-allomira font-bold text-[clamp(14px,1.15vw,20px)] rounded-full
+                        className="btn px-10 py-4 bg-white/10 text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
                                    backdrop-blur-xl border border-white/20 hover:scale-110 active:scale-95 transition-all duration-300"
                     >
                         Start Exploring
