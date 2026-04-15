@@ -86,7 +86,7 @@ export default function HeroContentOverlay9() {
                 className="absolute bottom-[6%] right-0
                            pr-4 sm:pr-8 md:pr-14
                            pl-4 sm:pl-6 md:pl-8
-                           w-[min(92vw,580px)] sm:w-[min(70vw,600px)] md:w-[min(46vw,620px)]"
+                           w-[min(94vw,660px)] sm:w-[min(78vw,720px)] md:w-[min(58vw,800px)]"
                 style={{ opacity, x: textX, y: textY }}
             >
                 <div className="flex flex-col gap-1 sm:gap-1 md:gap-2 text-right shadow-2xl">
