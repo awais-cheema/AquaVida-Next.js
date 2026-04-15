@@ -13,13 +13,16 @@
  *
  * Navigation fix:
  *   ScrollSmoother.kill() does NOT revert position:fixed / overflow:hidden on the wrapper.
- *   Those styles persist into the next page, clipping it entirely (black screen).
- *   useLayoutEffect resets them synchronously after the DOM commit but BEFORE child
- *   layout effects fire — so Framer Motion's useScroll never sees the clipped container.
- *   useEffect cleanup (smoother.kill) runs later and is harmless at that point.
+ *   Those styles persist and cause Framer Motion's useScroll (used on service/finance pages)
+ *   to read a broken scroll container, throwing the "page couldn't load" error.
+ *
+ *   Fix: the wrapper div carries key={isHome ? 'home' : 'non-home'}. When the user
+ *   navigates away from home, React sees the key change, destroys the old DOM element
+ *   (taking all ScrollSmoother inline styles with it), and mounts a brand-new, clean
+ *   wrapper — before any child layout effects run. No timing tricks needed.
  */
 
-import { useEffect, useInsertionEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -55,19 +58,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     const pathname = usePathname();
     const isHome   = pathname === '/';
 
-    // ── Synchronous style reset before ANY layout effects fire ─────────────────
-    // useInsertionEffect fires before all useLayoutEffect hooks across the entire
-    // component tree (both parent and children). This guarantees the wrapper's
-    // position:fixed / overflow:hidden set by ScrollSmoother are cleared BEFORE
-    // Framer Motion's useScroll reads the scroll container geometry in its own
-    // useLayoutEffect — otherwise the measurement throws, causing the
-    // "page couldn't load" error on client-side navigation.
-    useInsertionEffect(() => {
-        if (isHome) return;
-        resetWrapperStyles();
-    }, [isHome]);
-
-    // Scroll to top after DOM is committed (safe to call in useLayoutEffect)
+    // Scroll to top when arriving on a non-home page via client navigation.
     useLayoutEffect(() => {
         if (isHome) return;
         window.scrollTo(0, 0);
@@ -102,7 +93,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     }, [isHome]);
 
     return (
-        <div id="smooth-wrapper">
+        <div id="smooth-wrapper" key={isHome ? 'home' : 'non-home'}>
             <div id="smooth-content">
                 {children}
             </div>
