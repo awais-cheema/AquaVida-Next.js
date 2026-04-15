@@ -19,7 +19,7 @@
  *   useEffect cleanup (smoother.kill) runs later and is harmless at that point.
  */
 
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useInsertionEffect, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -55,15 +55,21 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     const pathname = usePathname();
     const isHome   = pathname === '/';
 
-    // ── Synchronous style reset (before paint, before child layout effects) ──────
-    // Must be useLayoutEffect so it runs before children's useLayoutEffect hooks.
-    // Framer Motion's useScroll (used in services/portfolio hero sections) reads
-    // scroll container geometry in its own useLayoutEffect — if the wrapper still
-    // has position:fixed from ScrollSmoother at that point it throws, causing the
+    // ── Synchronous style reset before ANY layout effects fire ─────────────────
+    // useInsertionEffect fires before all useLayoutEffect hooks across the entire
+    // component tree (both parent and children). This guarantees the wrapper's
+    // position:fixed / overflow:hidden set by ScrollSmoother are cleared BEFORE
+    // Framer Motion's useScroll reads the scroll container geometry in its own
+    // useLayoutEffect — otherwise the measurement throws, causing the
     // "page couldn't load" error on client-side navigation.
-    useLayoutEffect(() => {
+    useInsertionEffect(() => {
         if (isHome) return;
         resetWrapperStyles();
+    }, [isHome]);
+
+    // Scroll to top after DOM is committed (safe to call in useLayoutEffect)
+    useLayoutEffect(() => {
+        if (isHome) return;
         window.scrollTo(0, 0);
     }, [isHome]);
 
