@@ -341,11 +341,11 @@ export default function ServicesClient() {
                     <div className="relative z-10 max-w-[1600px] mx-auto flex items-center justify-center w-full gap-4 md:gap-10 px-6 md:px-16">
                         <Reveal>
                             <h1 className="font-allomira font-bold text-white leading-none select-none"
-                                style={{ fontSize: 'clamp(60px, 10vw, 170px)' }}>Our</h1>
+                                style={{ fontSize: 'clamp(34px, 10vw, 170px)' }}>Our</h1>
                         </Reveal>
                         <Reveal delay={0.08}>
                             <h1 className="font-allomira font-bold leading-none select-none text-white"
-                                style={{ fontSize: 'clamp(60px, 10vw, 170px)' }}>
+                                style={{ fontSize: 'clamp(34px, 10vw, 170px)' }}>
                                 Services
                             </h1>
                         </Reveal>
