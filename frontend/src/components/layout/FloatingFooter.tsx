@@ -329,7 +329,7 @@ export default function FloatingFooter() {
                                     gap-5 lg:gap-0">
 
                         {/* Copyright */}
-                        <p className="text-white/30 font-bold tracking-[0.08em] uppercase whitespace-nowrap
+                        <p className="text-white font-bold tracking-[0.08em] uppercase whitespace-nowrap
                                       text-[11px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-sm
                                       w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                             © 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.
@@ -345,8 +345,8 @@ export default function FloatingFooter() {
                                 src={getAssetUrl("/CXT.gif")}
                                 alt="Control X Tech"
                                 width={300} height={100}
-                                className="h-[45px] sm:h-[55px] md:h-[65px] lg:h-[72px] xl:h-[88px] 2xl:h-[110px]
-                                           w-auto object-contain mix-blend-screen opacity-70 hover:opacity-100 transition-opacity"
+                                className="h-[60px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
+                                           w-auto object-contain mix-blend-screen opacity-100"
                             />
                         </div>
 
