@@ -49,10 +49,10 @@ export default function FloatingPillNav() {
         setMobileProjectsOpen(false);
     };
 
-    const linkCls = `text-white/75 hover:text-white text-[clamp(17px,1.4vw,22px)] font-medium
-                     tracking-wide transition-colors duration-150 font-allomira py-4 cursor-pointer`;
+    const linkCls = `text-white/75 hover:text-white text-[clamp(12px,1.05vw,17px)] font-medium
+                     tracking-wide transition-colors duration-150 font-allomira py-2 cursor-pointer`;
 
-    const mobileLinkCls = `block w-full px-4 py-3 rounded-xl text-[clamp(17px,1.6vw,24px)] font-medium
+    const mobileLinkCls = `block w-full px-4 py-3 rounded-xl text-[clamp(14px,1.3vw,20px)] font-medium
                            text-white/75 hover:text-white hover:bg-white/10
                            transition-colors duration-150 font-allomira text-left`;
 
@@ -62,8 +62,8 @@ export default function FloatingPillNav() {
     return (
         <nav
             ref={navRef}
-            className="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[86rem] z-[200]
-                       rounded-full px-8 py-[14px] pointer-events-auto"
+            className="fixed top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-[86rem] z-[200]
+                       rounded-full px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-[9px] lg:px-8 lg:py-[11px] pointer-events-auto"
             style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(13, 86, 153, 0.05) 50%, rgba(0,0,0,0.2) 100%)',
                 backdropFilter: 'blur(24px) saturate(180%)',
@@ -72,14 +72,14 @@ export default function FloatingPillNav() {
                 boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
             }}
         >
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-3 md:gap-4 lg:gap-6 xl:gap-8">
                 {/* Logo */}
                 <Link href="/" className="flex-shrink-0">
-                    <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={165} height={50} priority className="h-[50px] w-auto object-contain" />
+                    <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={165} height={50} priority className="h-[clamp(26px,2.6vw,44px)] w-auto object-contain" />
                 </Link>
 
                 {/* Desktop Nav */}
-                <ul className="hidden md:flex items-center gap-9 flex-1 justify-center" role="list">
+                <ul className="hidden md:flex items-center gap-[clamp(8px,1.2vw,36px)] flex-1 justify-center" role="list">
                     {NAV_LINKS_BEFORE.map(({ href, label }) => (
                         <li key={href}><Link href={href} className={linkCls}>{label}</Link></li>
                     ))}
@@ -98,7 +98,7 @@ export default function FloatingPillNav() {
                             <ul className={dropCls}>
                                 {PROJECTS.map((p) => (
                                     <li key={p.label}>
-                                        <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2.5 rounded-xl text-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                        <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                             {p.label}
                                         </Link>
                                     </li>
@@ -121,7 +121,7 @@ export default function FloatingPillNav() {
                             <ul className={dropCls}>
                                 {SERVICES.map((s) => (
                                     <li key={s.label}>
-                                        <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2.5 rounded-xl text-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                        <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                             {s.label}
                                         </Link>
                                     </li>
@@ -136,7 +136,7 @@ export default function FloatingPillNav() {
                 </ul>
 
                 {/* Desktop CTA */}
-                <Link href="/contact" className="btn hidden md:inline-flex items-center px-6 py-2.5 rounded-full text-lg font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira">
+                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(12px,1.1vw,24px)] py-[clamp(5px,0.5vw,10px)] rounded-full text-[clamp(11px,0.95vw,15px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
                     Get a Quote
                 </Link>
 
