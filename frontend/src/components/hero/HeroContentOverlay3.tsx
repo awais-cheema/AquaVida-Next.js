@@ -116,12 +116,12 @@ export default function HeroContentOverlay3() {
             {/* ── Stage 1: "Our Services" ── */}
             <motion.div
                 className="absolute inset-0 flex items-center justify-center flex-col"
-                style={{ opacity: osOpacity, y: osY, gap: isMobile ? 12 : 24 }}
+                style={{ opacity: osOpacity, y: osY, gap: isMobile ? 8 : 14 }}
             >
                 <h2
                     className="text-white font-allomira uppercase font-black text-center px-4"
                     style={{
-                        fontSize: isMobile ? 'clamp(1.8rem, 10vw, 3rem)' : 'clamp(2.5rem, 6vw, 6.5rem)',
+                        fontSize: isMobile ? 'clamp(1.5rem, 8vw, 2.4rem)' : 'clamp(2rem, 4.5vw, 5rem)',
                         letterSpacing: isMobile ? '0.03em' : '0.08em',
                         textShadow: '0 4px 60px rgba(0,0,0,0.95)',
                         pointerEvents: 'none',
@@ -133,7 +133,7 @@ export default function HeroContentOverlay3() {
                 {/* Explore CTA — no font color change on hover, scales up */}
                 <Link
                     href="/services"
-                    className="btn mt-4 px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
+                    className="btn px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
                                shadow-[0_10px_30px_rgba(99,181,137,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 pointer-events-auto"
                 >
                     Explore All Services
@@ -221,8 +221,8 @@ function GlassCard({
     const radius = isMobile ? '1.6rem' : 'clamp(1.8rem, 4vw, 3.8rem)';
 
     // Responsive sizing
-    const cardW = isMobile ? 'clamp(220px, 80vw, 360px)' : 'clamp(280px, 44vw, 520px)';
-    const cardH = isMobile ? 'clamp(260px, 45vh, 380px)' : 'clamp(290px, 50vh, 528px)';
+    const cardW = isMobile ? 'clamp(180px, 66vw, 290px)' : 'clamp(220px, 34vw, 410px)';
+    const cardH = isMobile ? 'clamp(200px, 36vh, 300px)' : 'clamp(220px, 40vh, 420px)';
     const padX = isMobile ? 20 : 40;
     const gap = isMobile ? 14 : 22;
     return (
@@ -244,7 +244,7 @@ function GlassCard({
                 className="relative flex items-center justify-center text-center w-full h-full overflow-hidden"
                 style={{
                     borderRadius: radius,
-                    background: 'rgba(0,0,0,0.3)',
+                    background: 'rgba(0,0,0,0.55)',
                     backdropFilter: 'blur(30px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(30px) saturate(180%)',
                     border: '1px solid rgba(255,255,255,0.1)',
@@ -283,8 +283,8 @@ function GlassCard({
                             className="font-allomira uppercase font-black text-white text-center"
                             style={{
                                 fontSize:    isMobile
-                                    ? 'clamp(1.15rem, 4vw, 1.8rem)'
-                                    : 'clamp(1.3rem, 2.6vw, 2.4rem)',
+                                    ? 'clamp(1rem, 3.4vw, 1.5rem)'
+                                    : 'clamp(1.1rem, 2.1vw, 2rem)',
                                 lineHeight:  1.0,
                                 letterSpacing: '0.04em',
                                 filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.85))'

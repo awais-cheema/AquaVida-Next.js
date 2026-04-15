@@ -100,13 +100,13 @@ export default function HeroContentOverlay10() {
                 >
                     <h3 className="hero-selectable font-allomira font-extrabold text-white
                                    leading-[1.15] tracking-tight
-                                   text-[clamp(20px,2.6vw,54px)]
+                                   text-[clamp(16px,2.1vw,44px)]
                                    drop-shadow-[0_2px_24px_rgba(0,0,0,0.95),0_0_50px_rgba(0,0,0,0.8)]">
                         Now let us Start Building your Dream Backyard
                     </h3>
 
                     <p className="hero-selectable font-allomira text-white/85 leading-relaxed
-                                  text-[clamp(14px,1.5vw,24px)] tracking-wide text-balance
+                                  text-[clamp(12px,1.25vw,20px)] tracking-wide text-balance
                                   w-full max-w-[min(94vw,940px)] sm:max-w-[min(86vw,1000px)] md:max-w-[min(76vw,1060px)]
                                   drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
                         AquaVida Pools and Spas transforms outdoor visions into beautiful realities. Together with us, custom

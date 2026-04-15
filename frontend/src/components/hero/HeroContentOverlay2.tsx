@@ -81,14 +81,14 @@ export default function HeroContentOverlay2() {
                 <h2 className="hero-selectable font-allomira font-extrabold text-white w-full text-center
                                drop-shadow-[0_0_40px_rgba(0,0,0,1),0_6px_24px_rgba(0,0,0,0.95),0_2px_8px_rgba(0,0,0,1)]
                                leading-[1.15] tracking-normal
-                               text-[clamp(26px,4.2vw,76px)]">
+                               text-[clamp(22px,3.3vw,60px)]">
                     <span className="block">Renovating your Backyard that</span>
                     <span className="block">your Home Deserves</span>
                 </h2>
 
                 <p className="hero-selectable font-allomira text-white/90 leading-relaxed text-center
                               drop-shadow-[0_0_24px_rgba(0,0,0,1),0_4px_16px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,1)]
-                              text-[clamp(15px,1.6vw,26px)] w-full max-w-[min(90vw,820px)] sm:max-w-[min(80vw,860px)] md:max-w-[min(68vw,900px)] tracking-wide text-balance">
+                              text-[clamp(13px,1.3vw,22px)] w-full max-w-[min(90vw,820px)] sm:max-w-[min(80vw,860px)] md:max-w-[min(68vw,900px)] tracking-wide text-balance">
                     Expert backyard luxury pool builders design high-end, custom aquatic retreats featuring premium
                     materials, innovative water features, and seamless integration with sophisticated outdoor living
                     spaces

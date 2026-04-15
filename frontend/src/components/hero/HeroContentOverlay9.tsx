@@ -92,13 +92,13 @@ export default function HeroContentOverlay9() {
                 <div className="flex flex-col gap-1 sm:gap-1 md:gap-2 text-right shadow-2xl">
                     <h3 className="hero-selectable font-allomira font-extrabold text-white
                                    leading-[1.1] tracking-tight
-                                   text-[clamp(20px,2.5vw,52px)]
+                                   text-[clamp(16px,2vw,42px)]
                                    drop-shadow-[0_2px_20px_rgba(0,0,0,0.95),0_0_40px_rgba(0,0,0,0.8)]">
                         Creating the Backdrop for your Family&apos;s Favorite Memories
                     </h3>
 
                     <p className="hero-selectable font-allomira text-white/90 leading-relaxed
-                                  text-[clamp(15px,1.6vw,26px)] tracking-wide text-balance
+                                  text-[clamp(13px,1.3vw,22px)] tracking-wide text-balance
                                   drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
                         Modern pool construction turns the backyard of your house into a luxurious spot. By blending
                         innovative designing and excellent craftsmanship, we have been able to build beautiful, luxurious and
