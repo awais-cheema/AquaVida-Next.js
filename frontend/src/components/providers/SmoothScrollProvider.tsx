@@ -30,6 +30,16 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     const pathname = usePathname();
     const isHome   = pathname === '/';
 
+    // Kill all ScrollTrigger instances on every route change to prevent
+    // stale GSAP scroll state (especially normalizeScroll) from conflicting
+    // with Framer Motion's useScroll on non-home pages.
+    useEffect(() => {
+        return () => {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            ScrollTrigger.clearScrollMemory();
+        };
+    }, [pathname]);
+
     useEffect(() => {
         // Only apply ScrollSmoother on homepage — other pages use native scroll
         if (!isHome) return;
@@ -42,7 +52,11 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
             normalizeScroll: true,
         });
 
-        return () => smoother.kill();
+        return () => {
+            smoother.kill();
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            ScrollTrigger.clearScrollMemory();
+        };
     }, [isHome]);
 
     return (
