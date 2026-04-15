@@ -266,11 +266,11 @@ function GlassCard({
                         src={svc.icon} 
                         alt="" 
                         style={{
-                            width: isMobile ? 70 : 130,
+                            width: isMobile ? 'clamp(55px, 14vw, 85px)' : 'clamp(70px, 7.5vw, 120px)',
                             height: 'auto',
                             objectFit: 'contain',
                             filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.35))',
-                            marginTop: isMobile ? '-6px' : '-12px'
+                            marginTop: isMobile ? '-4px' : '-8px'
                         }}
                     />
 
