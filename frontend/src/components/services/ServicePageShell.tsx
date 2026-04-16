@@ -136,7 +136,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
         <div className="min-h-screen w-full bg-[#0D0A07] text-[#dce3f0] font-allomira selection:bg-[#0D5699] selection:text-white select-text">
             
             {/* ── HERO SECTION ────────────────────────────────────────────────── */}
-            <section ref={heroRef} className="relative h-[90vh] md:h-[100vh] flex items-center overflow-hidden mb-20">
+            <section ref={heroRef} className="relative h-[80vh] md:h-[100vh] flex items-center overflow-hidden mb-20">
                 <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
                     <Image 
                         src={getAssetUrl(d.heroImage)} 
@@ -157,20 +157,20 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-7xl"
                     >
-                        <span className="inline-block text-[3vw] md:text-[1vw] lg:text-1.3vw font-bold tracking-[0.22em] md:tracking-[0.4em] uppercase mb-12 text-[#A68A33]">
+                        <span className="inline-block text-[3vw] md:text-[1vw] font-bold tracking-[0.22em] md:tracking-[0.4em] uppercase mb-5 text-[#A68A33]">
                             {d.heroLabel}
                         </span>
-                        <h1 className="text-[clamp(15vw,10vw,10vw)] font-bold leading-[0.8] tracking-[-0.04em] mb-10 sm:mb-16">
+                        <h1 className="text-[15vw] md:text-[10vw] font-bold leading-[0.8] tracking-[-0.04em]  md:mb-5 ">
                             {d.heroTitle}<br />
                             <span className="text-white/20 italic font-light tracking-[-0.02em]">{d.heroHighlight}</span>
                         </h1>
-                        
-                        <div className="flex flex-col md:flex-row items-start md:items-center gap-12 sm:gap-16 mt-5 sm:mt-20">
-                            <p className="text-[clamp(4vw,1.6vw,48px)] text-white/60 leading-normal max-w-4xl font-light">
+
+                        <div className="flex flex-col md:flex-row items-start md:items-center gap-12 sm:gap-16 mt-10 md:mt-5">
+                            <p className="text-[4vw] md:text-[1.6vw] text-white/60 leading-normal md:max-w-[50%] w-[100%] font-light">
                                 {d.heroBody}
                             </p>
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative  px-[2.3vw] py-4 bg-[#91792C] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl shadow-[#91792C]/30 flex items-center justify-center gap-[1.6vw] md:gap-4">
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="shrink-0">
+                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#91792C] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl shadow-[#91792C]/30 flex items-center justify-center gap-[1.6vw] md:gap-4">
                                     Estimate Project <ArrowRight size={24} className="group-hover:translate-x-3 transition-transform" />
                                 </Link>
                             </motion.div>
@@ -188,22 +188,22 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                         className="relative grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-0 rounded-[64px] overflow-hidden" 
                         style={goldGlassStyle}
                     >
-                        <div className="p-16 md:p-32 flex flex-col justify-center">
-                            <span className="text-[#63B589] font-bold tracking-[0.4em] uppercase text-sm sm:text-base mb-8">Philosophy</span>
-                            <h2 className="text-[clamp(40px,6.4vw,110px)] font-bold leading-[0.8] mb-12 tracking-tight">
+                        <div className="p-8 md:p-16 flex flex-col justify-center">
+                            <span className="text-[#63B589] font-bold tracking-[0.4em] uppercase text-sm sm:text-base mb-4">Philosophy</span>
+                            <h2 className="text-[clamp(32px,4vw,72px)] font-bold leading-[0.85] mb-6 tracking-tight">
                                 {d.overviewTitle}
                             </h2>
-                            <p className="text-[clamp(3.2vw,1.4vw,51px)] text-white/60 leading-normal mb-16 max-w-4xl font-light">
+                            <p className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal mb-8 max-w-4xl font-light">
                                 {d.overviewBody}
                             </p>
-                            <Link href="/portfolio" className="inline-flex items-center gap-6 text-[4vw] md:text-[1.25vw] font-bold group">
+                            <Link href="/portfolio" className="inline-flex items-center gap-4 text-[4vw] md:text-[1.25vw] font-bold group">
                                 <span className="underline underline-offset-[12px] decoration-[#91792C]/30 group-hover:decoration-[#91792C] transition-all">Explore Process Gallery</span>
-                                <div className="w-[8vw] h-[8vw] md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-all">
-                                    <ChevronRight size={28} />
+                                <div className="w-[8vw] h-[8vw] md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-all">
+                                    <ChevronRight size={22} />
                                 </div>
                             </Link>
                         </div>
-                        <div className="relative min-h-[700px] hidden lg:block">
+                        <div className="relative min-h-[400px] hidden lg:block">
                             <Image src={getAssetUrl(d.overviewImage)} alt="" fill className="object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0D0A07]/10 to-[#0D0A07]/60" />
                         </div>
@@ -212,54 +212,54 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
 
                 {/* ── PROCESS STEPS ───────────────────────────────────────────── */}
                 <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mt-20">
-                    <motion.div {...kineticEntry} className="mb-32">
-                        <span className="text-[#A68A33] font-bold tracking-[0.45em] uppercase text-base mb-8 block">{d.processTitle}</span>
-                        <h2 className="text-[clamp(56px,7vw,130px)] font-bold tracking-tight leading-[0.9]">The Precision Journey</h2>
+                    <motion.div {...kineticEntry} className="mb-10">
+                        <span className="text-[#A68A33] font-bold tracking-[0.45em] uppercase text-base mb-4 block">{d.processTitle}</span>
+                        <h2 className="text-[clamp(32px,4vw,72px)] font-bold tracking-tight leading-[0.9]">The Precision Journey</h2>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                         variants={staggerContainer}
                         initial="initial"
                         whileInView="whileInView"
                         viewport={{ once: true, margin: "-10%" }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-12"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
                     >
                         {d.processSteps.map((step, i) => (
-                            <motion.div 
+                            <motion.div
                                 key={i}
                                 variants={{
                                     initial: { opacity: 0, y: 50, rotateY: 10 },
                                     whileInView: { opacity: 1, y: 0, rotateY: 0, transition: { duration: 0.8 } }
                                 }}
                                 {...hoverScale}
-                                className="group p-10 rounded-[48px] cursor-default"
+                                className="group p-7 rounded-[32px] cursor-default"
                                 style={glassStyle}
                             >
-                                <span className="text-[10vw] md:text-[4vw] font-bold text-white/[0.15] block mb-12 group-hover:text-[#91792C]/10 transition-colors">0{i+1}</span>
-                                <h3 className="text-[7.2vw] md:text-4xl font-bold mb-8 text-white group-hover:text-[#A68A33] transition-colors tracking-tight">{step.title}</h3>
-                                <p className="text-[4vw] md:text-[1.3vw] text-white/40 leading-normal font-light">{step.body}</p>
+                                <span className="text-[10vw] md:text-[3vw] font-bold text-white/[0.15] block mb-4 group-hover:text-[#91792C]/10 transition-colors">0{i+1}</span>
+                                <h3 className="text-[7.2vw] md:text-[1.6vw] font-bold mb-3 text-white group-hover:text-[#A68A33] transition-colors tracking-tight">{step.title}</h3>
+                                <p className="text-[4vw] md:text-[1.1vw] text-white/40 leading-normal font-light">{step.body}</p>
                             </motion.div>
                         ))}
                     </motion.div>
                 </section>
 
                 {/* ── INVESTMENT SECTION ───────────────────────────────────────── */}
-                <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mt-20 h-[60vh] md:min-h-[850px]">
-                    <motion.div {...kineticEntry} className="relative rounded-[80px] overflow-hidden min-h-[850px] flex items-center">
+                <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mt-20">
+                    <motion.div {...kineticEntry} className="relative rounded-[48px] overflow-hidden flex items-center">
                         <Image src={getAssetUrl(d.investmentImage)} alt="" fill className="object-cover brightness-[0.3] scale-105" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0D0A07] via-transparent to-[#0D0A07]/20" />
-                        
-                        <div className="relative z-10 p-16 md:p-32 max-w-6xl">
-                            <span className="text-[#63B589] font-bold tracking-[0.4em] uppercase text-base mb-8 block">Legacy & Value</span>
-                            <h2 className="text-[clamp(56px,7.5vw,140px)] font-bold leading-[0.9] mb-12 tracking-tighter">
+
+                        <div className="relative z-10 p-8 md:p-16 max-w-4xl">
+                            <span className="text-[#63B589] font-bold tracking-[0.4em] uppercase text-sm mb-4 block">Legacy & Value</span>
+                            <h2 className="text-[clamp(32px,4vw,72px)] font-bold leading-[0.9] mb-6 tracking-tighter">
                                 {d.investmentTitle}
                             </h2>
-                            <p className="text-[clamp(3.5vw,1.5vw,57px)] text-white/60 leading-normal font-light mb-16">
+                            <p className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal font-light mb-8">
                                 {d.investmentBody}
                             </p>
                             <motion.div whileHover={{ x: 10 }} className="inline-block">
-                                <Link href="/finance" className="btn inline-flex items-center gap-8 px-[4vw] md:px-14 py-[4vw] md:py-7 rounded-full border border-white/20 hover:border-[#63B589] hover:bg-[#63B589] text-white hover:text-black font-bold text-[5vw] md:text-2xl transition-all">
-                                    Investment Options <ArrowRight size={32} />
+                                <Link href="/finance" className="btn inline-flex items-center gap-4 px-[4vw] md:px-8 py-[3vw] md:py-4 rounded-full border border-white/20 hover:border-[#63B589] hover:bg-[#63B589] text-white hover:text-black font-bold text-[4vw] md:text-[1.1vw] transition-all">
+                                    Investment Options <ArrowRight size={20} />
                                 </Link>
                             </motion.div>
                         </div>
@@ -267,11 +267,11 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                 </section>
 
                 {/* ── FEATURES GRID ────────────────────────────────────────────── */}
-                <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto pt-0 pb-12 mt-20">
-                    <div className="flex flex-col lg:flex-row gap-32">
+                <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto pt-0 pb-12 mt-[20vw] md:mt-20">
+                    <div className="flex flex-col lg:flex-row gap-[50px] md:gap-32">
                         <motion.div {...kineticEntry} className="lg:w-2/5">
                             <span className="text-[#A68A33] font-bold tracking-[0.4em] uppercase text-base mb-8 block">Capabilities</span>
-                            <h2 className="text-[clamp(56px,6vw,110px)] font-bold leading-[0.95] tracking-tighter mb-0 md:mb-12">
+                            <h2 className="text-[clamp(56px,6vw,110px)] font-bold leading-[0.95] tracking-normal mb-0 md:mb-12">
                                 {d.featuresTitle}
                             </h2>
                             <div className="hidden md:flex w-32 h-1.5 bg-[#91792C]/30" />
@@ -292,7 +292,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                     }}
                                     className="flex flex-col gap-10 group"
                                 >
-                                    <div className="w-[10vw] h-[10vw] md:w-[4.5vw] md:h-[4.5vw] rounded-[10px] flex items-center justify-center transition-all duration-500 group-hover:rotate-[10deg] group-hover:scale-110" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                                    <div className="w-[15vw] h-[15vw] md:w-[4.5vw] md:h-[4.5vw] rounded-[10px] flex items-center justify-center transition-all duration-500 group-hover:scale-110" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
                                         <f.icon size={"60%"} strokeWidth={1} className="text-[#91792C]" />
                                     </div>
                                     <div className="space-y-4">
@@ -341,8 +341,8 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                 </section>
 
                 {/* ── CTA SECTION ─────────────────────────────────────────────── */}
-                <section className="hidden md:flex px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto">
-                    <motion.div {...kineticEntry} className="relative rounded-[80px] overflow-hidden min-h-[650px] flex flex-col items-center justify-center text-center p-20" style={glassStyle}>
+                <section className="hidden md:flex px-6 md:px-16 lg:px-24 w-full max-w-[1800px] mx-auto">
+                    <motion.div {...kineticEntry} className="relative w-full rounded-[80px] overflow-hidden min-h-[650px] flex flex-col items-center justify-center text-center p-20" style={glassStyle}>
                          <div className="absolute inset-0 z-0">
                             <Image src={getAssetUrl(d.ctaImage)} alt="" fill className="object-cover brightness-[0.3]" />
                             <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#0D0A07] via-transparent to-[#0D0A07]" />
@@ -356,7 +356,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                  {d.ctaBody}
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                 <Link href="/contact" className="btn inline-flex items-center gap-6 px-7 py-4 bg-white text-black rounded-full font-bold text-[1.5vw] hover:bg-white/90 transition-all shadow-[0_30px_90px_rgba(255,255,255,0.15)]">
+                                 <Link href="/contact" className="btn inline-flex items-center gap-6 px-7 py-4 bg-white text-black rounded-full font-bold text-[1.5vw] hover:bg-white/90 hover:text-black transition-all shadow-[0_30px_90px_rgba(255,255,255,0.15)]">
                                      Start Your Journey <ArrowRight size={22} />
                                  </Link>
                              </motion.div>

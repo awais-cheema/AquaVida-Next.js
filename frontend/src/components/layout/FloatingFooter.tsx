@@ -205,7 +205,6 @@ export default function FloatingFooter() {
                                     <li><Link href="/portfolio" className={lk}>Portfolio</Link></li>
                                     <li><Link href="/services"  className={lk}>Services</Link></li>
                                     <li><Link href="/finance"   className={lk}>Finance</Link></li>
-                                    <li><Link href="/about-us"  className={lk}>About Us</Link></li>
                                 </ul>
                             </nav>
 
@@ -220,26 +219,24 @@ export default function FloatingFooter() {
                                                font-medium tracking-wider">
                                     <li><Link href="/services/pool-design"       className={lk}>Pool design</Link></li>
                                     <li><Link href="/services/pool-construction" className={lk}>Pool construction</Link></li>
-                                    <li><Link href="/services/outdoor-kitchen"   className={lk}>Outdoor kitchens</Link></li>
+                                    <li><Link href="/services/outdoor-kitchens"  className={lk}>Outdoor kitchens</Link></li>
                                     <li><Link href="/services/fire-pit"          className={lk}>Fire Pits</Link></li>
                                     <li><Link href="/services/pool-remodeling"   className={lk}>Pool remodeling</Link></li>
                                     <li><Link href="/services/pergola-design"    className={lk}>Pergola design</Link></li>
-                                    <li><Link href="/services/patio-addition"    className={lk}>Patio Extensions</Link></li>
+                                    <li><Link href="/services/paver-installation" className={lk}>Patio Extensions</Link></li>
                                 </ul>
                             </nav>
 
-                            {/* ── Information ── */}
-                            <nav aria-label="Information">
+                            {/* ── Contact ── */}
+                            <nav aria-label="Contact">
                                 <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl">
-                                    Information
+                                    Contact
                                 </h4>
                                 <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
                                                 text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl
                                                 font-medium tracking-wider">
-                                    <li><Link href="/privacy" className={lk}>Privacy Policy</Link></li>
-                                    <li><Link href="/terms"   className={lk}>Terms &amp; Conditions</Link></li>
-                                    <li><Link href="/legal"   className={lk}>Terms of Services</Link></li>
+                                    <li><Link href="/contact" className={lk}>Contact Us</Link></li>
                                 </ul>
                             </nav>
 

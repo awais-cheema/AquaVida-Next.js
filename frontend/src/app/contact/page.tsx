@@ -44,12 +44,12 @@ export default function ContactPage() {
           
           {/* Left Column: Heading & Contact Info */}
           <div className="flex flex-col justify-start">
-            <h1 className="text-[56px] md:text-[72px] lg:text-[88px] font-[family-name:var(--font-display)] font-black leading-[0.9] uppercase tracking-[0.02em] mb-8 lg:mb-12 max-w-md text-black">
+            <h1 className="text-[56px] md:text-[6vw]  font-[family-name:var(--font-display)] font-black leading-[0.9] uppercase tracking-[0.02em] mb-8 lg:mb-12 max-w-md text-black">
               Let's Create Spaces That Inspire
             </h1>
             
             <div className="space-y-6">
-              <h2 className="text-lg md:text-xl font-[family-name:var(--font-display)] font-bold uppercase tracking-wide border-b border-black/10 pb-2 w-fit text-black">
+              <h2 className="text-lg md:text-[1.4vw] font-[family-name:var(--font-display)] font-bold uppercase tracking-wide border-b border-black/10 pb-2 w-fit text-black">
                 Reach out to us
               </h2>
               
@@ -59,7 +59,7 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 text-black/70" />
                   </div>
                   <div>
-                    <p className="text-s uppercase tracking-widest font-bold text-black/40 mb-0.5">Location</p>
+                    <p className="md:text-s uppercase tracking-widest font-bold text-black/40 mb-0.5">Location</p>
                     <p className="text-base md:text-xl font-semibold leading-relaxed max-w-[280px] text-black">
                       2100 N Greenville Ave, Richardson, TX 75082, USA
                     </p>
