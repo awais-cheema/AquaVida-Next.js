@@ -165,7 +165,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                     <div className="absolute inset-0 bg-[#05070A]/40" />
                     
                     <div className="relative z-10 max-w-5xl">
-                        <span className="text-[#A68A33] font-black tracking-[0.3em] uppercase text-[2.5vw] lg:text-[1vw]  mb-12 block">THE ARCHITECTURE OF TRANQUILITY</span>
+                        <span className="text-[#A68A33] font-black tracking-[0.3em] uppercase text-[2.5vw] lg:text-[1vw]  mb-12 block leading-[1]" >THE ARCHITECTURE OF TRANQUILITY</span>
                         <h2 className="text-[8vw] md:text-[5vw] font-black leading-[1] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
                             {p.philosophyTitle}
                         </h2>
