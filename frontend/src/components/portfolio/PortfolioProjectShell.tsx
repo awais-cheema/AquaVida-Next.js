@@ -81,7 +81,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                         
                         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
                             <div>
-                                <h1 className="text-[13vw] lg:text-[10vw] font-black leading-[0.9] tracking-normal uppercase mb-2 text-balance">
+                                <h1 className="text-[11.5vw] lg:text-[10vw] font-black leading-[0.9] tracking-normal uppercase mb-2 text-balance w-[100%]">
                                     {p.title}
                                 </h1>
                                 <div className="hidden lg:flex flex-wrap gap-8 items-center mt-12">
@@ -165,8 +165,8 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                     <div className="absolute inset-0 bg-[#05070A]/40" />
                     
                     <div className="relative z-10 max-w-5xl">
-                        <span className="text-[#A68A33] font-black tracking-[0.3em] uppercase text-[4vw] lg:text-[1vw]  mb-12 block">THE ARCHITECTURE OF TRANQUILITY</span>
-                        <h2 className="text-[clamp(48px,8vw,140px)] font-black leading-[0.8] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
+                        <span className="text-[#A68A33] font-black tracking-[0.3em] uppercase text-[3vw] lg:text-[1vw]  mb-12 block">THE ARCHITECTURE OF TRANQUILITY</span>
+                        <h2 className="text-[8vw] md:text-[8vw] font-black leading-[0.8] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
                             {p.philosophyTitle}
                         </h2>
                         <p className=" text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-tight">
