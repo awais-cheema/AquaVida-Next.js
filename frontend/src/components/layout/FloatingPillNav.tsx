@@ -103,7 +103,7 @@ export default function FloatingPillNav() {
     return (
         <nav
             ref={navRef}
-            className="fixed top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 w-[88%] max-w-[78rem] z-[200]
+            className="fixed top-5 md:top-6 lg:top-8 left-1/2 -translate-x-1/2 w-[88%] max-w-[78rem] z-[200]
                        rounded-full px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-[9px] lg:px-8 lg:py-[11px] pointer-events-auto"
             style={{
                 background: overLight
