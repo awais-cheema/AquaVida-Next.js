@@ -188,10 +188,10 @@ export default function PortfolioClient() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-4xl"
                     >
-                        <span className="flex items-center gap-3 text-[#A68A33] font-black tracking-[0.4em] uppercase lg:text-[0.9vw] md:text-[0.9vw] sm:text-[1vw] mb-8">
+                        <span className="flex items-center gap-3 text-[#A68A33] font-black tracking-[0.3em] uppercase lg:text-[0.9vw] md:text-[0.9vw] text-[3.5vw] leading-[1] mb-8">
                             <Droplets size={22} className="text-[#A68A33]" /> ARCHITECTURAL ARCHIVE
                         </span>
-                        <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[0.85] uppercase mb-12">
+                        <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[1] uppercase mb-12">
                             The Liquid<br />Portfolio
                         </h1>
                         <p className="text-2xl md:text-[1.5vw] text-white/40 font-light max-w-xl leading-normal">

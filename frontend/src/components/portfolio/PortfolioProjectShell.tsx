@@ -75,13 +75,13 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                     >
-                        <Link href="/portfolio" className="inline-flex items-center gap-4 text-[3.5vw] lg:text-[1.2vw] font-black tracking-[0.4em] text-white/40 uppercase mb-10 hover:text-white transition-colors group">
+                        <Link href="/portfolio" className="inline-flex items-center gap-4 text-[3.5vw] lg:text-[1.2vw] font-black leading-[1] tracking-[0.4em] text-white/40 uppercase mb-10 hover:text-white transition-colors group">
                            <ArrowLeft size={22} className="group-hover:-translate-x-2 transition-transform" /> Back to Archive
                         </Link>
                         
                         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
                             <div>
-                                <h1 className="text-[11.5vw] lg:text-[10vw] font-black leading-[0.9] tracking-normal uppercase mb-2 text-balance w-[100%]">
+                                <h1 className="text-[11.5vw] lg:text-[10vw] font-black leading-[1] tracking-normal uppercase mb-2 text-balance w-[100%]">
                                     {p.title}
                                 </h1>
                                 <div className="hidden lg:flex flex-wrap gap-8 items-center mt-12">
