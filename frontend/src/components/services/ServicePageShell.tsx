@@ -341,23 +341,23 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                 </section>
 
                 {/* ── CTA SECTION ─────────────────────────────────────────────── */}
-                <section className="hidden md:flex px-6 md:px-16 lg:px-24 w-full max-w-[1800px] mx-auto">
-                    <motion.div {...kineticEntry} className="relative w-full rounded-[80px] overflow-hidden min-h-[650px] flex flex-col items-center justify-center text-center p-20" style={glassStyle}>
+                <section className="flex px-6 md:px-16 lg:px-24 w-full max-w-[1800px] mx-auto">
+                    <motion.div {...kineticEntry} className="relative w-full rounded-[40px] md:rounded-[80px] overflow-hidden flex flex-col items-center justify-center text-center p-10 md:p-16 lg:p-20 py-16 md:py-20 lg:min-h-[650px]" style={glassStyle}>
                          <div className="absolute inset-0 z-0">
                             <Image src={getAssetUrl(d.ctaImage)} alt="" fill className="object-cover brightness-[0.3]" />
                             <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#0D0A07] via-transparent to-[#0D0A07]" />
                          </div>
-                         
-                         <div className="relative z-10 max-w-xl">
-                             <h2 className="text-[clamp(2vw,5vw,140px)] font-bold mb-8 leading-[0.9] tracking-tighter">
+
+                         <div className="relative z-10 max-w-xl w-full">
+                             <h2 className=" text-[3vw] md:text-[5vw] font-bold mb-6 leading-[1] tracking-tighter">
                                  {d.ctaTitle}
                              </h2>
-                             <p className="text-[clamp(1.4vw,1.4vw,63px)] text-white/50 mb-8 font-light max-w-6xl mx-auto leading-relaxed">
+                             <p className="text-[3vw] md:text-[1.4vw] text-white/50 mb-8 font-light mx-auto leading-relaxed">
                                  {d.ctaBody}
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                 <Link href="/contact" className="btn inline-flex items-center gap-6 px-7 py-4 bg-white text-black rounded-full font-bold text-[1.5vw] hover:bg-white/90 hover:text-black transition-all shadow-[0_30px_90px_rgba(255,255,255,0.15)]">
-                                     Start Your Journey <ArrowRight size={22} />
+                                 <Link href="/contact" className="btn inline-flex items-center gap-4 px-7 py-4 bg-white text-black rounded-full font-bold text-[4vw] md:text-[1.5vw] hover:bg-white/90 hover:text-black transition-all shadow-[0_30px_90px_rgba(255,255,255,0.15)] whitespace-nowrap">
+                                     Start Your Journey <ArrowRight size={20} />
                                  </Link>
                              </motion.div>
                          </div>

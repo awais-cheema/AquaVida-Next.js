@@ -82,8 +82,12 @@ export default function CorePrinciplesGlobe() {
     const active = PRINCIPLES.find(p => p.id === hovered);
     const panelVis = !!hovered;
 
+    const handleTap = (id: string) => {
+        setHovered(prev => prev === id ? null : id);
+    };
+
     return (
-        <section className="relative bg-[#020a13] h-[60vh] md:h-screen overflow-hidden flex flex-col items-center justify-center py-6 ">
+        <section className="relative bg-[#020a13] min-h-[70vh] md:h-screen overflow-hidden flex flex-col items-center justify-center py-8 md:py-6">
             {/* ── Brand Glows ── */}
             <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#0d5699]/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#63b589]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -102,16 +106,21 @@ export default function CorePrinciplesGlobe() {
             <div className="absolute inset-0 bg-[#020a13]/94 pointer-events-none" />
 
             {/* ── Heading ── */}
-            <div className="relative z-10 text-center mb-6 lg:mb-10 px-6">
-                <h2 className="font-allomira font-bold text-white leading-[1.1] select-none text-[34px] md:text-[44px] lg:text-[76px]">
+            <div className="relative z-10 text-center mb-4 lg:mb-10 px-6">
+                <h2 className="font-allomira font-bold text-white leading-[1.1] select-none text-[7vw] md:text-[44px] lg:text-[76px]">
                     Our Core Principles
                 </h2>
             </div>
 
-            {/* ── Main Content Area (Ultra Responsive) ── */}
-            <div className="relative z-10 w-full max-w-[1850px] mx-auto px-6 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-20 h-full max-h-[640px]">
-                
-                {/* ── LEFT: Title (Instant) ── */}
+            {/* ── Tap hint (mobile only) ── */}
+            <p className="relative z-10 lg:hidden text-white/30 text-[3vw] uppercase tracking-[0.3em] font-bold mb-3">
+                Tap a section
+            </p>
+
+            {/* ── Main Content Area ── */}
+            <div className="relative z-10 w-full max-w-[1850px] mx-auto px-4 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-20 lg:h-full lg:max-h-[640px]">
+
+                {/* ── LEFT: Title (desktop only) ── */}
                 <div className="flex-1 w-full lg:text-right order-2 lg:order-1 hidden lg:block">
                     <div className="pointer-events-none" style={{ opacity: panelVis ? 1 : 0 }}>
                         <p className="text-[14px] uppercase tracking-[0.45em] font-bold text-white mb-6">
@@ -123,9 +132,9 @@ export default function CorePrinciplesGlobe() {
                     </div>
                 </div>
 
-                {/* ── CENTER: Floating Transparent Glass Globe ── */}
-                <div className="relative flex-none w-[300px] sm:w-[440px] md:w-[560px] lg:w-[620px] xl:w-[700px] aspect-square flex items-center justify-center order-1 lg:order-2">
-                    
+                {/* ── CENTER: Globe ── */}
+                <div className="relative flex-none w-[85vw] sm:w-[440px] md:w-[560px] lg:w-[620px] xl:w-[700px] aspect-square flex items-center justify-center order-1 lg:order-2">
+
                     {/* The Pure Glass Blur Circle */}
                     <div className="absolute inset-4 rounded-full bg-white/[0.01] backdrop-blur-[20px] pointer-events-none" />
 
@@ -149,10 +158,10 @@ export default function CorePrinciplesGlobe() {
                         <circle cx={CX} cy={CY} r={R} fill="rgba(255, 255, 255, 0.02)" />
 
                         <g clipPath="url(#cpqSphere)">
-                            {/* Hover Tints (Instant) */}
+                            {/* Hover / Tap Tints */}
                             {PRINCIPLES.map(p => (
                                 <g key={`hf-${p.id}`} clipPath={`url(#cpqQ-${p.pos})`}>
-                                    <circle cx={CX} cy={CY} r={R} 
+                                    <circle cx={CX} cy={CY} r={R}
                                             fill={hovered === p.id ? 'rgba(255, 255, 255, 0.08)' : 'transparent'} />
                                 </g>
                             ))}
@@ -163,17 +172,17 @@ export default function CorePrinciplesGlobe() {
                                 const hv = hovered === p.id;
                                 const off = 18;
                                 const tx = p.pos.includes('l') ? c.x + off : c.x - off;
-                                
+
                                 return (
                                     <g key={`lbl-${p.id}`} clipPath={`url(#cpqQ-${p.pos})`} className="pointer-events-none">
-                                        <text x={tx} y={c.y - 12} textAnchor="middle" dominantBaseline="middle" 
-                                              fontSize={24} fontWeight={600} letterSpacing="0.08em" 
+                                        <text x={tx} y={c.y - 14} textAnchor="middle" dominantBaseline="middle"
+                                              fontSize={26} fontWeight={600} letterSpacing="0.08em"
                                               fill={hv ? '#ffffff' : 'rgba(255,255,255,0.40)'}
                                               style={{ fontFamily: 'var(--font-allomira), system-ui, sans-serif' }}>
                                             {p.line1}
                                         </text>
-                                        <text x={tx} y={c.y + 14} textAnchor="middle" dominantBaseline="middle" 
-                                              fontSize={24} fontWeight={600} letterSpacing="0.08em" 
+                                        <text x={tx} y={c.y + 16} textAnchor="middle" dominantBaseline="middle"
+                                              fontSize={26} fontWeight={600} letterSpacing="0.08em"
                                               fill={hv ? '#ffffff' : 'rgba(255,255,255,0.40)'}
                                               style={{ fontFamily: 'var(--font-allomira), system-ui, sans-serif' }}>
                                             {p.line2}
@@ -181,13 +190,15 @@ export default function CorePrinciplesGlobe() {
                                     </g>
                                 );
                             })}
-                            
-                            {/* Hit Areas */}
+
+                            {/* Hit Areas — hover (desktop) + tap (mobile) */}
                             {PRINCIPLES.map(p => {
                                 const q = Q_RECT[p.pos];
                                 return (
                                     <rect key={`mt-${p.id}`} x={q.x} y={q.y} width={q.w} height={q.h} fill="transparent" style={{ cursor: 'pointer' }}
-                                          onMouseEnter={() => setHovered(p.id)} onMouseLeave={() => setHovered(null)} />
+                                          onMouseEnter={() => setHovered(p.id)}
+                                          onMouseLeave={() => setHovered(null)}
+                                          onClick={() => handleTap(p.id)} />
                                 );
                             })}
                         </g>
@@ -204,7 +215,7 @@ export default function CorePrinciplesGlobe() {
                     </svg>
                 </div>
 
-                {/* ── RIGHT: Description (Instant) ── */}
+                {/* ── RIGHT: Description (desktop only) ── */}
                 <div className="flex-1 w-full lg:text-left order-3 hidden lg:block">
                     <div className="pointer-events-none" style={{ opacity: panelVis ? 1 : 0 }}>
                         <p className="text-white/60 leading-relaxed text-[17px] md:text-[20px] lg:text-[26px] max-w-lg italic">
@@ -213,13 +224,22 @@ export default function CorePrinciplesGlobe() {
                     </div>
                 </div>
 
-                {/* ── MOBILE FALLBACK ── */}
-                <div className="lg:hidden text-center order-3 px-6 mt-4 min-h-[0px]">
-                    <div style={{ opacity: panelVis ? 1 : 0 }}>
-                        <p className="text-white text-[11px] uppercase tracking-widest font-bold mb-1">{active?.label}</p>
-                        <h3 className="text-white text-[24px] font-bold mb-2 font-allomira leading-tight">{active?.title}</h3>
-                        <p className="text-white/40 text-[14px] leading-relaxed line-clamp-2">{active?.sub}</p>
+                {/* ── MOBILE INFO PANEL ── */}
+                <div className="lg:hidden w-full text-center order-3 px-4 pb-6">
+                    <div style={{ opacity: panelVis ? 1 : 0, transition: 'opacity 0.2s ease' }}>
+                        <p className="text-[#63B589] text-[3vw] uppercase tracking-[0.35em] font-bold mb-2">
+                            Principle {active?.label}
+                        </p>
+                        <h3 className="text-white text-[6.5vw] font-bold mb-3 font-allomira leading-tight">
+                            {active?.title}
+                        </h3>
+                        <p className="text-white/50 text-[3.8vw] leading-relaxed max-w-sm mx-auto">
+                            {active?.sub}
+                        </p>
                     </div>
+                    {!panelVis && (
+                        <p className="text-white/15 text-[3vw] uppercase tracking-widest mt-2">—</p>
+                    )}
                 </div>
 
             </div>
