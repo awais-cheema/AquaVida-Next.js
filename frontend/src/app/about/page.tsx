@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { getAssetUrl } from '@/lib/constants';
+
 
 // ── Helper Components ────────────────────────────────────────────────────────
 
@@ -76,8 +76,8 @@ const AboutHeroSection = () => (
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full aspect-[21/9] mb-32 z-10"
         >
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]">
-                <source src={getAssetUrl("/About Video (compressed).mp4")} type="video/mp4" />
+            <video autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]">
+                <source src="/About%20Video%20(compressed).mp4" type="video/mp4" />
             </video>
         </motion.div>
 
@@ -162,7 +162,7 @@ const ApproachSection = () => (
                 className="relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl"
             >
                 <img
-                    src={getAssetUrl("/about-2.avif")}
+                    src="/about-2.avif"
                     alt="Team collaborating on architectural plans"
                     className="w-full h-full object-cover brightness-[0.9] contrast-[1.05]"
                 />
@@ -283,7 +283,7 @@ const MoreAboutSections = () => (
                     </p>
                 </div>
                 <div className="w-full max-w-md lg:ml-auto">
-                    <TeamCard name="Hassan Bari" role="CEO & Founder" image={getAssetUrl("/Hassan Bari.avif")} />
+                    <TeamCard name="Hassan Bari" role="CEO & Founder" image="/Hassan%20Bari.avif" />
                 </div>
             </div>
         </section>
