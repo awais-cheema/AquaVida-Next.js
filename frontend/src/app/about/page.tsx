@@ -24,7 +24,7 @@ const CustomArrow = () => (
 );
 
 const FloatingPill = ({ text, className }: { text: string; className?: string }) => (
-    <div className={`absolute px-4 py-1.5 rounded-full border border-black/10 bg-white/50 backdrop-blur-sm text-[2.5vw] md:text-[1vw] tracking-[0.2em] font-bold uppercase whitespace-nowrap ${className}`}>
+    <div className={`absolute px-4 py-1.5 rounded-full border border-black/10 bg-white/50 backdrop-blur-sm text-[2.5vw] md:text-[clamp(9px,0.75vw,13px)] tracking-[0.2em] font-bold uppercase whitespace-nowrap ${className}`}>
         {text}
     </div>
 );
@@ -35,8 +35,8 @@ const TeamCard = ({ name, role, image }: { name: string; role: string; image: st
             <img src={image} alt={name} className="w-full h-full object-cover rounded-[10px]" />
         </div>
         <div className="flex flex-col gap-1">
-            <h4 className="text-[4.5vw] md:text-[1.5vw] tracking-[0.24rem] font-bold text-black uppercase">{name}</h4>
-            <p className="text-[4.5vw] md:text-[1vw] tracking-[0.3rem] text-black/40 uppercase font-bold">{role}</p>
+            <h4 className="text-[4.5vw] md:text-[clamp(0.9rem,1.2vw,1.6rem)] tracking-[0.24rem] font-bold text-black uppercase">{name}</h4>
+            <p className="text-[4.5vw] md:text-[clamp(0.75rem,0.85vw,1.1rem)] tracking-[0.3rem] text-black/40 uppercase font-bold">{role}</p>
         </div>
     </div>
 );
@@ -55,15 +55,15 @@ const AboutHeroSection = () => (
                 transition={{ duration: 0.8, ease: 'easeOut' }}
                 className="flex items-center justify-center gap-3 mb-10"
             >
-                <span className="text-[4.5vw] md:text-[1vw] text-white/30">◆</span>
-                <span className="text-[4.5vw] md:text-[1vw] tracking-[0.25em] font-bold text-white/50 uppercase">About Aquavida</span>
+                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-white/30">◆</span>
+                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.25em] font-bold text-white/50 uppercase">About Aquavida</span>
             </motion.div>
 
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[7vw] md:text-[3.5vw] font-light tracking-tight leading-[1.1] md:leading-[1] text-white max-w-[90vw] md:max-w-[60vw] text-center mx-auto"
+                className="text-[7vw] md:text-[clamp(1.6rem,3vw,4rem)] font-light tracking-tight leading-[1.1] md:leading-[1] text-white max-w-[90vw] md:max-w-[60vw] text-center mx-auto"
             >
                 Passionately shaping backyards <br />
                 <span className="text-white/90">into timeless designs</span>
@@ -85,8 +85,8 @@ const AboutHeroSection = () => (
 
         <div className="w-full max-w-[90vw] md:max-w-[80vw] grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start z-10 pb-20">
             <div className="md:col-span-4 flex items-center gap-3">
-                <span className="text-[4.5vw] md:text-[1vw] text-white/30">◆</span>
-                <span className="text-[4.5vw] md:text-[1vw] tracking-[0.4em] font-bold text-white/50 uppercase">Manifesto</span>
+                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-white/30">◆</span>
+                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.4em] font-bold text-white/50 uppercase">Manifesto</span>
             </div>
             <div className="md:col-span-8 flex justify-end">
                 <motion.p
@@ -94,7 +94,7 @@ const AboutHeroSection = () => (
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="text-[5.5vw] md:text-[1.4vw] font-light text-white/60 leading-relaxed max-w-2xl text-left"
+                    className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-white/60 leading-relaxed max-w-2xl text-left"
                 >
                     Aquavida transforms architectural vision into built reality. We specialise in luxury pool environments that shape water, define space, and elevate design. Every project is guided by precision, craftsmanship, and a commitment to enduring beauty.
                 </motion.p>
@@ -112,7 +112,7 @@ const ApproachSection = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="text-[7vw] md:text-[3.5vw] font-light tracking-tight leading-[1.2] md:leading-[1] text-white max-w-[90vw] md:max-w-[60vw] text-center mx-auto"
+                className="text-[7vw] md:text-[clamp(1.5rem,2.8vw,3.8rem)] font-light tracking-tight leading-[1.2] md:leading-[1] text-white max-w-[90vw] md:max-w-[60vw] text-center mx-auto"
             >
                 Each phase of our work carries the same intent; to understand before we create, to refine before we build, and to craft with care that lasts.
             </motion.h2>
@@ -126,7 +126,7 @@ const ApproachSection = () => (
                     transition={{ duration: 0.8, delay: 0.3 }}
                     viewport={{ once: true }}
                 >
-                    <button className="group flex items-center gap-3 bg-[#2a2a2a] hover:bg-[#333333] px-5 py-3 text-[4vw] md:text-[16px] tracking-[0.3em] font-bold text-white transition-all shadow-lg">
+                    <button className="group flex items-center gap-3 bg-[#2a2a2a] hover:bg-[#333333] px-5 py-3 text-[4vw] md:text-[clamp(13px,1vw,17px)] tracking-[0.3em] font-bold text-white transition-all shadow-lg">
                         <CustomArrow />
                         OUR APPROACH
                     </button>
@@ -140,8 +140,8 @@ const ApproachSection = () => (
                         viewport={{ once: true }}
                         className="flex items-center gap-3"
                     >
-                        <span className="text-[4.5vw] md:text-[1vw] text-white/30">◆</span>
-                        <span className="text-[4.5vw] md:text-[1vw] tracking-[0.3em] font-bold text-white/50 uppercase">About Aquavida</span>
+                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-white/30">◆</span>
+                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-white/50 uppercase">About Aquavida</span>
                     </motion.div>
 
                     <motion.p
@@ -149,7 +149,7 @@ const ApproachSection = () => (
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="text-[5.5vw] md:text-[1.4vw] font-light text-white/50 leading-relaxed"
+                        className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-white/50 leading-relaxed"
                     >
                         We&apos;re a collective of craftsmen, engineers, and thinkers united by a deep respect for detail. Our culture is built on collaboration and care. Every project begins with understanding and ends with precision. Guided by clarity in how we think, communicate, and build, we turn complex ideas into seamless architectural experiences that endure.
                     </motion.p>
@@ -174,8 +174,8 @@ const MoreAboutSections = () => (
         <section className="min-h-0 md:min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-36 pt-36 md:py-24 overflow-hidden">
             <div className="w-full max-w-[95vw] md:max-w-[80vw] mx-auto mb-10 md:mb-0 -mt-10 md:-mt-16">
                 <div className="flex items-center gap-3">
-                    <span className="text-[3vw] md:text-[8px] text-black/20">◆</span>
-                    <span className="text-[3vw] md:text-[16px] tracking-[0.3em] font-bold text-black/40 uppercase">The beliefs that shape us</span>
+                    <span className="text-[3vw] md:text-[clamp(9px,0.7vw,12px)] text-black/20">◆</span>
+                    <span className="text-[3vw] md:text-[clamp(11px,0.9vw,16px)] tracking-[0.3em] font-bold text-black/40 uppercase">The beliefs that shape us</span>
                 </div>
             </div>
 
@@ -189,7 +189,7 @@ const MoreAboutSections = () => (
                         viewport={{ once: true }}
                         className="relative w-full pb-8 md:pb-0 md:self-end md:mr-[10%]"
                     >
-                        <h2 className="ml-[16vw] md:ml-[32vw] text-[13vw] md:text-[12vw] font-light text-[#121212] leading-none tracking-tighter">Authenticity</h2>
+                        <h2 className="ml-[16vw] md:ml-[32vw] text-[13vw] md:text-[clamp(4rem,9vw,13rem)] font-light text-[#121212] leading-none tracking-tighter">Authenticity</h2>
                         <FloatingPill
                             text="A fundamental trust in materials"
                             className="top-full mt-2 left-0 md:top-[0%] md:mt-0 md:left-auto md:right-[-6vw]"
@@ -203,7 +203,7 @@ const MoreAboutSections = () => (
                         viewport={{ once: true }}
                         className="relative w-full pb-8 md:pb-0 md:self-center"
                     >
-                        <h2 className="ml-[8vw] md:ml-[7vw] text-[13vw] md:text-[12vw] font-light leading-none tracking-tighter text-[#121212]">Aesthetic</h2>
+                        <h2 className="ml-[8vw] md:ml-[7vw] text-[13vw] md:text-[clamp(4rem,9vw,13rem)] font-light leading-none tracking-tighter text-[#121212]">Aesthetic</h2>
                         <FloatingPill
                             text="Curated designs that inspire"
                             className="top-full mt-2 right-0 md:top-0 md:mt-0 md:right-auto md:left-0"
@@ -217,7 +217,7 @@ const MoreAboutSections = () => (
                         viewport={{ once: true }}
                         className="relative w-full pb-8 md:pb-0 md:self-end md:mr-[10%]"
                     >
-                        <h2 className="ml-[16vw] md:ml-[32vw] text-[13vw] md:text-[12vw] font-light leading-none tracking-tighter text-[#121212]">Advocacy</h2>
+                        <h2 className="ml-[16vw] md:ml-[32vw] text-[13vw] md:text-[clamp(4rem,9vw,13rem)] font-light leading-none tracking-tighter text-[#121212]">Advocacy</h2>
                         <FloatingPill
                             text="Standards you can trust"
                             className="top-full mt-2 left-0 md:top-auto md:mt-0 md:left-auto md:bottom-0 md:right-[-8vw]"
@@ -232,12 +232,12 @@ const MoreAboutSections = () => (
         <section className="px-6 py-20 md:py-32 md:px-12 lg:px-24 border-t border-black/5">
             <div className="max-w-[90vw] md:max-w-[70vw] mx-auto flex flex-col items-center">
                 <div className="flex items-center gap-3 mb-12 md:mb-16">
-                    <span className="text-[4.5vw] md:text-[1vw] text-black/20">◆</span>
-                    <span className="text-[4.5vw] md:text-[1vw] tracking-[0.3em] font-bold text-black/40 uppercase">Our Values</span>
+                    <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-black/20">◆</span>
+                    <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-black/40 uppercase">Our Values</span>
                 </div>
 
                 <div className="max-w-[90%] w-full text-center">
-                    <h3 className="text-[6.5vw] md:text-[3.5vw] font-light leading-[1.15] md:leading-[1] mb-16 md:mb-20 text-[#121212]">
+                    <h3 className="text-[6.5vw] md:text-[clamp(1.5rem,2.8vw,3.8rem)] font-light leading-[1.15] md:leading-[1] mb-16 md:mb-20 text-[#121212]">
                         Everything we create is rooted in our values, we do not just build, we build with purpose
                     </h3>
 
@@ -257,8 +257,8 @@ const MoreAboutSections = () => (
                             },
                         ].map((v, i) => (
                             <div key={i} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pt-10 md:pt-12 border-t border-black/10">
-                                <h4 className="md:col-span-4 text-[4.5vw] md:text-[1.4vw] font-bold tracking-widest uppercase text-[#121212]">{v.title}</h4>
-                                <p className="md:col-span-8 text-[5.5vw] md:text-[1.4vw] text-black/60 leading-[1.6] md:leading-[1.4]">{v.desc}</p>
+                                <h4 className="md:col-span-4 text-[4.5vw] md:text-[clamp(0.85rem,1.1vw,1.4rem)] font-bold tracking-widest uppercase text-[#121212]">{v.title}</h4>
+                                <p className="md:col-span-8 text-[5.5vw] md:text-[clamp(0.85rem,1.1vw,1.35rem)] text-black/60 leading-[1.6] md:leading-[1.5]">{v.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -271,10 +271,10 @@ const MoreAboutSections = () => (
             <div className="max-w-[90vw] md:max-w-[80vw] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20 items-center">
                 <div className="flex flex-col gap-8 md:gap-12">
                     <div className="flex items-center gap-3">
-                        <span className="text-[4.5vw] md:text-[1vw] text-black/20">◆</span>
-                        <span className="text-[4.5vw] md:text-[1vw] tracking-[0.3em] font-bold text-black/40 uppercase">Founders Journey</span>
+                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-black/20">◆</span>
+                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-black/40 uppercase">Founders Journey</span>
                     </div>
-                    <p className="text-[5.5vw] md:text-[1.4vw] font-light text-black/80 leading-relaxed">
+                    <p className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-black/80 leading-relaxed">
                         Hassan Bari, CEO and Founder of AquaVida Pools and Spas. He specializes in designing luxury outdoor living spaces while offering premium custom pool construction with unparalleled craftsmanship for homeowners across America.
                     </p>
                 </div>
