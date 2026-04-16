@@ -26,6 +26,8 @@ frontend/public/models/
 *.mp4
 *.glb
 *.gltf
+# About page video — small enough to serve from Vercel directly
+!frontend/public/About Video (compressed).mp4
 
 # === IDE ===
 .vscode/

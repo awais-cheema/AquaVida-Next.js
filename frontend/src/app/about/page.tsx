@@ -70,16 +70,18 @@ const AboutHeroSection = () => (
             </motion.h2>
         </div>
 
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full aspect-[21/9] mb-32 z-10"
-        >
-            <video autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]">
+        <div className="relative w-full aspect-video md:aspect-[21/9] mb-32 z-10">
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
+            >
                 <source src="/About%20Video%20(compressed).mp4" type="video/mp4" />
             </video>
-        </motion.div>
+        </div>
 
         <div className="w-full max-w-[90vw] md:max-w-[80vw] grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start z-10 pb-20">
             <div className="md:col-span-4 flex items-center gap-3">
@@ -154,19 +156,13 @@ const ApproachSection = () => (
                 </div>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                className="relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl"
-            >
+            <div className="relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl">
                 <img
                     src="/about-2.avif"
                     alt="Team collaborating on architectural plans"
                     className="w-full h-full object-cover brightness-[0.9] contrast-[1.05]"
                 />
-            </motion.div>
+            </div>
         </div>
     </section>
 );
