@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Calendar, Layers, ShieldCheck, Zap } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
+import { getAssetUrl } from '@/lib/constants';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -64,7 +65,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
             {/* ── HERO ── */}
             <section ref={heroRef} className="relative h-[50vh] lg:h-[100vh] flex flex-col justify-end overflow-hidden pb-[3vw] md:pb-32">
                 <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
-                    <Image src={p.heroImage} alt={p.title} fill className="object-cover scale-105 saturate-[0.9]" priority />
+                    <Image src={getAssetUrl(p.heroImage)} alt={p.title} fill className="object-cover scale-105 saturate-[0.9]" priority />
                     <div className="absolute inset-x-0 bottom-0 h-[70vh] bg-gradient-to-t from-[#05070A] via-[#05070A]/80 to-transparent" />
                 </motion.div>
 
@@ -136,7 +137,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                             transition={{ ...kineticEntry.whileInView.transition, delay: i * 0.1 }}
                             className={`relative group overflow-hidden rounded-[48px] ${i === 1 ? 'col-span-2' : item.size || 'col-span-2'} ${i === p.gallery.length - 1 ? 'hidden' : i === 1 ? 'hidden md:block' : ''}`}
                         >
-                            <Image src={item.url} alt={item.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+                            <Image src={getAssetUrl(item.url)} alt={item.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
                             
                             {/* Technical Spec Glass Overlay */}
                             <div className="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all duration-500" />
@@ -160,7 +161,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                     {...kineticEntry}
                     className="relative rounded-[80px] overflow-hidden min-h-[70vh] md:min-h-[80vh] flex items-center p-16 md:p-32"
                 >
-                    <Image src={p.philosophyImage} alt="Atmosphere" fill className="object-cover scale-105 saturate-[0.8] brightness-[0.4]" />
+                    <Image src={getAssetUrl(p.philosophyImage)} alt="Atmosphere" fill className="object-cover scale-105 saturate-[0.8] brightness-[0.4]" />
                     <div className="absolute inset-0 bg-[#05070A]/40" />
                     
                     <div className="relative z-10 max-w-5xl">
