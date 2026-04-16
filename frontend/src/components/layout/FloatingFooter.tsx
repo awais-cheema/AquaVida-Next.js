@@ -65,40 +65,77 @@ export default function FloatingFooter() {
 
     const getDynamicStyles = () => {
         const path = pathname || '';
-        
-        // Finance Page theme (Deep Onyx)
-        if (path.startsWith('/finance')) {
-            return {
-                cardBg: '#05070A',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
-                shadow: '0 20px 80px rgba(0,0,0,0.8)',
-                backdrop: 'none'
-            };
-        }
-        
-        // Portfolio & Blog (Editorial Dark)
-        if (path.startsWith('/portfolio') || path.startsWith('/blog')) {
-            return {
-                cardBg: '#05070A',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
-                shadow: 'none',
-                backdrop: 'none'
-            };
-        }
 
         // Home Page theme (Glassmorphism)
         if (isHome) {
             return {
                 cardBg: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(13, 86, 153, 0.03) 100%)',
+                wrapperBg: 'transparent',
                 border: '1px solid rgba(45, 121, 44, 0.2)',
                 shadow: '0 40px 100px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)',
                 backdrop: 'blur(30px) saturate(180%)'
             };
         }
 
-        // Default (Dark/Service)
+        // Finance page — #05070A
+        if (path.startsWith('/finance')) {
+            return {
+                cardBg: '#05070A',
+                wrapperBg: '#05070A',
+                border: '1px solid rgba(255, 255, 255, 0.03)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
+        // Portfolio & Blog — #05070A
+        if (path.startsWith('/portfolio') || path.startsWith('/blog')) {
+            return {
+                cardBg: '#05070A',
+                wrapperBg: '#05070A',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
+        // Contact page — #0A0E16
+        if (path === '/contact') {
+            return {
+                cardBg: '#0A0E16',
+                wrapperBg: '#0A0E16',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
+        // Services listing page — body bg #0a0e17
+        if (path === '/services') {
+            return {
+                cardBg: '#0a0e17',
+                wrapperBg: '#0a0e17',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
+        // Service sub-pages (ServicePageShell) — #0D0A07
+        if (path.startsWith('/services/')) {
+            return {
+                cardBg: '#0D0A07',
+                wrapperBg: '#0D0A07',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
+        // Default fallback — matches body bg
         return {
-            cardBg: '#0D0A07',
+            cardBg: '#0a0e17',
+            wrapperBg: '#0a0e17',
             border: '1px solid rgba(255, 255, 255, 0.05)',
             shadow: 'none',
             backdrop: 'none'
@@ -127,10 +164,10 @@ export default function FloatingFooter() {
                 style={{
                     opacity,
                     visibility: visible ? 'visible' : 'hidden',
-                    ...(isHome ? {} : { 
-                        opacity: 1, 
+                    ...(isHome ? {} : {
+                        opacity: 1,
                         visibility: 'visible',
-                        background: ds.cardBg // Match footer section background to card
+                        background: ds.wrapperBg,
                     }),
                 }}
             >
@@ -227,18 +264,20 @@ export default function FloatingFooter() {
                                 </ul>
                             </nav>
 
-                            {/* ── Contact ── */}
-                            <nav aria-label="Contact">
+                            {/* ── Information ── */}
+                            <div>
                                 <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl">
-                                    Contact
+                                    Information
                                 </h4>
                                 <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
-                                                text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl
-                                                font-medium tracking-wider">
-                                    <li><Link href="/contact" className={lk}>Contact Us</Link></li>
+                                               text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl
+                                               font-medium tracking-wider text-white/60 md:text-white/80">
+                                    <li>Privacy Policy</li>
+                                    <li>Terms &amp; Conditions</li>
+                                    <li>Terms of Services</li>
                                 </ul>
-                            </nav>
+                            </div>
 
                             <div className="flex flex-col gap-4 sm:gap-5 md:gap-6
                                             col-span-2 md:col-span-1

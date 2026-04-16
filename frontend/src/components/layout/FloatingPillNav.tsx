@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -39,7 +39,25 @@ export default function FloatingPillNav() {
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
 
-    const navRef = useRef<HTMLElement>(null);
+    const navRef          = useRef<HTMLElement>(null);
+    const servicesTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const portfolioTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const openServices  = useCallback(() => {
+        if (servicesTimer.current)  clearTimeout(servicesTimer.current);
+        setServicesOpen(true);
+    }, []);
+    const closeServices = useCallback(() => {
+        servicesTimer.current = setTimeout(() => setServicesOpen(false), 200);
+    }, []);
+
+    const openPortfolio  = useCallback(() => {
+        if (portfolioTimer.current) clearTimeout(portfolioTimer.current);
+        setPortfolioOpen(true);
+    }, []);
+    const closePortfolio = useCallback(() => {
+        portfolioTimer.current = setTimeout(() => setPortfolioOpen(false), 200);
+    }, []);
 
     const closeMobile = () => {
         setMobileOpen(false);
