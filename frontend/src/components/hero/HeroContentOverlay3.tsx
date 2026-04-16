@@ -18,9 +18,10 @@ const SERVICES = [
 ];
 
 export default function HeroContentOverlay3() {
-    const [mounted, setMounted]   = useState(false);
-    const [visible, setVisible]   = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    const [mounted, setMounted]       = useState(false);
+    const [visible, setVisible]       = useState(false);
+    const [isMobile, setIsMobile]     = useState(false);
+    const [cardsActive, setCardsActive] = useState(false);
 
     const osOpacity    = useMotionValue(0);
     const osY          = useMotionValue(80);
@@ -81,6 +82,7 @@ export default function HeroContentOverlay3() {
 
             // Stage 2 — cards
             if (f >= T2_START && f <= T2_EXIT) {
+                if (!cardsActive) setCardsActive(true);
                 if (f < T2_FULL) {
                     const t = (f - T2_START) / (T2_FULL - T2_START);
                     cardsOpacity.set(t);
@@ -95,6 +97,7 @@ export default function HeroContentOverlay3() {
                 }
                 scrollT.set(Math.max(0, Math.min(1, (f - T2_FULL) / (T2_END - T2_FULL))));
             } else {
+                if (cardsActive) setCardsActive(false);
                 cardsOpacity.set(0);
             }
 
@@ -102,7 +105,7 @@ export default function HeroContentOverlay3() {
 
         const unsub = heroFrameRef.subscribe(tick);
         return () => { alive = false; unsub(); };
-    }, [visible, osOpacity, osY, cardsOpacity, cardsX, scrollT]);
+    }, [visible, cardsActive, osOpacity, osY, cardsOpacity, cardsX, scrollT]);
 
     if (!mounted) return null;
 
@@ -142,7 +145,7 @@ export default function HeroContentOverlay3() {
             {/* ── Stage 2: horizontal card strip ── */}
             <motion.div
                 className="absolute inset-0"
-                style={{ opacity: cardsOpacity, x: cardsX }}
+                style={{ opacity: cardsOpacity, x: cardsX, pointerEvents: cardsActive ? 'auto' : 'none' }}
             >
                 {SERVICES.map((svc, idx) => (
                     <GlassCard
@@ -179,6 +182,7 @@ function GlassCard({
         opacity: 0,
         transform: 'translate(calc(-50% + 150vw), -50%)',
         zIndex: 0,
+        pointerEvents: 'none',
     });
 
     useEffect(() => {
@@ -195,7 +199,7 @@ function GlassCard({
             const clip = step * 1.3;
 
             if (posVW < -clip || posVW > clip) {
-                setSt(p => ({ ...p, opacity: 0 }));
+                setSt(p => ({ ...p, opacity: 0, pointerEvents: 'none' }));
                 return;
             }
 
@@ -207,6 +211,7 @@ function GlassCard({
                 opacity: Math.min(1, opacity),
                 transform: `translate(calc(-50% + ${posVW}vw), -50%)`,
                 zIndex: Math.max(1, Math.round(100 - Math.abs(posVW) * 1.4)),
+                pointerEvents: opacity > 0.1 ? 'auto' : 'none',
             });
         };
 
