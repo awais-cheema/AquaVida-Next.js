@@ -171,7 +171,7 @@ export default function FloatingPillNav() {
             {mobileOpen && (
                 <div className="md:hidden absolute top-full left-0 right-0 mt-3 bg-black/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 flex flex-col gap-1 z-[210]">
                     <Link href="/" onClick={closeMobile} className={mobileLinkCls}>Home</Link>
-                    
+
                     {/* Mobile Portfolio */}
                     <div className="flex items-center justify-between">
                         <Link href="/portfolio" onClick={closeMobile} className={`${mobileLinkCls} flex-1`}>Portfolio</Link>

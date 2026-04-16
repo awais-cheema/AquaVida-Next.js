@@ -309,11 +309,11 @@ export default function FinancingClient() {
                              <h2 className="text-[clamp(36px,4.7vw,80px)] font-black mb-6 leading-[0.85] tracking-normal text-white uppercase">
                                  Engineer<br />Your Capital
                              </h2>
-                             <p className="text-[1.3vw] text-white/70 mb-8 font-light max-w-3xl mx-auto leading-relaxed tracking-normal">
+                             <p className="text-[3.5vw] md:text-[1.5vw] text-white/70 mb-8 font-light max-w-3xl mx-auto leading-normal tracking-normal md:w-[70%]">
                                  Ready to define your legacy? Let our architectural advisors navigate the selection matrix with you.
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                 <Link href="/contact" className="btn inline-flex items-center gap-4 px-10 py-4 bg-white text-black rounded-full font-black text-[1.3vw] hover:bg-white/90 hover:text-black transition-all shadow-xl">
+                                 <Link href="/contact" className="btn inline-flex items-center gap-4 px-10 py-4 bg-white text-black rounded-full font-black text-[4vw] md:text-[1.3vw] hover:bg-white/90 hover:text-black transition-all shadow-xl">
                                      Consult with Expert <ArrowRight size={20} />
                                  </Link>
                              </motion.div>

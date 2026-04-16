@@ -29,6 +29,7 @@ const SLIDE_Y    = Math.round(SLIDE * 0.940); // ≈ 150px
 export default function HeroContentOverlay6() {
     const [mounted,  setMounted]  = useState(false);
     const [visible,  setVisible]  = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const diagX      = useMotionValue(-SLIDE_X);
     const diagY      = useMotionValue(-SLIDE_Y);
@@ -38,7 +39,10 @@ export default function HeroContentOverlay6() {
     const [pingScale,   setPingScale]   = useState(1);
     const [pingOpacity, setPingOpacity] = useState(0.7);
 
-    useEffect(() => { setMounted(true); }, []);
+    useEffect(() => {
+        setMounted(true);
+        setIsMobile(window.matchMedia('(max-width: 640px)').matches);
+    }, []);
 
     // Manual ping — same pattern as overlay5
     useEffect(() => {
@@ -128,7 +132,8 @@ export default function HeroContentOverlay6() {
                            flex flex-col gap-1 sm:gap-1 md:gap-2
                            w-[min(96vw,740px)] sm:w-[min(90vw,820px)] md:w-[min(82vw,1000px)]
                            text-center pointer-events-auto select-text
-                           px-4 sm:px-0"
+                           px-4 sm:px-0
+                           mt-[8vh] sm:mt-0"
                 style={{
                     top:        '58%',
                     opacity:    textOpacity,
@@ -158,7 +163,7 @@ export default function HeroContentOverlay6() {
                 className="absolute"
                 style={{
                     left:        '51%',
-                    top:         '47%',
+                    top:         isMobile ? '61%' : '47%',
                     opacity:     dotOpacity,
                     x:           diagX,
                     y:           diagY,
