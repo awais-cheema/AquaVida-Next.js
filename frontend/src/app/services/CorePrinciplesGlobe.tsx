@@ -59,10 +59,10 @@ const CX = R;
 const CY = R;
 
 const Q_CENTER: Record<Pos, { x: number; y: number }> = {
-    tl: { x: CX - R * 0.50, y: CY - R * 0.50 },
-    tr: { x: CX + R * 0.50, y: CY - R * 0.50 },
-    bl: { x: CX - R * 0.50, y: CY + R * 0.50 },
-    br: { x: CX + R * 0.50, y: CY + R * 0.50 },
+    tl: { x: CX - R * 0.42, y: CY - R * 0.42 },
+    tr: { x: CX + R * 0.42, y: CY - R * 0.42 },
+    bl: { x: CX - R * 0.42, y: CY + R * 0.42 },
+    br: { x: CX + R * 0.42, y: CY + R * 0.42 },
 };
 
 const Q_RECT: Record<Pos, { x: number; y: number; w: number; h: number }> = {
@@ -170,19 +170,17 @@ export default function CorePrinciplesGlobe() {
                             {PRINCIPLES.map(p => {
                                 const c = Q_CENTER[p.pos];
                                 const hv = hovered === p.id;
-                                const off = 18;
-                                const tx = p.pos.includes('l') ? c.x + off : c.x - off;
 
                                 return (
                                     <g key={`lbl-${p.id}`} clipPath={`url(#cpqQ-${p.pos})`} className="pointer-events-none">
-                                        <text x={tx} y={c.y - 14} textAnchor="middle" dominantBaseline="middle"
-                                              fontSize={26} fontWeight={600} letterSpacing="0.08em"
+                                        <text x={c.x} y={c.y - 11} textAnchor="middle" dominantBaseline="middle"
+                                              fontSize={20} fontWeight={600} letterSpacing="0.08em"
                                               fill={hv ? '#ffffff' : 'rgba(255,255,255,0.40)'}
                                               style={{ fontFamily: 'var(--font-allomira), system-ui, sans-serif' }}>
                                             {p.line1}
                                         </text>
-                                        <text x={tx} y={c.y + 16} textAnchor="middle" dominantBaseline="middle"
-                                              fontSize={26} fontWeight={600} letterSpacing="0.08em"
+                                        <text x={c.x} y={c.y + 11} textAnchor="middle" dominantBaseline="middle"
+                                              fontSize={20} fontWeight={600} letterSpacing="0.08em"
                                               fill={hv ? '#ffffff' : 'rgba(255,255,255,0.40)'}
                                               style={{ fontFamily: 'var(--font-allomira), system-ui, sans-serif' }}>
                                             {p.line2}
@@ -204,9 +202,9 @@ export default function CorePrinciplesGlobe() {
                         </g>
 
                         {/* Minimalist Logo */}
-                        <foreignObject x={CX - 40} y={CY - 40} width={80} height={80}>
+                        <foreignObject x={CX - 55} y={CY - 55} width={110} height={110}>
                            <div className="w-full h-full flex items-center justify-center p-3 pointer-events-none">
-                               <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={64} height={24} className="w-full h-auto object-contain brightness-125" />
+                               <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={90} height={34} className="w-full h-auto object-contain brightness-125" />
                            </div>
                         </foreignObject>
 
