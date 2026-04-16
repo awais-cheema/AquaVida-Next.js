@@ -156,7 +156,7 @@ const ApproachSection = () => (
                 </div>
             </div>
 
-            <div className="relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl">
+            <div className=" hidden md:flex relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl">
                 <img
                     src="/about-2.avif"
                     alt="Team collaborating on architectural plans"
