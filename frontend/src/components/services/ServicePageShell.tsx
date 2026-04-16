@@ -293,7 +293,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                     className="flex flex-col gap-10 group"
                                 >
                                     <div className="w-[15vw] h-[15vw] md:w-[4.5vw] md:h-[4.5vw] rounded-[10px] flex items-center justify-center transition-all duration-500 group-hover:scale-110" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                                        <f.icon size={"60%"} strokeWidth={1} className="text-[#91792C]" />
+                                        <f.icon size={28} strokeWidth={1} className="text-[#91792C]" />
                                     </div>
                                     <div className="space-y-4">
                                         <h3 className="text-[6vw] md:text-[2vw] font-bold text-white tracking-tight group-hover:text-[#A68A33] transition-colors">{f.title}</h3>
