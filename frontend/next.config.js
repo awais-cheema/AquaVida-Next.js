@@ -26,6 +26,14 @@ const nextConfig = {
                 hostname: 'images.unsplash.com',
             },
             {
+                protocol: 'https',
+                hostname: 'hgtvhome.sndimg.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.exscapedesigns.com',
+            },
+            {
                 protocol: 'http',
                 hostname: 'localhost',
             },

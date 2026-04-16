@@ -325,16 +325,16 @@ export default function ServicesClient() {
                 {/* ── Hero ───────────────────────────────────────── */}
                 <section ref={heroRef} className="relative h-[45vh] md:h-screen flex items-center justify-center overflow-hidden">
                     {/* Parallax background image */}
-                    <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0 opacity-50">
+                    <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
                         <Image
-                            src={getAssetUrl("/services_hero.avif")}
+                            src="https://www.exscapedesigns.com/hubfs/Imported_Blog_Media/Who-Do-You-Go-to-for-High-Quality-Pool-Installation_--1-1.jpg"
                             alt=""
                             fill
                             className="object-cover scale-110"
                             priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#05070A] via-[#05070A]/80 to-[#05070A]/40" />
-                        <div className="absolute inset-x-0 bottom-0 h-[55vh] bg-gradient-to-t from-[#05070A] via-[#05070A]/90 to-transparent" />
+                        <div className="absolute inset-0 bg-black/60" />
+                        <div className="absolute inset-x-0 bottom-0 h-[55vh] bg-gradient-to-t from-[#05070A] via-[#05070A]/80 to-transparent" />
                     </motion.div>
 
                     {/* Title */}
