@@ -191,10 +191,10 @@ export default function PortfolioClient() {
                         <span className="flex items-center gap-3 text-[#A68A33] font-black tracking-[0.4em] uppercase lg:text-[0.9vw] md:text-[0.9vw] sm:text-[1vw] mb-8">
                             <Droplets size={22} className="text-[#A68A33]" /> ARCHITECTURAL ARCHIVE
                         </span>
-                        <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-tighter leading-[0.85] uppercase mb-12">
+                        <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[0.85] uppercase mb-12">
                             The Liquid<br />Portfolio
                         </h1>
-                        <p className="text-2xl md:text-3xl text-white/40 font-light max-w-3xl leading-relaxed">
+                        <p className="text-2xl md:text-3xl text-white/40 font-light max-w-3xl leading-normal">
                             A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.
                         </p>
                     </motion.div>
@@ -247,7 +247,7 @@ export default function PortfolioClient() {
                     <p className="text-xl md:text-2xl text-white/40 font-light max-w-3xl mx-auto mb-16 leading-relaxed">
                         We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture.
                     </p>
-                    <Link href="/contact" className="btn inline-flex items-center gap-8 bg-[#0D5699] hover:bg-[#A68A33] text-white px-12 py-6 rounded-full text-lg font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 group">
+                    <Link href="/contact" className="btn inline-flex items-center gap-8 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[10vw] md:px-12 md:py-6 rounded-full text-lg font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
                         Begin Your Project
                         <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                     </Link>

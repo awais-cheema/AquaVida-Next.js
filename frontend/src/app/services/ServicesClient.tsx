@@ -132,11 +132,11 @@ function TrustedPartnerships() {
                 {/* Left */}
                 <div>
                     <h2 className="font-allomira font-bold text-white leading-tight mb-10"
-                        style={{ fontSize: 'clamp(36px, 5vw, 66px)' }}>
+                        style={{ fontSize: 'clamp(40px, 5vw, 66px)' }}>
                         Trusted<br />Partnerships
                     </h2>
                     <Link href="/portfolio"
-                          className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
+                          className="inline-flex items-center justify-center px-6 py-3 text-md font-medium text-white/70 hover:text-white transition-colors duration-200"
                           style={{ border: '1px solid rgba(255,255,255,0.28)' }}>
                         See all Work
                     </Link>
@@ -163,19 +163,19 @@ function TrustedPartnerships() {
                 <div className="flex flex-col gap-5"
                      style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.22s ease' }}>
                     <div>
-                        <h3 className="font-allomira font-bold text-white mb-1"
-                            style={{ fontSize: 'clamp(20px, 2vw, 28px)' }}>
+                        <h3 className="font-allomira font-bold text-white mb-3 md:mb-1"
+                            style={{ fontSize: 'clamp(30px, 2vw, 28px)' }}>
                             {t.client}
                         </h3>
-                        <p className="text-[11px] uppercase tracking-[0.22em]"
+                        <p className="text-[13px] uppercase tracking-[0.22em]"
                            style={{ color: 'rgba(255,255,255,0.35)' }}>
                             {t.type}
                         </p>
                     </div>
-                    <p className="leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)', fontSize: 'clamp(14px,1.2vw,17px)' }}>
+                    <p className="leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)', fontSize: 'clamp(18px,1.2vw,17px)' }}>
                         {t.quote}
                     </p>
-                    <p className="text-xs uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.28)' }}>
+                    <p className="text-md uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.28)' }}>
                         {t.location}
                     </p>
                     <div className="flex items-center gap-3 mt-2">
@@ -189,7 +189,7 @@ function TrustedPartnerships() {
                                 style={{ border: '1px solid rgba(255,255,255,0.25)' }}>
                             <ArrowRight size={15} className="text-white" />
                         </button>
-                        <span className="text-xs ml-2" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                        <span className="text-md ml-2" style={{ color: 'rgba(255,255,255,0.25)' }}>
                             {idx + 1} / {TESTIMONIALS.length}
                         </span>
                     </div>
@@ -217,8 +217,8 @@ function FloatingCTA() {
     }, []);
 
     return (
-        <section ref={secRef} className="relative flex items-center justify-center overflow-hidden"
-                 style={{ minHeight: '100vh', background: '#070a10' }}>
+        <section ref={secRef} className="relative h-[65vw] md:h-screen flex items-center justify-center overflow-hidden"
+                 style={{background: '#070a10' }}>
 
             {/* very subtle global bg */}
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -323,7 +323,7 @@ export default function ServicesClient() {
             <div className="min-h-screen">
 
                 {/* ── Hero ───────────────────────────────────────── */}
-                <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+                <section ref={heroRef} className="relative h-[45vh] md:h-screen flex items-center justify-center overflow-hidden">
                     {/* Parallax background image */}
                     <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0 opacity-50">
                         <Image
@@ -341,11 +341,11 @@ export default function ServicesClient() {
                     <div className="relative z-10 max-w-[1600px] mx-auto flex items-center justify-center w-full gap-4 md:gap-10 px-6 md:px-16">
                         <Reveal>
                             <h1 className="font-allomira font-bold text-white leading-none select-none"
-                                style={{ fontSize: 'clamp(34px, 10vw, 170px)' }}>Our</h1>
+                                style={{ fontSize: 'clamp(40px, 12vw, 170px)' }}>Our</h1>
                         </Reveal>
                         <Reveal delay={0.08}>
                             <h1 className="font-allomira font-bold leading-none select-none text-white"
-                                style={{ fontSize: 'clamp(34px, 10vw, 170px)' }}>
+                                style={{ fontSize: 'clamp(40px, 12vw, 170px)' }}>
                                 Services
                             </h1>
                         </Reveal>
@@ -365,11 +365,11 @@ export default function ServicesClient() {
                     <Reveal delay={0.08}>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-10">
                             <h2 className="font-allomira font-bold text-white leading-tight md:whitespace-nowrap"
-                                style={{ fontSize: 'clamp(28px, 4.5vw, 58px)' }}>
+                                style={{ fontSize: 'clamp(32px, 4.5vw, 58px)' }}>
                                 Our Area of Expertise Space
                             </h2>
                             <p className="text-white/40 leading-relaxed max-w-md md:text-left"
-                               style={{ fontSize: 'clamp(14px, 1.2vw, 17px)' }}>
+                               style={{ fontSize: 'clamp(20px, 1.2vw, 17px)' }}>
                                 AquaVida: A trusted leader in pool construction and outdoor living,
                                 providing seamless experiences to Dallas homeowners.
                             </p>
@@ -409,7 +409,7 @@ export default function ServicesClient() {
                                 
                                 <div className="relative z-20 flex flex-col h-full p-8 pointer-events-none mt-auto justify-end">
                                     <h3 className="text-white font-medium whitespace-pre-line group-hover:-translate-y-2 transition-transform duration-300"
-                                        style={{ fontSize: 'clamp(24px, 2.2vw, 30px)' }}>
+                                        style={{ fontSize: 'clamp(36px, 2.2vw, 30px)' }}>
                                         {c.title}
                                     </h3>
                                 </div>
@@ -436,11 +436,11 @@ export default function ServicesClient() {
 
 
                 {/* ── Marquee ─────────────────────────────────────── */}
-                <div className="py-5 space-y-3"
+                {/*<div className="py-5 space-y-15"
                      style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
                     <MarqueeStrip items={MARQUEE_A} />
                     <MarqueeStrip items={MARQUEE_B} reverse accent />
-                </div>
+                </div>*/}
 
                 {/* ── Core Principles Globe ───────────────────────── */}
                 <CorePrinciplesGlobe />

@@ -83,7 +83,7 @@ export default function CorePrinciplesGlobe() {
     const panelVis = !!hovered;
 
     return (
-        <section className="relative bg-[#020a13] h-screen overflow-hidden flex flex-col items-center justify-center py-6">
+        <section className="relative bg-[#020a13] h-[60vh] md:h-screen overflow-hidden flex flex-col items-center justify-center py-6 ">
             {/* ── Brand Glows ── */}
             <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#0d5699]/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#63b589]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -214,7 +214,7 @@ export default function CorePrinciplesGlobe() {
                 </div>
 
                 {/* ── MOBILE FALLBACK ── */}
-                <div className="lg:hidden text-center order-3 px-6 mt-4 min-h-[120px]">
+                <div className="lg:hidden text-center order-3 px-6 mt-4 min-h-[0px]">
                     <div style={{ opacity: panelVis ? 1 : 0 }}>
                         <p className="text-white text-[11px] uppercase tracking-widest font-bold mb-1">{active?.label}</p>
                         <h3 className="text-white text-[24px] font-bold mb-2 font-allomira leading-tight">{active?.title}</h3>

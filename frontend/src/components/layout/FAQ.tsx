@@ -58,7 +58,7 @@ export default function FAQ({ items, accentColor = '#91792C', theme = 'dark' }: 
                 <span className="font-bold tracking-[0.4em] uppercase text-xl  mb-6 block" style={{ color: '#A68A33' }}>
                     Clarification
                 </span>
-                <h2 className="text-[clamp(40px,5vw,90px)] font-bold tracking-tighter leading-[0.9] uppercase text-white">
+                <h2 className="text-[clamp(40px,5vw,90px)] font-bold tracking-normal leading-[0.9] uppercase text-white">
                     Frequently asked<br />questions
                 </h2>
             </motion.div>
@@ -82,9 +82,9 @@ export default function FAQ({ items, accentColor = '#91792C', theme = 'dark' }: 
                         >
                             <button
                                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                                className="w-full p-8 md:p-12 flex items-center justify-between gap-8 text-left group"
+                                className="w-full p-5  md:px-10 md:py-4 flex items-center justify-between gap-8 text-left group"
                             >
-                                <span className={`lg:text-[1.6vw] md:text-[1.6vw]  font-bold tracking-tight transition-colors duration-300 ${styles.questionText} ${isOpen ? '' : 'group-hover:text-white'}`}>
+                                <span className={`lg:text-[1.6vw] md:text-[2vw]  font-bold tracking-normal transition-colors duration-300 ${styles.questionText} ${isOpen ? '' : 'group-hover:text-white'}`}>
                                     {item.question}
                                 </span>
                                 <div 
@@ -106,7 +106,7 @@ export default function FAQ({ items, accentColor = '#91792C', theme = 'dark' }: 
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                     >
-                                        <div className="px-8 md:px-12 pb-12">
+                                        <div className="px-5 md:px-7 pb-7">
                                             <div className="w-full h-px bg-white/5 mb-8" />
                                             <p className={`text-[1vw] md:text-[1.3vw] leading-relaxed font-light ${styles.text}`}>
                                                 {item.answer}
