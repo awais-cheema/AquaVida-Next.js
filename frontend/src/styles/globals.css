@@ -42,6 +42,15 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     font-size: 16px;
+    /* Lock Allomira as the base font for the entire document */
+    font-family: var(--font-allomira), 'Public Sans', sans-serif;
+}
+
+/* Ensure every element — including inputs, selects, buttons, and
+   third-party components — inherits Allomira rather than falling
+   back to the browser's default system font. */
+*, *::before, *::after {
+    font-family: inherit;
 }
 
 body {

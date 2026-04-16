@@ -133,7 +133,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
     };
 
     return (
-        <div className="min-h-screen w-full bg-[#0D0A07] text-[#dce3f0] font-allomira selection:bg-[#0D5699] selection:text-white select-text">
+        <div className="min-h-screen w-full bg-[#05070A] text-[#dce3f0] font-allomira selection:bg-[#0D5699] selection:text-white select-text">
             
             {/* ── HERO SECTION ────────────────────────────────────────────────── */}
             <section ref={heroRef} className="relative h-[80vh] md:h-[100vh] flex items-center overflow-hidden mb-20">

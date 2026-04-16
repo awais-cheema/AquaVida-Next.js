@@ -1,10 +1,17 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { getAssetUrl } from '@/lib/constants';
+
+const dropdownVariants = {
+    hidden:  { opacity: 0, y: -6, scale: 0.97 },
+    visible: { opacity: 1, y: 0,  scale: 1,   transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
+    exit:    { opacity: 0, y: -4, scale: 0.97, transition: { duration: 0.13, ease: 'easeIn' } },
+};
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 const SERVICES: { label: string; href: string }[] = [
@@ -24,7 +31,8 @@ const PROJECTS: { label: string; href: string }[] = [
 ];
 
 const NAV_LINKS_BEFORE: { href: string; label: string }[] = [
-    { href: '/', label: 'Home' },
+    { href: '/',       label: 'Home' },
+    { href: '/about',  label: 'About' },
 ];
 
 const NAV_LINKS_AFTER: { href: string; label: string }[] = [
@@ -38,6 +46,24 @@ export default function FloatingPillNav() {
     const [mobileOpen, setMobileOpen]       = useState(false);
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
+    const [overLight, setOverLight]         = useState(false);
+
+    // Darken nav when scrolled over a light-background section
+    useEffect(() => {
+        const update = () => {
+            const lightSections = document.querySelectorAll('[data-nav-theme="light"]');
+            const NAV_BOTTOM = 80; // px — approximate bottom edge of the nav pill
+            let over = false;
+            lightSections.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < NAV_BOTTOM && rect.bottom > 0) over = true;
+            });
+            setOverLight(over);
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        update(); // run once on mount
+        return () => window.removeEventListener('scroll', update);
+    }, []);
 
     const navRef          = useRef<HTMLElement>(null);
     const servicesTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -65,14 +91,14 @@ export default function FloatingPillNav() {
         setMobileProjectsOpen(false);
     };
 
-    const linkCls = `text-white/75 hover:text-white text-[clamp(13px,1.2vw,19px)] font-medium
+    const linkCls = `text-white/75 hover:text-white text-[clamp(15px,1.4vw,22px)] font-medium
                      tracking-wide transition-colors duration-150 font-allomira py-2 cursor-pointer`;
 
     const mobileLinkCls = `block w-full px-4 py-3 rounded-xl text-[clamp(14px,1.3vw,20px)] font-medium
                            text-white/75 hover:text-white hover:bg-white/10
                            transition-colors duration-150 font-allomira text-left`;
 
-    const dropCls = `absolute top-full left-1/2 -translate-x-1/2 pt-2 w-64 z-[120]`;
+    const dropCls = `absolute top-full left-0 pt-2 w-56 z-[120]`;
 
     return (
         <nav
@@ -80,11 +106,16 @@ export default function FloatingPillNav() {
             className="fixed top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 w-[88%] max-w-[78rem] z-[200]
                        rounded-full px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-[9px] lg:px-8 lg:py-[11px] pointer-events-auto"
             style={{
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(13, 86, 153, 0.05) 50%, rgba(0,0,0,0.2) 100%)',
+                background: overLight
+                    ? 'rgba(5, 7, 10, 0.65)'
+                    : 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(13, 86, 153, 0.05) 50%, rgba(0,0,0,0.2) 100%)',
                 backdropFilter: 'blur(24px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                border: '1px solid rgba(145, 121, 44, 0.25)',
+                border: overLight
+                    ? '1px solid rgba(255,255,255,0.1)'
+                    : '1px solid rgba(145, 121, 44, 0.25)',
                 boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+                transition: 'background 0.4s ease, border-color 0.4s ease',
             }}
         >
             <div className="flex items-center gap-3 md:gap-4 lg:gap-6 xl:gap-8">
@@ -101,7 +132,7 @@ export default function FloatingPillNav() {
 
                     {/* Portfolio Hover */}
                     <li
-                        className="relative group py-2"
+                        className="relative group"
                         onMouseEnter={openPortfolio}
                         onMouseLeave={closePortfolio}
                     >
@@ -109,24 +140,34 @@ export default function FloatingPillNav() {
                             <Link href="/portfolio" className={linkCls}>Portfolio</Link>
                             <ChevronDown size={16} className={`text-white/40 transition-transform ${portfolioOpen ? 'rotate-180' : ''}`} />
                         </div>
+                        <AnimatePresence>
                         {portfolioOpen && (
-                            <div className={dropCls} onMouseEnter={openPortfolio} onMouseLeave={closePortfolio}>
-                                <ul className="rounded-2xl p-3 flex flex-col gap-1 bg-black/95 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
+                            <motion.div
+                                className={dropCls}
+                                onMouseEnter={openPortfolio}
+                                onMouseLeave={closePortfolio}
+                                variants={dropdownVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                            >
+                                <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
                                     {PROJECTS.map((p) => (
                                         <li key={p.label}>
-                                            <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                            <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.2vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {p.label}
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         )}
+                        </AnimatePresence>
                     </li>
 
                     {/* Services Hover */}
                     <li
-                        className="relative group py-2"
+                        className="relative group"
                         onMouseEnter={openServices}
                         onMouseLeave={closeServices}
                     >
@@ -134,19 +175,29 @@ export default function FloatingPillNav() {
                             <Link href="/services" className={linkCls}>Services</Link>
                             <ChevronDown size={16} className={`text-white/40 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                         </div>
+                        <AnimatePresence>
                         {servicesOpen && (
-                            <div className={dropCls} onMouseEnter={openServices} onMouseLeave={closeServices}>
-                                <ul className="rounded-2xl p-3 flex flex-col gap-1 bg-black/95 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
+                            <motion.div
+                                className={dropCls}
+                                onMouseEnter={openServices}
+                                onMouseLeave={closeServices}
+                                variants={dropdownVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                            >
+                                <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
                                     {SERVICES.map((s) => (
                                         <li key={s.label}>
-                                            <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                            <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.2vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {s.label}
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         )}
+                        </AnimatePresence>
                     </li>
 
                     {NAV_LINKS_AFTER.map(({ href, label }) => (
@@ -171,6 +222,7 @@ export default function FloatingPillNav() {
             {mobileOpen && (
                 <div className="md:hidden absolute top-full left-0 right-0 mt-3 bg-black/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 flex flex-col gap-1 z-[210]">
                     <Link href="/" onClick={closeMobile} className={mobileLinkCls}>Home</Link>
+                    <Link href="/about" onClick={closeMobile} className={mobileLinkCls}>About</Link>
 
                     {/* Mobile Portfolio */}
                     <div className="flex items-center justify-between">

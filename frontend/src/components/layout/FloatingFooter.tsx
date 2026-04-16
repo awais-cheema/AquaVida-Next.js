@@ -279,11 +279,11 @@ export default function FloatingFooter() {
                                 </ul>
                             </div>
 
-                            <div className="flex flex-col gap-4 sm:gap-5 md:gap-6
+                            <div className="flex flex-col gap-3 sm:gap-5 md:gap-6
                                             col-span-2 md:col-span-1
                                             border-t md:border-t-0 md:border-l border-white/10
-                                            pt-6 md:pt-0 md:pl-5 lg:pl-6 xl:pl-8">
-                                <div className="max-w-[520px]">
+                                            pt-5 md:pt-0 md:pl-5 lg:pl-6 xl:pl-8">
+                                <div className="max-w-[520px] mx-auto md:mx-0">
                                     <h4 className="text-white font-black tracking-[0.1em] uppercase drop-shadow-md mb-2 sm:mb-3
                                                    text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                         Address
@@ -293,12 +293,12 @@ export default function FloatingFooter() {
                                        rel="noopener noreferrer"
                                        className="text-white/80 hover:text-white font-medium leading-relaxed tracking-wider transition-colors duration-200
                                                   text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] xl:text-sm 2xl:text-xl block">
-                                        <span className="whitespace-nowrap">2100 N Greenville Ave.</span><br />
-                                        <span className="whitespace-nowrap">Richardson, TX 75082, USA</span>
+                                        <span className="sm:whitespace-nowrap">2100 N Greenville Ave.</span><br />
+                                        <span className="sm:whitespace-nowrap">Richardson, TX 75082, USA</span>
                                     </a>
                                 </div>
 
-                                <div className="mt-2 sm:mt-3 md:mt-4">
+                                <div className="mt-0 sm:mt-3 md:mt-4">
                                     <h4 className="text-white font-black tracking-[0.1em] uppercase drop-shadow-md mb-2 sm:mb-3
                                                    text-[13px] sm:text-[14px] md:text-[14px] lg:text-[15px] xl:text-base 2xl:text-2xl">
                                         Phone
@@ -310,7 +310,7 @@ export default function FloatingFooter() {
                                     </a>
                                 </div>
 
-                                <div className="h-px bg-white/20 mt-2 sm:mt-3 mb-2" />
+                                <div className="h-px bg-white/20 mt-0 sm:mt-3 mb-1 sm:mb-2" />
 
                                 <ul className="flex items-center justify-center md:justify-start gap-5 sm:gap-6" role="list">
                                     {[
@@ -339,18 +339,19 @@ export default function FloatingFooter() {
                     ══════════════════════════════════════ */}
                     <div className="flex flex-col lg:flex-row items-center justify-between
                                     border-t border-white/10
-                                    pt-5 sm:pt-6 md:pt-8 pb-2
-                                    gap-5 lg:gap-0">
+                                    pt-4 sm:pt-6 md:pt-8 pb-2
+                                    gap-3 sm:gap-5 lg:gap-0">
 
                         {/* Copyright */}
-                        <p className="text-white font-bold tracking-[0.08em] uppercase whitespace-nowrap
-                                      text-[11px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-sm
-                                      w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
-                            © 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.
+                        <p className="text-white font-bold tracking-[0.08em] uppercase
+                                      text-[10px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-sm
+                                      w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1
+                                      leading-relaxed sm:whitespace-nowrap">
+                            © 2026 AQUAVIDA POOLS AND SPAS.<br className="sm:hidden" /> ALL RIGHTS RESERVED.
                         </p>
 
                         {/* Center Powered By (Primary focus) */}
-                        <div className="flex items-center justify-center gap-7 w-full lg:w-1/3 order-1 lg:order-2">
+                        <div className="flex items-center justify-center gap-4 sm:gap-7 w-full lg:w-1/3 order-1 lg:order-2">
                             <span className="font-allomira tracking-[0.2em] font-black uppercase text-white/20 whitespace-nowrap
                                              text-[9px] sm:text-[10px] md:text-[10px] lg:text-[11px] xl:text-[12px]">
                                 Powered By
@@ -359,7 +360,7 @@ export default function FloatingFooter() {
                                 src={getAssetUrl("/CXT.gif")}
                                 alt="Control X Tech"
                                 width={300} height={100}
-                                className="h-[60px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
+                                className="h-[44px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
                                            w-auto object-contain mix-blend-screen opacity-100"
                             />
                         </div>

@@ -58,7 +58,7 @@ export default function FAQ({ items, accentColor = '#91792C', theme = 'dark' }: 
                 <span className="font-bold tracking-[0.4em] uppercase text-xl  mb-6 block" style={{ color: '#A68A33' }}>
                     Clarification
                 </span>
-                <h2 className="text-[clamp(40px,5vw,90px)] font-bold tracking-normal leading-[0.9] uppercase text-white">
+                <h2 className="text-[clamp(40px,5vw,90px)] font-bold tracking-normal leading-[1] uppercase text-white">
                     Frequently asked<br />questions
                 </h2>
             </motion.div>

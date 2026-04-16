@@ -30,10 +30,10 @@ export default function ContactPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  if (!mounted) return <div className="min-h-screen bg-[#0A0E16]" />;
+  if (!mounted) return <div className="min-h-screen bg-[#05070A]" />;
 
   return (
-    <main className="min-h-screen w-screen bg-[#0A0E16] text-black font-sans selection:bg-black selection:text-white flex flex-col">
+    <main className="min-h-screen w-screen bg-[#05070A] text-black font-sans selection:bg-black selection:text-white flex flex-col">
       {/* Header Space */}
       <div className="h-[11vh] w-full flex-shrink-0" />
 

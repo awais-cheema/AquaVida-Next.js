@@ -87,7 +87,7 @@ export default function CorePrinciplesGlobe() {
     };
 
     return (
-        <section className="relative bg-[#020a13] min-h-[70vh] md:h-screen overflow-hidden flex flex-col items-center justify-center py-8 md:py-6">
+        <section className="relative bg-[#05070A] min-h-[70vh] md:h-screen overflow-hidden flex flex-col items-center justify-center py-8 md:py-6">
             {/* ── Brand Glows ── */}
             <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#0d5699]/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#63b589]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -103,7 +103,7 @@ export default function CorePrinciplesGlobe() {
                         filter: 'blur(12px) brightness(0.6)',
                 }} />
             ))}
-            <div className="absolute inset-0 bg-[#020a13]/94 pointer-events-none" />
+            <div className="absolute inset-0 bg-[#05070A]/94 pointer-events-none" />
 
             {/* ── Heading ── */}
             <div className="relative z-10 text-center mb-4 lg:mb-10 px-6">
