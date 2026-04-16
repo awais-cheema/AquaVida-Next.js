@@ -158,7 +158,7 @@ export default function FinancingClient() {
         <div className="min-h-screen w-full bg-[#05070A] text-[#DCE3F0] font-allomira selection:bg-[#0D5699] selection:text-white select-text">
             
             {/* ── HERO ──────────────────────────────────────────────────────── */}
-            <section ref={heroRef} className="relative h-screen flex items-center overflow-hidden snap-start">
+            <section ref={heroRef} className="relative h-[75vh] md:h-screen flex items-center overflow-hidden snap-start">
                 <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0 opacity-40">
                     <Image 
                         src={getAssetUrl("/finance_hero.avif")} 
@@ -178,20 +178,20 @@ export default function FinancingClient() {
                         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-7xl"
                     >
-                        <span className="inline-block text-lg md:text-xl font-black tracking-[0.8em] uppercase mb-8 text-[#91792C] drop-shadow-xl">
+                        <span className="inline-block text-[3vw] md:text-[1vw] font-bold tracking-[0.22em] md:tracking-[0.4em] uppercase mb-12 text-[#A68A33]">
                             Investment Architecture
                         </span>
-                        <h1 className="text-[clamp(55px,9vw,160px)] font-black leading-[0.82] tracking-[-0.05em] mb-12 uppercase">
+                        <h1 className="text-[15vw] md:text-[10vw] font-bold leading-[0.8] tracking-[-0.04em] mb-10 sm:mb-16">
                             Intelligent<br />
-                            <span className="text-white/10 italic font-thin tracking-[-0.01em]">Investment</span>
+                            <span className="text-white/20 italic font-light tracking-[-0.02em]">Investment</span>
                         </h1>
-                        
-                        <div className="flex flex-col md:flex-row items-start lg:items-center gap-12 mt-16">
-                            <p className="text-[clamp(18px,1.4vw,28px)] text-white/40 leading-[1.2] max-w-2xl font-light tracking-tight">
+
+                        <div className="flex flex-col md:flex-row items-start md:items-center gap-12 sm:gap-16 mt-5 sm:mt-20">
+                            <p className="text-[4vw] md:text-[1.6vw] text-white/60 leading-normal md:max-w-[50%] w-[100%] font-light">
                                 Curated financial partnerships engineered for high-performance capital. From specialists to flexible revolving credit.
                             </p>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="shrink-0">
-                                <Link href="/contact" className="btn group relative px-12 py-5 bg-[#0D5699] text-white font-black text-2xl rounded-full overflow-hidden transition-all shadow-2xl flex items-center gap-4">
+                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#0D5699] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl flex items-center justify-center gap-[1.6vw] md:gap-4">
                                     Consult Advisor <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                                 </Link>
                             </motion.div>
@@ -203,15 +203,15 @@ export default function FinancingClient() {
             <div className="relative z-20 space-y-12 pb-16">
                 
                 {/* ── PARTNERS GRID ────────────────────────────────────────────── */}
-                <section className="relative px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col justify-start pt-12 pb-12 snap-start overflow-hidden">
+                <section className="relative px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col justify-start pt-0 md:pt-12 pb-12 snap-start overflow-hidden">
                     <div className="absolute inset-0 z-0 opacity-10">
                         <Image src={getAssetUrl("/structural_capital.avif")} alt="" fill className="object-cover grayscale" />
                         <div className="absolute inset-0 bg-gradient-to-b from-[#05070A] via-transparent to-[#05070A]" />
                     </div>
                     
-                    <motion.div {...kineticEntry} className="relative z-10 mb-32">
+                    <motion.div {...kineticEntry} className="relative z-10 mb-10">
                         <span className="text-[#63B589] font-black tracking-[0.35em] uppercase text-base mb-8 block">Structural Capital</span>
-                        <h2 className="text-[clamp(50px,6vw,120px)] font-black tracking-tighter leading-[0.85] uppercase">Lending Partners</h2>
+                        <h2 className="text-[clamp(50px,6vw,120px)] font-black tracking-normal leading-[0.85] uppercase">Lending Partners</h2>
                     </motion.div>
 
                     <div className="overflow-x-auto pb-12 -mx-4 px-4 scrollbar-hide">
@@ -220,40 +220,41 @@ export default function FinancingClient() {
                             initial="initial"
                             whileInView="whileInView"
                             viewport={{ once: true, margin: "-10%" }}
-                            className="flex md:grid md:grid-cols-2 gap-16 md:gap-x-16 md:gap-y-28 min-w-max md:min-w-0"
+                            className="flex md:grid md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-10 min-w-max md:min-w-0"
                         >
                             {PARTNERS.map((p, i) => (
-                                <motion.div 
+                                <motion.div
                                     key={p.key}
                                     variants={{
                                         initial: { opacity: 0, y: 40, scale: 0.98 },
                                         whileInView: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } }
                                     }}
                                     {...hoverScaleBloom}
-                                    className="px-16 pt-12 pb-24 md:px-24 md:pt-16 md:pb-32 rounded-[64px] flex flex-col justify-between h-[860px] w-[400px] md:w-auto shrink-0"
+                                    className="relative px-8 pt-8 pb-10 md:px-10 md:pt-10 md:pb-12 rounded-[32px] flex flex-col justify-between w-[340px] md:w-auto shrink-0"
                                     style={glassStyle}
                                 >
+                                    <a href={p.href} target={p.href.startsWith('http') ? '_blank' : undefined} className="absolute inset-0 md:hidden z-10" aria-label={p.name} />
                                     <div>
-                                        <div className="h-16 flex items-center mb-16 opacity-40">
-                                            <div className="text-4xl font-black tracking-widest text-white/50">{p.name}</div>
+                                        <div className="h-10 flex items-center mb-6 opacity-40">
+                                            <div className="text-[5vw] md:text-[1.8vw] font-black tracking-widest text-white/90">{p.name}</div>
                                         </div>
-                                        <span style={{ color: p.color }} className="font-black tracking-[0.5em] uppercase text-sm mb-6 block">{p.subtitle}</span>
-                                        <h3 className="text-[clamp(24px,2.5vw,45px)] font-black mb-8 tracking-tighter leading-none">{p.details}</h3>
-                                        <p className="text-xl md:text-2xl text-white/30 leading-snug font-light mb-16 italic">
+                                        <span style={{ color: p.color }} className="font-black tracking-[0.3em] uppercase text-[3vw] md:text-[1vw] mb-3 block">{p.subtitle}</span>
+                                        <h3 className="text-[4.5vw] md:text-[2vw] font-black mb-4 tracking-normal leading-snug">{p.details}</h3>
+                                        <p className="text-[3.5vw] md:text-[1.3vw] text-white/30 leading-snug font-light mb-6 italic">
                                             &ldquo;{p.insight}&rdquo;
                                         </p>
-                                        <ul className={`space-y-8 ${p.key === 'vistafi' ? 'mb-6' : 'mb-16'}`}>
+                                        <ul className="space-y-3 mb-6">
                                             {p.features.map((feat, fi) => (
-                                                <li key={fi} className="flex items-start gap-6 text-lg md:text-xl text-white/60 leading-tight">
-                                                    <div className="w-10 h-10 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 shrink-0 mt-0.5">
-                                                        <Check size={20} style={{ color: p.color }} />
+                                                <li key={fi} className="flex items-start gap-3 text-[3.5vw] md:text-[1.3vw] text-white/60 leading-tight">
+                                                    <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 border border-white/10 shrink-0 mt-0.5">
+                                                        <Check size={14} style={{ color: p.color }} />
                                                     </div>
                                                     {feat}
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
-                                    <a href={p.href} target={p.href.startsWith('http') ? '_blank' : undefined} className="inline-flex items-center gap-6 text-2xl font-black group px-4">
+                                    <a href={p.href} target={p.href.startsWith('http') ? '_blank' : undefined} className="inline-flex items-center gap-3 text-[3.5vw] md:text-[1.3vw] font-black group px-2">
                                         <span className="underline underline-offset-[16px] decoration-white/10 group-hover:decoration-white transition-all">{p.ctaLabel ?? `Engage with ${p.name}`}</span>
                                         <ExternalLink size={24} className="opacity-30 group-hover:opacity-100 transition-opacity" />
                                     </a>
@@ -263,77 +264,33 @@ export default function FinancingClient() {
                     </div>
                 </section>
 
-                {/* ── SELECTION MATRIX ────────────────────────────────────────── */}
-                <section className="relative px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col justify-start pt-0 pb-40 snap-start">
-                    <div className="absolute inset-0 z-0 opacity-10">
-                        <Image src={getAssetUrl("/selection_matrix.avif")} alt="" fill className="object-cover grayscale" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-[#05070A] via-transparent to-[#05070A]" />
-                    </div>
-
-                    <motion.div {...kineticEntry} className="relative z-10 p-16 md:p-32 rounded-[80px]" style={glassStyle}>
-                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16 mb-32">
-                            <div>
-                                <span className="text-[#A68A33] font-black tracking-[0.6em] uppercase text-sm mb-8 block">Comparative Analysis</span>
-                                <h2 className="text-[clamp(40px,4vw,90px)] font-black leading-[0.85] tracking-tighter uppercase">Selection Matrix</h2>
-                            </div>
-                        </div>
-
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left min-w-[1200px]">
-                                <thead>
-                                    <tr className="border-b border-white/10">
-                                        <th className="py-12 text-xl font-black text-white/20 uppercase tracking-[0.4em]">Structural Feature</th>
-                                        <th className="py-12 text-[40px] font-black text-[#0D5699] tracking-tighter">Vistafi</th>
-                                        <th className="py-12 text-[40px] font-black text-[#0D5699] tracking-tighter">Lyon</th>
-                                        <th className="py-12 text-[40px] font-black text-[#63B589] tracking-tighter">HFS</th>
-                                        <th className="py-12 text-[40px] font-black text-[#A68A33] tracking-tighter">Viking</th>
-                                        <th className="py-12 text-[40px] font-black text-[#91792C] tracking-tighter">HELOC</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-white/5">
-                                    {COMPARISON.map((row, i) => (
-                                        <tr key={i} className="group hover:bg-white/[0.02] transition-colors">
-                                            <td className="py-12 text-3xl font-black text-white/30 group-hover:text-white transition-colors">{row.feature}</td>
-                                            <td className="py-12 text-2xl text-white/50">{row.vistafi}</td>
-                                            <td className="py-12 text-2xl text-white/50">{row.lyon}</td>
-                                            <td className="py-12 text-2xl text-white/50">{row.hfs}</td>
-                                            <td className="py-12 text-2xl text-white/50">{row.viking}</td>
-                                            <td className="py-12 text-2xl text-white/50">{row.heloc}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* ── STRATEGIC INSIGHT (Expert Guidance) ────────────────────────── */}
-                <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col lg:flex-row items-start gap-20 snap-start pt-0 pb-0">
-                    <motion.div {...kineticEntry} className="lg:w-2/5">
-                        <span className="text-[#63B589] font-black tracking-[0.6em] uppercase text-sm mb-8 block">Visionary Insight</span>
-                        <h2 className="text-[clamp(40px,4vw,90px)] font-black tracking-tighter leading-[0.85] mb-16 uppercase">Expert<br />Guidance</h2>
-                        <p className="text-2xl md:text-3xl text-white/30 font-light leading-snug tracking-tight">
+{/* ── STRATEGIC INSIGHT (Expert Guidance) ────────────────────────── */}
+                <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col lg:flex-row items-start gap-20 snap-start pt-0 pb-10">
+                    <motion.div {...kineticEntry} className="lg:w-2/5 text-center lg:text-left">
+                        <span className="text-[#63B589] font-black tracking-[0.6em] uppercase text-[3vw] md:text-sm mb-8 block">Visionary Insight</span>
+                        <h2 className="text-[10vw] md:text-[clamp(40px,4.4vw,4.4vw)] font-black tracking-normal leading-[0.85] mb-8 uppercase">Expert<br />Guidance</h2>
+                        <p className="text-[4vw] md:text-[1.7vw] text-white/30 font-light leading-normal tracking-normal md:w-[30vw] mx-auto lg:mx-0">
                             Strategic balance of rate optimization and structural simplicity.
                         </p>
                     </motion.div>
-                    
-                    <div className="flex-1 space-y-16">
+
+                    <div className="flex-1 space-y-6">
                         {[
                             { icon: Trophy, label: 'Master Selection', title: 'HFS Financial', body: 'Universal site coverage from pool to landscape in a single streamlined request.', color: '#63B589' },
                             { icon: Medal, label: 'Bespoke Selection', title: 'Lyon Financial', body: 'The industry specialists. Milestone-based accountability engineered into every draw.', color: '#0D5699' }
                         ].map((insight, i) => (
-                            <motion.div 
+                            <motion.div
                                 key={i}
                                 {...kineticEntry}
-                                className="p-16 md:p-24 rounded-[64px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent flex gap-12"
+                                className="p-6 md:p-8 rounded-[28px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent flex gap-6 items-start"
                             >
-                                <div className="w-24 h-24 rounded-[40px] flex items-center justify-center bg-white/5 border border-white/10 flex-shrink-0">
-                                    <insight.icon size={56} style={{ color: insight.color }} strokeWidth={1} />
+                                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 flex-shrink-0">
+                                    <insight.icon size={28} style={{ color: insight.color }} strokeWidth={1} />
                                 </div>
-                                <div className="pt-2">
-                                    <span style={{ color: insight.color }} className="font-black tracking-[0.6em] uppercase text-sm mb-6 block">{insight.label}</span>
-                                    <h3 className="text-4xl md:text-5xl font-black mb-6 tracking-tighter leading-none">{insight.title}</h3>
-                                    <p className="text-xl md:text-2xl text-white/30 font-light leading-relaxed tracking-tight">{insight.body}</p>
+                                <div className="pt-1">
+                                    <span style={{ color: insight.color }} className="font-black tracking-[0.4em] uppercase text-[3vw] md:text-[0.75vw] mb-2 block">{insight.label}</span>
+                                    <h3 className="text-[5vw] md:text-[2vw] font-black mb-2 tracking-normal leading-none">{insight.title}</h3>
+                                    <p className="text-[3.5vw] md:text-[1.2vw] text-white/30 font-light leading-relaxed tracking-tight">{insight.body}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -341,23 +298,23 @@ export default function FinancingClient() {
                 </section>
 
                 {/* ── CTA ────────────────────────────────────────────────────────── */}
-                <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col justify-start snap-start pt-8 pb-12">
-                    <motion.div {...kineticEntry} className="relative rounded-[100px] overflow-hidden min-h-[700px] flex flex-col items-center justify-center text-center p-24" style={glassStyle}>
+                <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto flex flex-col justify-start snap-start pt-8 pb-0">
+                    <motion.div {...kineticEntry} className="relative rounded-[48px] overflow-hidden flex flex-col items-center justify-center text-center p-12 md:p-16" style={glassStyle}>
                          <div className="absolute inset-0 z-0 opacity-40">
                              <Image src={getAssetUrl("/finance_cta.avif")} alt="" fill className="object-cover grayscale" />
                              <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#0D5699]/20 via-transparent to-[#0D5699]/20" />
                          </div>
-                         
+
                          <div className="relative z-10 max-w-[1200px]">
-                             <h2 className="text-[clamp(50px,8vw,140px)] font-black mb-12 leading-[0.8] tracking-tighter text-white uppercase">
+                             <h2 className="text-[clamp(36px,4.7vw,80px)] font-black mb-6 leading-[0.85] tracking-normal text-white uppercase">
                                  Engineer<br />Your Capital
                              </h2>
-                             <p className="text-2xl md:text-4xl text-white/30 mb-20 font-light max-w-5xl mx-auto leading-[1.2] tracking-tight">
+                             <p className="text-[1.3vw] text-white/70 mb-8 font-light max-w-3xl mx-auto leading-[1.3] tracking-normal">
                                  Ready to define your legacy? Let our architectural advisors navigate the selection matrix with you.
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                 <Link href="/contact" className="btn inline-flex items-center gap-6 px-16 py-8 bg-white text-black rounded-full font-black text-2xl hover:bg-white/90 transition-all shadow-xl">
-                                     Consult with Expert <ArrowRight size={32} />
+                                 <Link href="/contact" className="btn inline-flex items-center gap-4 px-10 py-4 bg-white text-black rounded-full font-black text-[1.3vw] hover:bg-white/90 hover:text-black transition-all shadow-xl">
+                                     Consult with Expert <ArrowRight size={20} />
                                  </Link>
                              </motion.div>
                          </div>
