@@ -381,39 +381,35 @@ export default function ServicesClient() {
                         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
                     `}} />
 
-                    <div 
+                    <div
                         ref={scrollRef}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                         className="flex flex-nowrap overflow-x-auto gap-6 mt-14 mb-10 w-full snap-x snap-mandatory hide-scrollbar">
-                        {[
-                            { title: 'Pool design', bg: '/images/services/pool_design_hero.avif' },
-                            { title: 'Pool construction', bg: '/images/services/pool_construction_hero.avif' },
-                            { title: 'Outdoor kitchens', bg: '/images/services/outdoor_kitchen_hero.avif' },
-                            { title: 'Fire Pits', bg: '/images/services/fire_pit_hero.avif' },
-                            { title: 'Pool remodeling', bg: '/images/services/pool_remodeling_hero.avif' },
-                            { title: 'Pergola design', bg: '/images/services/pergola_design_hero.avif' },
-                            { title: 'Patio Extensions', bg: '/images/services/patio_extensions_hero.avif' }
-                        ].map((c, i) => (
-                            <div key={i} className="flex-none w-[85vw] sm:w-[48vw] md:w-[35vw] lg:w-[calc(25%-18px)] group relative overflow-hidden h-[500px] cursor-pointer snap-start"
-                                 style={{
+                        {SERVICES.map((s, i) => (
+                            <Link key={i} href={s.href}
+                                className="flex-none w-[85vw] sm:w-[48vw] md:w-[35vw] lg:w-[calc(25%-18px)] group relative overflow-hidden h-[500px] snap-start block"
+                                style={{
                                     background: 'rgba(255,255,255,0.03)',
                                     border: '1px solid rgba(255,255,255,0.09)',
                                     backdropFilter: 'blur(10px)',
                                     WebkitBackdropFilter: 'blur(10px)',
-                                 }}>
-                                <Image src={getAssetUrl(c.bg)} alt={c.title} fill className="object-cover absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100" />
+                                    touchAction: 'manipulation',
+                                    cursor: 'pointer',
+                                    textDecoration: 'none',
+                                }}>
+                                <Image src={getAssetUrl(s.image)} alt={s.title} fill className="object-cover absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100" />
                                 <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                      style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }} />
-                                <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none" />
-                                
-                                <div className="relative z-20 flex flex-col h-full p-8 pointer-events-none mt-auto justify-end">
+                                <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 group-hover:opacity-80 transition-opacity duration-300" />
+
+                                <div className="relative z-20 flex flex-col h-full p-8 mt-auto justify-end">
                                     <h3 className="text-white font-medium whitespace-pre-line group-hover:-translate-y-2 transition-transform duration-300"
                                         style={{ fontSize: 'clamp(36px, 2.2vw, 30px)' }}>
-                                        {c.title}
+                                        {s.title}
                                     </h3>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
 
