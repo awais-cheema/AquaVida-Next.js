@@ -159,14 +159,14 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
             <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto mb-40 mt-[32px] lg:mt-0">
                 <motion.div 
                     {...kineticEntry}
-                    className="relative rounded-[80px] overflow-hidden min-h-[70vh] md:min-h-[80vh] flex items-center p-16 md:p-32"
+                    className="relative rounded-[80px] overflow-hidden min-h-[70vh] md:min-h-[80vh] flex items-center p-8 md:p-32"
                 >
                     <Image src={getAssetUrl(p.philosophyImage)} alt="Atmosphere" fill className="object-cover scale-105 saturate-[0.8] brightness-[0.4]" />
                     <div className="absolute inset-0 bg-[#05070A]/40" />
                     
                     <div className="relative z-10 max-w-5xl">
                         <span className="text-[#A68A33] font-black tracking-[0.3em] uppercase text-[2.5vw] lg:text-[1vw]  mb-12 block">THE ARCHITECTURE OF TRANQUILITY</span>
-                        <h2 className="text-[8vw] md:text-[5vw] font-black leading-[0.8] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
+                        <h2 className="text-[8vw] md:text-[5vw] font-black leading-[1] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
                             {p.philosophyTitle}
                         </h2>
                         <p className=" text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-relaxed">
@@ -180,11 +180,11 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
             <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto mb-10 text-center">
                 <motion.div {...kineticEntry}>
                     <ShieldCheck size={48} className="mx-auto mb-8 text-[#63B589] opacity-40 md:mb-12 md:w-16 md:h-16" />
-                    <h2 className="text-5xl md:text-8xl font-black leading-none uppercase mb-6 tracking-normal">Your Legacy Begins</h2>
-                    <p className="text-xl md:text-[1.5vw] text-white/30 font-light md:max-w-[50vw] mx-auto mb-10 leading-relaxed px-4">
+                    <h2 className="text-[10vw] md:text-[6vw] font-black leading-none uppercase mb-6 tracking-normal">Your Legacy Begins</h2>
+                    <p className="text-[4vw] md:text-[1.5vw] text-white/30 font-light md:max-w-[50vw] mx-auto mb-10 leading-relaxed px-4">
                         Every AquaVida project is a permanent environmental artifact, engineered to last generations. Let's discuss your site's unique topographical potential.
                     </p>
-                    <Link href="/contact" className="btn inline-flex items-center gap-5 bg-[#A68A33] hover:bg-[#fff] text-white px-8 py-4 rounded-full text-[1.2vw] font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 group">
+                    <Link href="/contact" className="btn inline-flex items-center gap-5 bg-[#A68A33] hover:bg-[#fff] text-white px-8 py-4 rounded-full text-[4vw] md:text-[1.2vw] font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 group">
                         Inquire Now <ArrowRight size={18} />
                     </Link>
                 </motion.div>
