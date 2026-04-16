@@ -60,6 +60,7 @@ const MOBILE_END             = '+=1100%';  // slower mobile scrub: more scroll d
 const MOBILE_LERP            = 0.10;       // mobile adaptive lerp (fast scroll)
 const MOBILE_SLOW_VEL        = 0.01;       // velocity threshold: direct assign below this
 const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame moved less than this
+const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling after fast reverse swipe
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -337,9 +338,18 @@ export default function HeroSection() {
 
                 } else {
                     // ── Idle mode: snap to integer, single draw, no ghosting ──
-                    // Snap currentFrame immediately — kills any fractional blending ghost
-                    currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
-                    const snapped = currentFrame;
+                    // Mobile: if currentFrame is far from target (e.g. after a fast reverse
+                    // swipe from the footer), keep lerping instead of hard-snapping.
+                    // This prevents the visual jump to frame 0 when momentum scroll
+                    // sweeps through the entire hero zone before isScrolling times out.
+                    if (isMobile && Math.abs(proxy.targetFrame - currentFrame) > 2) {
+                        const delta  = (proxy.targetFrame - currentFrame) * MOBILE_LERP;
+                        const capped = Math.max(-MOBILE_SETTLE_SPEED, Math.min(MOBILE_SETTLE_SPEED, delta));
+                        currentFrame = Math.max(0, Math.min(currentFrame + capped, maxFrame));
+                    } else {
+                        currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
+                    }
+                    const snapped = Math.round(currentFrame);
 
                     if (snapped !== lastDrawnFrame) {
                         const img = loader.getFrame(snapped) ?? loader.getNearestFrame(snapped)?.img ?? null;
@@ -355,7 +365,10 @@ export default function HeroSection() {
                     // Loop activation — requires genuine stillness (loopReady fires at 400ms)
                     // Decoupled from the 150ms ghost-snap timer so brief mid-scroll pauses
                     // don't accidentally trigger loops.
-                    if (truly_idle && loopReady && !isSnapping) {
+                    // Also guarded by settled check: don't activate while still lerping
+                    // toward target after a fast reverse swipe.
+                    const settled = Math.abs(proxy.targetFrame - currentFrame) <= 2;
+                    if (truly_idle && loopReady && !isSnapping && settled) {
                         for (const zone of loopZones) {
                             if (snapped >= zone.activationStart && snapped <= zone.activationEnd) {
                                 mode            = 'loop';

@@ -34,10 +34,11 @@ export default function HeroContentOverlay9() {
             const isM   = heroFrameRef.isMobile;
             const total = heroFrameRef.total;
 
-            const ENTER_START = getF(TIMELINE.OV9.start,     isM, total);
-            const ENTER_END   = getF(TIMELINE.OV9.end,       isM, total);
-            const EXIT_START  = getF(TIMELINE.OV9.exitStart,  isM, total);
-            const EXIT_END    = getF(TIMELINE.OV9.exitEnd,    isM, total);
+            const MOBILE_OFFSET = isM ? 12 : 0;
+            const ENTER_START = getF(TIMELINE.OV9.start,     isM, total) - MOBILE_OFFSET;
+            const ENTER_END   = getF(TIMELINE.OV9.end,       isM, total) - MOBILE_OFFSET;
+            const EXIT_START  = getF(TIMELINE.OV9.exitStart,  isM, total) - MOBILE_OFFSET;
+            const EXIT_END    = getF(TIMELINE.OV9.exitEnd,    isM, total) - MOBILE_OFFSET;
 
             if (f < ENTER_START) {
                 setVisible(false);

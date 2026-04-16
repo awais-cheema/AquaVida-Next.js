@@ -72,8 +72,7 @@ export default function FloatingPillNav() {
                            text-white/75 hover:text-white hover:bg-white/10
                            transition-colors duration-150 font-allomira text-left`;
 
-    const dropCls = `absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 rounded-2xl p-3 flex flex-col gap-1 z-[120] transition-all duration-300 origin-top
-                     bg-black/95 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.9)]`;
+    const dropCls = `absolute top-full left-1/2 -translate-x-1/2 pt-2 w-64 z-[120]`;
 
     return (
         <nav
@@ -101,48 +100,52 @@ export default function FloatingPillNav() {
                     ))}
 
                     {/* Portfolio Hover */}
-                    <li 
+                    <li
                         className="relative group py-2"
-                        onMouseEnter={() => setPortfolioOpen(true)}
-                        onMouseLeave={() => setPortfolioOpen(false)}
+                        onMouseEnter={openPortfolio}
+                        onMouseLeave={closePortfolio}
                     >
                         <div className="flex items-center gap-1">
                             <Link href="/portfolio" className={linkCls}>Portfolio</Link>
                             <ChevronDown size={16} className={`text-white/40 transition-transform ${portfolioOpen ? 'rotate-180' : ''}`} />
                         </div>
                         {portfolioOpen && (
-                            <ul className={dropCls}>
-                                {PROJECTS.map((p) => (
-                                    <li key={p.label}>
-                                        <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
-                                            {p.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className={dropCls} onMouseEnter={openPortfolio} onMouseLeave={closePortfolio}>
+                                <ul className="rounded-2xl p-3 flex flex-col gap-1 bg-black/95 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
+                                    {PROJECTS.map((p) => (
+                                        <li key={p.label}>
+                                            <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                                {p.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         )}
                     </li>
 
                     {/* Services Hover */}
-                    <li 
+                    <li
                         className="relative group py-2"
-                        onMouseEnter={() => setServicesOpen(true)}
-                        onMouseLeave={() => setServicesOpen(false)}
+                        onMouseEnter={openServices}
+                        onMouseLeave={closeServices}
                     >
                         <div className="flex items-center gap-1">
                             <Link href="/services" className={linkCls}>Services</Link>
                             <ChevronDown size={16} className={`text-white/40 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                         </div>
                         {servicesOpen && (
-                            <ul className={dropCls}>
-                                {SERVICES.map((s) => (
-                                    <li key={s.label}>
-                                        <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
-                                            {s.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className={dropCls} onMouseEnter={openServices} onMouseLeave={closeServices}>
+                                <ul className="rounded-2xl p-3 flex flex-col gap-1 bg-black/95 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
+                                    {SERVICES.map((s) => (
+                                        <li key={s.label}>
+                                            <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(12px,1vw,15px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                                {s.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         )}
                     </li>
 
