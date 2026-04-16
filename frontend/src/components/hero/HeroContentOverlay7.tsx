@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 import heroFrameRef from '@/lib/heroFrameRef';
 import { getF, TIMELINE } from '@/lib/heroBreakpoints';
 
-const POP_SOUND_FRAME = 352;
+const POP_SOUND_FRAME = 350;
 const ENTER_START     = 348; // text starts appearing at 348 (before sound)
 const ENTER_END       = 352; // fully visible by 352 (aligned with sound)
 const EXIT_START      = 365;

@@ -30,7 +30,7 @@ export const TIMELINE = {
     OV5: { start: 252, end: 262, exitStart: 287, exitEnd: 301 },
     OV6: { start: 318, end: 335, exitStart: 342, exitEnd: 350 },
     
-    OV7: { start: 348, end: 352, exitStart: 365, exitEnd: 373, sound: 352 },
+    OV7: { start: 348, end: 352, exitStart: 365, exitEnd: 373, sound: 350 },
     
     OV8: { start: 430, end: 442, exitStart: 516, exitEnd: 532 },
     OV9: { start: 553, end: 562, exitStart: 570, exitEnd: 578 },

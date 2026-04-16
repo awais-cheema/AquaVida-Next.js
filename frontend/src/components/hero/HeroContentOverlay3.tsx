@@ -133,6 +133,7 @@ export default function HeroContentOverlay3() {
                     href="/services"
                     className="btn px-10 py-3 bg-[#63b589] text-white font-allomira font-bold text-[clamp(13px,1.05vw,17px)] rounded-full
                                shadow-[0_10px_30px_rgba(99,181,137,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 pointer-events-auto"
+                    style={{ touchAction: 'manipulation' }}
                 >
                     Explore All Services
                 </Link>
@@ -230,6 +231,7 @@ function GlassCard({
                 height: cardH,
                 borderRadius: radius,
                 pointerEvents: 'auto',
+                touchAction: 'manipulation',
                 cursor: 'pointer',
                 boxShadow: '0 12px 48px rgba(0,0,0,0.55), 0 40px 80px rgba(0,0,0,0.28)',
                 display: 'block',
