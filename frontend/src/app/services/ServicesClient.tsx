@@ -255,7 +255,7 @@ function FloatingCTA() {
                         What We Do
                     </p>
                     <h2 className="font-allomira font-bold text-white leading-tight mb-10"
-                        style={{ fontSize: 'clamp(32px, 5.5vw, 74px)' }}>
+                        style={{ fontSize: 'clamp(22px, 3.5vw, 48px)' }}>
                         Bring Your Vision to Life&mdash;<br />Connect with AquaVida Today
                     </h2>
                     <Link href="/contact"
