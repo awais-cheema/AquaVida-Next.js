@@ -191,7 +191,7 @@ export default function FinancingClient() {
                                 Curated financial partnerships engineered for high-performance capital. From specialists to flexible revolving credit.
                             </p>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="shrink-0">
-                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#0D5699] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl flex items-center justify-center gap-[1.6vw] md:gap-4">
+                                <Link href="/contact" className="w-[50vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#0D5699] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl flex items-center justify-center gap-[1.6vw] md:gap-4 whitespace-nowrap">
                                     Consult Advisor <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                                 </Link>
                             </motion.div>

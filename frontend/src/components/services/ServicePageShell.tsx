@@ -170,7 +170,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                 {d.heroBody}
                             </p>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="shrink-0">
-                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#91792C] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl shadow-[#91792C]/30 flex items-center justify-center gap-[1.6vw] md:gap-4">
+                                <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#91792C] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl shadow-[#91792C]/30 flex items-center justify-center gap-[1.6vw] md:gap-4 whitespace-nowrap">
                                     Estimate Project <ArrowRight size={24} className="group-hover:translate-x-3 transition-transform" />
                                 </Link>
                             </motion.div>
