@@ -154,8 +154,8 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
 
                 {/* Default Bottom info overlay (always visible but fades out) */}
                 <div className={`absolute bottom-0 left-0 right-0 p-8 pt-20 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${hovered ? 'opacity-0' : 'opacity-100'}`}>
-                    <h3 className="text-[7vw] md:text-[2vw] font-bold text-white uppercase tracking-normal">{project.name}</h3>
-                    <p className="text-white/40 md:text-[1.1vw] font-black tracking-[0.1em] uppercase">{project.category}</p>
+                    <h3 className="text-[5.5vw] md:text-[2vw] font-bold text-white uppercase tracking-normal leading-[1]">{project.name}</h3>
+                    <p className="text-white/40 text-[3.5vw] md:text-[1.1vw] font-black tracking-[0.1em] uppercase mt-1.5">{project.category}</p>
                 </div>
 
                 {/* Subtle Glow on hover */}
