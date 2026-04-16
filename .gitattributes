@@ -19,3 +19,6 @@ frontend/public/Icons/*.webp !filter !diff !merge text
 frontend/public/Icons/*.png !filter !diff !merge text
 frontend/public/logo.avif !filter !diff !merge text
 frontend/public/logo2.avif !filter !diff !merge text
+frontend/public/about-2.avif !filter !diff !merge text
+frontend/public/*Hassan*.avif !filter !diff !merge text
+frontend/public/*.mp4 !filter !diff !merge text
