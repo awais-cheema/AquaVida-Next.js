@@ -408,7 +408,7 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   isMobile ? 0.3 : true, // tiny lag on mobile kills bounce-back ghost
+                        scrub:   true, // instant scrub — mobile smoothing handled by MOBILE_LERP in render loop
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       2,
