@@ -43,8 +43,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-2 lg:py-4">
 
             {/* Left Column: Heading & Contact Info */}
-            <div className="flex flex-col justify-start">
-              <h1 className="text-[12vw] md:text-[6.5vw] font-[family-name:var(--font-display)] font-black leading-[0.9] uppercase tracking-[0.02em] mb-6 lg:mb-8 text-black">
+            <div className="flex flex-col justify-start mb-8 md:mb-0">
+              <h1 className="text-[12vw] md:text-[6.5vw] font-[family-name:var(--font-display)] font-black leading-[0.9] uppercase tracking-[0.02em] mb-10 lg:mb-8 text-black">
                 Let's Create Spaces That Inspire
               </h1>
 
@@ -60,7 +60,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[3.5vw] md:text-[1vw] uppercase tracking-widest font-bold text-black/40 mb-0.5">Location</p>
-                      <p className="text-[5vw] md:text-[1.4vw] font-semibold leading-normal text-black">
+                      <p className="text-[4vw] md:text-[1.4vw] font-semibold leading-normal text-black">
                         2100 N Greenville Ave, Richardson, TX 75082, USA
                       </p>
                     </div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[3.5vw] md:text-[1vw] uppercase tracking-widest font-bold text-black/40 mb-0.5">Phone</p>
-                      <p className="text-[5vw] md:text-[1.4vw] font-semibold text-black">
+                      <p className="text-[4vw] md:text-[1.4vw] font-semibold text-black">
                         +1 469-587-6255
                       </p>
                     </div>
