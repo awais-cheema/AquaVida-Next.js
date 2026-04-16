@@ -56,7 +56,7 @@ const PROJECTS = [
         location: "Global",
         description: "A thematic exploration of private luxury water spaces, from hidden courtyard oases to expansive coastal infinity pools.",
         image: "/images/portfolio/landing/Residential_Category.avif",
-        gridSize: "col-span-1 row-span-2",
+        gridSize: "col-span-2 row-span-2",
         color: "#A68A33"
     },
     {
@@ -92,7 +92,7 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
 
     return (
         <motion.div
-            className={`relative overflow-hidden rounded-[32px] cursor-pointer group ${project.gridSize}`}
+            className={`relative overflow-hidden rounded-[32px] cursor-pointer group col-span-1 h-[260px] md:h-auto ${project.gridSize.split(' ').map(c => `md:${c}`).join(' ')}`}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             initial={{ opacity: 0, scale: 0.98 }}
@@ -118,34 +118,34 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 100 }}
                             transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                            className="absolute bottom-6 left-6 right-6 p-8 rounded-[24px] z-10
+                            className="absolute bottom-4 left-4 right-4 p-5 rounded-[20px] z-10
                                        bg-black/50 backdrop-blur-[40px] border border-white/20
                                        shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                         >
-                            <div className="flex justify-between items-start mb-4">
+                            <div className="flex justify-between items-start mb-3">
                                 <div>
-                                    <span className="text-[16px] font-black tracking-[0.4em] text-white/50 uppercase block mb-1">
+                                    <span className="text-[11px] md:text-[0.8vw] font-black tracking-[0.2em] text-white/50 uppercase block mb-1">
                                         {project.category}
                                     </span>
-                                    <h3 className="text-3xl md:text-[2em] font-black text-white leading-none uppercase">
+                                    <h3 className="text-lg md:text-[1.5vw] font-black text-white leading-none uppercase">
                                         {project.name}
                                     </h3>
                                 </div>
-                                <div className="p-3 rounded-full bg-white/10 border border-white/20 text-white">
-                                    <ArrowUpRight size={20} />
+                                <div className="p-2 rounded-full bg-white/10 border border-white/20 text-white">
+                                    <ArrowUpRight size={16} />
                                 </div>
                             </div>
-                            
-                            <p className="text-white/80 text-2xl font-normal leading-[1.1em] mb-6 line-clamp-2 max-w-2xl">
+
+                            <p className="text-white/80 text-sm md:text-[1.2vw] font-normal leading-[1.3em] mb-4 line-clamp-2 max-w-2xl">
                                 {project.description}
                             </p>
 
                             <div className="flex gap-4 items-center">
-                                <div className="flex items-center gap-2 text-[18px] font-bold text-white/50 uppercase tracking-widest">
-                                    <MapPin size={20} /> {project.location}
+                                <div className="flex items-center gap-2 text-[11px] font-bold text-white/50 uppercase tracking-widest">
+                                    <MapPin size={14} /> {project.location}
                                 </div>
-                                <div className="flex items-center gap-2 text-[18px] font-bold text-white/50 uppercase tracking-widest">
-                                    <Calendar size={20} /> {project.year}
+                                <div className="flex items-center gap-2 text-[11px] font-bold text-white/50 uppercase tracking-widest">
+                                    <Calendar size={14} /> {project.year}
                                 </div>
                             </div>
                         </motion.div>
@@ -154,8 +154,8 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
 
                 {/* Default Bottom info overlay (always visible but fades out) */}
                 <div className={`absolute bottom-0 left-0 right-0 p-8 pt-20 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${hovered ? 'opacity-0' : 'opacity-100'}`}>
-                    <h3 className="text-4xl md:text-3xl font-bold text-white uppercase tracking-normal">{project.name}</h3>
-                    <p className="text-white/40 text-md font-black tracking-[0.3em] uppercase">{project.category}</p>
+                    <h3 className="text-[7vw] md:text-[2vw] font-bold text-white uppercase tracking-normal">{project.name}</h3>
+                    <p className="text-white/40 md:text-[1.1vw] font-black tracking-[0.1em] uppercase">{project.category}</p>
                 </div>
 
                 {/* Subtle Glow on hover */}
@@ -194,7 +194,7 @@ export default function PortfolioClient() {
                         <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[0.85] uppercase mb-12">
                             The Liquid<br />Portfolio
                         </h1>
-                        <p className="text-2xl md:text-3xl text-white/40 font-light max-w-3xl leading-normal">
+                        <p className="text-2xl md:text-[1.5vw] text-white/40 font-light max-w-xl leading-normal">
                             A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.
                         </p>
                     </motion.div>
@@ -208,12 +208,12 @@ export default function PortfolioClient() {
                         <div className="h-px w-32 bg-white/10" />
                         <div className="flex gap-12">
                             <div>
-                                <span className="text-2xl md:text-xl font-black text-white/50 tracking-widest uppercase block mb-1">Curation</span>
-                                <span className="text-2xl font-bold">Volume III</span>
+                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">Curation</span>
+                                <span className="text-2xl md:text-[1.4vw] font-bold">Volume III</span>
                             </div>
                             <div>
-                                <span className="text-2xl md:text-xl font-black text-white/50 tracking-widest uppercase block mb-1">Focus</span>
-                                <span className="text-2xl font-bold">Infinite Edge</span>
+                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">Focus</span>
+                                <span className="text-2xl md:text-[1.4vw] font-bold">Infinite Edge</span>
                             </div>
                         </div>
                     </motion.div>
@@ -222,7 +222,7 @@ export default function PortfolioClient() {
 
             {/* ── BENTO GRID ── */}
             <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto mb-40 ">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[260px] md:auto-rows-[280px] grid-flow-dense">
                     {PROJECTS.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}
@@ -235,19 +235,19 @@ export default function PortfolioClient() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full max-w-6xl p-16 md:p-32 rounded-[64px] bg-white/5 backdrop-blur-[40px] border border-white/10 text-center relative overflow-hidden group"
+                    className="w-full max-w-6xl p-10 md:p-16 rounded-[48px] bg-white/5 backdrop-blur-[40px] border border-white/10 text-center relative overflow-hidden group"
                 >
                     {/* Background visual grain */}
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]" />
-                    
-                    <Zap className="mx-auto mb-12 text-[#A68A33] opacity-20 group-hover:opacity-100 transition-opacity duration-1000" size={64} />
-                    <h2 className="text-[clamp(32px,5vw,80px)] font-black leading-none uppercase mb-12 tracking-tighter">
+
+                    <Zap className="mx-auto mb-6 text-[#A68A33] opacity-20 group-hover:opacity-100 transition-opacity duration-1000" size={40} />
+                    <h2 className="text-[clamp(28px,3.5vw,60px)] font-black leading-none uppercase mb-6 tracking-tighter">
                         Next Generation<br />Pool Design
                     </h2>
-                    <p className="text-xl md:text-2xl text-white/40 font-light max-w-3xl mx-auto mb-16 leading-relaxed">
+                    <p className="text-base md:text-[1.3vw] text-white/40 font-light max-w-3xl md:max-w-[40vw] mx-auto mb-8 leading-relaxed">
                         We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture.
                     </p>
-                    <Link href="/contact" className="btn inline-flex items-center gap-8 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[10vw] md:px-12 md:py-6 rounded-full text-lg font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
+                    <Link href="/contact" className="btn inline-flex items-center justify-center gap-4 w-[60vw] md:w-auto md:gap-6 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[6vw] py-[3vw] md:px-10 md:py-4 rounded-full text-base font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
                         Begin Your Project
                         <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
