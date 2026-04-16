@@ -4,13 +4,13 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { getAssetUrl } from '@/lib/constants';
 
-const dropdownVariants = {
+const dropdownVariants: Variants = {
     hidden:  { opacity: 0, y: -6, scale: 0.97 },
-    visible: { opacity: 1, y: 0,  scale: 1,   transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
-    exit:    { opacity: 0, y: -4, scale: 0.97, transition: { duration: 0.13, ease: 'easeIn' } },
+    visible: { opacity: 1, y: 0,  scale: 1,   transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+    exit:    { opacity: 0, y: -4, scale: 0.97, transition: { duration: 0.13, ease: [0.42, 0, 1, 1] as [number, number, number, number] } },
 };
 
 // ── Data ───────────────────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ export default function FloatingPillNav() {
         setMobileProjectsOpen(false);
     };
 
-    const linkCls = `text-white/75 hover:text-white text-[clamp(15px,1.4vw,22px)] font-medium
+    const linkCls = `text-white/75 hover:text-white text-[clamp(16px,1.7vw,26px)] font-medium
                      tracking-wide transition-colors duration-150 font-allomira py-2 cursor-pointer`;
 
     const mobileLinkCls = `block w-full px-4 py-3 rounded-xl text-[clamp(14px,1.3vw,20px)] font-medium
@@ -103,7 +103,7 @@ export default function FloatingPillNav() {
     return (
         <nav
             ref={navRef}
-            className="fixed top-5 md:top-6 lg:top-8 left-1/2 -translate-x-1/2 w-[88%] max-w-[78rem] z-[200]
+            className="fixed top-5 md:top-6 lg:top-8 left-1/2 -translate-x-1/2 w-[94vw] max-w-[90rem] z-[200]
                        rounded-full px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-[9px] lg:px-8 lg:py-[11px] pointer-events-auto"
             style={{
                 background: overLight
@@ -154,7 +154,7 @@ export default function FloatingPillNav() {
                                 <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
                                     {PROJECTS.map((p) => (
                                         <li key={p.label}>
-                                            <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.2vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                            <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.4vw,22px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {p.label}
                                             </Link>
                                         </li>
@@ -189,7 +189,7 @@ export default function FloatingPillNav() {
                                 <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
                                     {SERVICES.map((s) => (
                                         <li key={s.label}>
-                                            <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.2vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
+                                            <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(15px,1.4vw,22px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {s.label}
                                             </Link>
                                         </li>
@@ -206,7 +206,7 @@ export default function FloatingPillNav() {
                 </ul>
 
                 {/* Desktop CTA */}
-                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(12px,1.1vw,24px)] py-[clamp(8px,0.75vw,14px)] rounded-full text-[clamp(13px,1.2vw,19px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
+                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(12px,1.1vw,24px)] py-[clamp(8px,0.75vw,14px)] rounded-full text-[clamp(14px,1.4vw,22px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
                     Get a Quote
                 </Link>
 
