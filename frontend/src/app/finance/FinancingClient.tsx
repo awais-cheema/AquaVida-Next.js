@@ -239,13 +239,13 @@ export default function FinancingClient() {
                                             <div className="text-[5vw] md:text-[1.8vw] font-black tracking-widest text-white/90">{p.name}</div>
                                         </div>
                                         <span style={{ color: p.color }} className="font-black tracking-[0.3em] uppercase text-[3vw] md:text-[1vw] mb-3 block">{p.subtitle}</span>
-                                        <h3 className="text-[4.5vw] md:text-[2vw] font-black mb-4 tracking-normal leading-snug">{p.details}</h3>
-                                        <p className="text-[3.5vw] md:text-[1.3vw] text-white/30 leading-snug font-light mb-6 italic">
+                                        <h3 className="text-[4.5vw] md:text-[2vw] font-black mb-4 tracking-normal leading-normal">{p.details}</h3>
+                                        <p className="text-[3.5vw] md:text-[1.3vw] text-white/30 leading-relaxed font-light mb-6 italic">
                                             &ldquo;{p.insight}&rdquo;
                                         </p>
                                         <ul className="space-y-3 mb-6">
                                             {p.features.map((feat, fi) => (
-                                                <li key={fi} className="flex items-start gap-3 text-[3.5vw] md:text-[1.3vw] text-white/60 leading-tight">
+                                                <li key={fi} className="flex items-start gap-3 text-[3.5vw] md:text-[1.3vw] text-white/60 leading-normal">
                                                     <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 border border-white/10 shrink-0 mt-0.5">
                                                         <Check size={14} style={{ color: p.color }} />
                                                     </div>
@@ -289,7 +289,7 @@ export default function FinancingClient() {
                                 </div>
                                 <div className="pt-1">
                                     <span style={{ color: insight.color }} className="font-black tracking-[0.4em] uppercase text-[3vw] md:text-[0.75vw] mb-2 block">{insight.label}</span>
-                                    <h3 className="text-[5vw] md:text-[2vw] font-black mb-2 tracking-normal leading-none">{insight.title}</h3>
+                                    <h3 className="text-[5vw] md:text-[2vw] font-black mb-2 tracking-normal leading-tight">{insight.title}</h3>
                                     <p className="text-[3.5vw] md:text-[1.2vw] text-white/30 font-light leading-relaxed tracking-tight">{insight.body}</p>
                                 </div>
                             </motion.div>
@@ -309,7 +309,7 @@ export default function FinancingClient() {
                              <h2 className="text-[clamp(36px,4.7vw,80px)] font-black mb-6 leading-[0.85] tracking-normal text-white uppercase">
                                  Engineer<br />Your Capital
                              </h2>
-                             <p className="text-[1.3vw] text-white/70 mb-8 font-light max-w-3xl mx-auto leading-[1.3] tracking-normal">
+                             <p className="text-[1.3vw] text-white/70 mb-8 font-light max-w-3xl mx-auto leading-relaxed tracking-normal">
                                  Ready to define your legacy? Let our architectural advisors navigate the selection matrix with you.
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

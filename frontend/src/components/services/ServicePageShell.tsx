@@ -352,7 +352,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                              <h2 className="text-[clamp(2vw,5vw,140px)] font-bold mb-8 leading-[0.9] tracking-tighter">
                                  {d.ctaTitle}
                              </h2>
-                             <p className="text-[clamp(1.4vw,1.4vw,63px)] text-white/50 mb-8 font-light max-w-6xl mx-auto leading-tight">
+                             <p className="text-[clamp(1.4vw,1.4vw,63px)] text-white/50 mb-8 font-light max-w-6xl mx-auto leading-relaxed">
                                  {d.ctaBody}
                              </p>
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

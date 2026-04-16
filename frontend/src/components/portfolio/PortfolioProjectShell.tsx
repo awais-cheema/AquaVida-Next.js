@@ -108,7 +108,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                     <motion.p 
                         {...kineticEntry}
-                        className=" text-[4vw] md:text-[3vw] font-normal leading-[1.15] text-white/90 tracking-normal"
+                        className=" text-[4vw] md:text-[3vw] font-normal leading-relaxed text-white/90 tracking-normal"
                     >
                         {p.description}
                     </motion.p>
@@ -169,7 +169,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                         <h2 className="text-[8vw] md:text-[5vw] font-black leading-[0.8] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
                             {p.philosophyTitle}
                         </h2>
-                        <p className=" text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-tight">
+                        <p className=" text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-relaxed">
                             {p.philosophyBody}
                         </p>
                     </div>
@@ -181,7 +181,7 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                 <motion.div {...kineticEntry}>
                     <ShieldCheck size={48} className="mx-auto mb-8 text-[#63B589] opacity-40 md:mb-12 md:w-16 md:h-16" />
                     <h2 className="text-5xl md:text-8xl font-black leading-none uppercase mb-6 tracking-normal">Your Legacy Begins</h2>
-                    <p className="text-xl md:text-[1.5vw] text-white/30 font-light md:max-w-[50vw] mx-auto mb-10 leading-[1.2em] px-4">
+                    <p className="text-xl md:text-[1.5vw] text-white/30 font-light md:max-w-[50vw] mx-auto mb-10 leading-relaxed px-4">
                         Every AquaVida project is a permanent environmental artifact, engineered to last generations. Let's discuss your site's unique topographical potential.
                     </p>
                     <Link href="/contact" className="btn inline-flex items-center gap-5 bg-[#A68A33] hover:bg-[#fff] text-white px-8 py-4 rounded-full text-[1.2vw] font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 group">

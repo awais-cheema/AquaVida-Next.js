@@ -127,7 +127,7 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
                                     <span className="text-[11px] md:text-[0.8vw] font-black tracking-[0.2em] text-white/50 uppercase block mb-1">
                                         {project.category}
                                     </span>
-                                    <h3 className="text-lg md:text-[1.5vw] font-black text-white leading-none uppercase">
+                                    <h3 className="text-lg md:text-[1.5vw] font-black text-white leading-tight uppercase">
                                         {project.name}
                                     </h3>
                                 </div>
@@ -136,7 +136,7 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
                                 </div>
                             </div>
 
-                            <p className="text-white/80 text-sm md:text-[1.2vw] font-normal leading-[1.3em] mb-4 line-clamp-2 max-w-2xl">
+                            <p className="text-white/80 text-sm md:text-[1.2vw] font-normal leading-relaxed mb-4 line-clamp-2 max-w-2xl">
                                 {project.description}
                             </p>
 
