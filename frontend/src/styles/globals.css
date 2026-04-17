@@ -248,6 +248,41 @@ ol {
     list-style: none;
 }
 
+/* ── Glassy media loading skeleton ──────────────────────────────────────────
+   Applied globally to every <img> and <video>. While the asset is downloading
+   the element is transparent, so the shimmer background shows through. Once
+   the pixels render they cover the background — no JS required.
+   Containers with overflow-hidden should also use .media-wrap for the glassy
+   border + bg that shows while the asset fills in.
+─────────────────────────────────────────────────────────────────────────── */
+@keyframes media-shimmer {
+    0%   { background-position:  200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+img,
+video {
+    background-color: #0a1018;
+    background-image: linear-gradient(
+        105deg,
+        transparent                    35%,
+        rgba(0, 212, 170, 0.07)        48%,
+        rgba(255, 255, 255, 0.04)      52%,
+        transparent                    65%
+    );
+    background-size: 280% 100%;
+    animation: media-shimmer 2s linear infinite;
+}
+
+/* Glassy frame for overflow-hidden containers (service cards, team card, etc.)
+   Add this class to the direct parent of any <img> or <video>. */
+.media-wrap {
+    position: relative;
+    background: rgba(10, 16, 24, 0.85);
+    border: 1px solid rgba(0, 212, 170, 0.08);
+    overflow: hidden;
+}
+
 /* Terms & Conditions contact cards */
 .contact-card {
     background: rgba(255,255,255,0.03);

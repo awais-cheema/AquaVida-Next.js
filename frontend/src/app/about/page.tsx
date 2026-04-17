@@ -32,7 +32,7 @@ const FloatingPill = ({ text, className }: { text: string; className?: string })
 
 const TeamCard = ({ name, role, image }: { name: string; role: string; image: string }) => (
     <div className="flex flex-col gap-4 group">
-        <div className="relative aspect-[4/5] overflow-hidden bg-gray-200">
+        <div className="media-wrap relative aspect-[4/5] rounded-[10px]">
             <img src={image} alt={name} className="w-full h-full object-cover object-right-top rounded-[10px]" />
         </div>
         <div className="flex flex-col gap-1">
@@ -71,7 +71,7 @@ const AboutHeroSection = () => (
             </motion.h2>
         </div>
 
-        <div className="relative w-full aspect-video md:aspect-[21/9] mb-32 z-10">
+        <div className="media-wrap relative w-full aspect-video md:aspect-[21/9] mb-32 z-10 rounded-xl">
             <video
                 autoPlay
                 loop
@@ -157,7 +157,7 @@ const ApproachSection = () => (
                 </div>
             </div>
 
-            <div className=" hidden md:flex relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden shadow-2xl">
+            <div className="media-wrap hidden md:flex relative aspect-[4/5] lg:aspect-[3/4] w-full shadow-2xl rounded-2xl">
                 <img
                     src="/about-2.avif"
                     alt="Team collaborating on architectural plans"

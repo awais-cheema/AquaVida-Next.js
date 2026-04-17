@@ -137,13 +137,13 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
             
             {/* ── HERO SECTION ────────────────────────────────────────────────── */}
             <section ref={heroRef} className="relative h-[80vh] md:h-[100vh] flex items-center overflow-hidden mb-20">
-                <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
-                    <Image 
-                        src={getAssetUrl(d.heroImage)} 
-                        alt="" 
-                        fill 
-                        className="object-cover scale-110" 
-                        priority 
+                <motion.div style={{ y: yHero, opacity: opacityHero }} className="media-wrap absolute inset-0 z-0">
+                    <Image
+                        src={getAssetUrl(d.heroImage)}
+                        alt=""
+                        fill
+                        className="object-cover scale-110"
+                        priority
                         sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0D0A07] via-[#0D0A07]/50 to-transparent" />
@@ -203,7 +203,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                 </div>
                             </Link>
                         </div>
-                        <div className="relative min-h-[400px] hidden lg:block">
+                        <div className="media-wrap relative min-h-[400px] hidden lg:block">
                             <Image src={getAssetUrl(d.overviewImage)} alt="" fill className="object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0D0A07]/10 to-[#0D0A07]/60" />
                         </div>
@@ -245,7 +245,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
 
                 {/* ── INVESTMENT SECTION ───────────────────────────────────────── */}
                 <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mt-20">
-                    <motion.div {...kineticEntry} className="relative rounded-[48px] overflow-hidden flex items-center">
+                    <motion.div {...kineticEntry} className="media-wrap relative rounded-[48px] flex items-center">
                         <Image src={getAssetUrl(d.investmentImage)} alt="" fill className="object-cover brightness-[0.3] scale-105" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0D0A07] via-transparent to-[#0D0A07]/20" />
 
@@ -343,7 +343,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                 {/* ── CTA SECTION ─────────────────────────────────────────────── */}
                 <section className="flex px-6 md:px-16 lg:px-24 w-full max-w-[1800px] mx-auto">
                     <motion.div {...kineticEntry} className="relative w-full rounded-[40px] md:rounded-[80px] overflow-hidden flex flex-col items-center justify-center text-center p-10 md:p-16 lg:p-20 py-16 md:py-20 lg:min-h-[650px]" style={glassStyle}>
-                         <div className="absolute inset-0 z-0">
+                         <div className="media-wrap absolute inset-0 z-0">
                             <Image src={getAssetUrl(d.ctaImage)} alt="" fill className="object-cover brightness-[0.3]" />
                             <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#0D0A07] via-transparent to-[#0D0A07]" />
                          </div>
