@@ -58,13 +58,13 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: '/services/pavers',
-                destination: '/services/paver-installation',
+                source: '/services/paver-installation',
+                destination: '/services/pavers',
                 permanent: true,
             },
             {
-                source: '/services/pavers/',
-                destination: '/services/paver-installation',
+                source: '/services/paver-installation/',
+                destination: '/services/pavers',
                 permanent: true,
             },
         ];
