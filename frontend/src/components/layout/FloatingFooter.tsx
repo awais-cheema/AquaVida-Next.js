@@ -99,6 +99,17 @@ export default function FloatingFooter() {
             };
         }
 
+        // Legal pages — #05070A
+        if (path === '/privacy-policy' || path === '/terms-conditions') {
+            return {
+                cardBg: '#05070A',
+                wrapperBg: '#05070A',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                shadow: 'none',
+                backdrop: 'none'
+            };
+        }
+
         // Contact page — #0A0E16
         if (path === '/contact') {
             return {
@@ -265,19 +276,18 @@ export default function FloatingFooter() {
                             </nav>
 
                             {/* ── Information ── */}
-                            <div>
+                            <nav aria-label="Information">
                                 <h4 className="text-white font-black tracking-[0.1em] uppercase mb-3 sm:mb-4 md:mb-5 drop-shadow-md
                                                text-[12px] sm:text-[13px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                     Information
                                 </h4>
                                 <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
                                                text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
-                                               font-medium tracking-wider text-white/60 md:text-white/80">
-                                    <li>Privacy Policy</li>
-                                    <li>Terms &amp; Conditions</li>
-                                    <li>Terms of Services</li>
+                                               font-medium tracking-wider">
+                                    <li><Link href="/privacy-policy"    className={lk}>Privacy Policy</Link></li>
+                                    <li><Link href="/terms-conditions"  className={lk}>Terms &amp; Conditions</Link></li>
                                 </ul>
-                            </div>
+                            </nav>
 
                             <div className="flex flex-col gap-3 sm:gap-5 md:gap-6
                                             col-span-2 md:col-span-1
