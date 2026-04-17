@@ -57,6 +57,16 @@ const nextConfig = {
                 destination: '/services/fire-pit',
                 permanent: true,
             },
+            {
+                source: '/services/pavers',
+                destination: '/services/paver-installation',
+                permanent: true,
+            },
+            {
+                source: '/services/pavers/',
+                destination: '/services/paver-installation',
+                permanent: true,
+            },
         ];
     },
 
