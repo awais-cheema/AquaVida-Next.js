@@ -11,7 +11,7 @@ const data: ServiceData = {
     accentRgb: '232,130,58',
 
     heroLabel: 'Elemental Artistry — Dallas, TX',
-    heroTitle: 'Stone Fire Pit',
+    heroTitle: 'Fire Pit',
     heroHighlight: 'Installation.',
     heroBody: 'Transform your outdoor sanctuary with the elemental warmth of natural stone. A fluid blend of primal fire and sophisticated, precision-engineered combustion technology — designed for year-round gathering.',
     heroImage: '/images/services/fire_pit_hero.avif',
