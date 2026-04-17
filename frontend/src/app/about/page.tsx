@@ -33,7 +33,7 @@ const FloatingPill = ({ text, className }: { text: string; className?: string })
 const TeamCard = ({ name, role, image }: { name: string; role: string; image: string }) => (
     <div className="flex flex-col gap-4 group">
         <div className="relative aspect-[4/5] overflow-hidden bg-gray-200">
-            <img src={image} alt={name} className="w-full h-full object-cover rounded-[10px]" />
+            <img src={image} alt={name} className="w-full h-full object-cover object-right-top rounded-[10px]" />
         </div>
         <div className="flex flex-col gap-1">
             <h4 className="text-[4.5vw] md:text-[clamp(0.9rem,1.2vw,1.6rem)] tracking-[0.24rem] font-bold text-black uppercase">{name}</h4>
