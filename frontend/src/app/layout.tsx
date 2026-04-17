@@ -3,6 +3,7 @@
  */
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import FloatingPillNav from '@/components/layout/FloatingPillNav';
 import FloatingFooter  from '@/components/layout/FloatingFooter';
@@ -53,6 +54,9 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
     },
+    verification: {
+        google: 'wcjVQ-27D9k6VhuenwGqKiTUwiZjb-AcF51SL3LJ_wY',
+    },
 };
 
 export const viewport: Viewport = {
@@ -68,6 +72,15 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`dark ${allomira.variable}`} suppressHydrationWarning>
+            <head>
+                <Script
+                    id="clarity-analytics"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vke7bmqua4");`,
+                    }}
+                />
+            </head>
             <body suppressHydrationWarning>
                 {/*
                   * FloatingPillNav is intentionally rendered OUTSIDE SmoothScrollProvider.
