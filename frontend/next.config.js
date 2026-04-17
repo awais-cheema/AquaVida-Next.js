@@ -44,6 +44,22 @@ const nextConfig = {
         ],
     },
 
+    // Redirects — old URLs → canonical URLs (308 = permanent)
+    async redirects() {
+        return [
+            {
+                source: '/services/stone-firepit',
+                destination: '/services/fire-pit',
+                permanent: true,
+            },
+            {
+                source: '/services/stone-firepit/',
+                destination: '/services/fire-pit',
+                permanent: true,
+            },
+        ];
+    },
+
     // Headers
     async headers() {
         return [
