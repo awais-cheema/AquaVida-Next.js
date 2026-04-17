@@ -56,7 +56,7 @@ const AboutHeroSection = () => (
                 className="flex items-center justify-center gap-3 mb-10"
             >
                 <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-white/30">◆</span>
-                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.25em] font-bold text-white/50 uppercase">About Aquavida</span>
+                <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.25em] font-bold text-white/50 uppercase">About AquaVida</span>
             </motion.div>
 
             <motion.h2
@@ -96,7 +96,7 @@ const AboutHeroSection = () => (
                     viewport={{ once: true }}
                     className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-white/60 leading-relaxed max-w-2xl text-left"
                 >
-                    Aquavida transforms architectural vision into built reality. We specialise in luxury pool environments that shape water, define space, and elevate design. Every project is guided by precision, craftsmanship, and a commitment to enduring beauty.
+                    AquaVida transforms architectural vision into built reality. We specialise in luxury pool environments that shape water, define space, and elevate design. Every project is guided by precision, craftsmanship, and a commitment to enduring beauty.
                 </motion.p>
             </div>
         </div>
@@ -141,7 +141,7 @@ const ApproachSection = () => (
                         className="flex items-center gap-3"
                     >
                         <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-white/30">◆</span>
-                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-white/50 uppercase">About Aquavida</span>
+                        <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-white/50 uppercase">About AquaVida</span>
                     </motion.div>
 
                     <motion.p
