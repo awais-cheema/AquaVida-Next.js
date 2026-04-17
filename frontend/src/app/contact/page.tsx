@@ -44,12 +44,12 @@ export default function ContactPage() {
 
             {/* Left Column: Heading & Contact Info */}
             <div className="flex flex-col justify-start mb-8 md:mb-0">
-              <h1 className="text-[10vw] md:text-[6.5vw] font-[family-name:var(--font-display)] font-black leading-[0.9] uppercase tracking-[0.02em] mb-10 lg:mb-8 text-black">
+              <h1 className="text-[10vw] md:text-[6.5vw] font-allomira font-black leading-[0.9] uppercase tracking-[0.02em] mb-10 lg:mb-8 text-black">
                 Let's Create Spaces That Inspire
               </h1>
 
               <div className="space-y-4">
-                <h2 className="text-[4vw] md:text-[1.4vw] font-[family-name:var(--font-display)] font-bold uppercase tracking-wide border-b border-black/10 pb-2 w-fit text-black">
+                <h2 className="text-[4vw] md:text-[1.4vw] font-allomira font-bold uppercase tracking-wide border-b border-black/10 pb-2 w-fit text-black">
                   Reach out to us
                 </h2>
 

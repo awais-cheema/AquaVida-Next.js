@@ -16,9 +16,9 @@ const config: Config = {
         "background-dark": "#221610",
       },
       fontFamily: {
-        "sans": ["var(--font-allomira)", "Public Sans", "sans-serif"],
-        "display":  ["Public Sans", "sans-serif"],
-        "allomira": ["var(--font-allomira)", "Public Sans", "sans-serif"],
+        "sans":     ["var(--font-allomira)", "sans-serif"],
+        "display":  ["var(--font-allomira)", "sans-serif"],
+        "allomira": ["var(--font-allomira)", "sans-serif"],
       },
       borderRadius: {
         "DEFAULT": "0.25rem",
