@@ -22,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
         const page = await getPageBySlug('home');
         const seo = page.seo;
         return {
-            title: seo?.effective_title || 'Aqua Vida Pools And Spas',
+            title: seo?.effective_title || 'AquaVida Pools and Spas',
             description: seo?.meta_description || 'Premium pool design, construction and outdoor living by AquaVida.',
             openGraph: {
-                title: seo?.og_title || 'Aqua Vida Pools And Spas',
+                title: seo?.og_title || 'AquaVida Pools and Spas',
                 description: seo?.og_description || '',
                 url: SITE_URL,
                 images: seo?.og_image_url ? [seo.og_image_url] : [],
@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
             },
         };
     } catch {
-        return { title: 'Aqua Vida Pools And Spas' };
+        return { title: 'AquaVida Pools and Spas' };
     }
 }
 

@@ -31,8 +31,8 @@ const allomira = localFont({
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        default: 'Aqua Vida Pools And Spas',
-        template: '%s | Aqua Vida Pools And Spas',
+        default: 'AquaVida Pools and Spas',
+        template: '%s | AquaVida Pools and Spas',
     },
     description: 'AquaVida blends cutting-edge technology with ocean-inspired design. Interactive 3D experiences.',
     icons: {
