@@ -247,3 +247,13 @@ ul,
 ol {
     list-style: none;
 }
+
+/* Terms & Conditions contact cards */
+.contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+.contact-card:hover {
+    background: rgba(0,212,170,0.05);
+    border-color: rgba(0,212,170,0.25);
+}

@@ -179,19 +179,7 @@ export default function TermsConditionsPage() {
                                        href={href}
                                        target={label === 'Address' ? '_blank' : undefined}
                                        rel={label === 'Address' ? 'noopener noreferrer' : undefined}
-                                       className="flex items-start gap-4 rounded-xl px-5 py-4 group transition-all duration-300"
-                                       style={{
-                                           background: 'rgba(255,255,255,0.03)',
-                                           border: '1px solid rgba(255,255,255,0.07)',
-                                       }}
-                                       onMouseEnter={e => {
-                                           (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(0,212,170,0.25)';
-                                           (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(0,212,170,0.05)';
-                                       }}
-                                       onMouseLeave={e => {
-                                           (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.07)';
-                                           (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.03)';
-                                       }}>
+                                       className="contact-card flex items-start gap-4 rounded-xl px-5 py-4 transition-all duration-300">
                                         <span style={{ color: '#00d4aa' }} className="mt-0.5">{icon}</span>
                                         <div>
                                             <span className="block font-black uppercase tracking-widest mb-0.5"

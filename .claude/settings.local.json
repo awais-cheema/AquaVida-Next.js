@@ -29,7 +29,8 @@
       "Bash(npx next:*)",
       "Bash(npm list:*)",
       "Bash(npm run *)",
-      "Bash(git lfs *)"
+      "Bash(git lfs *)",
+      "Bash(npx vercel *)"
     ]
   }
 }
