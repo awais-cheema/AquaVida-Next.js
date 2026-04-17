@@ -40,7 +40,7 @@ export default function UnderConstruction() {
                         alt="AquaVida"
                         width={220}
                         height={80}
-                        className="relative w-auto"
+                        className="no-skeleton relative w-auto"
                         style={{ height: 'clamp(56px, 8vw, 88px)', filter: 'drop-shadow(0 0 32px rgba(99,181,137,0.3))' }}
                         priority
                     />

@@ -204,7 +204,7 @@ export default function CorePrinciplesGlobe() {
                         {/* Minimalist Logo */}
                         <foreignObject x={CX - 55} y={CY - 55} width={110} height={110}>
                            <div className="w-full h-full flex items-center justify-center p-3 pointer-events-none">
-                               <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={90} height={34} className="w-full h-auto object-contain brightness-125" />
+                               <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={90} height={34} className="no-skeleton w-full h-auto object-contain brightness-125" />
                            </div>
                         </foreignObject>
 

@@ -77,7 +77,7 @@ export default function LoaderScreen() {
                 width={260}
                 height={80}
                 priority
-                className="h-24 w-auto object-contain
+                className="no-skeleton h-24 w-auto object-contain
                            drop-shadow-[0_4px_32px_rgba(0,0,0,0.7)]"
             />
 

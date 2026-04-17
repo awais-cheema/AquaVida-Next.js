@@ -121,7 +121,7 @@ export default function FloatingPillNav() {
             <div className="flex items-center gap-3 md:gap-4 lg:gap-6 xl:gap-8">
                 {/* Logo */}
                 <Link href="/" className="flex-shrink-0">
-                    <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={165} height={50} priority className="h-[38px] md:h-[clamp(32px,2.6vw,44px)] w-auto object-contain" />
+                    <Image src={getAssetUrl("/logo.avif")} alt="AquaVida" width={165} height={50} priority className="no-skeleton h-[38px] md:h-[clamp(32px,2.6vw,44px)] w-auto object-contain" />
                 </Link>
 
                 {/* Desktop Nav */}

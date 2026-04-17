@@ -87,7 +87,7 @@ export default function HeroScrollOverlay() {
                         width={390}
                         height={120}
                         priority
-                        className="h-28 w-auto object-contain mx-auto
+                        className="no-skeleton h-28 w-auto object-contain mx-auto
                                    drop-shadow-[0_4px_32px_rgba(0,0,0,0.7)]"
                     />
                 </div>

@@ -283,6 +283,12 @@ video {
     overflow: hidden;
 }
 
+/* Opt-out: apply to any logo or icon that should never show the skeleton */
+.no-skeleton {
+    background: none !important;
+    animation: none !important;
+}
+
 /* Terms & Conditions contact cards */
 .contact-card {
     background: rgba(255,255,255,0.03);

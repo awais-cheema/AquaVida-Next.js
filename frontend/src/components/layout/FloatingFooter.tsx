@@ -226,7 +226,7 @@ export default function FloatingFooter() {
                                 src={getAssetUrl("/logo2.avif")}
                                 alt="AquaVida Pools and Spas"
                                 width={360} height={120}
-                                className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px]
+                                className="no-skeleton w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px]
                                            h-auto object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]"
                             />
                         </div>
@@ -371,7 +371,7 @@ export default function FloatingFooter() {
                                     src={getAssetUrl("/CXT.gif")}
                                     alt="Control X Tech"
                                     width={300} height={100}
-                                    className="h-[44px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
+                                    className="no-skeleton h-[44px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
                                                w-auto object-contain mix-blend-screen opacity-100"
                                 />
                             </a>
