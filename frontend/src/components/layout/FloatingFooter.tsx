@@ -256,11 +256,11 @@ export default function FloatingFooter() {
                                                font-medium tracking-wider">
                                     <li><Link href="/services/pool-design"       className={lk}>Pool design</Link></li>
                                     <li><Link href="/services/pool-construction" className={lk}>Pool construction</Link></li>
-                                    <li><Link href="/services/outdoor-kitchens"  className={lk}>Outdoor kitchens</Link></li>
+                                    <li><Link href="/services/outdoor-grill"  className={lk}>Outdoor Grill</Link></li>
                                     <li><Link href="/services/fire-pit"          className={lk}>Fire Pits</Link></li>
                                     <li><Link href="/services/pool-remodeling"   className={lk}>Pool remodeling</Link></li>
                                     <li><Link href="/services/pergola-design"    className={lk}>Pergola design</Link></li>
-                                    <li><Link href="/services/paver-installation" className={lk}>Patio Extensions</Link></li>
+                                    <li><Link href="/services/pavers" className={lk}>Patio Extensions</Link></li>
                                 </ul>
                             </nav>
 

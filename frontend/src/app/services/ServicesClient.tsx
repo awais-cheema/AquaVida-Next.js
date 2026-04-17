@@ -14,11 +14,11 @@ import FAQ from '@/components/layout/FAQ';
 const SERVICES = [
     { title: 'Pool Design',        sub: 'Design Consultation',        href: '/services/pool-design',        image: '/images/services/pool_design_hero.avif',       accent: '#0d5699' },
     { title: 'Pool Construction',  sub: 'Full Build Management',      href: '/services/pool-construction',  image: '/images/services/pool_construction_hero.avif', accent: '#0a447a' },
-    { title: 'Outdoor Kitchens',   sub: 'Custom Outdoor Fabrication', href: '/services/outdoor-kitchens',   image: '/images/services/outdoor_kitchen_hero.avif',   accent: '#91792c' },
+    { title: 'Outdoor Kitchens',   sub: 'Custom Outdoor Fabrication', href: '/services/outdoor-grill',   image: '/images/services/outdoor_kitchen_hero.avif',   accent: '#91792c' },
     { title: 'Fire Pits',          sub: 'Stone Masonry & Gas',        href: '/services/fire-pit',           image: '/images/services/fire_pit_hero.avif',          accent: '#a68a33' },
     { title: 'Pool Remodeling',    sub: 'Renovation & Refresh',       href: '/services/pool-remodeling',    image: '/images/services/pool_remodeling_hero.avif',   accent: '#63b589' },
     { title: 'Pergola Design',     sub: 'Shade Structures',           href: '/services/pergola-design',     image: '/images/services/pergola_design_hero.avif',     accent: '#0d5699' },
-    { title: 'Patio Extensions',   sub: 'Hardscape Solutions',        href: '/services/paver-installation', image: '/images/services/patio_extensions_hero.avif', accent: '#91792c' },
+    { title: 'Patio Extensions',   sub: 'Hardscape Solutions',        href: '/services/pavers', image: '/images/services/patio_extensions_hero.avif', accent: '#91792c' },
 ];
 
 

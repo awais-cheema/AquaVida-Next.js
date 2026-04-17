@@ -11,13 +11,13 @@ const data: ServiceData = {
     accentRgb: '122,150,56',
 
     heroLabel: 'Culinary Architecture — Dallas, TX',
-    heroTitle: 'Outdoor Kitchen',
+    heroTitle: 'Outdoor Grill',
     heroHighlight: 'Installation.',
     heroBody: 'Seamless integration of smart appliances and artisan textures — designed for the elements. Our outdoor stations feature weather-sealed cabinetry, marine-grade steel, and the culinary power your lifestyle demands.',
     heroImage: '/images/services/outdoor_kitchen_hero.avif',
 
     overviewTitle: 'The Epicurean Standard',
-    overviewBody: "AquaVida transforms your backyard into a master-class entertaining environment. We specialize in custom culinary suites that combine architectural masonry with pro-series appliances. Every installation is engineered to withstand the North Texas climate while providing a seamless transition from your internal kitchen to a gourmet alfresco paradise.",
+    overviewBody: "AquaVida transforms your backyard into a master-class entertaining environment. We specialize in custom culinary suites that combine architectural masonry with pro-series appliances. Every installation is engineered to withstand the North Texas climate while providing a seamless transition from your internal grill to a gourmet alfresco paradise.",
     overviewImage: '/images/services/outdoor_kitchen_overview.avif',
 
     processTitle: 'The Culinary Workflow',
@@ -37,18 +37,18 @@ const data: ServiceData = {
     ],
 
     investmentTitle: 'Investing in Lifestyle Capital',
-    investmentBody: "A custom outdoor kitchen is more than a utility; it's a high-yield property upgrade. We utilize granite, 304 stainless steel, and marine-grade polymers to ensure your investment maintains its aesthetic and functional value. Our design process ensures that your culinary station is scaled correctly to your property, maximizing ROI and entertaining capacity.",
+    investmentBody: "A custom outdoor grill is more than a utility; it's a high-yield property upgrade. We utilize granite, 304 stainless steel, and marine-grade polymers to ensure your investment maintains its aesthetic and functional value. Our design process ensures that your culinary station is scaled correctly to your property, maximizing ROI and entertaining capacity.",
     investmentImage: '/images/services/outdoor_kitchen_investment.avif',
 
     servicesTitle: 'Bespoke Culinary Services',
     servicesItems: [
         {
             title: 'Full Culinary Suite Installation',
-            body: 'From simple grill stations to full-scale outdoor kitchens featuring smokers, pizza ovens, wine cooling, and prep zones — all executed with technical precision.',
+            body: 'From simple grill stations to full-scale outdoor grills featuring smokers, pizza ovens, wine cooling, and prep zones — all executed with technical precision.',
         },
         {
             title: 'Professional Restoration',
-            body: 'High-end structural repair and service for existing outdoor kitchens. We recalibrate systems, replace failing masonry, and upgrade internal utilities to modern safety standards.',
+            body: 'High-end structural repair and service for existing outdoor grills. We recalibrate systems, replace failing masonry, and upgrade internal utilities to modern safety standards.',
         },
         {
             title: 'Prestige Maintenance Plans',
@@ -86,7 +86,7 @@ const data: ServiceData = {
         {
             icon: Star,
             title: 'Architectural Unity',
-            body: "Every kitchen exterior is matched to your home’s specific material palette—creating a cohesive, high-fashion look from deck to door.",
+            body: "Every grill exterior is matched to your home’s specific material palette—creating a cohesive, high-fashion look from deck to door.",
         },
     ],
 
@@ -103,7 +103,7 @@ const data: ServiceData = {
     ],
 
     ctaTitle: 'Elevate Your Entertaining Capacity',
-    ctaBody: "AquaVida is ready to architect your perfect outdoor culinary experience. Contact us for a technical site assessment and start planning your bespoke garden kitchen.",
+    ctaBody: "AquaVida is ready to architect your perfect outdoor culinary experience. Contact us for a technical site assessment and start planning your bespoke garden grill.",
     ctaImage: '/images/services/outdoor_kitchen_cta.avif',
 };
 

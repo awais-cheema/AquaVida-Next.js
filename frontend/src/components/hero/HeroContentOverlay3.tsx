@@ -10,11 +10,11 @@ import { getF, TIMELINE } from '@/lib/heroBreakpoints';
 const SERVICES = [
     { title: 'Pool Design',             num: '01', href: '/services/pool-design',      icon: '/Icons/pool_design.webp' },
     { title: 'Pool Construction',       num: '02', href: '/services/pool-construction', icon: '/Icons/pool_construction.webp' },
-    { title: 'Outdoor Kitchens',        num: '03', href: '/services/outdoor-kitchens',   icon: '/Icons/Kitchen.webp' },
+    { title: 'Outdoor Kitchens',        num: '03', href: '/services/outdoor-grill',   icon: '/Icons/Kitchen.webp' },
     { title: 'Fire Pits',               num: '04', href: '/services/fire-pit',          icon: '/Icons/fire_pit.webp' },
     { title: 'Pool Remodeling',         num: '05', href: '/services/pool-remodeling',   icon: '/Icons/Pool_remodeling.webp' },
     { title: 'Pergola Design',          num: '06', href: '/services/pergola-design',    icon: '/Icons/pergola.webp' },
-    { title: 'Patio Extensions',        num: '07', href: '/services/paver-installation', icon: '/Icons/pergola.webp' },
+    { title: 'Patio Extensions',        num: '07', href: '/services/pavers', icon: '/Icons/pergola.webp' },
 ];
 
 export default function HeroContentOverlay3() {

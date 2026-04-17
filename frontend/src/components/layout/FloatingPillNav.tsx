@@ -17,11 +17,11 @@ const dropdownVariants: Variants = {
 const SERVICES: { label: string; href: string }[] = [
     { label: 'Pool Design',        href: '/services/pool-design' },
     { label: 'Pool Construction',  href: '/services/pool-construction' },
-    { label: 'Outdoor Kitchens',   href: '/services/outdoor-kitchens' },
+    { label: 'Outdoor Grill',   href: '/services/outdoor-grill' },
     { label: 'Fire Pits',          href: '/services/fire-pit' },
     { label: 'Pool Remodeling',    href: '/services/pool-remodeling' },
     { label: 'Pergola Design',     href: '/services/pergola-design' },
-    { label: 'Patio Extensions',   href: '/services/paver-installation' },
+    { label: 'Patio Extensions',   href: '/services/pavers' },
 ];
 
 const PROJECTS: { label: string; href: string }[] = [

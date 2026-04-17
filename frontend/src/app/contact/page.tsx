@@ -13,7 +13,7 @@ export default function ContactPage() {
   const services = [
     { id: "pool-design", label: "Pool design" },
     { id: "pool-construction", label: "Pool construction" },
-    { id: "outdoor-kitchens", label: "Outdoor kitchens" },
+    { id: "outdoor-grill", label: "Outdoor kitchens" },
     { id: "fire-pits", label: "Fire pits / fire places" },
     { id: "pool-remodeling", label: "Pool remodeling" },
     { id: "pergola-design", label: "Pergola design" },
