@@ -127,6 +127,21 @@ export default config({
           multiline: true,
           description: 'Custom schema.org markup for this page only',
         }),
+        internalLinks: fields.array(
+          fields.object({
+            anchorText: fields.text({ label: 'Anchor Text', description: 'Visible link label, e.g. "Pool Construction"' }),
+            href: fields.text({ label: 'URL', description: 'Internal path, e.g. /services/pool-construction' }),
+            description: fields.text({ label: 'Short Description (optional)', multiline: true }),
+          }),
+          { label: 'Internal Links (Related Pages)', itemLabel: props => props.fields.anchorText.value }
+        ),
+        breadcrumbs: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'URL' }),
+          }),
+          { label: 'Breadcrumb Trail', description: 'Used for BreadcrumbList schema — list from Home → … → This Page', itemLabel: props => props.fields.label.value }
+        ),
         lastReviewed: fields.text({
           label: 'Last SEO Review Date',
           description: 'Internal tracking, e.g. 2025-04-20',

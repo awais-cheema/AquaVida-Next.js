@@ -2,6 +2,36 @@ import { cache } from 'react'
 import type { Metadata } from 'next'
 import { reader } from './keystatic-reader'
 
+const PATHNAME_TO_SLUG: Record<string, string> = {
+  '/': 'home',
+  '/about': 'about',
+  '/services': 'services',
+  '/services/pool-construction': 'pool-construction',
+  '/services/pavers': 'pavers',
+  '/services/fire-pit': 'fire-pit',
+  '/services/outdoor-grill': 'outdoor-grill',
+  '/services/pergola-design': 'pergola-design',
+  '/services/pool-design': 'pool-design',
+  '/services/pool-remodeling': 'pool-remodeling',
+  '/portfolio': 'portfolio',
+  '/portfolio/brycewood': 'brycewood',
+  '/portfolio/montalcino': 'montalcino',
+  '/portfolio/spruce-hills': 'spruce-hills',
+  '/contact': 'contact',
+  '/finance': 'finance',
+  '/privacy-policy': 'privacy-policy',
+  '/terms-conditions': 'terms-conditions',
+  '/blog': 'blog',
+}
+
+export function pathnameToSeoSlug(pathname: string): string | null {
+  return PATHNAME_TO_SLUG[pathname] ?? null
+}
+
+export async function getPageSeoEntry(slug: string) {
+  return reader.collections.pageSeo.read(slug).catch(() => null)
+}
+
 export const getGlobalSeo = cache(async () =>
     reader.singletons.globalSeo.read().catch(() => null)
 )

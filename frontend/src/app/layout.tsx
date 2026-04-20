@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import SiteShell from '@/components/SiteShell';
 import { reader } from '@/lib/keystatic-reader';
 import { getGlobalSeo } from '@/lib/seo';
+import SeoExtras from '@/components/seo/SeoExtras';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import '@/styles/globals.css';
 
@@ -107,7 +108,7 @@ export default async function RootLayout({
                 )}
             </head>
             <body suppressHydrationWarning>
-                <SiteShell footerData={footerData ?? null}>
+                <SiteShell footerData={footerData ?? null} seoExtras={<SeoExtras />}>
                     {children}
                 </SiteShell>
                 <SpeedInsights />

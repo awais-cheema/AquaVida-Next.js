@@ -8,7 +8,7 @@ import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 
 const ADMIN_PATHS = ['/keystatic', '/keystatic-login']
 
-export default function SiteShell({ children, footerData }: { children: React.ReactNode; footerData?: FooterData | null }) {
+export default function SiteShell({ children, footerData, seoExtras }: { children: React.ReactNode; footerData?: FooterData | null; seoExtras?: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin = ADMIN_PATHS.some(p => pathname.startsWith(p))
 
@@ -31,6 +31,7 @@ export default function SiteShell({ children, footerData }: { children: React.Re
           <main id="main-content" role="main" className="flex-1 w-full relative">
             {children}
           </main>
+          {seoExtras}
           <FloatingFooter footerData={footerData} />
         </div>
       </SmoothScrollProvider>
