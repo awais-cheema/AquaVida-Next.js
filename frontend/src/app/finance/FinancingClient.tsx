@@ -139,8 +139,20 @@ const FINANCE_FAQS = [
     }
 ];
 
+type PartnerOverride = { key: string; name: string; subtitle: string; details: string; insight: string; features: ReadonlyArray<string> | string[]; logo: string; href: string; ctaLabel?: string }
+type FaqOverride = { question: string; answer: string }
+
+interface FinancingClientProps {
+    partners?: ReadonlyArray<PartnerOverride> | PartnerOverride[] | null
+    faqItems?: ReadonlyArray<FaqOverride> | FaqOverride[] | null
+}
+
 // ── Page Component ─────────────────────────────────────────────────────────────
-export default function FinancingClient() {
+export default function FinancingClient({ partners: partnersOverride, faqItems: faqOverride }: FinancingClientProps = {}) {
+    const activePartners = partnersOverride?.length
+        ? partnersOverride.map(p => ({ ...p, color: PARTNERS.find(d => d.key === p.key)?.color ?? '#0D5699' }))
+        : PARTNERS
+    const activeFaqs = faqOverride?.length ? [...faqOverride].map(f => ({ ...f })) : FINANCE_FAQS
     const heroRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const yHero = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
@@ -222,7 +234,7 @@ export default function FinancingClient() {
                             viewport={{ once: true, margin: "-10%" }}
                             className="flex md:grid md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-10 min-w-max md:min-w-0"
                         >
-                            {PARTNERS.map((p, i) => (
+                            {activePartners.map((p, i) => (
                                 <motion.div
                                     key={p.key}
                                     variants={{
@@ -323,7 +335,7 @@ export default function FinancingClient() {
 
                 {/* ── FAQ ────────────────────────────────────────────────────────── */}
                 <section className="snap-start">
-                    <FAQ items={FINANCE_FAQS} theme="finance" accentColor="#0D5699" />
+                    <FAQ items={activeFaqs} theme="finance" accentColor="#0D5699" />
                 </section>
 
             </div>

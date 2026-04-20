@@ -165,9 +165,16 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
     );
 };
 
+const DEFAULT_PORTFOLIO_FAQS = [
+    { question: "How are projects selected for the archive?", answer: "We feature projects that push the boundaries of hydraulic engineering, material innovation, and architectural integration. Each entry represents a unique structural challenge solved." },
+    { question: "Can I request a custom design based on an archive entry?", answer: "Absolutely. Our portfolio serves as a catalog of possibilities. While every design is bespoke to its site, the principles—like 'zero-gravity' edges or 'silent hydraulics'—can be integrated into any new project." },
+    { question: "Do you offer private consultations at featured sites?", answer: "Due to client privacy, we do not offer public tours. However, we maintain a small number of 'Signature Reference' sites where private viewings can be arranged for serious inquiries." },
+]
+
 // ── MAIN PAGE ──────────────────────────────────────────────────────────────────
 
-export default function PortfolioClient() {
+export default function PortfolioClient({ faqItems }: { faqItems?: { question: string; answer: string }[] } = {}) {
+    const activeFaqs = faqItems?.length ? faqItems : DEFAULT_PORTFOLIO_FAQS
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
 
@@ -256,14 +263,10 @@ export default function PortfolioClient() {
 
             {/* ── FAQ ── */}
             <section className="snap-start border-t border-white/5">
-                <FAQ 
-                    items={[
-                        { question: "How are projects selected for the archive?", answer: "We feature projects that push the boundaries of hydraulic engineering, material innovation, and architectural integration. Each entry represents a unique structural challenge solved." },
-                        { question: "Can I request a custom design based on an archive entry?", answer: "Absolutely. Our portfolio serves as a catalog of possibilities. While every design is bespoke to its site, the principles—like 'zero-gravity' edges or 'silent hydraulics'—can be integrated into any new project." },
-                        { question: "Do you offer private consultations at featured sites?", answer: "Due to client privacy, we do not offer public tours. However, we maintain a small number of 'Signature Reference' sites where private viewings can be arranged for serious inquiries." }
-                    ]} 
-                    theme="dark" 
-                    accentColor="#0D5699" 
+                <FAQ
+                    items={activeFaqs}
+                    theme="dark"
+                    accentColor="#0D5699"
                 />
             </section>
         </div>

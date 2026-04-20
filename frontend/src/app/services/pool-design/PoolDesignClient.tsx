@@ -108,6 +108,8 @@ const data: ServiceData = {
     ctaImage: '/images/services/pool_design_cta.avif',
 };
 
-export default function PoolDesignClient() {
-    return <ServicePageShell d={data} />;
+import { mergeServiceData, type ServicePageOverride } from '@/lib/service-override'
+
+export default function PoolDesignClient({ override }: { override?: ServicePageOverride | null }) {
+    return <ServicePageShell d={mergeServiceData(data, override)} />;
 }

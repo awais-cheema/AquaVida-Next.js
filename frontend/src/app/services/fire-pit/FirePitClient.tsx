@@ -107,6 +107,8 @@ const data: ServiceData = {
     ctaImage: '/images/services/fire_pit_cta.avif',
 };
 
-export default function FirePitClient() {
-    return <ServicePageShell d={data} />;
+import { mergeServiceData, type ServicePageOverride } from '@/lib/service-override'
+
+export default function FirePitClient({ override }: { override?: ServicePageOverride | null }) {
+    return <ServicePageShell d={mergeServiceData(data, override)} />;
 }

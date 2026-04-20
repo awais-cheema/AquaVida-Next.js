@@ -11,7 +11,14 @@ import FAQ from '@/components/layout/FAQ';
 
 /* ── data ─────────────────────────────────────────────────────────────── */
 
-const SERVICES = [
+export type ServiceItem = {
+    title: string; sub: string; href: string; image: string; accent: string;
+}
+export type TestimonialItem = {
+    client: string; location: string; type: string; quote: string; image: string;
+}
+
+const SERVICES: ServiceItem[] = [
     { title: 'Pool Design',        sub: 'Design Consultation',        href: '/services/pool-design',        image: '/images/services/pool_design_hero.avif',       accent: '#0d5699' },
     { title: 'Pool Construction',  sub: 'Full Build Management',      href: '/services/pool-construction',  image: '/images/services/pool_construction_hero.avif', accent: '#0a447a' },
     { title: 'Outdoor Kitchens',   sub: 'Custom Outdoor Fabrication', href: '/services/outdoor-grill',   image: '/images/services/outdoor_kitchen_hero.avif',   accent: '#91792c' },
@@ -22,7 +29,7 @@ const SERVICES = [
 ];
 
 
-const TESTIMONIALS = [
+const TESTIMONIALS: TestimonialItem[] = [
     {
         client: 'The Martinez Family',
         location: 'Frisco, TX',
@@ -111,15 +118,15 @@ function MarqueeStrip({ items, reverse = false, accent = false }: { items: strin
 
 /* ── Trusted Partnerships ─────────────────────────────────────────────── */
 
-function TrustedPartnerships() {
+function TrustedPartnerships({ testimonials }: { testimonials: TestimonialItem[] }) {
     const [idx, setIdx] = useState(0);
     const [fade, setFade] = useState(true);
-    const t = TESTIMONIALS[idx];
+    const t = testimonials[idx];
 
     const go = (dir: 1 | -1) => {
         setFade(false);
         setTimeout(() => {
-            setIdx(i => (i + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
+            setIdx(i => (i + dir + testimonials.length) % testimonials.length);
             setFade(true);
         }, 220);
     };
@@ -190,7 +197,7 @@ function TrustedPartnerships() {
                             <ArrowRight size={15} className="text-white" />
                         </button>
                         <span className="text-md ml-2" style={{ color: 'rgba(255,255,255,0.25)' }}>
-                            {idx + 1} / {TESTIMONIALS.length}
+                            {idx + 1} / {testimonials.length}
                         </span>
                     </div>
                 </div>
@@ -276,7 +283,22 @@ function FloatingCTA() {
 
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
-export default function ServicesClient() {
+export interface ServicesClientProps {
+    initialServices?: ServiceItem[]
+    initialTestimonials?: TestimonialItem[]
+    initialFaqItems?: { question: string; answer: string }[]
+}
+
+const DEFAULT_SERVICE_FAQS = [
+    { question: "What is the typical investment for a custom pool?", answer: "Most AquaVida projects range from $85k to $250k+, depending on structural complexity, material selection, and site topography." },
+    { question: "Do you offer full design-build services?", answer: "Yes, we manage every phase from initial 3D architectural rendering to final stone fabrication and structural start-up." },
+    { question: "How long does a project stay in the design phase?", answer: "Typically 2-4 weeks, ensuring every detail of the hydraulic and structural plan is perfected before excavation." },
+]
+
+export default function ServicesClient({ initialServices, initialTestimonials, initialFaqItems }: ServicesClientProps = {}) {
+    const services     = initialServices     ?? SERVICES
+    const testimonials = initialTestimonials ?? TESTIMONIALS
+    const faqItems     = initialFaqItems?.length ? initialFaqItems : DEFAULT_SERVICE_FAQS
     const scrollRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -386,7 +408,7 @@ export default function ServicesClient() {
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                         className="flex flex-nowrap overflow-x-auto gap-6 mt-14 mb-10 w-full snap-x snap-mandatory hide-scrollbar">
-                        {SERVICES.map((s, i) => (
+                        {services.map((s, i) => (
                             <Link key={i} href={s.href}
                                 className="flex-none w-[85vw] sm:w-[48vw] md:w-[35vw] lg:w-[calc(25%-18px)] group relative overflow-hidden h-[500px] snap-start block"
                                 style={{
@@ -443,19 +465,15 @@ export default function ServicesClient() {
 
                 {/* ── Trusted Partnerships ────────────────────────── */}
                 <Reveal>
-                    <TrustedPartnerships />
+                    <TrustedPartnerships testimonials={testimonials} />
                 </Reveal>
 
                 {/* ── Floating images CTA ─────────────────────────── */}
                 <FloatingCTA />
 
                 {/* ── FAQ ─────────────────────────────────────────── */}
-                <FAQ 
-                    items={[
-                        { question: "What is the typical investment for a custom pool?", answer: "Most AquaVida projects range from $85k to $250k+, depending on structural complexity, material selection, and site topography." },
-                        { question: "Do you offer full design-build services?", answer: "Yes, we manage every phase from initial 3D architectural rendering to final stone fabrication and structural start-up." },
-                        { question: "How long does a project stay in the design phase?", answer: "Typically 2-4 weeks, ensuring every detail of the hydraulic and structural plan is perfected before excavation." }
-                    ]}
+                <FAQ
+                    items={faqItems}
                     theme="dark"
                     accentColor="#0D5699"
                 />

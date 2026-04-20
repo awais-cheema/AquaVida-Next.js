@@ -5,10 +5,8 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
-import FloatingPillNav from '@/components/layout/FloatingPillNav';
-import FloatingFooter  from '@/components/layout/FloatingFooter';
-import LoaderScreen from '@/components/LoaderScreen';
-import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
+import SiteShell from '@/components/SiteShell';
+import { reader } from '@/lib/keystatic-reader';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import '@/styles/globals.css';
 
@@ -65,11 +63,13 @@ export const viewport: Viewport = {
     themeColor: '#0a0e17',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const footerData = await reader.singletons.footerSettings.read().catch(() => null)
+
     return (
         <html lang="en" className={`dark ${allomira.variable}`} suppressHydrationWarning>
             <head>
@@ -82,28 +82,9 @@ export default function RootLayout({
                 />
             </head>
             <body suppressHydrationWarning>
-                {/*
-                  * FloatingPillNav is intentionally rendered OUTSIDE SmoothScrollProvider.
-                  * ScrollSmoother applies translateY transforms to #smooth-content; any
-                  * position:fixed element inside that container loses true viewport-fixed
-                  * behavior and scrolls off-screen with the transform. Rendering here
-                  * (a direct body child, sibling to the scroll wrapper) keeps it pinned.
-                  */}
-                <LoaderScreen />
-                <FloatingPillNav />
-                <SmoothScrollProvider>
-                    <div id="app-root" className="flex min-h-screen flex-col overflow-x-hidden">
-                        <main id="main-content" role="main" className="flex-1 w-full relative">
-                            {children}
-                        </main>
-                        {/*
-                          * FloatingFooter lives inside SmoothScrollProvider so that on non-home
-                          * pages (position:relative) it renders AFTER page content, not before.
-                          * On the home page it uses createPortal and exits this container anyway.
-                          */}
-                        <FloatingFooter />
-                    </div>
-                </SmoothScrollProvider>
+                <SiteShell footerData={footerData ?? null}>
+                    {children}
+                </SiteShell>
                 <SpeedInsights />
             </body>
         </html>

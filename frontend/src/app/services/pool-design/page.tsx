@@ -1,2 +1,7 @@
-import PoolDesignClient from './PoolDesignClient';
-export default function Page() { return <PoolDesignClient />; }
+import { reader } from '@/lib/keystatic-reader'
+import PoolDesignClient from './PoolDesignClient'
+
+export default async function Page() {
+    const entry = await reader.collections.servicePages.read('pool-design').catch(() => null)
+    return <PoolDesignClient override={entry ?? null} />
+}

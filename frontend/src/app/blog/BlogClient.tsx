@@ -9,6 +9,7 @@ import { BlogPost } from '@/lib/api';
 
 interface BlogClientProps {
     initialPosts: BlogPost[];
+    faqItems?: { question: string; answer: string }[];
 }
 
 const BLOG_FAQS = [
@@ -33,7 +34,8 @@ const kineticEntry = {
     viewport: { once: true } as any
 };
 
-export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
+export default function BlogClient({ initialPosts = [], faqItems }: BlogClientProps) {
+    const activeFaqs = faqItems?.length ? faqItems : BLOG_FAQS
     const featuredPost = initialPosts.find(p => p.is_featured) || initialPosts[0];
     const secondaryPosts = initialPosts.filter(p => p.id !== featuredPost?.id);
 
@@ -172,7 +174,7 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
 
             {/* ── FAQ ────────────────────────────────────────────────────────── */}
             <section className="snap-start">
-                <FAQ items={BLOG_FAQS} theme="dark" accentColor="#0D5699" />
+                <FAQ items={activeFaqs} theme="dark" accentColor="#0D5699" />
             </section>
 
         </div>

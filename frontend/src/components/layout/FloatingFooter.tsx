@@ -32,7 +32,28 @@ function FacebookIcon({ className }: { className?: string }) {
 
 const lk = 'text-white/80 hover:text-white transition-colors duration-200';
 
-export default function FloatingFooter() {
+export interface FooterData {
+    address?: string
+    googleMapsUrl?: string
+    phone?: string
+    phoneHref?: string
+    instagramUrl?: string
+    facebookUrl?: string
+    copyrightText?: string
+}
+
+const FOOTER_DEFAULTS: Required<FooterData> = {
+    address: '2100 N Greenville Ave., Richardson, TX 75082, USA',
+    googleMapsUrl: 'https://maps.app.goo.gl/Vv5TYqKWVKtWKj4q7',
+    phone: '+1 469-587-6255',
+    phoneHref: 'tel:+14695876255',
+    instagramUrl: 'https://www.instagram.com/aquavida.us?igsh=MWxxOGE1a3I3MGp5',
+    facebookUrl: 'https://www.facebook.com/share/17zSuCHyWT/',
+    copyrightText: '© 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.',
+}
+
+export default function FloatingFooter({ footerData }: { footerData?: FooterData | null }) {
+    const fd = { ...FOOTER_DEFAULTS, ...footerData }
     const [mounted,  setMounted]  = useState(false);
     const [opacity,  setOpacity]  = useState(0);
     const [visible,  setVisible]  = useState(false);
@@ -298,13 +319,12 @@ export default function FloatingFooter() {
                                                    text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                         Address
                                     </h4>
-                                    <a href="https://maps.app.goo.gl/Vv5TYqKWVKtWKj4q7"
+                                    <a href={fd.googleMapsUrl}
                                        target="_blank"
                                        rel="noopener noreferrer"
                                        className="text-white/80 hover:text-white font-medium leading-relaxed tracking-wider transition-colors duration-200
                                                   text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl block">
-                                        <span className="sm:whitespace-nowrap">2100 N Greenville Ave.</span><br />
-                                        <span className="sm:whitespace-nowrap">Richardson, TX 75082, USA</span>
+                                        {fd.address}
                                     </a>
                                 </div>
 
@@ -313,10 +333,10 @@ export default function FloatingFooter() {
                                                    text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                         Phone
                                     </h4>
-                                    <a href="tel:+14695876255"
+                                    <a href={fd.phoneHref}
                                        className="text-white font-black hover:text-white/70 transition-colors duration-200 drop-shadow-md block
                                                   text-[13px] sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl whitespace-nowrap">
-                                        +1&nbsp;469-587-6255
+                                        {fd.phone}
                                     </a>
                                 </div>
 
@@ -324,8 +344,8 @@ export default function FloatingFooter() {
 
                                 <ul className="flex items-center justify-center md:justify-start gap-5 sm:gap-6" role="list">
                                     {[
-                                        { label: 'Instagram', href: 'https://www.instagram.com/aquavida.us?igsh=MWxxOGE1a3I3MGp5', icon: <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" /> },
-                                        { label: 'Facebook',  href: 'https://www.facebook.com/share/17zSuCHyWT/',                   icon: <FacebookIcon  className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" /> },
+                                        { label: 'Instagram', href: fd.instagramUrl, icon: <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" /> },
+                                        { label: 'Facebook',  href: fd.facebookUrl,  icon: <FacebookIcon  className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" /> },
                                     ].map(({ label, href, icon }) => (
                                         <li key={label}>
                                             <a href={href}
@@ -357,7 +377,7 @@ export default function FloatingFooter() {
                                       text-[10px] sm:text-[12px] md:text-[14px] lg:text-[15px] xl:text-base
                                       w-full lg:w-1/3 text-center lg:text-left order-2 lg:order-1
                                       leading-relaxed sm:whitespace-nowrap">
-                            © 2026 AQUAVIDA POOLS AND SPAS.<br className="sm:hidden" /> ALL RIGHTS RESERVED.
+                            {fd.copyrightText}
                         </p>
 
                         {/* Center Powered By (Primary focus) */}

@@ -107,6 +107,8 @@ const data: ServiceData = {
     ctaImage: '/images/services/pergola_design_cta.avif',
 };
 
-export default function PergolaClient() {
-    return <ServicePageShell d={data} />;
+import { mergeServiceData, type ServicePageOverride } from '@/lib/service-override'
+
+export default function PergolaClient({ override }: { override?: ServicePageOverride | null }) {
+    return <ServicePageShell d={mergeServiceData(data, override)} />;
 }

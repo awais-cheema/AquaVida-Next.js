@@ -107,6 +107,8 @@ const data: ServiceData = {
     ctaImage: '/images/services/patio_extensions_cta.avif',
 };
 
-export default function PaverClient() {
-    return <ServicePageShell d={data} />;
+import { mergeServiceData, type ServicePageOverride } from '@/lib/service-override'
+
+export default function PaverClient({ override }: { override?: ServicePageOverride | null }) {
+    return <ServicePageShell d={mergeServiceData(data, override)} />;
 }

@@ -107,6 +107,8 @@ const data: ServiceData = {
     ctaImage: '/images/services/outdoor_kitchen_cta.avif',
 };
 
-export default function OutdoorKitchensClient() {
-    return <ServicePageShell d={data} />;
+import { mergeServiceData, type ServicePageOverride } from '@/lib/service-override'
+
+export default function OutdoorKitchensClient({ override }: { override?: ServicePageOverride | null }) {
+    return <ServicePageShell d={mergeServiceData(data, override)} />;
 }
