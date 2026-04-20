@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import { reader } from '@/lib/keystatic-reader'
+import { buildPageMetadata } from '@/lib/seo'
 import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell'
+
+export async function generateMetadata(): Promise<Metadata> {
+    return buildPageMetadata('brycewood', {
+        title: 'Brycewood | AquaVida Portfolio',
+        description: 'A crystalline infinity pool in Seattle — sharp geometric lines and museum-grade water clarity pushed to the architectural limit.',
+    })
+}
 
 const DEFAULTS = {
     id: 'brycewood',

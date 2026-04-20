@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import { reader } from '@/lib/keystatic-reader'
+import { buildPageMetadata } from '@/lib/seo'
 import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell'
+
+export async function generateMetadata(): Promise<Metadata> {
+    return buildPageMetadata('montalcino', {
+        title: 'Montalcino | AquaVida Portfolio',
+        description: 'A nocturnal sanctuary in Austin — sunken fire feature, zero-edge design, and precision hydraulics for high-end social architecture.',
+    })
+}
 
 const DEFAULTS = {
     id: 'montalcino',

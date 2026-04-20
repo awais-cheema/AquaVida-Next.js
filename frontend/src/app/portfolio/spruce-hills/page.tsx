@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import { reader } from '@/lib/keystatic-reader'
+import { buildPageMetadata } from '@/lib/seo'
 import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell'
+
+export async function generateMetadata(): Promise<Metadata> {
+    return buildPageMetadata('spruce-hills', {
+        title: 'Spruce Hills | AquaVida Portfolio',
+        description: 'A gravity-defying cantilevered infinity edge in Los Angeles — concrete brutalism meets organic tranquility on an extreme hillside.',
+    })
+}
 
 const DEFAULTS = {
     id: 'spruce-hills',

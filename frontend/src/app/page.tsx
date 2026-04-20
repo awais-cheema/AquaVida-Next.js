@@ -2,8 +2,8 @@
  * Home page — hero-only cinematic experience.
  */
 import type { Metadata } from 'next';
-import { getPageBySlug } from '@/lib/api';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
+import { buildPageMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
 import HeroSection from '@/sections/HeroSection';
 import HeroScrollOverlay from '@/components/hero/HeroScrollOverlay';
@@ -18,25 +18,10 @@ import HeroContentOverlay9  from '@/components/hero/HeroContentOverlay9';
 import HeroContentOverlay10 from '@/components/hero/HeroContentOverlay10';
 
 export async function generateMetadata(): Promise<Metadata> {
-    try {
-        const page = await getPageBySlug('home');
-        const seo = page.seo;
-        return {
-            title: seo?.effective_title || 'AquaVida Pools and Spas',
-            description: seo?.meta_description || 'Premium pool design, construction and outdoor living by AquaVida.',
-            openGraph: {
-                title: seo?.og_title || 'AquaVida Pools and Spas',
-                description: seo?.og_description || '',
-                url: SITE_URL,
-                images: seo?.og_image_url ? [seo.og_image_url] : [],
-            },
-            alternates: {
-                canonical: seo?.canonical_url || SITE_URL,
-            },
-        };
-    } catch {
-        return { title: 'AquaVida Pools and Spas' };
-    }
+    return buildPageMetadata('home', {
+        title: 'AquaVida Pools and Spas',
+        description: 'Premium pool design, construction and outdoor living by AquaVida.',
+    })
 }
 
 export default async function HomePage() {

@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import SiteShell from '@/components/SiteShell';
 import { reader } from '@/lib/keystatic-reader';
+import { getGlobalSeo } from '@/lib/seo';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import '@/styles/globals.css';
 
@@ -26,36 +27,42 @@ const allomira = localFont({
     preload: true,
 });
 
-export const metadata: Metadata = {
-    metadataBase: new URL(SITE_URL),
-    title: {
-        default: 'AquaVida Pools and Spas',
-        template: '%s | AquaVida Pools and Spas',
-    },
-    description: 'AquaVida blends cutting-edge technology with ocean-inspired design. Interactive 3D experiences.',
-    icons: {
-        icon: [
-            { url: '/logo.avif', type: 'image/avif' },
-        ],
-        apple: '/logo.avif',
-        shortcut: '/logo.avif',
-    },
-    openGraph: {
-        type: 'website',
-        siteName: SITE_NAME,
-        locale: 'en_US',
-    },
-    twitter: {
-        card: 'summary_large_image',
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
-    verification: {
-        google: 'wcjVQ-27D9k6VhuenwGqKiTUwiZjb-AcF51SL3LJ_wY',
-    },
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const g = await getGlobalSeo()
+    const siteUrl = g?.siteUrl || SITE_URL
+    const defaultRobots = g?.defaultRobots || 'index,follow'
+    return {
+        metadataBase: new URL(siteUrl),
+        title: {
+            default: g?.defaultTitle || 'AquaVida Pools and Spas',
+            template: g?.titleTemplate || '%s | AquaVida Pools and Spas',
+        },
+        description: g?.defaultDescription || 'AquaVida blends cutting-edge technology with ocean-inspired design.',
+        icons: {
+            icon: [{ url: '/logo.avif', type: 'image/avif' }],
+            apple: '/logo.avif',
+            shortcut: '/logo.avif',
+        },
+        openGraph: {
+            type: 'website',
+            siteName: g?.siteName || SITE_NAME,
+            locale: 'en_US',
+            ...(g?.defaultOgImage ? { images: [g.defaultOgImage] } : {}),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            ...(g?.twitterHandle ? { site: g.twitterHandle } : {}),
+        },
+        robots: {
+            index: !defaultRobots.includes('noindex'),
+            follow: !defaultRobots.includes('nofollow'),
+        },
+        verification: {
+            google: g?.googleVerification || 'wcjVQ-27D9k6VhuenwGqKiTUwiZjb-AcF51SL3LJ_wY',
+            ...(g?.bingVerification ? { other: { 'msvalidate.01': [g.bingVerification] } } : {}),
+        },
+    }
+}
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -68,7 +75,13 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const footerData = await reader.singletons.footerSettings.read().catch(() => null)
+    const [footerData, g] = await Promise.all([
+        reader.singletons.footerSettings.read().catch(() => null),
+        getGlobalSeo(),
+    ])
+
+    const clarityId = g?.clarityId || 'vke7bmqua4'
+    const gaId = g?.googleAnalyticsId || null
 
     return (
         <html lang="en" className={`dark ${allomira.variable}`} suppressHydrationWarning>
@@ -77,9 +90,21 @@ export default async function RootLayout({
                     id="clarity-analytics"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
-                        __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vke7bmqua4");`,
+                        __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${clarityId}");`,
                     }}
                 />
+                {gaId && (
+                    <>
+                        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+                        <Script
+                            id="google-analytics"
+                            strategy="afterInteractive"
+                            dangerouslySetInnerHTML={{
+                                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`,
+                            }}
+                        />
+                    </>
+                )}
             </head>
             <body suppressHydrationWarning>
                 <SiteShell footerData={footerData ?? null}>

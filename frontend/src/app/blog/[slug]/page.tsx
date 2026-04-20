@@ -1,4 +1,5 @@
 import { reader } from '@/lib/keystatic-reader'
+import { getGlobalSeo } from '@/lib/seo'
 import { DocumentRenderer } from '@keystatic/core/renderer'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,11 +13,29 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const post = await reader.collections.blogs.read(slug).catch(() => null)
+    const [post, g] = await Promise.all([
+        reader.collections.blogs.read(slug).catch(() => null),
+        getGlobalSeo(),
+    ])
     if (!post) return {}
+    const title = post.title ? `${post.title} | AquaVida` : slug
+    const description = post.excerpt || g?.defaultDescription || ''
     return {
-        title: post.title || slug,
-        description: post.excerpt || '',
+        title: { absolute: title },
+        description,
+        openGraph: {
+            title,
+            description,
+            siteName: g?.siteName || 'AquaVida Pools and Spas',
+            type: 'article',
+            ...(post.featured_image ? { images: [post.featured_image] } : {}),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            ...(g?.twitterHandle ? { site: g.twitterHandle } : {}),
+        },
     }
 }
 

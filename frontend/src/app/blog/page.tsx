@@ -1,10 +1,14 @@
+import type { Metadata } from 'next'
 import { reader } from '@/lib/keystatic-reader'
 import { getBlogPosts, BlogPost } from '@/lib/api'
+import { buildPageMetadata } from '@/lib/seo'
 import BlogClient from './BlogClient'
 
-export const metadata = {
-    title: 'Blog | AquaVida Pools and Spas',
-    description: 'Explore the latest insights in aquatic architecture, pool engineering, and outdoor luxury design.',
+export async function generateMetadata(): Promise<Metadata> {
+    return buildPageMetadata('blog', {
+        title: 'Blog | AquaVida Pools and Spas',
+        description: 'Explore the latest insights in aquatic architecture, pool engineering, and outdoor luxury design.',
+    })
 }
 
 export default async function BlogPage() {
