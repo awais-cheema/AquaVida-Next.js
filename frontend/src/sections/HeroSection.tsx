@@ -304,22 +304,14 @@ export default function HeroSection() {
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
                     if (isMobile) {
-                        // Mobile: lerp toward target for smooth feel, then draw single
-                        // integer frames only — no blending. Blending two frames creates
-                        // a visible ghost/double-image that feels wrong on mobile.
-                        lastDrawnFrame = -1; // invalidate idle-mode snap cache
-                        if (scrollVelocity > MOBILE_SLOW_VEL) {
-                            currentFrame += (proxy.targetFrame - currentFrame) * MOBILE_LERP;
-                        } else {
-                            currentFrame = proxy.targetFrame;
-                        }
-
-                        const idx = Math.max(0, Math.min(Math.floor(currentFrame), maxFrame));
-                        if (Math.abs(idx - lastRenderedFloat) >= MOBILE_SKIP_THRESHOLD) {
-                            lastRenderedFloat = idx;
+                        // Mobile: GSAP scrub:0.3 handles smoothing — track proxy directly, no extra lerp.
+                        const idx = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
+                        if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
                             if (img) {
                                 renderer.drawFrame(img, idx);
+                                lastDrawnFrame    = idx;
+                                lastRenderedFloat = idx;
                                 if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
                             }
                         }
@@ -338,17 +330,8 @@ export default function HeroSection() {
 
                 } else {
                     // ── Idle mode: snap to integer, single draw, no ghosting ──
-                    // Mobile: if currentFrame is far from target (e.g. after a fast reverse
-                    // swipe from the footer), keep lerping instead of hard-snapping.
-                    // This prevents the visual jump to frame 0 when momentum scroll
-                    // sweeps through the entire hero zone before isScrolling times out.
-                    if (isMobile && Math.abs(proxy.targetFrame - currentFrame) > 2) {
-                        const delta  = (proxy.targetFrame - currentFrame) * MOBILE_LERP;
-                        const capped = Math.max(-MOBILE_SETTLE_SPEED, Math.min(MOBILE_SETTLE_SPEED, delta));
-                        currentFrame = Math.max(0, Math.min(currentFrame + capped, maxFrame));
-                    } else {
-                        currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
-                    }
+                    // GSAP scrub:0.3 on mobile ensures proxy.targetFrame is already smooth here.
+                    currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
                     const snapped = Math.round(currentFrame);
 
                     if (snapped !== lastDrawnFrame) {
@@ -421,7 +404,7 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   true, // instant scrub — mobile smoothing handled by MOBILE_LERP in render loop
+                        scrub:   isMobile ? 0.3 : true, // mobile: GSAP smoothing; desktop: instant (ScrollSmoother handles it)
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       1,
