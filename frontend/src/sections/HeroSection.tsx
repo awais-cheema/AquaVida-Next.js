@@ -305,24 +305,37 @@ export default function HeroSection() {
 
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
-                    // renderFrame lerps toward proxy.targetFrame: produces a smooth multi-frame
-                    // slide so the animation glides forward/backward rather than snapping instantly.
-                    renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
-                    const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
-                    if (idx !== lastDrawnFrame) {
-                        const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
-                        if (img) {
-                            if (isMobile) renderer.drawFrame(img, idx);
-                            else          renderer.drawDirect(img, idx);
-                            lastDrawnFrame    = idx;
-                            lastRenderedFloat = renderFrame;
-                            if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
+                    if (isMobile) {
+                        // Mobile: scrub:0.3 is the single smoothing source — draw proxy directly.
+                        // Adding a second lerp here would double-buffer and risk oscillation.
+                        const idx = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
+                        if (idx !== lastDrawnFrame) {
+                            const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
+                            if (img) {
+                                renderer.drawFrame(img, idx);
+                                lastDrawnFrame    = idx;
+                                lastRenderedFloat = idx;
+                                if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
+                            }
+                        }
+                    } else {
+                        // Desktop: scrub:true = instant proxy; RENDER_LERP trails for cinematic slide.
+                        renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
+                        const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
+                        if (idx !== lastDrawnFrame) {
+                            const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
+                            if (img) {
+                                renderer.drawDirect(img, idx);
+                                lastDrawnFrame    = idx;
+                                lastRenderedFloat = renderFrame;
+                                if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
+                            }
                         }
                     }
 
                 } else {
                     // ── Idle mode: snap renderFrame, single draw, no ghosting ──
-                    renderFrame  = proxy.targetFrame;  // snap clean — no trailing ghost when stopped
+                    renderFrame = proxy.targetFrame;  // snap clean — no trailing ghost when stopped
                     currentFrame = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
                     const snapped = Math.round(currentFrame);
 
@@ -396,7 +409,7 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   true, // instant proxy update — RENDER_LERP in rAF loop provides smooth trailing effect
+                        scrub:   isMobile ? 0.3 : true, // mobile: 0.3s lag prevents inertia-swipe jump-to-start; desktop: instant (RENDER_LERP handles smoothness)
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       1,
