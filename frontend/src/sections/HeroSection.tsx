@@ -534,7 +534,7 @@ export default function HeroSection() {
         <section
             ref={sectionRef}
             className="relative w-full overflow-hidden bg-[#0d0a07]"
-            style={{ height: '100svh', minHeight: 450 }}
+            style={{ height: '100dvh', minHeight: 450 }}
             aria-label="Hero cinematic scroll"
             id="hero-section"
         >
