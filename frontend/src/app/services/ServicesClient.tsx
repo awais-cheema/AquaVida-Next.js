@@ -208,7 +208,7 @@ function TrustedPartnerships({ testimonials }: { testimonials: TestimonialItem[]
 
 /* ── Floating images CTA ──────────────────────────────────────────────── */
 
-function FloatingCTA() {
+function FloatingCTA({ ctaLabel, ctaHeading, ctaButtonText, ctaButtonHref }: { ctaLabel?: string; ctaHeading?: string; ctaButtonText?: string; ctaButtonHref?: string }) {
     const secRef = useRef<HTMLElement>(null);
     const [vis, setVis] = useState(false);
 
@@ -259,22 +259,22 @@ function FloatingCTA() {
                 <Reveal>
                     <p className="text-base uppercase tracking-[0.32em] font-medium mb-6"
                        style={{ color: '#63b589' }}>
-                        What We Do
-                    </p>
-                    <h2 className="font-allomira font-bold text-white leading-tight mb-10"
-                        style={{ fontSize: 'clamp(22px, 3.5vw, 48px)' }}>
-                        Bring Your Vision to Life&mdash;<br />Connect with AquaVida Today
-                    </h2>
-                    <Link href="/contact"
-                          className="relative z-20 inline-flex items-center justify-center px-10 py-4 font-semibold text-white font-allomira transition-all duration-200 hover:brightness-110 active:scale-95"
-                          style={{
-                              background: 'rgba(236,91,19,0.92)',
-                              boxShadow: '0 0 0 1px rgba(236,91,19,0.40), 0 6px 18px rgba(236,91,19,0.28)',
-                              borderRadius: 4,
-                              fontSize: 'clamp(15px, 1.1vw, 18px)',
-                          }}>
-                        Send Your Inquiry
-                    </Link>
+                         {ctaLabel || 'What We Do'}
+                     </p>
+                     <h2 className="font-allomira font-bold text-white leading-tight mb-10"
+                         style={{ fontSize: 'clamp(22px, 3.5vw, 48px)' }}>
+                         {ctaHeading || <>Bring Your Vision to Life&mdash;<br />Connect with AquaVida Today</>}
+                     </h2>
+                     <Link href={ctaButtonHref || '/contact'}
+                           className="relative z-20 inline-flex items-center justify-center px-10 py-4 font-semibold text-white font-allomira transition-all duration-200 hover:brightness-110 active:scale-95"
+                           style={{
+                               background: 'rgba(236,91,19,0.92)',
+                               boxShadow: '0 0 0 1px rgba(236,91,19,0.40), 0 6px 18px rgba(236,91,19,0.28)',
+                               borderRadius: 4,
+                               fontSize: 'clamp(15px, 1.1vw, 18px)',
+                           }}>
+                         {ctaButtonText || 'Send Your Inquiry'}
+                     </Link>
                 </Reveal>
             </div>
         </section>
@@ -283,10 +283,26 @@ function FloatingCTA() {
 
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
+export type CorePrincipleItem = {
+    label: string; line1: string; line2: string; title: string; sub: string; image: string;
+}
+
 export interface ServicesClientProps {
     initialServices?: ServiceItem[]
     initialTestimonials?: TestimonialItem[]
     initialFaqItems?: { question: string; answer: string }[]
+    heroImage?: string
+    heroTitle?: string
+    heroTitleRight?: string
+    expertiseLabel?: string
+    expertiseTitle?: string
+    expertiseDescription?: string
+    corePrinciplesTitle?: string
+    corePrinciples?: CorePrincipleItem[]
+    ctaLabel?: string
+    ctaHeading?: string
+    ctaButtonText?: string
+    ctaButtonHref?: string
 }
 
 const DEFAULT_SERVICE_FAQS = [
@@ -295,7 +311,13 @@ const DEFAULT_SERVICE_FAQS = [
     { question: "How long does a project stay in the design phase?", answer: "Typically 2-4 weeks, ensuring every detail of the hydraulic and structural plan is perfected before excavation." },
 ]
 
-export default function ServicesClient({ initialServices, initialTestimonials, initialFaqItems }: ServicesClientProps = {}) {
+export default function ServicesClient({
+    initialServices, initialTestimonials, initialFaqItems,
+    heroImage, heroTitle, heroTitleRight,
+    expertiseLabel, expertiseTitle, expertiseDescription,
+    corePrinciplesTitle, corePrinciples,
+    ctaLabel, ctaHeading, ctaButtonText, ctaButtonHref,
+}: ServicesClientProps = {}) {
     const services     = initialServices     ?? SERVICES
     const testimonials = initialTestimonials ?? TESTIMONIALS
     const faqItems     = initialFaqItems?.length ? initialFaqItems : DEFAULT_SERVICE_FAQS
@@ -349,7 +371,7 @@ export default function ServicesClient({ initialServices, initialTestimonials, i
                     {/* Parallax background image */}
                     <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
                         <Image
-                            src="https://www.exscapedesigns.com/hubfs/Imported_Blog_Media/Who-Do-You-Go-to-for-High-Quality-Pool-Installation_--1-1.jpg"
+                            src={heroImage || 'https://www.exscapedesigns.com/hubfs/Imported_Blog_Media/Who-Do-You-Go-to-for-High-Quality-Pool-Installation_--1-1.jpg'}
                             alt=""
                             fill
                             className="object-cover scale-110"
@@ -363,12 +385,12 @@ export default function ServicesClient({ initialServices, initialTestimonials, i
                     <div className="relative z-10 max-w-[1600px] mx-auto flex items-center justify-center w-full gap-4 md:gap-10 px-6 md:px-16">
                         <Reveal>
                             <h1 className="font-allomira font-bold text-white leading-none select-none"
-                                style={{ fontSize: 'clamp(40px, 12vw, 170px)' }}>Our</h1>
+                                style={{ fontSize: 'clamp(40px, 12vw, 170px)' }}>{heroTitle || 'Our'}</h1>
                         </Reveal>
                         <Reveal delay={0.08}>
                             <h1 className="font-allomira font-bold leading-none select-none text-white"
                                 style={{ fontSize: 'clamp(40px, 12vw, 170px)' }}>
-                                Services
+                                {heroTitleRight || 'Services'}
                             </h1>
                         </Reveal>
                     </div>
@@ -382,18 +404,17 @@ export default function ServicesClient({ initialServices, initialTestimonials, i
                 {/* ── Expertise heading ───────────────────────────── */}
                 <section className="px-6 md:px-16 pt-10 pb-12 max-w-[1600px] mx-auto">
                     <Reveal>
-                        <p className="text-[16.5px] uppercase tracking-[0.32em] font-medium mb-5" style={{ color: '#63b589' }}>Services</p>
+                        <p className="text-[16.5px] uppercase tracking-[0.32em] font-medium mb-5" style={{ color: '#63b589' }}>{expertiseLabel || 'Services'}</p>
                     </Reveal>
                     <Reveal delay={0.08}>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-10">
                             <h2 className="font-allomira font-bold text-white leading-tight md:whitespace-nowrap"
                                 style={{ fontSize: 'clamp(32px, 4.5vw, 58px)' }}>
-                                Our Area of Expertise Space
+                                {expertiseTitle || 'Our Area of Expertise Space'}
                             </h2>
                             <p className="text-white/40 leading-relaxed max-w-md md:text-left"
                                style={{ fontSize: 'clamp(20px, 1.2vw, 17px)' }}>
-                                AquaVida: A trusted leader in pool construction and outdoor living,
-                                providing seamless experiences to Dallas homeowners.
+                                {expertiseDescription || 'AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners.'}
                             </p>
                         </div>
                     </Reveal>
@@ -461,7 +482,7 @@ export default function ServicesClient({ initialServices, initialTestimonials, i
                 </div>*/}
 
                 {/* ── Core Principles Globe ───────────────────────── */}
-                <CorePrinciplesGlobe />
+                <CorePrinciplesGlobe title={corePrinciplesTitle} principles={corePrinciples} />
 
                 {/* ── Trusted Partnerships ────────────────────────── */}
                 <Reveal>
@@ -469,7 +490,7 @@ export default function ServicesClient({ initialServices, initialTestimonials, i
                 </Reveal>
 
                 {/* ── Floating images CTA ─────────────────────────── */}
-                <FloatingCTA />
+                <FloatingCTA ctaLabel={ctaLabel} ctaHeading={ctaHeading} ctaButtonText={ctaButtonText} ctaButtonHref={ctaButtonHref} />
 
                 {/* ── FAQ ─────────────────────────────────────────── */}
                 <FAQ

@@ -4,10 +4,11 @@ import { buildPageMetadata } from '@/lib/seo'
 import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell'
 
 export async function generateMetadata(): Promise<Metadata> {
+    const entry = await reader.collections.portfolioProjects.read('spruce-hills').catch(() => null)
     return buildPageMetadata('spruce-hills', {
         title: 'Spruce Hills | AquaVida Portfolio',
         description: 'A gravity-defying cantilevered infinity edge in Los Angeles — concrete brutalism meets organic tranquility on an extreme hillside.',
-    })
+    }, entry)
 }
 
 const DEFAULTS = {
@@ -36,7 +37,9 @@ export default async function SpruceHillsPage() {
     const p = entry
         ? {
             ...DEFAULTS, ...entry, id: 'spruce-hills',
-            gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g })) : DEFAULTS.gallery,
+            heroImage: entry.heroImage ?? DEFAULTS.heroImage,
+            philosophyImage: entry.philosophyImage ?? DEFAULTS.philosophyImage,
+            gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g, url: g.url ?? '' })) as any : DEFAULTS.gallery,
             faqItems: entry.faqItems?.length ? [...entry.faqItems].map(f => ({ ...f })) : undefined,
           }
         : DEFAULTS

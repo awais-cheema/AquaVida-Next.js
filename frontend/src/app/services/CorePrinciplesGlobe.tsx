@@ -49,6 +49,15 @@ const PRINCIPLES = [
     },
 ] as const;
 
+type PrincipleInput = {
+    label: string; line1: string; line2: string; title: string; sub: string; image: string;
+}
+
+interface CorePrinciplesGlobeProps {
+    title?: string;
+    principles?: PrincipleInput[];
+}
+
 /* ── Geometry ─────────────────────────────────────────────────────────── */
 
 type Pos = 'tl' | 'tr' | 'bl' | 'br';
@@ -76,10 +85,21 @@ const POSITIONS: Pos[] = ['tl', 'tr', 'bl', 'br'];
 
 /* ── Component ────────────────────────────────────────────────────────── */
 
-export default function CorePrinciplesGlobe() {
+export default function CorePrinciplesGlobe({ title: sectionTitle, principles: cmsPrinciples }: CorePrinciplesGlobeProps = {}) {
     const [hovered, setHovered] = useState<string | null>(null);
 
-    const active = PRINCIPLES.find(p => p.id === hovered);
+    const activePrinciples = (cmsPrinciples?.length ? cmsPrinciples.map((p, i) => ({
+        id: `principle-${i}`,
+        label: p.label,
+        pos: POSITIONS[i % 4],
+        line1: p.line1,
+        line2: p.line2,
+        title: p.title,
+        sub: p.sub,
+        image: p.image.startsWith('http') ? p.image : getAssetUrl(p.image),
+    })) : PRINCIPLES) as ReadonlyArray<typeof PRINCIPLES[number]>;
+
+    const active = activePrinciples.find(p => p.id === hovered);
     const panelVis = !!hovered;
 
     const handleTap = (id: string) => {
@@ -93,7 +113,7 @@ export default function CorePrinciplesGlobe() {
             <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#63b589]/10 rounded-full blur-[120px] pointer-events-none" />
 
             {/* ── Background (Instant Swap) ── */}
-            {PRINCIPLES.map(p => (
+            {activePrinciples.map(p => (
                 <div key={p.id} className="absolute inset-0 object-cover pointer-events-none"
                      style={{
                         backgroundImage: `url(${p.image})`,
@@ -108,7 +128,7 @@ export default function CorePrinciplesGlobe() {
             {/* ── Heading ── */}
             <div className="relative z-10 text-center mb-4 lg:mb-10 px-6">
                 <h2 className="font-allomira font-bold text-white leading-[1.1] select-none text-[7vw] md:text-[44px] lg:text-[76px]">
-                    Our Core Principles
+                    {sectionTitle || 'Our Core Principles'}
                 </h2>
             </div>
 
@@ -159,7 +179,7 @@ export default function CorePrinciplesGlobe() {
 
                         <g clipPath="url(#cpqSphere)">
                             {/* Hover / Tap Tints */}
-                            {PRINCIPLES.map(p => (
+                            {activePrinciples.map(p => (
                                 <g key={`hf-${p.id}`} clipPath={`url(#cpqQ-${p.pos})`}>
                                     <circle cx={CX} cy={CY} r={R}
                                             fill={hovered === p.id ? 'rgba(255, 255, 255, 0.08)' : 'transparent'} />
@@ -167,7 +187,7 @@ export default function CorePrinciplesGlobe() {
                             ))}
 
                             {/* Labels */}
-                            {PRINCIPLES.map(p => {
+                            {activePrinciples.map(p => {
                                 const c = Q_CENTER[p.pos];
                                 const hv = hovered === p.id;
 
@@ -190,7 +210,7 @@ export default function CorePrinciplesGlobe() {
                             })}
 
                             {/* Hit Areas — hover (desktop) + tap (mobile) */}
-                            {PRINCIPLES.map(p => {
+                            {activePrinciples.map(p => {
                                 const q = Q_RECT[p.pos];
                                 return (
                                     <rect key={`mt-${p.id}`} x={q.x} y={q.y} width={q.w} height={q.h} fill="transparent" style={{ cursor: 'pointer' }}

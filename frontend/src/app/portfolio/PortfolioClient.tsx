@@ -171,10 +171,39 @@ const DEFAULT_PORTFOLIO_FAQS = [
     { question: "Do you offer private consultations at featured sites?", answer: "Due to client privacy, we do not offer public tours. However, we maintain a small number of 'Signature Reference' sites where private viewings can be arranged for serious inquiries." },
 ]
 
+export type PortfolioProjectItem = {
+    slug: string; name: string; category: string; year: string;
+    location: string; description: string; image: string;
+    gridSize: string; color: string;
+}
+
+interface PortfolioClientProps {
+    faqItems?: { question: string; answer: string }[]
+    headerLabel?: string
+    headerTitle?: string
+    headerDescription?: string
+    curationLabel?: string
+    curationValue?: string
+    focusLabel?: string
+    focusValue?: string
+    projects?: PortfolioProjectItem[]
+    ctaTitle?: string
+    ctaDescription?: string
+    ctaButtonText?: string
+    ctaButtonHref?: string
+}
+
 // ── MAIN PAGE ──────────────────────────────────────────────────────────────────
 
-export default function PortfolioClient({ faqItems }: { faqItems?: { question: string; answer: string }[] } = {}) {
+export default function PortfolioClient({
+    faqItems, headerLabel, headerTitle, headerDescription,
+    curationLabel, curationValue, focusLabel, focusValue,
+    projects: cmsProjects, ctaTitle, ctaDescription, ctaButtonText, ctaButtonHref,
+}: PortfolioClientProps = {}) {
     const activeFaqs = faqItems?.length ? faqItems : DEFAULT_PORTFOLIO_FAQS
+    const activeProjects = cmsProjects?.length
+        ? cmsProjects.map(p => ({ ...p, id: p.slug, gridSize: p.gridSize || 'col-span-1 row-span-1' }))
+        : PROJECTS
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
 
@@ -196,13 +225,13 @@ export default function PortfolioClient({ faqItems }: { faqItems?: { question: s
                         className="max-w-4xl"
                     >
                         <span className="flex items-center gap-3 text-[#A68A33] font-black tracking-[0.3em] uppercase lg:text-[0.9vw] md:text-[0.9vw] text-[3.5vw] leading-[1] mb-8">
-                            <Droplets size={22} className="text-[#A68A33]" /> ARCHITECTURAL ARCHIVE
+                            <Droplets size={22} className="text-[#A68A33]" /> {headerLabel || 'ARCHITECTURAL ARCHIVE'}
                         </span>
                         <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[1] uppercase mb-12">
-                            The Liquid<br />Portfolio
+                            {headerTitle || <>The Liquid<br />Portfolio</>}
                         </h1>
                         <p className="text-2xl md:text-[1.5vw] text-white/40 font-light max-w-xl leading-normal">
-                            A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.
+                            {headerDescription || 'A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.'}
                         </p>
                     </motion.div>
 
@@ -215,12 +244,12 @@ export default function PortfolioClient({ faqItems }: { faqItems?: { question: s
                         <div className="h-px w-32 bg-white/10" />
                         <div className="flex gap-12">
                             <div>
-                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">Curation</span>
-                                <span className="text-2xl md:text-[1.4vw] font-bold">Volume III</span>
+                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">{curationLabel || 'Curation'}</span>
+                                <span className="text-2xl md:text-[1.4vw] font-bold">{curationValue || 'Volume III'}</span>
                             </div>
                             <div>
-                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">Focus</span>
-                                <span className="text-2xl md:text-[1.4vw] font-bold">Infinite Edge</span>
+                                <span className="text-2xl md:text-[1.2vw] font-black text-white/50 tracking-widest uppercase block mb-1">{focusLabel || 'Focus'}</span>
+                                <span className="text-2xl md:text-[1.4vw] font-bold">{focusValue || 'Infinite Edge'}</span>
                             </div>
                         </div>
                     </motion.div>
@@ -230,7 +259,7 @@ export default function PortfolioClient({ faqItems }: { faqItems?: { question: s
             {/* ── BENTO GRID ── */}
             <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto mb-40 ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[260px] md:auto-rows-[280px] grid-flow-dense">
-                    {PROJECTS.map((project) => (
+                    {activeProjects.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
@@ -249,13 +278,13 @@ export default function PortfolioClient({ faqItems }: { faqItems?: { question: s
 
                     <Zap className="mx-auto mb-6 text-[#A68A33] opacity-20 group-hover:opacity-100 transition-opacity duration-1000" size={40} />
                     <h2 className="text-[clamp(28px,3.5vw,60px)] font-black leading-none uppercase mb-6 tracking-tighter">
-                        Next Generation<br />Pool Design
+                        {ctaTitle || <>Next Generation<br />Pool Design</>}
                     </h2>
                     <p className="text-base md:text-[1.3vw] text-white/40 font-light max-w-3xl md:max-w-[40vw] mx-auto mb-8 leading-relaxed">
-                        We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture.
+                        {ctaDescription || "We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture."}
                     </p>
-                    <Link href="/contact" className="btn inline-flex items-center justify-center gap-4 w-[60vw] md:w-auto md:gap-6 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[6vw] py-[3vw] md:px-10 md:py-4 rounded-full text-base font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
-                        Begin Your Project
+                    <Link href={ctaButtonHref || '/contact'} className="btn inline-flex items-center justify-center gap-4 w-[60vw] md:w-auto md:gap-6 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[6vw] py-[3vw] md:px-10 md:py-4 rounded-full text-base font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
+                        {ctaButtonText || 'Begin Your Project'}
                         <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </motion.div>

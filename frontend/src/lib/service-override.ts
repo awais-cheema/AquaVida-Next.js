@@ -7,15 +7,15 @@ export type ServicePageOverride = {
   heroTitle: string
   heroHighlight: string
   heroBody: string
-  heroImage: string
+  heroImage: string | null
   overviewTitle: string
   overviewBody: string
-  overviewImage: string
+  overviewImage: string | null
   processTitle: string
   processSteps: ReadonlyArray<{ readonly title: string; readonly body: string }>
   investmentTitle: string
   investmentBody: string
-  investmentImage: string
+  investmentImage: string | null
   servicesTitle: string
   servicesItems: ReadonlyArray<{ readonly title: string; readonly body: string }>
   featuresTitle: string
@@ -24,8 +24,8 @@ export type ServicePageOverride = {
   standards: ReadonlyArray<{ readonly title: string; readonly body: string }>
   ctaTitle: string
   ctaBody: string
-  ctaImage: string
-  faqItems?: ReadonlyArray<{ readonly question: string; readonly answer: string }>
+  ctaImage: string | null
+  faqItems?: ReadonlyArray<{ readonly question: string; readonly answer: string }> | null
   [key: string]: unknown
 }
 

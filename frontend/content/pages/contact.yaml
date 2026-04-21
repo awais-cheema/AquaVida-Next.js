@@ -1,0 +1,26 @@
+heading: "Let's Create Spaces That Inspire"
+address: '2100 N Greenville Ave, Richardson, TX 75082, USA'
+phone: '+1 469-587-6255'
+services:
+  - id: pool-design
+    label: Pool design
+  - id: pool-construction
+    label: Pool construction
+  - id: outdoor-grill
+    label: Outdoor kitchens
+  - id: fire-pits
+    label: Fire pits / fire places
+  - id: pool-remodeling
+    label: Pool remodeling
+  - id: pergola-design
+    label: Pergola design
+seoTitle: 'Contact Us | AquaVida Pools and Spas'
+seoDescription: 'Reach out to the AquaVida team to begin designing your architectural pool and luxury outdoor living space.'
+seoKeywords: 'contact AquaVida, pool builder dallas contact, custom outdoor living, get a quote'
+ogTitle: ''
+ogDescription: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []

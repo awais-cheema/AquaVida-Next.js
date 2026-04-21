@@ -18,25 +18,36 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         getGlobalSeo(),
     ])
     if (!post) return {}
-    const title = post.title ? `${post.title} | AquaVida` : slug
-    const description = post.excerpt || g?.defaultDescription || ''
-    return {
+    const title = post.seoTitle || (post.title ? `${post.title} | AquaVida` : slug)
+    const description = post.seoDescription || post.excerpt || g?.defaultDescription || ''
+    const ogTitleVal = post.ogTitle || title
+    const ogDescVal = post.ogDescription || description
+    const noIndex = post.seoNoIndex ?? false
+    const noFollow = post.seoNoFollow ?? false
+    const canonical = post.seoCanonicalUrl || undefined
+    const meta: Record<string, any> = {
         title: { absolute: title },
         description,
         openGraph: {
-            title,
-            description,
+            title: ogTitleVal,
+            description: ogDescVal,
             siteName: g?.siteName || 'AquaVida Pools and Spas',
             type: 'article',
-            ...(post.featured_image ? { images: [post.featured_image] } : {}),
+            ...(post.ogImage || post.featured_image ? { images: [post.ogImage || post.featured_image] } : {}),
         },
         twitter: {
             card: 'summary_large_image',
-            title,
-            description,
+            title: ogTitleVal,
+            description: ogDescVal,
             ...(g?.twitterHandle ? { site: g.twitterHandle } : {}),
         },
+        robots: { index: !noIndex, follow: !noFollow },
+        ...(canonical ? { alternates: { canonical } } : {}),
     }
+    if (post.seoKeywords) {
+        meta.keywords = post.seoKeywords.split(',').map((k: string) => k.trim())
+    }
+    return meta
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

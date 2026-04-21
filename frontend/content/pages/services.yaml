@@ -1,0 +1,105 @@
+heroImage: 'https://www.exscapedesigns.com/hubfs/Imported_Blog_Media/Who-Do-You-Go-to-for-High-Quality-Pool-Installation_--1-1.jpg'
+heroTitle: Our
+heroTitleRight: Services
+expertiseLabel: Services
+expertiseTitle: Our Area of Expertise Space
+expertiseDescription: 'AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners.'
+services:
+  - title: Pool Design
+    sub: Design Consultation
+    href: /services/pool-design
+    image: /images/services/pool_design_hero.avif
+    accent: '#0d5699'
+  - title: Pool Construction
+    sub: Full Build Management
+    href: /services/pool-construction
+    image: /images/services/pool_construction_hero.avif
+    accent: '#0a447a'
+  - title: Outdoor Kitchens
+    sub: Custom Outdoor Fabrication
+    href: /services/outdoor-grill
+    image: /images/services/outdoor_kitchen_hero.avif
+    accent: '#91792c'
+  - title: Fire Pits
+    sub: Stone Masonry & Gas
+    href: /services/fire-pit
+    image: /images/services/fire_pit_hero.avif
+    accent: '#a68a33'
+  - title: Pool Remodeling
+    sub: Renovation & Refresh
+    href: /services/pool-remodeling
+    image: /images/services/pool_remodeling_hero.avif
+    accent: '#63b589'
+  - title: Pergola Design
+    sub: Shade Structures
+    href: /services/pergola-design
+    image: /images/services/pergola_design_hero.avif
+    accent: '#0d5699'
+  - title: Patio Extensions
+    sub: Hardscape Solutions
+    href: /services/pavers
+    image: /images/services/patio_extensions_hero.avif
+    accent: '#91792c'
+corePrinciplesTitle: Our Core Principles
+corePrinciples:
+  - label: '01'
+    line1: The Ultimate
+    line2: Outdoor
+    title: The Ultimate Outdoor
+    sub: We view every project as a delicate ecosystem, where architecture and nature breathe in absolute unison.
+    image: /principle_holistic.webp
+  - label: '02'
+    line1: Aesthetically
+    line2: Pleasing
+    title: Aesthetically Pleasing
+    sub: Pushing the boundaries of hydraulic engineering and structural glass to create liquid masterpieces.
+    image: /principle_innovation.webp
+  - label: '03'
+    line1: Advocacy
+    line2: Speaks Itself
+    title: Advocacy Speaks Itself
+    sub: Honesty in materials and precision in execution are the cornerstones of the AquaVida legacy.
+    image: /principle_integrity.webp
+  - label: '04'
+    line1: Authentic
+    line2: Materials
+    title: Authentic Materials
+    sub: From the first sketch to the final splash, we pursue a standard of perfection that knows no compromise.
+    image: /principle_excellence.webp
+testimonials:
+  - client: The Martinez Family
+    location: Frisco, TX
+    type: Pool Construction · Outdoor Kitchen
+    quote: "The AquaVida team brought our vision to life better than we imagined. Every detail — from the pool shell to the stone fire pit — was executed with real precision. Our backyard is now the neighborhood gathering spot."
+    image: /images/services/svc-pool-construction.avif
+  - client: Thompson Residence
+    location: Dallas, TX
+    type: Pool Design · Outdoor Kitchen
+    quote: "AquaVida transformed our backyard into a true retreat. The pool design and outdoor kitchen came together seamlessly — every detail exceeded our expectations. Six months in, it still looks brand new every single morning."
+    image: /images/services/svc-pool-design.avif
+  - client: The Anderson Family
+    location: Plano, TX
+    type: Pergola Design · Patio Extensions
+    quote: "Our patio extension and pergola have extended our living season by months. Built for Texas weather, designed with intention — AquaVida delivered on both counts without any compromise."
+    image: /images/services/svc-pergola.avif
+ctaLabel: What We Do
+ctaHeading: "Bring Your Vision to Life — Connect with AquaVida Today"
+ctaButtonText: Send Your Inquiry
+ctaButtonHref: /contact
+faqItems:
+  - question: What is the typical investment for a custom pool?
+    answer: "Most AquaVida projects range from $85k to $250k+, depending on structural complexity, material selection, and site topography."
+  - question: Do you offer full design-build services?
+    answer: "Yes, we manage every phase from initial 3D architectural rendering to final stone fabrication and structural start-up."
+  - question: How long does a project stay in the design phase?
+    answer: "Typically 2-4 weeks, ensuring every detail of the hydraulic and structural plan is perfected before excavation."
+seoTitle: 'Services | AquaVida Pools and Spas'
+seoDescription: 'Custom pool construction, outdoor kitchens, fire pits, pergolas, and more — precision-engineered for Dallas luxury living.'
+seoKeywords: 'pool construction dallas, outdoor kitchen, fire pit, pergola, pool remodeling, patio extensions, AquaVida'
+ogTitle: ''
+ogDescription: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []

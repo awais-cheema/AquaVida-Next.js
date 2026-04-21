@@ -3,12 +3,14 @@ import { reader } from '@/lib/keystatic-reader'
 import { getBlogPosts, BlogPost } from '@/lib/api'
 import { buildPageMetadata } from '@/lib/seo'
 import BlogClient from './BlogClient'
+import SeoLinks from '@/components/layout/SeoLinks'
 
 export async function generateMetadata(): Promise<Metadata> {
+    const settings = await reader.singletons.blogSettings.read().catch(() => null)
     return buildPageMetadata('blog', {
         title: 'Blog | AquaVida Pools and Spas',
         description: 'Explore the latest insights in aquatic architecture, pool engineering, and outdoor luxury design.',
-    })
+    }, settings)
 }
 
 export default async function BlogPage() {
@@ -54,5 +56,10 @@ export default async function BlogPage() {
     const settings = await reader.singletons.blogSettings.read().catch(() => null)
     const faqItems = settings?.faqItems?.length ? [...settings.faqItems].map(f => ({ ...f })) : undefined
 
-    return <BlogClient initialPosts={posts} faqItems={faqItems} />
+    return (
+        <>
+            <BlogClient initialPosts={posts} faqItems={faqItems} />
+            <SeoLinks internalLinks={settings?.internalLinks} externalLinks={settings?.externalLinks} />
+        </>
+    )
 }

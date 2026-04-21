@@ -36,9 +36,32 @@ export const getGlobalSeo = cache(async () =>
     reader.singletons.globalSeo.read().catch(() => null)
 )
 
+/* ── Inline SEO shape — matches the shared seoFieldsDef in keystatic.config ── */
+export interface InlineSeoData {
+  seoTitle?: string | null
+  seoDescription?: string | null
+  seoKeywords?: string | null
+  ogTitle?: string | null
+  ogDescription?: string | null
+  ogImage?: string | null
+  seoNoIndex?: boolean | null
+  seoNoFollow?: boolean | null
+  seoCanonicalUrl?: string | null
+}
+
+/**
+ * Build Next.js Metadata for any page.
+ *
+ * Priority chain (first non-empty wins):
+ *   1. Inline SEO fields embedded in the content entry (WordPress-style)
+ *   2. Per-page SEO collection entry  (advanced override)
+ *   3. Hardcoded fallbacks passed by the page component
+ *   4. Global SEO defaults
+ */
 export async function buildPageMetadata(
     pageSlug: string,
-    fallbacks: { title: string; description?: string }
+    fallbacks: { title: string; description?: string },
+    inlineSeo?: InlineSeoData | null,
 ): Promise<Metadata> {
     const [g, p] = await Promise.all([
         getGlobalSeo(),
@@ -48,21 +71,22 @@ export async function buildPageMetadata(
     const siteUrl = g?.siteUrl || 'https://aquavidapools.com'
     const siteName = g?.siteName || 'AquaVida Pools and Spas'
 
-    const title = p?.title || fallbacks.title
-    const description = p?.description || fallbacks.description || g?.defaultDescription || ''
-    const ogTitle = p?.ogTitle || title
-    const ogDescription = p?.ogDescription || description
-    const ogImage = p?.ogImage || g?.defaultOgImage || null
-    const canonical = p?.canonicalUrl || undefined
-    const noIndex = p?.noIndex ?? false
-    const noFollow = p?.noFollow ?? false
+    const title = inlineSeo?.seoTitle || p?.title || fallbacks.title
+    const description = inlineSeo?.seoDescription || p?.description || fallbacks.description || g?.defaultDescription || ''
+    const ogTitleVal = inlineSeo?.ogTitle || p?.ogTitle || title
+    const ogDescVal = inlineSeo?.ogDescription || p?.ogDescription || description
+    const ogImage = inlineSeo?.ogImage || p?.ogImage || g?.defaultOgImage || null
+    const canonical = inlineSeo?.seoCanonicalUrl || p?.canonicalUrl || undefined
+    const noIndex = inlineSeo?.seoNoIndex ?? p?.noIndex ?? false
+    const noFollow = inlineSeo?.seoNoFollow ?? p?.noFollow ?? false
+    const keywords = inlineSeo?.seoKeywords || p?.keywords || undefined
 
     const meta: Metadata = {
         title: { absolute: title },
         description,
         openGraph: {
-            title: ogTitle,
-            description: ogDescription,
+            title: ogTitleVal,
+            description: ogDescVal,
             siteName,
             type: 'website',
             url: canonical || `${siteUrl}/${pageSlug === 'home' ? '' : pageSlug}`,
@@ -70,16 +94,16 @@ export async function buildPageMetadata(
         },
         twitter: {
             card: 'summary_large_image',
-            title: ogTitle,
-            description: ogDescription,
+            title: ogTitleVal,
+            description: ogDescVal,
             ...(g?.twitterHandle ? { site: g.twitterHandle } : {}),
         },
         robots: { index: !noIndex, follow: !noFollow },
         ...(canonical ? { alternates: { canonical } } : {}),
     }
 
-    if (p?.keywords) {
-        meta.keywords = p.keywords.split(',').map(k => k.trim())
+    if (keywords) {
+        meta.keywords = keywords.split(',').map(k => k.trim())
     }
 
     return meta

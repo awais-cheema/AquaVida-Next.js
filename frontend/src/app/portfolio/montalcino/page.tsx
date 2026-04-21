@@ -4,10 +4,11 @@ import { buildPageMetadata } from '@/lib/seo'
 import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell'
 
 export async function generateMetadata(): Promise<Metadata> {
+    const entry = await reader.collections.portfolioProjects.read('montalcino').catch(() => null)
     return buildPageMetadata('montalcino', {
         title: 'Montalcino | AquaVida Portfolio',
         description: 'A nocturnal sanctuary in Austin — sunken fire feature, zero-edge design, and precision hydraulics for high-end social architecture.',
-    })
+    }, entry)
 }
 
 const DEFAULTS = {
@@ -36,7 +37,9 @@ export default async function MontalcinoPage() {
     const p = entry
         ? {
             ...DEFAULTS, ...entry, id: 'montalcino',
-            gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g })) : DEFAULTS.gallery,
+            heroImage: entry.heroImage ?? DEFAULTS.heroImage,
+            philosophyImage: entry.philosophyImage ?? DEFAULTS.philosophyImage,
+            gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g, url: g.url ?? '' })) as any : DEFAULTS.gallery,
             faqItems: entry.faqItems?.length ? [...entry.faqItems].map(f => ({ ...f })) : undefined,
           }
         : DEFAULTS

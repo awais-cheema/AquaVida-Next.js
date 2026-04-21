@@ -1,0 +1,76 @@
+partners:
+  - key: vistafi
+    name: VISTAFI
+    subtitle: Frictionless Financing
+    details: Flexible Terms | Broad Credit Profiles | Renovation-Focused
+    insight: Vistafi pride ourselves on helping their clients find the best rates and terms to achieve their renovation project goals, regardless of their credit profile.
+    features:
+      - Rate and term matching
+      - Options across credit profiles
+      - Renovation project focused
+    logo: /vistafi.png
+    href: 'https://vistafi.com/dynamic-contractor/?id=001UO00000lWM2L&accName=Aquavida%20Pools%20and%20Spas'
+    ctaLabel: Engage with Vistafi
+  - key: lyon
+    name: Lyon Financial
+    subtitle: The Pool Specialist
+    details: $15K – $500K | Fixed Rates | Up to 20 Years
+    insight: Lyon works exclusively with pool & outdoor living loans. Their specialization means they understand the unique milestones of aquatic construction better than any general lender.
+    features:
+      - No home equity required
+      - Direct-to-contractor payments
+      - Fast pre-qualification
+    logo: /lyon.png
+    href: 'https://www.lyonfinancial.net'
+  - key: hfs
+    name: HFS Financial
+    subtitle: Complete Site Versatility
+    details: Up to $500K | No Equity | Same-Day Pre-Qual
+    insight: HFS allows you to fund your entire outdoor master plan—pool, kitchen, patio, and landscaping—in a single streamlined application with industry-leading approval rates.
+    features:
+      - Coverage for all site work
+      - Fixed rates from 6.99% APR
+      - No prepayment penalties
+    logo: /hfs.png
+    href: 'https://www.hfsfinancial.net'
+  - key: viking
+    name: Viking Capital
+    subtitle: Strategic Rate Shopping
+    details: $10K – $150K | Multi-Lender Network
+    insight: As a broker, Viking Capital shops multiple lenders simultaneously to secure the most competitive terms based specifically on your personal credit profile.
+    features:
+      - Broker model efficiency
+      - Response within 24 hours
+      - Specialists in pool brokering
+    logo: /viking.png
+    href: 'https://www.vikingcapitalloan.com'
+  - key: heloc
+    name: HELOC
+    subtitle: Asset-Backed Flexibility
+    details: Equity-Based | Variable Rates | Max Draw
+    insight: A Home Equity Line of Credit utilizes your properties established value. It typically offers the lowest possible initial rate and maximum flexibility for drawn funds.
+    features:
+      - Draw only what you need
+      - Potential tax deductions
+      - Revolving credit line
+    logo: /heloc.png
+    href: /contact
+faqItems:
+  - question: What are the typical terms for a specialized pool loan?
+    answer: Most of our partners offer terms ranging from 5 to 20 years. Shorter terms typically provide lower interest rates, while 20-year terms allow for the lowest possible monthly payment to keep your capital liquid.
+  - question: Do I need home equity to qualify for HFS or Lyon?
+    answer: No. Both Lyon Financial and HFS Financial specialize in signature-based lending, meaning your home's established equity is not required to secure the loan.
+  - question: Can I bundle landscaping and outdoor kitchens into a single loan?
+    answer: Yes. HFS Financial is specifically engineered to cover the entire 'outdoor living' master plan, including pool construction, landscaping, patio extensions, and custom outdoor kitchens.
+  - question: How long does the approval process take?
+    answer: HFS and Lyon typically provide a pre-qualification status within minutes. Full approval and funding coordination usually occur within 24–48 hours of document submission.
+  - question: Are there penalties for early repayment?
+    answer: Our primary partners—Lyon, HFS, and Viking—do not charge prepayment penalties, allowing you to pay off your investment ahead of schedule at your discretion.
+seoTitle: 'Financing | AquaVida Pools and Spas'
+seoDescription: 'Explore financing options for your luxury pool build. We partner with Vistafi, Lyon, HFS, and others to make your dream backyard a reality.'
+seoKeywords: 'pool financing, luxury pool loans, backyard remodeling finance, dallas pool builder'
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []

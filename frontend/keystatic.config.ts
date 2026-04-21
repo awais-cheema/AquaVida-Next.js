@@ -1,5 +1,81 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared SEO fields — embedded in every content type (WordPress-style).
+   Priority: inline SEO > per-page SEO collection entry > fallback defaults
+   ═══════════════════════════════════════════════════════════════════════════ */
+const seoFieldsDef = {
+  seoTitle: fields.text({
+    label: 'SEO — Meta Title',
+    description: '50–60 characters recommended. Leave blank to use page default.',
+  }),
+  seoDescription: fields.text({
+    label: 'SEO — Meta Description',
+    multiline: true,
+    description: '150–160 characters recommended.',
+  }),
+  seoKeywords: fields.text({
+    label: 'SEO — Focus Keywords',
+    description: 'Comma-separated, e.g. "pool construction, fiberglass pools"',
+  }),
+  ogTitle: fields.text({
+    label: 'SEO — Open Graph Title',
+    description: 'Falls back to Meta Title if blank',
+  }),
+  ogDescription: fields.text({
+    label: 'SEO — Open Graph Description',
+    multiline: true,
+  }),
+  ogImage: fields.image({
+    label: 'SEO — Open Graph Image (1200×630)',
+    directory: 'public/seo-images',
+    publicPath: '/seo-images/',
+  }),
+  seoNoIndex: fields.checkbox({ label: 'SEO — No Index', defaultValue: false }),
+  seoNoFollow: fields.checkbox({ label: 'SEO — No Follow', defaultValue: false }),
+  seoCanonicalUrl: fields.text({
+    label: 'SEO — Canonical URL',
+    description: 'Leave blank to use the automatic page URL',
+  }),
+
+  /* ── Internal Linking (interlinking between site pages) ──────────── */
+  internalLinks: fields.array(
+    fields.object({
+      anchorText: fields.text({ label: 'Anchor Text', description: 'The clickable link text (keyword-rich)' }),
+      targetUrl: fields.text({ label: 'Target Page URL', description: 'Internal path, e.g. /services/pool-construction' }),
+      context: fields.text({ label: 'Context / Placement Note', description: 'Where this link should appear (e.g. "in introduction paragraph")' }),
+    }),
+    {
+      label: 'Internal Links (SEO Interlinking)',
+      itemLabel: props => `${props.fields.anchorText.value} → ${props.fields.targetUrl.value}`,
+    },
+  ),
+
+  /* ── External Linking (outbound authority links) ────────────────── */
+  externalLinks: fields.array(
+    fields.object({
+      anchorText: fields.text({ label: 'Anchor Text' }),
+      url: fields.text({ label: 'External URL', description: 'Full URL, e.g. https://example.com' }),
+      rel: fields.select({
+        label: 'Rel Attribute',
+        options: [
+          { label: 'Follow (passes SEO juice)', value: 'follow' },
+          { label: 'No Follow (no SEO juice)', value: 'nofollow' },
+          { label: 'Sponsored', value: 'sponsored' },
+          { label: 'UGC (User Generated Content)', value: 'ugc' },
+        ],
+        defaultValue: 'nofollow',
+      }),
+      newTab: fields.checkbox({ label: 'Open in New Tab', defaultValue: true }),
+      context: fields.text({ label: 'Context / Placement Note' }),
+    }),
+    {
+      label: 'External Links (Outbound)',
+      itemLabel: props => `${props.fields.anchorText.value} → ${props.fields.url.value}`,
+    },
+  ),
+}
+
 export default config({
   storage: {
     kind: 'local',
@@ -8,8 +84,10 @@ export default config({
   ui: {
     brand: { name: 'AquaVida Admin' },
     navigation: {
-      'Blog': ['blogs'],
-      'Page Content': ['aboutPage', 'servicesPage', 'servicePages', 'portfolioProjects', 'portfolioListingPage', 'blogSettings', 'contactPage', 'financePage', 'privacyPolicy', 'termsConditions'],
+      'Blog': ['blogs', 'blogSettings'],
+      'Portfolio': ['portfolioProjects', 'portfolioListingPage'],
+      'Services': ['servicePages', 'servicesPage'],
+      'Pages': ['homePage', 'aboutPage', 'contactPage', 'financePage', 'privacyPolicy', 'termsConditions'],
       'Footer': ['footerSettings'],
       'SEO — Global': ['globalSeo'],
       'SEO — Per Page': ['pageSeo'],
@@ -79,6 +157,7 @@ export default config({
           description: 'Displays this post as the hero card on the blog listing page',
           defaultValue: false,
         }),
+        ...seoFieldsDef,
       },
     }),
 
@@ -166,11 +245,11 @@ export default config({
         heroTitle: fields.text({ label: 'Hero Title' }),
         heroHighlight: fields.text({ label: 'Hero Highlight (accent word/phrase)' }),
         heroBody: fields.text({ label: 'Hero Body Text', multiline: true }),
-        heroImage: fields.text({ label: 'Hero Image Path', description: 'Path from /public, e.g. /images/services/pool_construction_hero.avif' }),
+        heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         overviewTitle: fields.text({ label: 'Overview Title' }),
         overviewBody: fields.text({ label: 'Overview Body', multiline: true }),
-        overviewImage: fields.text({ label: 'Overview Image Path' }),
+        overviewImage: fields.image({ label: 'Overview Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         processTitle: fields.text({ label: 'Process Section Title' }),
         processSteps: fields.array(
@@ -183,7 +262,7 @@ export default config({
 
         investmentTitle: fields.text({ label: 'Investment Section Title' }),
         investmentBody: fields.text({ label: 'Investment Body', multiline: true }),
-        investmentImage: fields.text({ label: 'Investment Image Path' }),
+        investmentImage: fields.image({ label: 'Investment Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         servicesTitle: fields.text({ label: 'Services Section Title' }),
         servicesItems: fields.array(
@@ -214,7 +293,7 @@ export default config({
 
         ctaTitle: fields.text({ label: 'CTA Title' }),
         ctaBody: fields.text({ label: 'CTA Body', multiline: true }),
-        ctaImage: fields.text({ label: 'CTA Image Path' }),
+        ctaImage: fields.image({ label: 'CTA Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         faqItems: fields.array(
           fields.object({
@@ -223,6 +302,7 @@ export default config({
           }),
           { label: 'FAQ Items', itemLabel: props => props.fields.question.value }
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -238,18 +318,18 @@ export default config({
 
         title: fields.text({ label: 'Project Title' }),
         description: fields.text({ label: 'Description', multiline: true }),
-        heroImage: fields.text({ label: 'Hero Image Path' }),
+        heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
         location: fields.text({ label: 'Location', description: 'e.g. Seattle, WA' }),
         year: fields.text({ label: 'Year', description: 'e.g. 2024' }),
         category: fields.text({ label: 'Category', description: 'e.g. Crystalline Architecture' }),
 
         philosophyTitle: fields.text({ label: 'Philosophy Section Title' }),
         philosophyBody: fields.text({ label: 'Philosophy Body', multiline: true }),
-        philosophyImage: fields.text({ label: 'Philosophy Image Path' }),
+        philosophyImage: fields.image({ label: 'Philosophy Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
 
         gallery: fields.array(
           fields.object({
-            url: fields.text({ label: 'Image Path' }),
+            url: fields.image({ label: 'Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
             title: fields.text({ label: 'Image Title' }),
             spec: fields.text({ label: 'Spec/Caption' }),
             size: fields.text({ label: 'Grid Size Class', description: 'Tailwind class, e.g. col-span-2 row-span-1' }),
@@ -268,6 +348,7 @@ export default config({
           }),
           { label: 'FAQ Items', itemLabel: props => props.fields.question.value }
         ),
+        ...seoFieldsDef,
       },
     }),
   },
@@ -324,6 +405,15 @@ export default config({
           multiline: true,
           description: 'Organization / LocalBusiness schema applied site-wide',
         }),
+      },
+    }),
+
+    /* ── Home page ──────────────────────────────────────────────────────── */
+    homePage: singleton({
+      label: 'Home Page',
+      path: 'content/pages/home',
+      schema: {
+        ...seoFieldsDef,
       },
     }),
 
@@ -388,11 +478,12 @@ export default config({
         }),
         founderName: fields.text({ label: 'Founder Name', defaultValue: 'Hassan Bari' }),
         founderRole: fields.text({ label: 'Founder Role', defaultValue: 'CEO & Founder' }),
-        founderImage: fields.text({
+        founderImage: fields.image({
           label: 'Founder Image Path',
-          defaultValue: '/Hassan-Bari-(Aquavida).avif',
-          description: 'Path relative to /public, e.g. /Hassan-Bari-(Aquavida).avif',
+          directory: 'public/images/founder',
+          publicPath: '/images/founder/',
         }),
+        ...seoFieldsDef,
       },
     }),
 
@@ -401,12 +492,27 @@ export default config({
       label: 'Services Page Content',
       path: 'content/pages/services',
       schema: {
+        /* Hero */
+        heroImage: fields.text({ label: 'Hero Background Image', description: 'Path or full URL for the hero background image' }),
+        heroTitle: fields.text({ label: 'Hero Title (left)', defaultValue: 'Our' }),
+        heroTitleRight: fields.text({ label: 'Hero Title (right)', defaultValue: 'Services' }),
+
+        /* Expertise heading */
+        expertiseLabel: fields.text({ label: 'Expertise Label', defaultValue: 'Services' }),
+        expertiseTitle: fields.text({ label: 'Expertise Heading', defaultValue: 'Our Area of Expertise Space' }),
+        expertiseDescription: fields.text({
+          label: 'Expertise Description',
+          multiline: true,
+          defaultValue: 'AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners.',
+        }),
+
+        /* Service cards */
         services: fields.array(
           fields.object({
             title: fields.text({ label: 'Service Name' }),
             sub: fields.text({ label: 'Subtitle' }),
             href: fields.text({ label: 'URL Path', description: 'e.g. /services/pool-construction' }),
-            image: fields.text({ label: 'Image Path', description: 'Path relative to /public' }),
+            image: fields.image({ label: 'Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
             accent: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #0d5699' }),
           }),
           {
@@ -414,19 +520,46 @@ export default config({
             itemLabel: props => props.fields.title.value,
           },
         ),
+
+        /* Core Principles */
+        corePrinciplesTitle: fields.text({ label: 'Core Principles Section Title', defaultValue: 'Our Core Principles' }),
+        corePrinciples: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Number Label', description: 'e.g. 01' }),
+            line1: fields.text({ label: 'Globe Text — Line 1' }),
+            line2: fields.text({ label: 'Globe Text — Line 2' }),
+            title: fields.text({ label: 'Full Title' }),
+            sub: fields.text({ label: 'Description', multiline: true }),
+            image: fields.image({ label: 'Background Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
+          }),
+          {
+            label: 'Core Principles (4 quadrants)',
+            itemLabel: props => props.fields.title.value,
+          },
+        ),
+
+        /* Testimonials */
         testimonials: fields.array(
           fields.object({
             client: fields.text({ label: 'Client Name' }),
             location: fields.text({ label: 'Location', description: 'e.g. Frisco, TX' }),
             type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction · Outdoor Kitchen' }),
             quote: fields.text({ label: 'Testimonial Quote', multiline: true }),
-            image: fields.text({ label: 'Photo Path', description: 'Path relative to /public' }),
+            image: fields.image({ label: 'Photo Path', directory: 'public/images/testimonials', publicPath: '/images/testimonials/' }),
           }),
           {
             label: 'Testimonials',
             itemLabel: props => props.fields.client.value,
           },
         ),
+
+        /* CTA section */
+        ctaLabel: fields.text({ label: 'CTA Label', defaultValue: 'What We Do' }),
+        ctaHeading: fields.text({ label: 'CTA Heading', defaultValue: 'Bring Your Vision to Life— Connect with AquaVida Today' }),
+        ctaButtonText: fields.text({ label: 'CTA Button Text', defaultValue: 'Send Your Inquiry' }),
+        ctaButtonHref: fields.text({ label: 'CTA Button Link', defaultValue: '/contact' }),
+
+        /* FAQ */
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
@@ -437,6 +570,7 @@ export default config({
             itemLabel: props => props.fields.question.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -467,6 +601,7 @@ export default config({
             itemLabel: props => props.fields.label.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -505,6 +640,7 @@ export default config({
             itemLabel: props => props.fields.question.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -536,6 +672,7 @@ export default config({
             itemLabel: props => props.fields.heading.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -554,6 +691,7 @@ export default config({
             itemLabel: props => props.fields.heading.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -593,11 +731,54 @@ export default config({
       },
     }),
 
-    /* ── Portfolio listing page FAQ ────────────────────────────────────── */
+    /* ── Portfolio listing page ─────────────────────────────────────────── */
     portfolioListingPage: singleton({
       label: 'Portfolio Listing Page',
       path: 'content/pages/portfolio-listing',
       schema: {
+        /* Header */
+        headerLabel: fields.text({ label: 'Header Label', defaultValue: 'ARCHITECTURAL ARCHIVE' }),
+        headerTitle: fields.text({ label: 'Header Title', defaultValue: 'The Liquid Portfolio' }),
+        headerDescription: fields.text({
+          label: 'Header Description',
+          multiline: true,
+          defaultValue: 'A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.',
+        }),
+        curationLabel: fields.text({ label: 'Stat 1 Label', defaultValue: 'Curation' }),
+        curationValue: fields.text({ label: 'Stat 1 Value', defaultValue: 'Volume III' }),
+        focusLabel: fields.text({ label: 'Stat 2 Label', defaultValue: 'Focus' }),
+        focusValue: fields.text({ label: 'Stat 2 Value', defaultValue: 'Infinite Edge' }),
+
+        /* Project cards */
+        projects: fields.array(
+          fields.object({
+            slug: fields.text({ label: 'URL Slug', description: 'e.g. brycewood — must match portfolio route' }),
+            name: fields.text({ label: 'Project Name' }),
+            category: fields.text({ label: 'Category' }),
+            year: fields.text({ label: 'Year' }),
+            location: fields.text({ label: 'Location' }),
+            description: fields.text({ label: 'Card Description', multiline: true }),
+            image: fields.image({ label: 'Card Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
+            gridSize: fields.text({ label: 'Grid Size Classes', description: 'e.g. col-span-2 row-span-2' }),
+            color: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #91792C' }),
+          }),
+          {
+            label: 'Portfolio Grid Cards',
+            itemLabel: props => props.fields.name.value,
+          },
+        ),
+
+        /* CTA section */
+        ctaTitle: fields.text({ label: 'CTA Title', defaultValue: 'Next Generation Pool Design' }),
+        ctaDescription: fields.text({
+          label: 'CTA Description',
+          multiline: true,
+          defaultValue: "We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture.",
+        }),
+        ctaButtonText: fields.text({ label: 'CTA Button Text', defaultValue: 'Begin Your Project' }),
+        ctaButtonHref: fields.text({ label: 'CTA Button Link', defaultValue: '/contact' }),
+
+        /* FAQ */
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
@@ -608,6 +789,7 @@ export default config({
             itemLabel: props => props.fields.question.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
 
@@ -626,6 +808,7 @@ export default config({
             itemLabel: props => props.fields.question.value,
           },
         ),
+        ...seoFieldsDef,
       },
     }),
   },
