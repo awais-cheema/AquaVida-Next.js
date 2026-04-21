@@ -8,8 +8,8 @@ export async function generateMetadata(): Promise<Metadata> {
     const data = await reader.singletons.aboutPage.read().catch(() => null)
     return buildPageMetadata('about', {
         title: 'About | AquaVida Pools and Spas',
-        description: "Meet the team behind AquaVida — architects, engineers, and artisans building Dallas's finest aquatic experiences.",
-    }, data)
+        description: 'Meet the team behind AquaVida — architects, engineers, and artisans building Dallas's finest aquatic experiences.',
+    })
 }
 
 export default async function AboutPage() {

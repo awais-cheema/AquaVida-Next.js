@@ -266,9 +266,10 @@ function GlassCard({
                     {/* Service number removed as requested */}
 
                     {/* Icon — significantly larger (120% increase) */}
-                    <img 
-                        src={svc.icon} 
-                        alt="" 
+                    <img
+                        src={svc.icon}
+                        alt=""
+                        className="no-skeleton"
                         style={{
                             width: isMobile ? 'clamp(55px, 14vw, 85px)' : 'clamp(70px, 7.5vw, 120px)',
                             height: 'auto',

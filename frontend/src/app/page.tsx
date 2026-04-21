@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import { reader } from '@/lib/keystatic-reader';
 import { buildPageMetadata } from '@/lib/seo';
+import { getPageBySlug } from '@/lib/api';
 import JsonLd from '@/components/seo/JsonLd';
 import HeroSection from '@/sections/HeroSection';
 import HeroScrollOverlay from '@/components/hero/HeroScrollOverlay';

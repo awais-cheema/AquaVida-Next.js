@@ -61,6 +61,9 @@ const MOBILE_LERP            = 0.10;       // mobile adaptive lerp (fast scroll)
 const MOBILE_SLOW_VEL        = 0.01;       // velocity threshold: direct assign below this
 const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame moved less than this
 const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling after fast reverse swipe
+const RENDER_LERP            = 0.10;       // desktop: renderFrame trails proxy.targetFrame — cinematic slide
+const RENDER_LERP_MOBILE     = 0.14;       // mobile: slightly faster trail — responsive + prevents frame-0 flash on inertia dip
+const MAX_FRAME_DELTA        = 40;         // max frames allowed to change per rAF tick — blocks GSAP scrub direction-change glitch that briefly resets proxy to 0
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -135,6 +138,7 @@ export default function HeroSection() {
         // ── Engine state ───────────────────────────────────────────────────────
         const proxy = { targetFrame: 0 };   // GSAP scrub:true writes this instantly
 
+        let renderFrame    = 0;             // lerps toward proxy.targetFrame — smooth multi-frame slide
         let currentFrame   = 0;
         let loopFrame      = 0;
         let loopDirection  = 1;
@@ -262,6 +266,17 @@ export default function HeroSection() {
             const loop = () => {
                 if (!renderer || !loader) return;
 
+                // Clamp frame index to ±MAX_FRAME_DELTA from lastDrawnFrame.
+                // GSAP scrub can briefly reset proxy to 0 on direction change — this
+                // guard prevents that glitch from reaching the canvas / heroFrameRef.
+                const clampFrame = (raw: number): number => {
+                    if (lastDrawnFrame < 0) return raw;
+                    return Math.max(
+                        lastDrawnFrame - MAX_FRAME_DELTA,
+                        Math.min(lastDrawnFrame + MAX_FRAME_DELTA, raw)
+                    );
+                };
+
                 const truly_idle = !isScrolling && scrollVelocity < IDLE_VELOCITY;
 
                 if (mode === 'loop' && activeLoop) {
@@ -304,51 +319,43 @@ export default function HeroSection() {
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
                     if (isMobile) {
-                        // Mobile: lerp toward target for smooth feel, then draw single
-                        // integer frames only — no blending. Blending two frames creates
-                        // a visible ghost/double-image that feels wrong on mobile.
-                        lastDrawnFrame = -1; // invalidate idle-mode snap cache
-                        if (scrollVelocity > MOBILE_SLOW_VEL) {
-                            currentFrame += (proxy.targetFrame - currentFrame) * MOBILE_LERP;
-                        } else {
-                            currentFrame = proxy.targetFrame;
-                        }
-
-                        const idx = Math.max(0, Math.min(Math.floor(currentFrame), maxFrame));
-                        if (Math.abs(idx - lastRenderedFloat) >= MOBILE_SKIP_THRESHOLD) {
-                            lastRenderedFloat = idx;
+                        // Mobile: scrub:0.3 is the ONLY smoothing source.
+                        // A second lerp creates double-lag that over-dips into low frames on
+                        // direction change, flashing overlay 1. Draw proxy directly.
+                        renderFrame = proxy.targetFrame;
+                        const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
+                        if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
                             if (img) {
                                 renderer.drawFrame(img, idx);
+                                lastDrawnFrame    = idx;
+                                lastRenderedFloat = renderFrame;
                                 if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
                             }
                         }
                     } else {
-                        // Desktop: floor(proxy.targetFrame), draw only when frame changes
-                        const idx = Math.max(0, Math.min(Math.floor(proxy.targetFrame), maxFrame));
+                        // Desktop: scrub:true = instant proxy; RENDER_LERP trails for cinematic slide.
+                        renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
+                        const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
                             if (img) {
                                 renderer.drawDirect(img, idx);
-                                lastDrawnFrame = idx;
+                                lastDrawnFrame    = idx;
+                                lastRenderedFloat = renderFrame;
                                 if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
                             }
                         }
                     }
 
                 } else {
-                    // ── Idle mode: snap to integer, single draw, no ghosting ──
-                    // Mobile: if currentFrame is far from target (e.g. after a fast reverse
-                    // swipe from the footer), keep lerping instead of hard-snapping.
-                    // This prevents the visual jump to frame 0 when momentum scroll
-                    // sweeps through the entire hero zone before isScrolling times out.
-                    if (isMobile && Math.abs(proxy.targetFrame - currentFrame) > 2) {
-                        const delta  = (proxy.targetFrame - currentFrame) * MOBILE_LERP;
-                        const capped = Math.max(-MOBILE_SETTLE_SPEED, Math.min(MOBILE_SETTLE_SPEED, delta));
-                        currentFrame = Math.max(0, Math.min(currentFrame + capped, maxFrame));
-                    } else {
-                        currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
-                    }
+                    // ── Idle mode ──────────────────────────────────────────────
+                    // Mobile: follow proxy directly — scrub:0.3 is still animating toward
+                    //         final position; snapping each tick gives smooth frame-by-frame
+                    //         idle animation without double-lag.
+                    // Desktop: snap clean — scrub:true means proxy is already settled.
+                    renderFrame  = proxy.targetFrame;
+                    currentFrame = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                     const snapped = Math.round(currentFrame);
 
                     if (snapped !== lastDrawnFrame) {
@@ -421,13 +428,12 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   true, // instant scrub — mobile smoothing handled by MOBILE_LERP in render loop
+                        scrub:   isMobile ? 0.3 : true, // mobile: 0.3s lag prevents inertia-swipe jump-to-start; desktop: instant (RENDER_LERP handles smoothness)
                         pin:     true,
                         pinSpacing:          true,
-                        anticipatePin:       2,
+                        anticipatePin:       1,
                         invalidateOnRefresh: true,
                         preventOverlaps:     true,
-                        fastScrollEnd:       true,
                         onRefresh: (self) => { mainST = self; },
                     },
                 }).to(proxy, { targetFrame: maxFrame, duration: 1, ease: 'none' }, 0);
@@ -450,6 +456,7 @@ export default function HeroSection() {
                 renderer.resize();
                 renderer.invalidate();
                 lastDrawnFrame = -1;
+                renderFrame    = proxy.targetFrame;
                 currentFrame   = proxy.targetFrame;
                 const idx = Math.round(Math.max(0, Math.min(proxy.targetFrame, maxFrame)));
                 const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
@@ -534,7 +541,7 @@ export default function HeroSection() {
         <section
             ref={sectionRef}
             className="relative w-full overflow-hidden bg-[#0d0a07]"
-            style={{ height: '100svh', minHeight: 450 }}
+            style={{ height: '100dvh', minHeight: 450 }}
             aria-label="Hero cinematic scroll"
             id="hero-section"
         >

@@ -16,18 +16,25 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useMotionValue } from 'framer-motion';
 import heroFrameRef from '@/lib/heroFrameRef';
 import { getF, TIMELINE } from '@/lib/heroBreakpoints';
 import { getAssetUrl } from '@/lib/constants';
 
+// ms the overlay must stay in the low-frame zone before re-appearing after it has
+// previously exited. Prevents mobile inertia direction-change flashes (<250 ms dips).
+const REENTRY_DEBOUNCE_MS = 250;
+
 export default function HeroScrollOverlay() {
     const [mounted,  setMounted]  = useState(false);
     const [visible,  setVisible]  = useState(true);  // false once fully faded out
     const opacity    = useMotionValue(1);
     const translateY = useMotionValue(0);
+    // true once the overlay has fully exited — gates the re-entry debounce
+    const hasExitedRef  = useRef(false);
+    const showTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -40,24 +47,46 @@ export default function HeroScrollOverlay() {
             const FADE_START = getF(TIMELINE.OV1.start,     isM, total);
             const FADE_END   = getF(TIMELINE.OV1.exitEnd,    isM, total);
 
-            if (frame <= FADE_START) {
-                setVisible(true);
-                opacity.set(1);
-                translateY.set(0);
-            } else if (frame <= FADE_END) {
-                setVisible(true);
-                const t = (frame - FADE_START) / (FADE_END - FADE_START);
-                opacity.set(1 - t);
-                translateY.set(-(150 * t));
-            } else {
-                // Hard-hide at compositor level — opacity:0 alone still paints
+            if (frame > FADE_END) {
+                // Fully exited — hide immediately, cancel any pending re-entry timer
+                if (showTimerRef.current) { clearTimeout(showTimerRef.current); showTimerRef.current = null; }
+                hasExitedRef.current = true;
                 setVisible(false);
                 opacity.set(0);
                 translateY.set(-150);
+            } else {
+                // Inside fade zone — update motion values immediately so the transition
+                // is ready the moment visibility is granted.
+                if (frame <= FADE_START) {
+                    opacity.set(1);
+                    translateY.set(0);
+                } else {
+                    const t = (frame - FADE_START) / (FADE_END - FADE_START);
+                    opacity.set(1 - t);
+                    translateY.set(-(150 * t));
+                }
+
+                // Visibility: show immediately on initial load; after first exit,
+                // debounce re-entry so transient inertia dips don't flash the overlay.
+                if (!hasExitedRef.current) {
+                    setVisible(true);
+                } else if (!showTimerRef.current) {
+                    showTimerRef.current = setTimeout(() => {
+                        showTimerRef.current = null;
+                        // Re-check frame at fire time — skip if already back out of zone
+                        const f = heroFrameRef.current;
+                        const fe = getF(TIMELINE.OV1.exitEnd, heroFrameRef.isMobile, heroFrameRef.total);
+                        if (f <= fe) setVisible(true);
+                    }, REENTRY_DEBOUNCE_MS);
+                }
             }
         };
 
-        return heroFrameRef.subscribe(tick);
+        const unsub = heroFrameRef.subscribe(tick);
+        return () => {
+            unsub();
+            if (showTimerRef.current) clearTimeout(showTimerRef.current);
+        };
     }, [opacity, translateY]);
 
     if (!mounted) return null;
