@@ -63,6 +63,7 @@ const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame mo
 const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling after fast reverse swipe
 const RENDER_LERP            = 0.10;       // desktop: renderFrame trails proxy.targetFrame — cinematic slide
 const RENDER_LERP_MOBILE     = 0.14;       // mobile: slightly faster trail — responsive + prevents frame-0 flash on inertia dip
+const MAX_FRAME_DELTA        = 40;         // max frames allowed to change per rAF tick — blocks GSAP scrub direction-change glitch that briefly resets proxy to 0
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -265,6 +266,17 @@ export default function HeroSection() {
             const loop = () => {
                 if (!renderer || !loader) return;
 
+                // Clamp frame index to ±MAX_FRAME_DELTA from lastDrawnFrame.
+                // GSAP scrub can briefly reset proxy to 0 on direction change — this
+                // guard prevents that glitch from reaching the canvas / heroFrameRef.
+                const clampFrame = (raw: number): number => {
+                    if (lastDrawnFrame < 0) return raw;
+                    return Math.max(
+                        lastDrawnFrame - MAX_FRAME_DELTA,
+                        Math.min(lastDrawnFrame + MAX_FRAME_DELTA, raw)
+                    );
+                };
+
                 const truly_idle = !isScrolling && scrollVelocity < IDLE_VELOCITY;
 
                 if (mode === 'loop' && activeLoop) {
@@ -311,7 +323,7 @@ export default function HeroSection() {
                         // A second lerp creates double-lag that over-dips into low frames on
                         // direction change, flashing overlay 1. Draw proxy directly.
                         renderFrame = proxy.targetFrame;
-                        const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
+                        const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
                             if (img) {
@@ -324,7 +336,7 @@ export default function HeroSection() {
                     } else {
                         // Desktop: scrub:true = instant proxy; RENDER_LERP trails for cinematic slide.
                         renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
-                        const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
+                        const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
                             if (img) {
@@ -342,8 +354,8 @@ export default function HeroSection() {
                     //         final position; snapping each tick gives smooth frame-by-frame
                     //         idle animation without double-lag.
                     // Desktop: snap clean — scrub:true means proxy is already settled.
-                    renderFrame = proxy.targetFrame;
-                    currentFrame = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
+                    renderFrame  = proxy.targetFrame;
+                    currentFrame = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                     const snapped = Math.round(currentFrame);
 
                     if (snapped !== lastDrawnFrame) {
