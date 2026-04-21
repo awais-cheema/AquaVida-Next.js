@@ -61,6 +61,7 @@ const MOBILE_LERP            = 0.10;       // mobile adaptive lerp (fast scroll)
 const MOBILE_SLOW_VEL        = 0.01;       // velocity threshold: direct assign below this
 const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame moved less than this
 const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling after fast reverse swipe
+const RENDER_LERP            = 0.10;       // renderFrame trails proxy.targetFrame — produces smooth multi-frame slide on scroll
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -135,6 +136,7 @@ export default function HeroSection() {
         // ── Engine state ───────────────────────────────────────────────────────
         const proxy = { targetFrame: 0 };   // GSAP scrub:true writes this instantly
 
+        let renderFrame    = 0;             // lerps toward proxy.targetFrame — smooth multi-frame slide
         let currentFrame   = 0;
         let loopFrame      = 0;
         let loopDirection  = 1;
@@ -303,35 +305,25 @@ export default function HeroSection() {
 
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
-                    if (isMobile) {
-                        // Mobile: GSAP scrub:0.3 handles smoothing — track proxy directly, no extra lerp.
-                        const idx = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
-                        if (idx !== lastDrawnFrame) {
-                            const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
-                            if (img) {
-                                renderer.drawFrame(img, idx);
-                                lastDrawnFrame    = idx;
-                                lastRenderedFloat = idx;
-                                if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
-                            }
-                        }
-                    } else {
-                        // Desktop: floor(proxy.targetFrame), draw only when frame changes
-                        const idx = Math.max(0, Math.min(Math.floor(proxy.targetFrame), maxFrame));
-                        if (idx !== lastDrawnFrame) {
-                            const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
-                            if (img) {
-                                renderer.drawDirect(img, idx);
-                                lastDrawnFrame = idx;
-                                if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
-                            }
+                    // renderFrame lerps toward proxy.targetFrame: produces a smooth multi-frame
+                    // slide so the animation glides forward/backward rather than snapping instantly.
+                    renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
+                    const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
+                    if (idx !== lastDrawnFrame) {
+                        const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
+                        if (img) {
+                            if (isMobile) renderer.drawFrame(img, idx);
+                            else          renderer.drawDirect(img, idx);
+                            lastDrawnFrame    = idx;
+                            lastRenderedFloat = renderFrame;
+                            if (!firstFrameDrawn) { firstFrameDrawn = true; canvas.style.opacity = '1'; }
                         }
                     }
 
                 } else {
-                    // ── Idle mode: snap to integer, single draw, no ghosting ──
-                    // GSAP scrub:0.3 on mobile ensures proxy.targetFrame is already smooth here.
-                    currentFrame = Math.max(0, Math.min(Math.round(proxy.targetFrame), maxFrame));
+                    // ── Idle mode: snap renderFrame, single draw, no ghosting ──
+                    renderFrame  = proxy.targetFrame;  // snap clean — no trailing ghost when stopped
+                    currentFrame = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
                     const snapped = Math.round(currentFrame);
 
                     if (snapped !== lastDrawnFrame) {
@@ -404,7 +396,7 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   isMobile ? 0.3 : true, // mobile: GSAP smoothing; desktop: instant (ScrollSmoother handles it)
+                        scrub:   true, // instant proxy update — RENDER_LERP in rAF loop provides smooth trailing effect
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       1,
@@ -432,6 +424,7 @@ export default function HeroSection() {
                 renderer.resize();
                 renderer.invalidate();
                 lastDrawnFrame = -1;
+                renderFrame    = proxy.targetFrame;
                 currentFrame   = proxy.targetFrame;
                 const idx = Math.round(Math.max(0, Math.min(proxy.targetFrame, maxFrame)));
                 const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
