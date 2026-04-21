@@ -211,9 +211,9 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                         // rounded
                         'rounded-2xl sm:rounded-3xl md:rounded-[2.5rem] lg:rounded-[3rem]',
                         // padding
-                        'px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4 md:px-8 md:pt-7 md:pb-5 lg:px-10 lg:pt-8 lg:pb-6 xl:px-14 xl:pt-10 xl:pb-7 2xl:px-20 2xl:pt-14 2xl:pb-10',
+                        'px-3 pt-3 pb-2 sm:px-5 sm:pt-5 sm:pb-4 md:px-8 md:pt-7 md:pb-5 lg:px-10 lg:pt-8 lg:pb-6 xl:px-14 xl:pt-10 xl:pb-7 2xl:px-20 2xl:pt-14 2xl:pb-10',
                         // row gaps
-                        'gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-10 2xl:gap-12',
+                        'gap-3 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-10 2xl:gap-12',
                         isHome ? '' : '',
                     ].join(' ')}
                     style={{
@@ -237,7 +237,7 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                           xl/2xl  (1280+)  : generous spacing
                     ══════════════════════════════════════ */}
                     <div className="flex flex-col lg:flex-row items-center lg:items-start
-                                    gap-5 sm:gap-6 md:gap-7 lg:gap-10 xl:gap-14 2xl:gap-20
+                                    gap-3 sm:gap-6 md:gap-7 lg:gap-10 xl:gap-14 2xl:gap-20
                                     w-full">
 
                         {/* Logo */}
@@ -247,7 +247,7 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                 src={getAssetUrl("/logo2.avif")}
                                 alt="AquaVida Pools and Spas"
                                 width={360} height={120}
-                                className="no-skeleton w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px]
+                                className="no-skeleton w-[70px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px]
                                            h-auto object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]"
                             />
                         </div>
@@ -267,8 +267,8 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                                text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                     Explore
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
-                                               text-[13px] sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
+                                <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                               text-[11px] sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                text-white/60 md:text-white/80 font-medium tracking-wider">
                                     <li><Link href="/"          className={lk}>Home</Link></li>
                                     <li><Link href="/portfolio" className={lk}>Portfolio</Link></li>
@@ -283,8 +283,8 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                                text-[12px] sm:text-[13px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                     Services
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
-                                               text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
+                                <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                               text-[11px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                font-medium tracking-wider">
                                     <li><Link href="/services/pool-design"       className={lk}>Pool design</Link></li>
                                     <li><Link href="/services/pool-construction" className={lk}>Pool construction</Link></li>
@@ -302,8 +302,8 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                                text-[12px] sm:text-[13px] md:text-[16px] lg:text-[18px] xl:text-xl 2xl:text-2xl">
                                     Information
                                 </h4>
-                                <ul className="flex flex-col gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
-                                               text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
+                                <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
+                                               text-[11px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                font-medium tracking-wider">
                                     <li><Link href="/privacy-policy"    className={lk}>Privacy Policy</Link></li>
                                     <li><Link href="/terms-conditions"  className={lk}>Terms &amp; Conditions</Link></li>
@@ -369,7 +369,7 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                     ══════════════════════════════════════ */}
                     <div className="flex flex-col lg:flex-row items-center justify-between
                                     border-t border-white/10
-                                    pt-4 sm:pt-6 md:pt-8 pb-2
+                                    pt-3 sm:pt-6 md:pt-8 pb-2
                                     gap-3 sm:gap-5 lg:gap-0">
 
                         {/* Copyright */}
@@ -391,7 +391,7 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                     src={getAssetUrl("/CXT.gif")}
                                     alt="Control X Tech"
                                     width={300} height={100}
-                                    className="no-skeleton h-[44px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
+                                    className="no-skeleton h-[28px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
                                                w-auto object-contain mix-blend-screen opacity-100"
                                 />
                             </a>
