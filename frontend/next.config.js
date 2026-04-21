@@ -113,9 +113,6 @@ const nextConfig = {
         return config;
     },
 
-    // Keystatic: exclude from server-side bundling so fs reads work correctly
-    serverExternalPackages: ['@keystatic/core'],
-
     // Experimental
     experimental: {
         optimizePackageImports: ['lucide-react', 'three', '@react-three/drei']
