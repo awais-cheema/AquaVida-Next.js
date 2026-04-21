@@ -6,3 +6,48 @@ siteUrl: https://www.aquavidapoolsandspas.com/
 googleVerification: wcjVQ-27D9k6VhuenwGqKiTUwiZjb-AcF51SL3LJ_wY
 clarityId: vke7bmqua4
 defaultRobots: index,follow
+schemaOrg: |-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": "AquaVida Pools and Spas",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJOBnLwdeq8lKz4e8SP_2Ey0FuQvoihx8IuA&s",
+    "@id": "",
+    "url": "https://www.aquavidapoolsandspas.com/",
+    "telephone": "+14695876255",
+    "priceRange": "$50,000 to $150,000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2100 N Greenville Ave",
+      "addressLocality": "Richardson",
+      "addressRegion": "TX",
+      "postalCode": "75082",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 32.98012161254883,
+      "longitude": -96.70524597167969
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61580646100331",
+      "https://www.instagram.com/aquavida.pools.and.spas",
+      "https://www.linkedin.com/company/aquavida-pools-and-spas/"
+    ] 
+  }
+  </script>
