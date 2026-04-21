@@ -2,8 +2,10 @@ import { config, fields, collection, singleton } from '@keystatic/core'
 
 export default config({
   storage: {
-    kind: 'github',
-    repo: 'awais-cheema/AquaVida-Next.js',
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'aquavida/aquavida-site',
   },
 
   ui: {
