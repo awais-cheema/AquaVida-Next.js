@@ -307,9 +307,10 @@ export default function HeroSection() {
                 } else if (isScrolling) {
                     // ── Scroll mode ──────────────────────────────────────────
                     if (isMobile) {
-                        // Mobile: scrub:0.3 buffers proxy against inertia; renderFrame lerp
-                        // adds a second layer so brief proxy dips (frame 0 flash) are damped.
-                        renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP_MOBILE;
+                        // Mobile: scrub:0.3 is the ONLY smoothing source.
+                        // A second lerp creates double-lag that over-dips into low frames on
+                        // direction change, flashing overlay 1. Draw proxy directly.
+                        renderFrame = proxy.targetFrame;
                         const idx = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
@@ -337,14 +338,11 @@ export default function HeroSection() {
 
                 } else {
                     // ── Idle mode ──────────────────────────────────────────────
-                    // Mobile: keep lerping — scrub:0.3 proxy may still be moving; snap would
-                    //         cause a visible jump if inertia left proxy at a low frame.
+                    // Mobile: follow proxy directly — scrub:0.3 is still animating toward
+                    //         final position; snapping each tick gives smooth frame-by-frame
+                    //         idle animation without double-lag.
                     // Desktop: snap clean — scrub:true means proxy is already settled.
-                    if (isMobile) {
-                        renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP_MOBILE;
-                    } else {
-                        renderFrame = proxy.targetFrame;
-                    }
+                    renderFrame = proxy.targetFrame;
                     currentFrame = Math.max(0, Math.min(Math.round(renderFrame), maxFrame));
                     const snapped = Math.round(currentFrame);
 
