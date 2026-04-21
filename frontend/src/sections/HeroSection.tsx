@@ -424,10 +424,9 @@ export default function HeroSection() {
                         scrub:   true, // instant scrub — mobile smoothing handled by MOBILE_LERP in render loop
                         pin:     true,
                         pinSpacing:          true,
-                        anticipatePin:       2,
+                        anticipatePin:       1,
                         invalidateOnRefresh: true,
                         preventOverlaps:     true,
-                        fastScrollEnd:       true,
                         onRefresh: (self) => { mainST = self; },
                     },
                 }).to(proxy, { targetFrame: maxFrame, duration: 1, ease: 'none' }, 0);
