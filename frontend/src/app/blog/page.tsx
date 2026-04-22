@@ -18,12 +18,12 @@ export default async function BlogPage() {
 
     try {
         // Primary source: Keystatic local content
-        const slugs = await reader.collections.blogs.list()
+        const slugs = await reader.collections.posts.list()
 
         if (slugs.length > 0) {
             const results = await Promise.all(
                 slugs.map(async (slug, i) => {
-                    const post = await reader.collections.blogs.read(slug)
+                    const post = await reader.collections.posts.read(slug)
                     if (!post) return null
                     return {
                         id: i + 1,

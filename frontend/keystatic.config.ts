@@ -120,7 +120,7 @@ export default config({
   ui: {
     brand: { name: 'AquaVida Admin' },
     navigation: {
-      'Blog': ['blogs', 'blogSettings'],
+      'Blog': ['posts', 'blogSettings'],
       'Portfolio': ['portfolioProjects', 'portfolioListingPage'],
       'Services': ['servicePages', 'servicesPage'],
       'Pages': ['homePage', 'aboutPage', 'contactPage', 'financePage', 'privacyPolicy', 'termsConditions'],
@@ -135,7 +135,7 @@ export default config({
   collections: {
 
     /* ── Blog posts ────────────────────────────────────────────────────── */
-    blogs: collection({
+    posts: collection({
       label: 'Blog Posts',
       slugField: 'slug',
       path: 'content/blogs/*',

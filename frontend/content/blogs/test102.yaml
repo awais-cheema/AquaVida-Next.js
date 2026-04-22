@@ -1,10 +1,12 @@
-slug: Test102
-title: Testing
-excerpt: we test
+slug: test102
+title: Testing Blog Post
+excerpt: This is a test blog post to verify Keystatic reader synchronization correctly.
+content: [{ "type": "paragraph", "children": [{ "text": "Body content here." }] }]
 category: Blog
-author_name: test
+author_name: AquaVida Team
 published_at: '2026-04-22'
 read_time: 5 min read
+featured_image: ''
 is_featured: false
 seoNoIndex: false
 seoNoFollow: false
