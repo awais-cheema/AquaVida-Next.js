@@ -2,7 +2,10 @@ import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const TO_EMAIL = 'info@aquavidapoolsandspas.com';
+// Temporary: sending to Resend account email until domain is verified.
+// Once aquavidapoolsandspas.com is verified at resend.com/domains,
+// change this back to 'info@aquavidapoolsandspas.com' and update the from address.
+const TO_EMAIL = process.env.CONTACT_EMAIL_TO ?? 'controlxtech44@gmail.com';
 
 export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => null);
