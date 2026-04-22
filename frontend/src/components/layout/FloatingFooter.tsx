@@ -222,6 +222,10 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                         WebkitBackdropFilter: ds.backdrop,
                         border: ds.border,
                         boxShadow: ds.shadow,
+                        // Prevent the card from reaching the fixed header on large screens.
+                        // 7rem ≈ nav height (≈70px) + bottom offset (24px) + breathing room.
+                        maxHeight: 'calc(100dvh - 7rem)',
+                        overflowY: 'auto',
                     }}
                 >
                     {/* ... (previous columns grid and body row) ... */}
@@ -391,7 +395,7 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                     src={getAssetUrl("/CXT.gif")}
                                     alt="Control X Tech"
                                     width={300} height={100}
-                                    className="no-skeleton h-[28px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[108px] 2xl:h-[130px]
+                                    className="no-skeleton h-[28px] sm:h-[72px] md:h-[82px] lg:h-[90px] xl:h-[100px] 2xl:h-[110px]
                                                w-auto object-contain mix-blend-screen opacity-100"
                                 />
                             </a>
