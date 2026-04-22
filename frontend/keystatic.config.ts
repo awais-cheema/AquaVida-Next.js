@@ -112,6 +112,7 @@ const seoFieldsDef = {
 export default config({
   storage: {
     kind: 'cloud',
+    pathPrefix: 'frontend',
   },
   cloud: {
     project: 'aquavida/aquavida-site',

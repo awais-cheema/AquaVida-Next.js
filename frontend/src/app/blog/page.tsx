@@ -5,6 +5,9 @@ import { buildPageMetadata } from '@/lib/seo'
 import BlogClient from './BlogClient'
 import SeoLinks from '@/components/layout/SeoLinks'
 
+// Force dynamic rendering — no caching
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata(): Promise<Metadata> {
     const settings = await reader.singletons.blogSettings.read().catch(() => null)
     return buildPageMetadata('blog', {
@@ -19,39 +22,49 @@ export default async function BlogPage() {
     try {
         // Primary source: Keystatic local content
         const slugs = await reader.collections.posts.list()
+        console.log('[Blog] Keystatic slugs found:', slugs)
 
         if (slugs.length > 0) {
             const results = await Promise.all(
                 slugs.map(async (slug, i) => {
-                    const post = await reader.collections.posts.read(slug)
-                    if (!post) return null
-                    return {
-                        id: i + 1,
-                        title: post.title || slug,
-                        slug,
-                        excerpt: post.excerpt || '',
-                        content: '',
-                        category: post.category || 'Design',
-                        author_name: post.author_name || '',
-                        published_at: post.published_at || new Date().toISOString(),
-                        read_time: post.read_time || '5 min read',
-                        featured_image_url: post.featured_image || '',
-                        is_featured: post.is_featured || false,
-                    } satisfies BlogPost
+                    try {
+                        const post = await reader.collections.posts.read(slug)
+                        if (!post) {
+                            console.warn(`[Blog] Post "${slug}" returned null`)
+                            return null
+                        }
+                        console.log(`[Blog] Successfully read post "${slug}":`, post.title)
+                        return {
+                            id: i + 1,
+                            title: post.title || slug,
+                            slug,
+                            excerpt: post.excerpt || '',
+                            content: '',
+                            category: post.category || 'Design',
+                            author_name: post.author_name || '',
+                            published_at: post.published_at || new Date().toISOString(),
+                            read_time: post.read_time || '5 min read',
+                            featured_image_url: post.featured_image || '',
+                            is_featured: post.is_featured || false,
+                        } satisfies BlogPost
+                    } catch (postErr: any) {
+                        console.error(`[Blog] Error reading post "${slug}":`, postErr.message)
+                        return null
+                    }
                 }),
             )
             posts = results.filter(Boolean) as BlogPost[]
+            console.log(`[Blog] Total posts loaded: ${posts.length}`)
         } else {
-            // Fallback: Django API when no Keystatic posts exist yet
+            console.log('[Blog] No Keystatic slugs, falling back to Django API')
             posts = await getBlogPosts()
         }
     } catch (e: any) {
-        console.error('Keystatic error:', e.message)
+        console.error('[Blog] Keystatic list error:', e.message)
         try {
             posts = await getBlogPosts()
         } catch (de: any) {
-            console.error('Django fallback error:', de.message)
-            console.error('Failed to load blog posts from Keystatic and Django API')
+            console.error('[Blog] Django fallback error:', de.message)
         }
     }
 

@@ -20,8 +20,31 @@ export async function GET() {
       : 'NOT_FOUND'
 
     try {
-        results.reader_test.posts = await reader.collections.posts.list()
+        const postSlugs = await reader.collections.posts.list()
+        results.reader_test.posts = postSlugs
         results.reader_test.portfolio = await reader.collections.portfolioProjects.list()
+        
+        // Try reading the first post to check for read errors
+        if (postSlugs.length > 0) {
+            try {
+                const post = await reader.collections.posts.read(postSlugs[0])
+                if (post) {
+                    results.reader_test.first_post = {
+                        title: post.title,
+                        slug: post.slug,
+                        excerpt: post.excerpt,
+                        category: post.category,
+                        has_content: typeof post.content === 'function',
+                        featured_image: post.featured_image,
+                        is_featured: post.is_featured,
+                    }
+                } else {
+                    results.reader_test.first_post = 'READ_RETURNED_NULL'
+                }
+            } catch (readErr: any) {
+                results.reader_test.read_error = readErr.message + '\n' + readErr.stack
+            }
+        }
     } catch (e: any) {
         results.reader_test.error = e.message + '\n' + e.stack
     }
