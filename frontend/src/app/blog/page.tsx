@@ -45,10 +45,12 @@ export default async function BlogPage() {
             // Fallback: Django API when no Keystatic posts exist yet
             posts = await getBlogPosts()
         }
-    } catch {
+    } catch (e: any) {
+        console.error('Keystatic error:', e.message)
         try {
             posts = await getBlogPosts()
-        } catch {
+        } catch (de: any) {
+            console.error('Django fallback error:', de.message)
             console.error('Failed to load blog posts from Keystatic and Django API')
         }
     }
