@@ -140,6 +140,7 @@ export default config({
       label: 'Blog Posts',
       slugField: 'slug',
       path: 'content/blogs/*',
+      previewUrl: '/api/preview/start?branch={branch}&to=/blog/{slug}',
       schema: {
         slug: fields.slug({
           name: { label: 'Post Title', description: 'Generates the URL slug automatically' },
@@ -263,6 +264,7 @@ export default config({
       label: 'Service Sub-Pages',
       slugField: 'slug',
       path: 'content/service-pages/*',
+      previewUrl: '/api/preview/start?branch={branch}&to=/services/{slug}',
       schema: {
         slug: fields.slug({
           name: { label: 'Service Slug', description: 'Matches the URL, e.g. pool-construction, pavers' },
@@ -341,6 +343,7 @@ export default config({
       label: 'Portfolio Projects',
       slugField: 'slug',
       path: 'content/portfolio/*',
+      previewUrl: '/api/preview/start?branch={branch}&to=/portfolio/{slug}',
       schema: {
         slug: fields.slug({
           name: { label: 'Project Slug', description: 'Matches the URL, e.g. brycewood, montalcino' },
@@ -443,6 +446,7 @@ export default config({
     homePage: singleton({
       label: 'Home Page',
       path: 'content/pages/home',
+      previewUrl: '/api/preview/start?branch={branch}&to=/',
       schema: {
         ...seoFieldsDef,
       },
@@ -452,6 +456,7 @@ export default config({
     aboutPage: singleton({
       label: 'About Page Content',
       path: 'content/pages/about',
+      previewUrl: '/api/preview/start?branch={branch}&to=/about',
       schema: {
         heroTagline: fields.text({
           label: 'Hero Tagline',
@@ -502,6 +507,7 @@ export default config({
     servicesPage: singleton({
       label: 'Services Page Content',
       path: 'content/pages/services',
+      previewUrl: '/api/preview/start?branch={branch}&to=/services',
       schema: {
         /* Hero */
         heroImage: fields.text({ label: 'Hero Background Image', description: 'Path or full URL for the hero background image' }),
@@ -599,6 +605,7 @@ export default config({
     contactPage: singleton({
       label: 'Contact Page Content',
       path: 'content/pages/contact',
+      previewUrl: '/api/preview/start?branch={branch}&to=/contact',
       schema: {
         heading: fields.text({
           label: 'Page Heading',
@@ -630,6 +637,7 @@ export default config({
     financePage: singleton({
       label: 'Finance Page Content',
       path: 'content/pages/finance',
+      previewUrl: '/api/preview/start?branch={branch}&to=/finance',
       schema: {
         partners: fields.array(
           fields.object({
@@ -669,6 +677,7 @@ export default config({
     privacyPolicy: singleton({
       label: 'Privacy Policy Content',
       path: 'content/pages/privacy-policy',
+      previewUrl: '/api/preview/start?branch={branch}&to=/privacy-policy',
       schema: {
         effectiveDate: fields.text({
           label: 'Effective Date',
@@ -697,6 +706,7 @@ export default config({
     termsConditions: singleton({
       label: 'Terms & Conditions Content',
       path: 'content/pages/terms-conditions',
+      previewUrl: '/api/preview/start?branch={branch}&to=/terms-conditions',
       schema: {
         sections: fields.array(
           fields.object({
@@ -773,6 +783,7 @@ export default config({
     portfolioListingPage: singleton({
       label: 'Portfolio Listing Page',
       path: 'content/pages/portfolio-listing',
+      previewUrl: '/api/preview/start?branch={branch}&to=/portfolio',
       schema: {
         /* Header */
         headerLabel: fields.text({ label: 'Header Label', defaultValue: 'ARCHITECTURAL ARCHIVE' }),
@@ -827,6 +838,7 @@ export default config({
     blogSettings: singleton({
       label: 'Blog Page Settings',
       path: 'content/pages/blog',
+      previewUrl: '/api/preview/start?branch={branch}&to=/blog',
       schema: {
         faqItems: fields.array(
           fields.object({
