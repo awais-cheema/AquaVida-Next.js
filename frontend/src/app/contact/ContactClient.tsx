@@ -328,7 +328,7 @@ export default function ContactClient({ data }: { data?: ContactData | null }) {
                       </>
                     ) : (
                       <>
-                        <span className="text-[3.5vw] md:text-[1.2vw] font-bold">Reach Out</span>
+                        <span className="text-[3.5vw] md:text-[1.2vw] font-bold group-hover:text-black transition-colors duration-300">Reach Out</span>
                         <div className="bg-[#1A1A1A] text-white p-1.5 rounded-full group-hover:translate-x-1 transition-transform duration-300">
                           <ChevronRight className="w-4 h-4" />
                         </div>
