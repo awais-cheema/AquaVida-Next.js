@@ -115,7 +115,12 @@ const nextConfig = {
 
     // Experimental
     experimental: {
-        optimizePackageImports: ['lucide-react', 'three', '@react-three/drei']
+        optimizePackageImports: ['lucide-react', 'three', '@react-three/drei'],
+        outputFileTracingIncludes: {
+            '/blog': ['./content/**/*'],
+            '/blog/[slug]': ['./content/**/*'],
+            '/api/debug-content': ['./content/**/*'],
+        },
     },
 };
 
