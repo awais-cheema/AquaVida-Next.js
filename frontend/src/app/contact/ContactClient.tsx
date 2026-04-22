@@ -23,7 +23,9 @@ interface ContactData {
   services?: ReadonlyArray<{ readonly id: string; readonly label: string }> | { id: string; label: string }[]
 }
 
-type Status = 'idle' | 'loading' | 'success' | 'error';
+type Status = 'idle' | 'loading' | 'success' | 'error' | 'cooldown';
+
+const COOLDOWN_KEY = 'aqv_contact_until'; // localStorage key
 
 export default function ContactClient({ data }: { data?: ContactData | null }) {
   const heading  = data?.heading  || DEFAULT_HEADING
@@ -35,18 +37,47 @@ export default function ContactClient({ data }: { data?: ContactData | null }) {
   const [selectedService,  setSelectedService]  = useState('');
   const [mounted,          setMounted]          = useState(false);
   const [status,           setStatus]           = useState<Status>('idle');
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const formRef     = useRef<HTMLFormElement>(null);
+  const [countdown,        setCountdown]        = useState(0); // seconds remaining
+  const dropdownRef  = useRef<HTMLDivElement>(null);
+  const formRef      = useRef<HTMLFormElement>(null);
+  const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCooldown = (ms: number) => {
+    const until = Date.now() + ms;
+    localStorage.setItem(COOLDOWN_KEY, String(until));
+    setStatus('cooldown');
+    setCountdown(Math.ceil(ms / 1000));
+    countdownRef.current = setInterval(() => {
+      const left = Math.ceil((until - Date.now()) / 1000);
+      if (left <= 0) {
+        clearInterval(countdownRef.current!);
+        countdownRef.current = null;
+        localStorage.removeItem(COOLDOWN_KEY);
+        setStatus('idle');
+        setCountdown(0);
+      } else {
+        setCountdown(left);
+      }
+    }, 1000);
+  };
 
   useEffect(() => {
     setMounted(true);
+    // Restore cooldown from a previous session / page refresh
+    const until = Number(localStorage.getItem(COOLDOWN_KEY) ?? 0);
+    if (until > Date.now()) startCooldown(until - Date.now());
+
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsServiceOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (countdownRef.current) clearInterval(countdownRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -83,6 +114,10 @@ export default function ContactClient({ data }: { data?: ContactData | null }) {
         setStatus('success');
         form.reset();
         setSelectedService('');
+        startCooldown(5 * 60 * 1000); // lock for 5 min after success
+      } else if (res.status === 429) {
+        const data = await res.json().catch(() => ({}));
+        startCooldown(data.retryAfterMs ?? 5 * 60 * 1000);
       } else {
         setStatus('error');
       }
@@ -264,15 +299,26 @@ export default function ContactClient({ data }: { data?: ContactData | null }) {
                       </span>
                     </motion.div>
                   )}
+                  {status === 'cooldown' && (
+                    <motion.div key="cooldown"
+                      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                      className="flex items-center gap-2 text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span className="text-[3.5vw] md:text-[1vw] font-semibold">
+                        You can submit again in {Math.floor(countdown / 60)}:{String(countdown % 60).padStart(2, '0')}
+                      </span>
+                    </motion.div>
+                  )}
                 </AnimatePresence>
 
                 {/* Submit Button */}
                 <div className="pt-1">
                   <motion.button
                     type="submit"
-                    disabled={status === 'loading'}
-                    whileHover={status !== 'loading' ? { scale: 1.02 } : {}}
-                    whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
+                    disabled={status === 'loading' || status === 'cooldown'}
+                    whileHover={status === 'idle' || status === 'error' ? { scale: 1.02 } : {}}
+                    whileTap={status === 'idle' || status === 'error' ? { scale: 0.98 } : {}}
                     className="btn flex items-center gap-3 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg group hover:shadow-xl transition-all duration-300 border border-white/50 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === 'loading' ? (

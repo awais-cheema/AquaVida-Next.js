@@ -1,10 +1,34 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend  = new Resend(process.env.RESEND_API_KEY);
 const TO_EMAIL = 'info@aquavidapoolsandspas.com';
 
+const RATE_LIMIT_MS = 5 * 60 * 1000; // 5 minutes
+// In-memory store: ip → timestamp of last successful submission
+const lastSubmission = new Map<string, number>();
+
+function getIP(req: NextRequest): string {
+    return (
+        req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+        req.headers.get('x-real-ip') ??
+        'unknown'
+    );
+}
+
 export async function POST(request: NextRequest) {
+    const ip  = getIP(request);
+    const now = Date.now();
+    const last = lastSubmission.get(ip) ?? 0;
+    const remaining = RATE_LIMIT_MS - (now - last);
+
+    if (remaining > 0) {
+        return NextResponse.json(
+            { error: 'rate_limited', retryAfterMs: remaining },
+            { status: 429 }
+        );
+    }
+
     const body = await request.json().catch(() => null);
     if (!body) return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
 
@@ -70,6 +94,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
         }
 
+        lastSubmission.set(ip, Date.now());
         return NextResponse.json({ ok: true });
     } catch (err) {
         console.error('Contact route error:', err);
