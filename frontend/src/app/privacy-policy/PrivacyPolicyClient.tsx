@@ -1,10 +1,12 @@
 'use client'
 
-type Section = { heading: string; body: string; items?: ReadonlyArray<string> | string[] }
+import CmsContent from '@/components/cms/CmsContent'
+
+type Section = { heading: string; body: any; items?: ReadonlyArray<string> | string[] }
 
 interface PrivacyData {
     effectiveDate?: string
-    intro?: string
+    intro?: any
     sections?: ReadonlyArray<{ readonly heading: string; readonly body: string; readonly items?: ReadonlyArray<string> }> | Section[]
 }
 
@@ -98,10 +100,10 @@ export default function PrivacyPolicyClient({ data }: { data?: PrivacyData | nul
                                 <span className="font-bold text-white">Effective Date:</span>&nbsp;{effectiveDate}
                             </p>
                         </div>
-                        <p className="font-medium leading-relaxed"
-                           style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                            {intro}
-                        </p>
+                        <CmsContent
+                            content={intro}
+                            className="font-medium leading-relaxed"
+                        />
                     </div>
 
                     {/* Policy sections */}
@@ -116,10 +118,10 @@ export default function PrivacyPolicyClient({ data }: { data?: PrivacyData | nul
                                      style={{ background: 'rgba(0,212,170,0.12)' }} />
                                 <div className="flex flex-col gap-4">
                                     {sec.body && (
-                                        <p className="font-medium leading-relaxed"
-                                           style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                                            {sec.body}
-                                        </p>
+                                        <CmsContent
+                                            content={sec.body}
+                                            className="font-medium leading-relaxed"
+                                        />
                                     )}
                                     {sec.items?.length ? (
                                         <ul className="flex flex-col gap-2 pl-1">

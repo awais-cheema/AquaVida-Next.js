@@ -1,5 +1,7 @@
 'use client'
 
+import CmsContent from '@/components/cms/CmsContent'
+
 const contactItems = [
     {
         label: 'Email',
@@ -49,7 +51,7 @@ const DEFAULT_SECTIONS = [
 ]
 
 interface TermsData {
-    sections?: ReadonlyArray<{ readonly heading: string; readonly body: string }> | { heading: string; body: string }[]
+    sections?: ReadonlyArray<{ readonly heading: string; readonly body: any }> | { heading: string; body: any }[]
 }
 
 export default function TermsConditionsClient({ data }: { data?: TermsData | null }) {
@@ -127,10 +129,10 @@ export default function TermsConditionsClient({ data }: { data?: TermsData | nul
                                 </h2>
                                 <div className="h-px mb-4 sm:mb-5"
                                      style={{ background: 'rgba(0,212,170,0.12)' }} />
-                                <p className="font-medium leading-relaxed"
-                                   style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                                    {sec.body}
-                                </p>
+                                <CmsContent
+                                   content={sec.body}
+                                   className="font-medium leading-relaxed"
+                                />
                             </article>
                         ))}
 

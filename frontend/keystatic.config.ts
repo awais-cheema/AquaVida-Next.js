@@ -1,5 +1,38 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
 
+/* ── Reusable Rich Text Field (WordPress-Style) ────────────────── */
+const richText = (label: string, options: any = {}) => fields.document({
+  label,
+  formatting: {
+    headingLevels: [1, 2, 3, 4, 5, 6],
+    inlineMarks: {
+      bold: true,
+      italic: true,
+      underline: true,
+      strikethrough: true,
+      code: true,
+      superscript: true,
+      subscript: true,
+    },
+    listTypes: {
+      ordered: true,
+      unordered: true,
+    },
+    alignment: {
+      center: true,
+      end: true,
+    },
+    blockTypes: {
+      blockquote: true,
+      code: true,
+    },
+    softBreaks: true,
+  },
+  dividers: true,
+  links: true,
+  ...options,
+})
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Shared SEO fields — embedded in every content type (WordPress-style).
    Priority: inline SEO > per-page SEO collection entry > fallback defaults
@@ -119,35 +152,7 @@ export default config({
           multiline: true,
           description: '1–2 sentence summary shown in the blog listing',
         }),
-        content: fields.document({
-          label: 'Body Content',
-          formatting: {
-            headingLevels: [1, 2, 3, 4, 5, 6],
-            inlineMarks: {
-              bold: true,
-              italic: true,
-              underline: true,
-              strikethrough: true,
-              code: true,
-              superscript: true,
-              subscript: true,
-            },
-            listTypes: {
-              ordered: true,
-              unordered: true,
-            },
-            alignment: {
-              center: true,
-              end: true,
-            },
-            blockTypes: {
-              blockquote: true,
-              code: true,
-            },
-            softBreaks: true,
-          },
-          dividers: true,
-          links: true,
+        content: richText('Body Content', {
           images: {
             directory: 'public/blog-images',
             publicPath: '/blog-images/',
@@ -268,31 +273,31 @@ export default config({
         heroLabel: fields.text({ label: 'Hero Label', description: 'Small top label, e.g. "Premier Pool Construction — Dallas, TX"' }),
         heroTitle: fields.text({ label: 'Hero Title' }),
         heroHighlight: fields.text({ label: 'Hero Highlight (accent word/phrase)' }),
-        heroBody: fields.text({ label: 'Hero Body Text', multiline: true }),
+        heroBody: richText('Hero Body Text'),
         heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         overviewTitle: fields.text({ label: 'Overview Title' }),
-        overviewBody: fields.text({ label: 'Overview Body', multiline: true }),
+        overviewBody: richText('Overview Body'),
         overviewImage: fields.image({ label: 'Overview Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         processTitle: fields.text({ label: 'Process Section Title' }),
         processSteps: fields.array(
           fields.object({
             title: fields.text({ label: 'Step Title' }),
-            body: fields.text({ label: 'Step Description', multiline: true }),
+            body: richText('Step Description'),
           }),
           { label: 'Process Steps', itemLabel: props => props.fields.title.value }
         ),
 
         investmentTitle: fields.text({ label: 'Investment Section Title' }),
-        investmentBody: fields.text({ label: 'Investment Body', multiline: true }),
+        investmentBody: richText('Investment Body'),
         investmentImage: fields.image({ label: 'Investment Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         servicesTitle: fields.text({ label: 'Services Section Title' }),
         servicesItems: fields.array(
           fields.object({
             title: fields.text({ label: 'Service Item Title' }),
-            body: fields.text({ label: 'Service Item Description', multiline: true }),
+            body: richText('Service Item Description'),
           }),
           { label: 'Service Items', itemLabel: props => props.fields.title.value }
         ),
@@ -301,7 +306,7 @@ export default config({
         features: fields.array(
           fields.object({
             title: fields.text({ label: 'Feature Title' }),
-            body: fields.text({ label: 'Feature Description', multiline: true }),
+            body: richText('Feature Description'),
           }),
           { label: 'Features (icons stay in code)', itemLabel: props => props.fields.title.value }
         ),
@@ -310,19 +315,19 @@ export default config({
         standards: fields.array(
           fields.object({
             title: fields.text({ label: 'Standard Title' }),
-            body: fields.text({ label: 'Standard Description', multiline: true }),
+            body: richText('Standard Description'),
           }),
           { label: 'Standards', itemLabel: props => props.fields.title.value }
         ),
 
         ctaTitle: fields.text({ label: 'CTA Title' }),
-        ctaBody: fields.text({ label: 'CTA Body', multiline: true }),
+        ctaBody: richText('CTA Body'),
         ctaImage: fields.image({ label: 'CTA Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
 
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           { label: 'FAQ Items', itemLabel: props => props.fields.question.value }
         ),
@@ -341,14 +346,14 @@ export default config({
         }),
 
         title: fields.text({ label: 'Project Title' }),
-        description: fields.text({ label: 'Description', multiline: true }),
+        description: richText('Description'),
         heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
         location: fields.text({ label: 'Location', description: 'e.g. Seattle, WA' }),
         year: fields.text({ label: 'Year', description: 'e.g. 2024' }),
         category: fields.text({ label: 'Category', description: 'e.g. Crystalline Architecture' }),
 
         philosophyTitle: fields.text({ label: 'Philosophy Section Title' }),
-        philosophyBody: fields.text({ label: 'Philosophy Body', multiline: true }),
+        philosophyBody: richText('Philosophy Body'),
         philosophyImage: fields.image({ label: 'Philosophy Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
 
         gallery: fields.array(
@@ -362,13 +367,13 @@ export default config({
         ),
 
         technicalTitle: fields.text({ label: 'Technical Section Title' }),
-        technicalBody: fields.text({ label: 'Technical Body', multiline: true }),
+        technicalBody: richText('Technical Body'),
         accentColor: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #D4AF37' }),
 
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           { label: 'FAQ Items', itemLabel: props => props.fields.question.value }
         ),
@@ -451,24 +456,9 @@ export default config({
           label: 'Hero Tagline',
           defaultValue: 'Passionately shaping backyards into timeless designs',
         }),
-        manifesto: fields.text({
-          label: 'Manifesto Text',
-          multiline: true,
-          defaultValue:
-            'AquaVida transforms architectural vision into built reality. We specialise in luxury pool environments that shape water, define space, and elevate design. Every project is guided by precision, craftsmanship, and a commitment to enduring beauty.',
-        }),
-        approachQuote: fields.text({
-          label: 'Approach Section Quote',
-          multiline: true,
-          defaultValue:
-            'Each phase of our work carries the same intent; to understand before we create, to refine before we build, and to craft with care that lasts.',
-        }),
-        approachDescription: fields.text({
-          label: 'Approach Description',
-          multiline: true,
-          defaultValue:
-            "We're a collective of craftsmen, engineers, and thinkers united by a deep respect for detail. Our culture is built on collaboration and care. Every project begins with understanding and ends with precision.",
-        }),
+        manifesto: richText('Manifesto Text'),
+        approachQuote: richText('Approach Section Quote'),
+        approachDescription: richText('Approach Description'),
         beliefs: fields.array(
           fields.object({
             word: fields.text({ label: 'Belief Word' }),
@@ -488,19 +478,14 @@ export default config({
         values: fields.array(
           fields.object({
             title: fields.text({ label: 'Value Title' }),
-            desc: fields.text({ label: 'Description', multiline: true }),
+            desc: richText('Description'),
           }),
           {
             label: 'Values',
             itemLabel: props => props.fields.title.value,
           },
         ),
-        founderBio: fields.text({
-          label: 'Founder Bio',
-          multiline: true,
-          defaultValue:
-            'Hassan Bari, CEO and Founder of AquaVida Pools and Spas. He specializes in designing luxury outdoor living spaces while offering premium custom pool construction with unparalleled craftsmanship for homeowners across America.',
-        }),
+        founderBio: richText('Founder Bio'),
         founderName: fields.text({ label: 'Founder Name', defaultValue: 'Hassan Bari' }),
         founderRole: fields.text({ label: 'Founder Role', defaultValue: 'CEO & Founder' }),
         founderImage: fields.image({
@@ -525,17 +510,13 @@ export default config({
         /* Expertise heading */
         expertiseLabel: fields.text({ label: 'Expertise Label', defaultValue: 'Services' }),
         expertiseTitle: fields.text({ label: 'Expertise Heading', defaultValue: 'Our Area of Expertise Space' }),
-        expertiseDescription: fields.text({
-          label: 'Expertise Description',
-          multiline: true,
-          defaultValue: 'AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners.',
-        }),
+        expertiseDescription: richText('Expertise Description'),
 
         /* Service cards */
         services: fields.array(
           fields.object({
             title: fields.text({ label: 'Service Name' }),
-            sub: fields.text({ label: 'Subtitle' }),
+            sub: richText('Subtitle'),
             href: fields.text({ label: 'URL Path', description: 'e.g. /services/pool-construction' }),
             image: fields.image({ label: 'Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
             accent: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #0d5699' }),
@@ -554,7 +535,7 @@ export default config({
             line1: fields.text({ label: 'Globe Text — Line 1' }),
             line2: fields.text({ label: 'Globe Text — Line 2' }),
             title: fields.text({ label: 'Full Title' }),
-            sub: fields.text({ label: 'Description', multiline: true }),
+            sub: richText('Description'),
             image: fields.image({ label: 'Background Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
           }),
           {
@@ -569,7 +550,7 @@ export default config({
             client: fields.text({ label: 'Client Name' }),
             location: fields.text({ label: 'Location', description: 'e.g. Frisco, TX' }),
             type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction · Outdoor Kitchen' }),
-            quote: fields.text({ label: 'Testimonial Quote', multiline: true }),
+            quote: richText('Testimonial Quote'),
             image: fields.image({ label: 'Photo Path', directory: 'public/images/testimonials', publicPath: '/images/testimonials/' }),
           }),
           {
@@ -588,7 +569,7 @@ export default config({
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           {
             label: 'FAQ Items',
@@ -641,7 +622,7 @@ export default config({
             name: fields.text({ label: 'Partner Name' }),
             subtitle: fields.text({ label: 'Subtitle' }),
             details: fields.text({ label: 'Details Line' }),
-            insight: fields.text({ label: 'Insight Paragraph', multiline: true }),
+            insight: richText('Insight Paragraph'),
             features: fields.array(
               fields.text({ label: 'Feature' }),
               { label: 'Features', itemLabel: props => props.value }
@@ -678,15 +659,11 @@ export default config({
           label: 'Effective Date',
           defaultValue: 'January 1, 2026',
         }),
-        intro: fields.text({
-          label: 'Intro Paragraph',
-          multiline: true,
-          defaultValue: "AquaVida Pools and Spas' Privacy Policy details how it collects, uses and safeguards personal information provided to us from visitors and clients of AquaVida Pools and Spas. By engaging our services, you agree to the data practices described.",
-        }),
+        intro: richText('Intro Paragraph'),
         sections: fields.array(
           fields.object({
             heading: fields.text({ label: 'Section Heading' }),
-            body: fields.text({ label: 'Main Paragraph', multiline: true }),
+            body: richText('Main Paragraph'),
             items: fields.array(
               fields.text({ label: 'List Item' }),
               { label: 'List Items (optional)', itemLabel: props => props.value }
@@ -709,7 +686,7 @@ export default config({
         sections: fields.array(
           fields.object({
             heading: fields.text({ label: 'Section Heading' }),
-            body: fields.text({ label: 'Section Body', multiline: true }),
+            body: richText('Section Body'),
           }),
           {
             label: 'Sections',
@@ -764,11 +741,7 @@ export default config({
         /* Header */
         headerLabel: fields.text({ label: 'Header Label', defaultValue: 'ARCHITECTURAL ARCHIVE' }),
         headerTitle: fields.text({ label: 'Header Title', defaultValue: 'The Liquid Portfolio' }),
-        headerDescription: fields.text({
-          label: 'Header Description',
-          multiline: true,
-          defaultValue: 'A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.',
-        }),
+        headerDescription: richText('Header Description'),
         curationLabel: fields.text({ label: 'Stat 1 Label', defaultValue: 'Curation' }),
         curationValue: fields.text({ label: 'Stat 1 Value', defaultValue: 'Volume III' }),
         focusLabel: fields.text({ label: 'Stat 2 Label', defaultValue: 'Focus' }),
@@ -782,7 +755,7 @@ export default config({
             category: fields.text({ label: 'Category' }),
             year: fields.text({ label: 'Year' }),
             location: fields.text({ label: 'Location' }),
-            description: fields.text({ label: 'Card Description', multiline: true }),
+            description: richText('Card Description'),
             image: fields.image({ label: 'Card Image Path', directory: 'public/images/portfolio', publicPath: '/images/portfolio/' }),
             gridSize: fields.text({ label: 'Grid Size Classes', description: 'e.g. col-span-2 row-span-2' }),
             color: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #91792C' }),
@@ -795,11 +768,7 @@ export default config({
 
         /* CTA section */
         ctaTitle: fields.text({ label: 'CTA Title', defaultValue: 'Next Generation Pool Design' }),
-        ctaDescription: fields.text({
-          label: 'CTA Description',
-          multiline: true,
-          defaultValue: "We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture.",
-        }),
+        ctaDescription: richText('CTA Description'),
         ctaButtonText: fields.text({ label: 'CTA Button Text', defaultValue: 'Begin Your Project' }),
         ctaButtonHref: fields.text({ label: 'CTA Button Link', defaultValue: '/contact' }),
 

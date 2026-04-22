@@ -1,23 +1,23 @@
 slug: montalcino
 title: Montalcino Heights
-description: Modernist approach integrating extreme topography with custom
+description: [{ "type": "paragraph", "children": [{ "text": "Modernist approach integrating extreme topography with custom" }] }]
   bio-filtration systems and a sunken fire-feature focal point.
-heroImage: /images/portfolio/landing/Montalcino_Cove.avif
+heroImage: 'Montalcino_Cove.avif'
 location: Austin, TX
 year: "2023"
 category: Modernist Landscape
 philosophyTitle: The Philosophy
-philosophyBody: Modernist approach integrating extreme topography with custom
+philosophyBody: [{ "type": "paragraph", "children": [{ "text": "Modernist approach integrating extreme topography with custom" }] }]
   bio-filtration systems and a sunken fire-feature focal point.
-philosophyImage: /images/portfolio/landing/Montalcino_Cove.avif
+philosophyImage: 'Montalcino_Cove.avif'
 gallery:
   - url: /images/portfolio/landing/Montalcino_Cove.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: Engineered for absolute performance.
+technicalBody: [{ "type": "paragraph", "children": [{ "text": "Engineered for absolute performance." }] }]
 accentColor: "#63B589"
 faqItems:
   - question: What was the timeline?
-    answer: Completed on schedule.
+    answer: [{ "type": "paragraph", "children": [{ "text": "Completed on schedule." }] }]

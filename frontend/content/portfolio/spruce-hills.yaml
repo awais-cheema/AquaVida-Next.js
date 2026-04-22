@@ -1,24 +1,24 @@
 slug: spruce-hills
 title: Spruce Hills Estate
-description: A multi-level structural masterpiece featuring a zero-edge infinity
+description: [{ "type": "paragraph", "children": [{ "text": "A multi-level structural masterpiece featuring a zero-edge infinity" }] }]
   pool and natural stone masonry. Brutalist concrete meets organic tranquility.
-heroImage: /images/portfolio/landing/Spruce_Hills_Cover.avif
+heroImage: 'Spruce_Hills_Cover.avif'
 location: Los Angeles, CA
 year: "2023"
 category: Luxury Estate
 philosophyTitle: The Philosophy
-philosophyBody: A multi-level structural masterpiece featuring a zero-edge
+philosophyBody: [{ "type": "paragraph", "children": [{ "text": "A multi-level structural masterpiece featuring a zero-edge" }] }]
   infinity pool and natural stone masonry. Brutalist concrete meets organic
   tranquility.
-philosophyImage: /images/portfolio/landing/Spruce_Hills_Cover.avif
+philosophyImage: 'Spruce_Hills_Cover.avif'
 gallery:
   - url: /images/portfolio/landing/Spruce_Hills_Cover.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: Engineered for absolute performance.
+technicalBody: [{ "type": "paragraph", "children": [{ "text": "Engineered for absolute performance." }] }]
 accentColor: "#0D5699"
 faqItems:
   - question: What was the timeline?
-    answer: Completed on schedule.
+    answer: [{ "type": "paragraph", "children": [{ "text": "Completed on schedule." }] }]

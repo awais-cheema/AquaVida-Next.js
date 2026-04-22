@@ -1,13 +1,13 @@
 heroTagline: Passionately shaping backyards into timeless designs
-manifesto: >-
+manifesto: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   AquaVida transforms architectural vision into built reality. We specialise in
   luxury pool environments that shape water, define space, and elevate design.
   Every project is guided by precision, craftsmanship, and a commitment to
   enduring beauty.
-approachQuote: >-
+approachQuote: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   Each phase of our work carries the same intent; to understand before we
   create, to refine before we build, and to craft with care that lasts.
-approachDescription: >-
+approachDescription: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   We're a collective of craftsmen, engineers, and thinkers united by a deep
   respect for detail. Our culture is built on collaboration and care. Every
   project begins with understanding and ends with precision. Guided by clarity
@@ -25,26 +25,26 @@ valuesHeading: >-
   with purpose
 values:
   - title: Authenticity
-    desc: >-
+    desc: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       At our company, authenticity means transparency and structural integrity.
       Beginning each project with an honest assessment of your outdoor space and
       using top-grade materials and proven construction techniques will guarantee
       not just beauty on opening day, but lasting value in your home for years to
       come.
   - title: Aesthetic
-    desc: >-
+    desc: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       The pool needs to flow into the architecture of your house. Our designers
       incorporate those materials found in their surrounds so that each project
       is a study in visual harmony — sleek infinity edges, natural stone, custom
       lighting fixtures, and water features that make something truly bespoke.
   - title: Advocacy
-    desc: >-
+    desc: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       As your construction partners, we serve as your ardent representatives
       throughout every stage of this intricate building process. From navigating
       local permits to post-build maintenance education, our aim is to make your
       journey from groundbreaking to first splash as stress-free and rewarding as
       possible.
-founderBio: >-
+founderBio: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   Hassan Bari, CEO and Founder of AquaVida Pools and Spas. He specializes in
   designing luxury outdoor living spaces while offering premium custom pool
   construction with unparalleled craftsmanship for homeowners across America.

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
+import CmsContent from '@/components/cms/CmsContent';
 
 interface FAQItem {
     question: string;
@@ -108,9 +109,10 @@ export default function FAQ({ items, accentColor = '#91792C', theme = 'dark' }: 
                                     >
                                         <div className="px-5 md:px-7 pb-7">
                                             <div className="w-full h-px bg-white/5 mb-8" />
-                                            <p className={`text-[1vw] md:text-[1.3vw] leading-relaxed font-light ${styles.text}`}>
-                                                {item.answer}
-                                            </p>
+                                            <CmsContent 
+                                                content={item.answer} 
+                                                className={`text-[1vw] md:text-[1.3vw] leading-relaxed font-light ${styles.text}`}
+                                            />
                                         </div>
                                     </motion.div>
                                 )}

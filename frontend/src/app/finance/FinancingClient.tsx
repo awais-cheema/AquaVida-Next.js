@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
 import { getAssetUrl } from '@/lib/constants';
+import CmsContent from '@/components/cms/CmsContent';
 
 // ── Animation Presets (Kinetic) ────────────────────────────────────────────────
 const kineticEntry = {
@@ -139,7 +140,7 @@ const FINANCE_FAQS = [
     }
 ];
 
-type PartnerOverride = { key: string; name: string; subtitle: string; details: string; insight: string; features: ReadonlyArray<string> | string[]; logo: string; href: string; ctaLabel?: string }
+type PartnerOverride = { key: string; name: string; subtitle: string; details: string; insight: any; features: ReadonlyArray<string> | string[]; logo: string; href: string; ctaLabel?: string }
 type FaqOverride = { question: string; answer: string }
 
 interface FinancingClientProps {
@@ -272,9 +273,15 @@ export default function FinancingClient({ partners: partnersOverride, faqItems: 
                                         </div>
                                         <span style={{ color: p.color }} className="font-black tracking-[0.3em] uppercase text-[3vw] md:text-[1vw] mb-3 block">{p.subtitle}</span>
                                         <h3 className="text-[4.5vw] md:text-[2vw] font-black mb-4 tracking-normal leading-normal">{p.details}</h3>
-                                        <p className="text-[3.5vw] md:text-[1.3vw] text-white/30 leading-relaxed font-light mb-6 italic">
-                                            &ldquo;{p.insight}&rdquo;
-                                        </p>
+                                        <CmsContent
+                                            content={p.insight}
+                                            className="text-[3.5vw] md:text-[1.3vw] text-white/30 leading-relaxed font-light mb-6 italic"
+                                            renderers={{
+                                                block: {
+                                                    paragraph: ({ children }) => <span>&ldquo;{children}&rdquo;</span>
+                                                }
+                                            }}
+                                        />
                                         <ul className="space-y-3 mb-6">
                                             {p.features.map((feat, fi) => (
                                                 <li key={fi} className="flex items-start gap-3 text-[3.5vw] md:text-[1.3vw] text-white/60 leading-normal">

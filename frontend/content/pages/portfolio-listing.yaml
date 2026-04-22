@@ -1,6 +1,6 @@
 headerLabel: ARCHITECTURAL ARCHIVE
 headerTitle: The Liquid Portfolio
-headerDescription: >-
+headerDescription: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   A curated exhibition of high-performance aquatic engineering. Where structural
   brutalism meets the silent architecture of tranquility.
 curationLabel: Curation
@@ -13,11 +13,11 @@ projects:
     category: Residential Architecture
     year: '2024'
     location: 'Seattle, WA'
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       An intimate architectural enclosure featuring silent water walls and
       high-fidelity aquatic illumination. Designed for ultimate privacy and
       crystalline reflection.
-    image: /images/portfolio/landing/Brycewood_Cover.avif
+    image: 'Brycewood_Cover.avif'
     gridSize: col-span-2 row-span-2
     color: '#91792C'
   - slug: spruce-hills
@@ -25,10 +25,10 @@ projects:
     category: Luxury Estate
     year: '2023'
     location: 'Los Angeles, CA'
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       A multi-level structural masterpiece featuring a zero-edge infinity pool
       and natural stone masonry. Brutalist concrete meets organic tranquility.
-    image: /images/portfolio/landing/Spruce_Hills_Cover.avif
+    image: 'Spruce_Hills_Cover.avif'
     gridSize: col-span-1 row-span-1
     color: '#0D5699'
   - slug: montalcino
@@ -36,10 +36,10 @@ projects:
     category: Modernist Landscape
     year: '2023'
     location: 'Austin, TX'
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       Modernist approach integrating extreme topography with custom
       bio-filtration systems and a sunken fire-feature focal point.
-    image: /images/portfolio/landing/Montalcino_Cove.avif
+    image: 'Montalcino_Cove.avif'
     gridSize: col-span-1 row-span-1
     color: '#63B589'
   - slug: residential
@@ -47,10 +47,10 @@ projects:
     category: Collection
     year: Ongoing
     location: Global
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       A thematic exploration of private luxury water spaces, from hidden
       courtyard oases to expansive coastal infinity pools.
-    image: /images/portfolio/landing/Residential_Category.avif
+    image: 'Residential_Category.avif'
     gridSize: col-span-2 row-span-2
     color: '#A68A33'
   - slug: commercial
@@ -58,10 +58,10 @@ projects:
     category: Hospitality & Wellness
     year: Ongoing
     location: Global
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       Scale and performance engineered for the world's most demanding
       environments. Spas, luxury hotels, and civic water features.
-    image: /images/portfolio/landing/Commercial_Category.avif
+    image: 'Commercial_Category.avif'
     gridSize: col-span-2 row-span-1
     color: '#0A447A'
   - slug: vault
@@ -69,14 +69,14 @@ projects:
     category: Conceptual
     year: Archive
     location: AquaVida R&D
-    description: >-
+    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
       Experimental designs and architectural artifacts focusing on the future of
       hydraulic precision and liquid light.
-    image: /images/portfolio/landing/Vault_Hero.avif
+    image: 'Vault_Hero.avif'
     gridSize: col-span-1 row-span-1
     color: '#000000'
 ctaTitle: Next Generation Pool Design
-ctaDescription: >-
+ctaDescription: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
   We don't just build pools. We engineer permanent environmental artifacts that
   redefine how water interacts with human architecture.
 ctaButtonText: Begin Your Project

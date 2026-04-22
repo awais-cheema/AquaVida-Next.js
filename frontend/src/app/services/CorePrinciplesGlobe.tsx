@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { getAssetUrl } from '@/lib/constants';
+import CmsContent from '@/components/cms/CmsContent';
 
 /* ── Data ─────────────────────────────────────────────────────────────── */
 
@@ -50,7 +51,7 @@ const PRINCIPLES = [
 ] as const;
 
 type PrincipleInput = {
-    label: string; line1: string; line2: string; title: string; sub: string; image: string;
+    label: string; line1: string; line2: string; title: string; sub: any; image: string;
 }
 
 interface CorePrinciplesGlobeProps {
@@ -236,9 +237,10 @@ export default function CorePrinciplesGlobe({ title: sectionTitle, principles: c
                 {/* ── RIGHT: Description (desktop only) ── */}
                 <div className="flex-1 w-full lg:text-left order-3 hidden lg:block">
                     <div className="pointer-events-none" style={{ opacity: panelVis ? 1 : 0 }}>
-                        <p className="text-white/60 leading-relaxed text-[17px] md:text-[20px] lg:text-[26px] max-w-lg italic">
-                            {active?.sub ?? '\u00a0'}
-                        </p>
+                        <CmsContent
+                            content={active?.sub}
+                            className="text-white/60 leading-relaxed text-[17px] md:text-[20px] lg:text-[26px] max-w-lg italic"
+                        />
                     </div>
                 </div>
 
@@ -251,9 +253,10 @@ export default function CorePrinciplesGlobe({ title: sectionTitle, principles: c
                         <h3 className="text-white text-[6.5vw] font-bold mb-3 font-allomira leading-tight">
                             {active?.title}
                         </h3>
-                        <p className="text-white/50 text-[3.8vw] leading-relaxed max-w-sm mx-auto">
-                            {active?.sub}
-                        </p>
+                        <CmsContent
+                            content={active?.sub}
+                            className="text-white/50 text-[3.8vw] leading-relaxed max-w-sm mx-auto"
+                        />
                     </div>
                     {!panelVis && (
                         <p className="text-white/15 text-[3vw] uppercase tracking-widest mt-2">—</p>

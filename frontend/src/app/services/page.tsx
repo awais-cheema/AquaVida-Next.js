@@ -18,16 +18,16 @@ export default async function Page() {
         <>
             <ServicesClient
                 initialServices={data?.services?.length ? [...data.services].map(s => ({ ...s, image: s.image ?? '' })) as any : undefined}
-                initialTestimonials={data?.testimonials?.length ? [...data.testimonials].map(t => ({ ...t, image: t.image ?? '' })) as any : undefined}
-                initialFaqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f })) : undefined}
+                initialTestimonials={data?.testimonials?.length ? [...data.testimonials].map(t => ({ ...t, image: t.image ?? '', quote: t.quote as any })) as any : undefined}
+                initialFaqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined}
                 heroImage={data?.heroImage || undefined}
                 heroTitle={data?.heroTitle || undefined}
                 heroTitleRight={data?.heroTitleRight || undefined}
                 expertiseLabel={data?.expertiseLabel || undefined}
                 expertiseTitle={data?.expertiseTitle || undefined}
-                expertiseDescription={data?.expertiseDescription || undefined}
+                expertiseDescription={data?.expertiseDescription as any}
                 corePrinciplesTitle={data?.corePrinciplesTitle || undefined}
-                corePrinciples={data?.corePrinciples?.length ? [...data.corePrinciples].map(p => ({ ...p, image: p.image ?? '' })) as any : undefined}
+                corePrinciples={data?.corePrinciples?.length ? [...data.corePrinciples].map(p => ({ ...p, image: p.image ?? '', sub: p.sub as any })) as any : undefined}
                 ctaLabel={data?.ctaLabel || undefined}
                 ctaHeading={data?.ctaHeading || undefined}
                 ctaButtonText={data?.ctaButtonText || undefined}

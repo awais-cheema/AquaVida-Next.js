@@ -1,23 +1,23 @@
 slug: vault
 title: The Vault
-description: Experimental designs and architectural artifacts focusing on the
+description: [{ "type": "paragraph", "children": [{ "text": "Experimental designs and architectural artifacts focusing on the" }] }]
   future of hydraulic precision and liquid light.
-heroImage: /images/portfolio/landing/Vault_Hero.avif
+heroImage: 'Vault_Hero.avif'
 location: AquaVida R&D
 year: Archive
 category: Conceptual
 philosophyTitle: The Philosophy
-philosophyBody: Experimental designs and architectural artifacts focusing on the
+philosophyBody: [{ "type": "paragraph", "children": [{ "text": "Experimental designs and architectural artifacts focusing on the" }] }]
   future of hydraulic precision and liquid light.
-philosophyImage: /images/portfolio/landing/Vault_Hero.avif
+philosophyImage: 'Vault_Hero.avif'
 gallery:
   - url: /images/portfolio/landing/Vault_Hero.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: Engineered for absolute performance.
+technicalBody: [{ "type": "paragraph", "children": [{ "text": "Engineered for absolute performance." }] }]
 accentColor: "#000000"
 faqItems:
   - question: What was the timeline?
-    answer: Completed on schedule.
+    answer: [{ "type": "paragraph", "children": [{ "text": "Completed on schedule." }] }]

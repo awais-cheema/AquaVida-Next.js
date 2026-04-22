@@ -20,14 +20,14 @@ export default async function PortfolioPage() {
                 faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f })) : undefined}
                 headerLabel={data?.headerLabel || undefined}
                 headerTitle={data?.headerTitle || undefined}
-                headerDescription={data?.headerDescription || undefined}
+                headerDescription={data?.headerDescription as any}
                 curationLabel={data?.curationLabel || undefined}
                 curationValue={data?.curationValue || undefined}
                 focusLabel={data?.focusLabel || undefined}
                 focusValue={data?.focusValue || undefined}
-                projects={data?.projects?.length ? [...data.projects].map(p => ({ ...p, image: p.image ?? '' })) as any : undefined}
+                projects={data?.projects?.length ? [...data.projects].map(p => ({ ...p, image: p.image ?? '', description: p.description as any })) as any : undefined}
                 ctaTitle={data?.ctaTitle || undefined}
-                ctaDescription={data?.ctaDescription || undefined}
+                ctaDescription={data?.ctaDescription as any}
                 ctaButtonText={data?.ctaButtonText || undefined}
                 ctaButtonHref={data?.ctaButtonHref || undefined}
             />

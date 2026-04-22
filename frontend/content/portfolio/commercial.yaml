@@ -1,23 +1,23 @@
 slug: commercial
 title: Commercial Projects
-description: Scale and performance engineered for the world's most demanding
+description: [{ "type": "paragraph", "children": [{ "text": "Scale and performance engineered for the world's most demanding" }] }]
   environments. Spas, luxury hotels, and civic water features.
-heroImage: /images/portfolio/landing/Commercial_Category.avif
+heroImage: 'Commercial_Category.avif'
 location: Global
 year: Ongoing
 category: Hospitality & Wellness
 philosophyTitle: The Philosophy
-philosophyBody: Scale and performance engineered for the world's most demanding
+philosophyBody: [{ "type": "paragraph", "children": [{ "text": "Scale and performance engineered for the world's most demanding" }] }]
   environments. Spas, luxury hotels, and civic water features.
-philosophyImage: /images/portfolio/landing/Commercial_Category.avif
+philosophyImage: 'Commercial_Category.avif'
 gallery:
   - url: /images/portfolio/landing/Commercial_Category.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: Engineered for absolute performance.
+technicalBody: [{ "type": "paragraph", "children": [{ "text": "Engineered for absolute performance." }] }]
 accentColor: "#0A447A"
 faqItems:
   - question: What was the timeline?
-    answer: Completed on schedule.
+    answer: [{ "type": "paragraph", "children": [{ "text": "Completed on schedule." }] }]

@@ -16,9 +16,9 @@ export default async function Page() {
     const data = await reader.singletons.financePage.read().catch(() => null)
     return (
         <>
-            <FinancingClient
-                partners={data?.partners?.length ? data.partners : null}
-                faqItems={data?.faqItems?.length ? data.faqItems : null}
+            <FinancingClient 
+                partners={data?.partners?.length ? [...data.partners].map(p => ({ ...p, insight: p.insight as any })) : undefined} 
+                faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined} 
             />
             <SeoLinks internalLinks={data?.internalLinks} externalLinks={data?.externalLinks} />
         </>
