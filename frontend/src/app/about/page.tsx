@@ -16,8 +16,12 @@ export default async function AboutPage() {
     const raw = await reader.singletons.aboutPage.read().catch(() => null)
     const data = raw ? {
         ...raw,
+        manifesto: raw.manifesto ? await raw.manifesto() : undefined,
+        approachQuote: raw.approachQuote ? await raw.approachQuote() : undefined,
+        approachDescription: raw.approachDescription ? await raw.approachDescription() : undefined,
         beliefs: raw.beliefs ? [...raw.beliefs].map(b => ({ ...b })) : undefined,
-        values: raw.values ? [...raw.values].map(v => ({ ...v })) : undefined,
+        values: raw.values ? await Promise.all([...raw.values].map(async v => ({ ...v, desc: await v.desc() }))) : undefined,
+        founderBio: raw.founderBio ? await raw.founderBio() : undefined,
     } : undefined
     return (
         <>

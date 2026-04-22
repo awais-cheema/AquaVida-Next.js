@@ -183,14 +183,14 @@ interface PortfolioClientProps {
     faqItems?: { question: string; answer: any }[]
     headerLabel?: string
     headerTitle?: string
-    headerDescription?: string
+    headerDescription?: any
     curationLabel?: string
     curationValue?: string
     focusLabel?: string
     focusValue?: string
     projects?: PortfolioProjectItem[]
     ctaTitle?: string
-    ctaDescription?: string
+    ctaDescription?: any
     ctaButtonText?: string
     ctaButtonHref?: string
 }

@@ -6,26 +6,26 @@ export type ServicePageOverride = {
   heroLabel: string
   heroTitle: string
   heroHighlight: string
-  heroBody: string
+  heroBody: any
   heroImage: string | null
   overviewTitle: string
-  overviewBody: string
+  overviewBody: any
   overviewImage: string | null
   processTitle: string
-  processSteps: ReadonlyArray<{ readonly title: string; readonly body: string }>
+  processSteps: ReadonlyArray<{ readonly title: string; readonly body: any }>
   investmentTitle: string
-  investmentBody: string
+  investmentBody: any
   investmentImage: string | null
   servicesTitle: string
-  servicesItems: ReadonlyArray<{ readonly title: string; readonly body: string }>
+  servicesItems: ReadonlyArray<{ readonly title: string; readonly body: any }>
   featuresTitle: string
-  features: ReadonlyArray<{ readonly title: string; readonly body: string }>
+  features: ReadonlyArray<{ readonly title: string; readonly body: any }>
   standardsTitle: string
-  standards: ReadonlyArray<{ readonly title: string; readonly body: string }>
+  standards: ReadonlyArray<{ readonly title: string; readonly body: any }>
   ctaTitle: string
-  ctaBody: string
+  ctaBody: any
   ctaImage: string | null
-  faqItems?: ReadonlyArray<{ readonly question: string; readonly answer: string }> | null
+  faqItems?: ReadonlyArray<{ readonly question: string; readonly answer: any }> | null
   [key: string]: unknown
 }
 
@@ -68,5 +68,30 @@ export function mergeServiceData(base: ServiceData, override?: ServicePageOverri
     faqItems: override.faqItems?.length
       ? override.faqItems.map(f => ({ question: f.question, answer: f.answer }))
       : base.faqItems,
+  }
+}
+export async function resolveServicePage(entry: any): Promise<ServicePageOverride | null> {
+  if (!entry) return null
+  return {
+    ...entry,
+    heroBody: await entry.heroBody(),
+    overviewBody: await entry.overviewBody(),
+    processSteps: await Promise.all(
+      (entry.processSteps || []).map(async (s: any) => ({ ...s, body: await s.body() }))
+    ),
+    investmentBody: await entry.investmentBody(),
+    servicesItems: await Promise.all(
+      (entry.servicesItems || []).map(async (s: any) => ({ ...s, body: await s.body() }))
+    ),
+    features: await Promise.all(
+      (entry.features || []).map(async (f: any) => ({ ...f, body: await f.body() }))
+    ),
+    standards: await Promise.all(
+      (entry.standards || []).map(async (s: any) => ({ ...s, body: await s.body() }))
+    ),
+    ctaBody: await entry.ctaBody(),
+    faqItems: entry.faqItems?.length
+      ? await Promise.all(entry.faqItems.map(async (f: any) => ({ ...f, answer: await f.answer() })))
+      : undefined,
   }
 }

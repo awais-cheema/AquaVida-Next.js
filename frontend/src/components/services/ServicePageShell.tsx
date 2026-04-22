@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronRight, Check } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
 import { getAssetUrl } from '@/lib/constants';
+import CmsContent from '@/components/cms/CmsContent';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 export interface ServiceFeature {
@@ -17,7 +18,7 @@ export interface ServiceFeature {
 
 export interface ProcessStep {
     title: string;
-    body: string;
+    body: any;
 }
 
 export interface ServiceData {
@@ -27,34 +28,34 @@ export interface ServiceData {
     heroLabel: string;
     heroTitle: string;
     heroHighlight: string;
-    heroBody: string;
+    heroBody: any;
     heroImage: string;
 
     overviewTitle: string;
-    overviewBody: string;
+    overviewBody: any;
     overviewImage: string;
 
     processTitle: string;
     processSteps: ProcessStep[];
 
     investmentTitle: string;
-    investmentBody: string;
+    investmentBody: any;
     investmentImage: string;
 
     servicesTitle: string;
-    servicesItems: { title: string; body: string }[];
+    servicesItems: { title: string; body: any }[];
 
     featuresTitle: string;
     features: ServiceFeature[];
 
     standardsTitle: string;
-    standards: { title: string; body: string }[];
+    standards: { title: string; body: any }[];
 
     ctaTitle: string;
-    ctaBody: string;
+    ctaBody: any;
     ctaImage: string;
 
-    faqItems?: { question: string, answer: string }[];
+    faqItems?: { question: string, answer: any }[];
 }
 
 const DEFAULT_POOL_FAQS = [
@@ -166,9 +167,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                         </h1>
 
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-12 sm:gap-16 mt-10 md:mt-5">
-                            <p className="text-[4vw] md:text-[1.6vw] text-white/60 leading-normal md:max-w-[50%] w-[100%] font-light">
-                                {d.heroBody}
-                            </p>
+                            <CmsContent
+                                content={d.heroBody}
+                                className="text-[4vw] md:text-[1.6vw] text-white/60 leading-normal md:max-w-[50%] w-[100%] font-light"
+                            />
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="shrink-0">
                                 <Link href="/contact" className="w-[40vw] md:w-[16.5vw] btn group relative px-[2.3vw] py-4 bg-[#91792C] text-white font-bold text-[4vw] md:text-[1.25vw] tracking-[0.05em] rounded-full overflow-hidden transition-all shadow-2xl shadow-[#91792C]/30 flex items-center justify-center gap-[1.6vw] md:gap-4 whitespace-nowrap">
                                     Estimate Project <ArrowRight size={24} className="group-hover:translate-x-3 transition-transform" />
@@ -193,9 +195,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                             <h2 className="text-[clamp(32px,4vw,72px)] font-bold leading-[0.85] mb-6 tracking-tight">
                                 {d.overviewTitle}
                             </h2>
-                            <p className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal mb-8 max-w-4xl font-light">
-                                {d.overviewBody}
-                            </p>
+                            <CmsContent
+                                content={d.overviewBody}
+                                className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal mb-8 max-w-4xl font-light"
+                            />
                             <Link href="/portfolio" className="inline-flex items-center gap-4 text-[4vw] md:text-[1.25vw] font-bold group">
                                 <span className="underline underline-offset-[12px] decoration-[#91792C]/30 group-hover:decoration-[#91792C] transition-all">Explore Process Gallery</span>
                                 <div className="w-[8vw] h-[8vw] md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-all">
@@ -237,7 +240,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                             >
                                 <span className="text-[10vw] md:text-[3vw] font-bold text-white/[0.15] block mb-4 group-hover:text-[#91792C]/10 transition-colors">0{i+1}</span>
                                 <h3 className="text-[7.2vw] md:text-[1.6vw] font-bold mb-3 text-white group-hover:text-[#A68A33] transition-colors tracking-tight">{step.title}</h3>
-                                <p className="text-[4vw] md:text-[1.1vw] text-white/40 leading-normal font-light">{step.body}</p>
+                                <CmsContent 
+                                    content={step.body}
+                                    className="text-[4vw] md:text-[1.1vw] text-white/40 leading-normal font-light"
+                                />
                             </motion.div>
                         ))}
                     </motion.div>
@@ -254,9 +260,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                             <h2 className="text-[clamp(32px,4vw,72px)] font-bold leading-[0.9] mb-6 tracking-tighter">
                                 {d.investmentTitle}
                             </h2>
-                            <p className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal font-light mb-8">
-                                {d.investmentBody}
-                            </p>
+                            <CmsContent
+                                content={d.investmentBody}
+                                className="text-[4vw] md:text-[1.4vw] text-white/60 leading-normal font-light mb-8"
+                            />
                             <motion.div whileHover={{ x: 10 }} className="inline-block">
                                 <Link href="/finance" className="btn inline-flex items-center gap-4 px-[4vw] md:px-8 py-[3vw] md:py-4 rounded-full border border-white/20 hover:border-[#63B589] hover:bg-[#63B589] text-white hover:text-black font-bold text-[4vw] md:text-[1.1vw] transition-all">
                                     Investment Options <ArrowRight size={20} />
@@ -315,7 +322,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                     <div className="pt-2 text-[#91792C] font-bold text-[1.1vw] opacity-20 group-hover:opacity-100 transition-all group-hover:scale-125">0{i+1}</div>
                                     <div>
                                         <h3 className="text-[4.5vw] md:text-[1.4vw] font-bold mb-6 text-white group-hover:text-[#A68A33] transition-all tracking-tight">{item.title}</h3>
-                                        <p className="text-[4vw] md:text-[1.3vw] text-white/50 leading-relaxed font-light">{item.body}</p>
+                                        <CmsContent
+                                            content={item.body}
+                                            className="text-[4vw] md:text-[1.3vw] text-white/50 leading-relaxed font-light"
+                                        />
                                     </div>
                                 </div>
                             ))}
@@ -331,7 +341,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                         <Check className="text-[#63B589] flex-shrink-0 mt-1.5 transition-transform group-hover:scale-150" size={24} />
                                         <div>
                                             <h4 className="text-[4.5vw] md:text-[1.4vw] font-bold text-white mb-1 tracking-tight">{s.title}</h4>
-                                            <p className="text-[4vw] md:text-[1.3vw] text-white/40 leading-relaxed font-light">{s.body}</p>
+                                            <CmsContent
+                                                content={s.body}
+                                                className="text-[4vw] md:text-[1.3vw] text-white/40 leading-relaxed font-light"
+                                            />
                                         </div>
                                     </div>
                                 ))}
@@ -352,9 +365,10 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                              <h2 className="text-[clamp(2vw,5vw,140px)] font-bold mb-6 leading-[0.9] tracking-tighter">
                                  {d.ctaTitle}
                              </h2>
-                             <p className="text-[4vw] md:text-[1.4vw] text-white/50 mb-8 font-light mx-auto leading-relaxed">
-                                 {d.ctaBody}
-                             </p>
+                             <CmsContent
+                                 content={d.ctaBody}
+                                 className="text-[4vw] md:text-[1.4vw] text-white/50 mb-8 font-light mx-auto leading-relaxed"
+                             />
                              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                  <Link href="/contact" className="btn inline-flex items-center gap-4 px-7 py-4 bg-white text-black rounded-full font-bold text-[4vw] md:text-[1.5vw] hover:bg-white/90 hover:text-black transition-all shadow-[0_30px_90px_rgba(255,255,255,0.15)] whitespace-nowrap">
                                      Start Your Journey <ArrowRight size={20} />

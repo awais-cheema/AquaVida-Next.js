@@ -39,13 +39,13 @@ export default async function MontalcinoPage() {
             ...DEFAULTS, 
             ...entry, 
             id: 'montalcino',
-            description: (entry as any).description as any,
-            philosophyBody: (entry as any).philosophyBody as any,
-            technicalBody: (entry as any).technicalBody as any,
+            description: await (entry as any).description(),
+            philosophyBody: await (entry as any).philosophyBody(),
+            technicalBody: await (entry as any).technicalBody(),
             heroImage: entry.heroImage ?? DEFAULTS.heroImage,
             philosophyImage: entry.philosophyImage ?? DEFAULTS.philosophyImage,
             gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g, url: g.url ?? '' })) as any : DEFAULTS.gallery,
-            faqItems: entry.faqItems?.length ? [...entry.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined,
+            faqItems: entry.faqItems?.length ? await Promise.all([...entry.faqItems].map(async f => ({ ...f, answer: await f.answer() }))) : undefined,
           }
         : DEFAULTS
     return <PortfolioProjectShell p={p} />

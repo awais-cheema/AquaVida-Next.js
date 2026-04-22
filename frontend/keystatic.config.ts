@@ -653,7 +653,7 @@ export default config({
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           {
             label: 'FAQ Items',

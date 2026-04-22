@@ -13,10 +13,10 @@ import CmsContent from '@/components/cms/CmsContent';
 /* ── data ─────────────────────────────────────────────────────────────── */
 
 export type ServiceItem = {
-    title: string; sub: string; href: string; image: string; accent: string;
+    title: string; sub: any; href: string; image: string; accent: string;
 }
 export type TestimonialItem = {
-    client: string; location: string; type: string; quote: string; image: string;
+    client: string; location: string; type: string; quote: any; image: string;
 }
 
 const SERVICES: ServiceItem[] = [
@@ -291,19 +291,19 @@ function FloatingCTA({ ctaLabel, ctaHeading, ctaButtonText, ctaButtonHref }: { c
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
 export type CorePrincipleItem = {
-    label: string; line1: string; line2: string; title: string; sub: string; image: string;
+    label: string; line1: string; line2: string; title: string; sub: any; image: string;
 }
 
 export interface ServicesClientProps {
     initialServices?: ServiceItem[]
     initialTestimonials?: TestimonialItem[]
-    initialFaqItems?: { question: string; answer: string }[]
+    initialFaqItems?: { question: string; answer: any }[]
     heroImage?: string
     heroTitle?: string
     heroTitleRight?: string
     expertiseLabel?: string
     expertiseTitle?: string
-    expertiseDescription?: string
+    expertiseDescription?: any
     corePrinciplesTitle?: string
     corePrinciples?: CorePrincipleItem[]
     ctaLabel?: string

@@ -54,7 +54,7 @@ export default async function BlogPage() {
     }
 
     const settings = await reader.singletons.blogSettings.read().catch(() => null)
-    const faqItems = (settings as any)?.faqItems?.length ? [...(settings as any).faqItems].map((f: any) => ({ ...f, answer: f.answer as any })) : undefined
+    const faqItems = (settings as any)?.faqItems?.length ? await Promise.all([...(settings as any).faqItems].map(async (f: any) => ({ ...f, answer: await f.answer() }))) : undefined
     const categories = (settings as any)?.categories?.length ? [...(settings as any).categories] : undefined
 
     return (

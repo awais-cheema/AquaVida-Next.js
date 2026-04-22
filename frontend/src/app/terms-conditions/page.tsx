@@ -14,9 +14,17 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function TermsConditionsPage() {
     const data = await reader.singletons.termsConditions.read().catch(() => null)
+    const resolvedData = data ? {
+        ...data,
+        sections: await Promise.all((data.sections || []).map(async s => ({
+            ...s,
+            body: await s.body()
+        })))
+    } : null
+
     return (
         <>
-            <TermsConditionsClient data={data ?? null} />
+            <TermsConditionsClient data={resolvedData as any} />
             <SeoLinks internalLinks={data?.internalLinks} externalLinks={data?.externalLinks} />
         </>
     )

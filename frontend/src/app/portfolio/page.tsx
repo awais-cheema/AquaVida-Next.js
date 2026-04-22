@@ -17,17 +17,17 @@ export default async function PortfolioPage() {
     return (
         <>
             <PortfolioClient
-                faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined}
+                faqItems={data?.faqItems?.length ? await Promise.all([...data.faqItems].map(async f => ({ ...f, answer: await f.answer() }))) : undefined}
                 headerLabel={data?.headerLabel || undefined}
                 headerTitle={data?.headerTitle || undefined}
-                headerDescription={data?.headerDescription as any}
+                headerDescription={data?.headerDescription ? await data.headerDescription() : undefined}
                 curationLabel={data?.curationLabel || undefined}
                 curationValue={data?.curationValue || undefined}
                 focusLabel={data?.focusLabel || undefined}
                 focusValue={data?.focusValue || undefined}
-                projects={data?.projects?.length ? [...data.projects].map(p => ({ ...p, image: p.image ?? '', description: p.description as any })) as any : undefined}
+                projects={data?.projects?.length ? await Promise.all([...data.projects].map(async p => ({ ...p, image: p.image ?? '', description: await p.description() }))) : undefined}
                 ctaTitle={data?.ctaTitle || undefined}
-                ctaDescription={data?.ctaDescription as any}
+                ctaDescription={data?.ctaDescription ? await data.ctaDescription() : undefined}
                 ctaButtonText={data?.ctaButtonText || undefined}
                 ctaButtonHref={data?.ctaButtonHref || undefined}
             />

@@ -7,7 +7,7 @@ type Section = { heading: string; body: any; items?: ReadonlyArray<string> | str
 interface PrivacyData {
     effectiveDate?: string
     intro?: any
-    sections?: ReadonlyArray<{ readonly heading: string; readonly body: string; readonly items?: ReadonlyArray<string> }> | Section[]
+    sections?: ReadonlyArray<{ readonly heading: string; readonly body: any; readonly items?: ReadonlyArray<string> }> | Section[]
 }
 
 const DEFAULT_EFFECTIVE_DATE = 'January 1, 2026'
