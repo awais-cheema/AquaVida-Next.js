@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -153,10 +153,30 @@ export default function FinancingClient({ partners: partnersOverride, faqItems: 
         ? partnersOverride.map(p => ({ ...p, color: PARTNERS.find(d => d.key === p.key)?.color ?? '#0D5699' }))
         : PARTNERS
     const activeFaqs = faqOverride?.length ? [...faqOverride].map(f => ({ ...f })) : FINANCE_FAQS
-    const heroRef = useRef(null);
+    const heroRef      = useRef(null);
+    const carouselRef  = useRef<HTMLDivElement>(null);
+    const [activeIdx,  setActiveIdx]  = useState(0);
+    const [swipeHint,  setSwipeHint]  = useState(true);
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const yHero = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
     const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+    useEffect(() => {
+        const el = carouselRef.current;
+        if (!el) return;
+        const onScroll = () => {
+            const cardWidth = (el.children[0]?.children[0]?.clientWidth ?? 340) + 32;
+            setActiveIdx(Math.round(el.scrollLeft / cardWidth));
+            setSwipeHint(false);
+        };
+        el.addEventListener('scroll', onScroll, { passive: true });
+        return () => el.removeEventListener('scroll', onScroll);
+    }, []);
+
+    useEffect(() => {
+        const t = setTimeout(() => setSwipeHint(false), 2500);
+        return () => clearTimeout(t);
+    }, []);
 
     const glassStyle = {
         background: 'rgba(255, 255, 255, 0.02)',
@@ -226,8 +246,8 @@ export default function FinancingClient({ partners: partnersOverride, faqItems: 
                         <h2 className="text-[clamp(50px,6vw,120px)] font-black tracking-normal leading-[0.85] uppercase">Lending Partners</h2>
                     </motion.div>
 
-                    <div className="overflow-x-auto pb-12 -mx-4 px-4 scrollbar-hide">
-                        <motion.div 
+                    <div ref={carouselRef} className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+                        <motion.div
                             variants={staggerContainer}
                             initial="initial"
                             whileInView="whileInView"
@@ -274,6 +294,45 @@ export default function FinancingClient({ partners: partnersOverride, faqItems: 
                             ))}
                         </motion.div>
                     </div>
+
+                    {/* Mobile-only: swipe hint + dot indicators */}
+                    <div className="flex flex-col items-center gap-3 mb-6 md:hidden">
+                        <div style={{ opacity: swipeHint ? 1 : 0, transition: 'opacity 0.5s ease', pointerEvents: 'none' }}
+                             className="flex items-center gap-2 text-white/40">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+                                 style={{ animation: 'fin-swipe-nudge 1.2s ease-in-out infinite' }}>
+                                <path d="M19 12H5M12 5l-7 7 7 7" />
+                            </svg>
+                            <span className="text-[11px] uppercase tracking-[0.22em] font-medium">Swipe</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+                                 style={{ animation: 'fin-swipe-nudge 1.2s ease-in-out infinite', animationDirection: 'reverse' }}>
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                        <div className="flex gap-2">
+                            {activePartners.map((_, i) => (
+                                <button key={i}
+                                    onClick={() => {
+                                        if (!carouselRef.current) return;
+                                        const cardWidth = (carouselRef.current.children[0]?.children[0]?.clientWidth ?? 340) + 32;
+                                        carouselRef.current.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+                                    }}
+                                    aria-label={`Go to slide ${i + 1}`}
+                                    style={{
+                                        width: activeIdx === i ? 20 : 6, height: 6, borderRadius: 3,
+                                        background: activeIdx === i ? '#63b589' : 'rgba(255,255,255,0.25)',
+                                        transition: 'all 0.3s ease', border: 'none', padding: 0, cursor: 'pointer',
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <style dangerouslySetInnerHTML={{ __html: `
+                        @keyframes fin-swipe-nudge {
+                            0%, 100% { transform: translateX(0); opacity: 0.4; }
+                            50%       { transform: translateX(-4px); opacity: 0.9; }
+                        }
+                    `}} />
                 </section>
 
 {/* ── STRATEGIC INSIGHT (Expert Guidance) ────────────────────────── */}
