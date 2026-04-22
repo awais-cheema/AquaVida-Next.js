@@ -576,6 +576,20 @@ export default config({
             itemLabel: props => props.fields.question.value,
           },
         ),
+        comparison: fields.array(
+          fields.object({
+            feature: fields.text({ label: 'Feature Name' }),
+            vistafi: fields.text({ label: 'Vistafi Value' }),
+            lyon: fields.text({ label: 'Lyon Value' }),
+            hfs: fields.text({ label: 'HFS Value' }),
+            viking: fields.text({ label: 'Viking Value' }),
+            heloc: fields.text({ label: 'HELOC Value' }),
+          }),
+          {
+            label: 'Comparison Table',
+            itemLabel: props => props.fields.feature.value,
+          },
+        ),
         ...seoFieldsDef,
       },
     }),
@@ -730,6 +744,27 @@ export default config({
           label: 'Copyright Text',
           defaultValue: '© 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.',
         }),
+        exploreLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'Link URL' }),
+          }),
+          { label: 'Explore Column Links', itemLabel: props => props.fields.label.value }
+        ),
+        serviceLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'Link URL' }),
+          }),
+          { label: 'Services Column Links', itemLabel: props => props.fields.label.value }
+        ),
+        informationLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'Link URL' }),
+          }),
+          { label: 'Information Column Links', itemLabel: props => props.fields.label.value }
+        ),
       },
     }),
 
@@ -776,7 +811,7 @@ export default config({
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           {
             label: 'FAQ Items',
@@ -795,12 +830,19 @@ export default config({
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
+            answer: richText('Answer'),
           }),
           {
             label: 'FAQ Items',
             itemLabel: props => props.fields.question.value,
           },
+        ),
+        categories: fields.array(
+          fields.text({ label: 'Category Name' }),
+          {
+            label: 'Filter Categories',
+            itemLabel: props => props.value,
+          }
         ),
         ...seoFieldsDef,
       },

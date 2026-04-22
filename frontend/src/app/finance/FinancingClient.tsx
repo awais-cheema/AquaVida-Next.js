@@ -141,19 +141,22 @@ const FINANCE_FAQS = [
 ];
 
 type PartnerOverride = { key: string; name: string; subtitle: string; details: string; insight: any; features: ReadonlyArray<string> | string[]; logo: string; href: string; ctaLabel?: string }
-type FaqOverride = { question: string; answer: string }
+type FaqOverride = { question: string; answer: any }
+type ComparisonItem = { feature: string; vistafi: string; lyon: string; hfs: string; viking: string; heloc: string }
 
 interface FinancingClientProps {
     partners?: ReadonlyArray<PartnerOverride> | PartnerOverride[] | null
     faqItems?: ReadonlyArray<FaqOverride> | FaqOverride[] | null
+    comparison?: ReadonlyArray<ComparisonItem> | ComparisonItem[] | null
 }
 
 // ── Page Component ─────────────────────────────────────────────────────────────
-export default function FinancingClient({ partners: partnersOverride, faqItems: faqOverride }: FinancingClientProps = {}) {
+export default function FinancingClient({ partners: partnersOverride, faqItems: faqOverride, comparison: comparisonOverride }: FinancingClientProps = {}) {
     const activePartners = partnersOverride?.length
         ? partnersOverride.map(p => ({ ...p, color: PARTNERS.find(d => d.key === p.key)?.color ?? '#0D5699' }))
         : PARTNERS
     const activeFaqs = faqOverride?.length ? [...faqOverride].map(f => ({ ...f })) : FINANCE_FAQS
+    const activeComparison = comparisonOverride?.length ? comparisonOverride : COMPARISON
     const heroRef      = useRef(null);
     const carouselRef  = useRef<HTMLDivElement>(null);
     const [activeIdx,  setActiveIdx]  = useState(0);

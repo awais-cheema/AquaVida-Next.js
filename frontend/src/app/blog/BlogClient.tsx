@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +10,8 @@ import { BlogPost } from '@/lib/api';
 
 interface BlogClientProps {
     initialPosts: BlogPost[];
-    faqItems?: { question: string; answer: string }[];
+    faqItems?: { question: string; answer: any }[];
+    categories?: string[];
 }
 
 const BLOG_FAQS = [
@@ -34,15 +36,21 @@ const kineticEntry = {
     viewport: { once: true } as any
 };
 
-export default function BlogClient({ initialPosts = [], faqItems }: BlogClientProps) {
+export default function BlogClient({ initialPosts = [], faqItems, categories }: BlogClientProps) {
     const activeFaqs = faqItems?.length ? faqItems : BLOG_FAQS
+    const activeCategories = categories?.length ? ['All', ...categories] : ['All', 'Design', 'Engineering', 'Lighting', 'Sustainability']
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    
     const featuredPost = initialPosts.find(p => p.is_featured) || initialPosts[0];
-    const secondaryPosts = initialPosts.filter(p => p.id !== featuredPost?.id);
+    const filteredPosts = initialPosts.filter(p => {
+        const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+        return matchesCategory && p.id !== featuredPost?.id;
+    });
 
     return (
         <div className="min-h-screen bg-[#05070A] text-[#DCE3F0] font-allomira selection:bg-[#0D5699] selection:text-white select-text pt-[12vh]">
             
-            {/* ── SEARCH & FILTER BAR ────────────────────────────────────────── */}
+            {/* ── SEARCH & FILTER BAR ─────────────────────────────────────────── */}
             <div className="max-w-[1800px] mx-auto px-6 md:px-16 lg:px-24 mb-24">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-12 p-8 rounded-[40px] border border-white/5 bg-white/[0.02] backdrop-blur-3xl">
                     <div className="relative w-full md:w-1/2">
@@ -54,8 +62,16 @@ export default function BlogClient({ initialPosts = [], faqItems }: BlogClientPr
                         />
                     </div>
                     <div className="flex gap-4 overflow-x-auto w-full md:w-auto scrollbar-hide">
-                        {['All', 'Design', 'Engineering', 'Lighting', 'Sustainability'].map(cat => (
-                            <button key={cat} className="btn px-8 py-4 rounded-full border border-white/10 hover:border-white/40 text-lg font-medium transition-all whitespace-nowrap">
+                        {activeCategories.map(cat => (
+                            <button 
+                                key={cat} 
+                                onClick={() => setSelectedCategory(cat)}
+                                className={`btn px-8 py-4 rounded-full border text-lg font-medium transition-all whitespace-nowrap ${
+                                    selectedCategory === cat 
+                                    ? 'bg-[#0D5699] border-transparent text-white' 
+                                    : 'border-white/10 hover:border-white/40 text-white/60 hover:text-white'
+                                }`}
+                            >
                                 {cat}
                             </button>
                         ))}
@@ -106,7 +122,7 @@ export default function BlogClient({ initialPosts = [], faqItems }: BlogClientPr
             {/* ── POSTS GRID ───────────────────────────────────────────────── */}
             <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mb-64">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    {secondaryPosts.map((post, i) => (
+                    {filteredPosts.map((post, i) => (
                         <motion.div 
                             key={post.id}
                             initial={{ opacity: 0, y: 30 }}

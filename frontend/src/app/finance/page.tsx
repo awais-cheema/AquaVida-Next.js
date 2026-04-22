@@ -17,8 +17,9 @@ export default async function Page() {
     return (
         <>
             <FinancingClient 
-                partners={data?.partners?.length ? [...data.partners].map(p => ({ ...p, insight: p.insight as any })) : undefined} 
-                faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined} 
+                partners={(data as any)?.partners?.length ? [...(data as any).partners].map((p: any) => ({ ...p, insight: p.insight as any })) : undefined} 
+                faqItems={(data as any)?.faqItems?.length ? [...(data as any).faqItems].map((f: any) => ({ ...f, answer: f.answer as any })) : undefined} 
+                comparison={(data as any)?.comparison?.length ? [...(data as any).comparison].map((c: any) => ({ ...c })) : undefined}
             />
             <SeoLinks internalLinks={data?.internalLinks} externalLinks={data?.externalLinks} />
         </>

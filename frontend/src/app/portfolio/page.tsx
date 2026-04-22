@@ -17,7 +17,7 @@ export default async function PortfolioPage() {
     return (
         <>
             <PortfolioClient
-                faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f })) : undefined}
+                faqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined}
                 headerLabel={data?.headerLabel || undefined}
                 headerTitle={data?.headerTitle || undefined}
                 headerDescription={data?.headerDescription as any}

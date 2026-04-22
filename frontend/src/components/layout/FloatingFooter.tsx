@@ -40,6 +40,9 @@ export interface FooterData {
     instagramUrl?: string
     facebookUrl?: string
     copyrightText?: string
+    exploreLinks?: readonly { label: string; href: string }[]
+    serviceLinks?: readonly { label: string; href: string }[]
+    informationLinks?: readonly { label: string; href: string }[]
 }
 
 const FOOTER_DEFAULTS: Required<FooterData> = {
@@ -50,6 +53,25 @@ const FOOTER_DEFAULTS: Required<FooterData> = {
     instagramUrl: 'https://www.instagram.com/aquavida.us?igsh=MWxxOGE1a3I3MGp5',
     facebookUrl: 'https://www.facebook.com/share/17zSuCHyWT/',
     copyrightText: '© 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.',
+    exploreLinks: [
+        { label: 'Home', href: '/' },
+        { label: 'Portfolio', href: '/portfolio' },
+        { label: 'Services', href: '/services' },
+        { label: 'Finance', href: '/finance' },
+    ],
+    serviceLinks: [
+        { label: 'Pool design', href: '/services/pool-design' },
+        { label: 'Pool construction', href: '/services/pool-construction' },
+        { label: 'Outdoor Grill', href: '/services/outdoor-grill' },
+        { label: 'Fire Pits', href: '/services/fire-pit' },
+        { label: 'Pool remodeling', href: '/services/pool-remodeling' },
+        { label: 'Pergola design', href: '/services/pergola-design' },
+        { label: 'Patio Extensions', href: '/services/pavers' },
+    ],
+    informationLinks: [
+        { label: 'Privacy Policy', href: '/privacy-policy' },
+        { label: 'Terms & Conditions', href: '/terms-conditions' },
+    ]
 }
 
 export default function FloatingFooter({ footerData }: { footerData?: FooterData | null }) {
@@ -274,10 +296,9 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                 <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
                                                text-[11px] sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                text-white/60 md:text-white/80 font-medium tracking-wider">
-                                    <li><Link href="/"          className={lk}>Home</Link></li>
-                                    <li><Link href="/portfolio" className={lk}>Portfolio</Link></li>
-                                    <li><Link href="/services"  className={lk}>Services</Link></li>
-                                    <li><Link href="/finance"   className={lk}>Finance</Link></li>
+                                    {(fd.exploreLinks as any)?.map((link: any, i: number) => (
+                                        <li key={i}><Link href={link.href} className={lk}>{link.label}</Link></li>
+                                    ))}
                                 </ul>
                             </nav>
 
@@ -290,13 +311,9 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                 <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
                                                text-[11px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                font-medium tracking-wider">
-                                    <li><Link href="/services/pool-design"       className={lk}>Pool design</Link></li>
-                                    <li><Link href="/services/pool-construction" className={lk}>Pool construction</Link></li>
-                                    <li><Link href="/services/outdoor-grill"  className={lk}>Outdoor Grill</Link></li>
-                                    <li><Link href="/services/fire-pit"          className={lk}>Fire Pits</Link></li>
-                                    <li><Link href="/services/pool-remodeling"   className={lk}>Pool remodeling</Link></li>
-                                    <li><Link href="/services/pergola-design"    className={lk}>Pergola design</Link></li>
-                                    <li><Link href="/services/pavers" className={lk}>Patio Extensions</Link></li>
+                                    {(fd.serviceLinks as any)?.map((link: any, i: number) => (
+                                        <li key={i}><Link href={link.href} className={lk}>{link.label}</Link></li>
+                                    ))}
                                 </ul>
                             </nav>
 
@@ -309,8 +326,9 @@ export default function FloatingFooter({ footerData }: { footerData?: FooterData
                                 <ul className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-5
                                                text-[11px] sm:text-[13px] md:text-[15px] lg:text-[17px] xl:text-lg 2xl:text-2xl
                                                font-medium tracking-wider">
-                                    <li><Link href="/privacy-policy"    className={lk}>Privacy Policy</Link></li>
-                                    <li><Link href="/terms-conditions"  className={lk}>Terms &amp; Conditions</Link></li>
+                                    {(fd.informationLinks as any)?.map((link: any, i: number) => (
+                                        <li key={i}><Link href={link.href} className={lk}>{link.label}</Link></li>
+                                    ))}
                                 </ul>
                             </nav>
 
