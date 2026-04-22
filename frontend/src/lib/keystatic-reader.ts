@@ -9,4 +9,7 @@ const repoRoot = process.cwd()
 const isInsideFrontend = fs.existsSync(path.join(repoRoot, 'keystatic.config.ts'))
 const contentBaseDir = isInsideFrontend ? repoRoot : path.join(repoRoot, 'frontend')
 
-export const reader = createReader(contentBaseDir, keystaticConfig)
+export const reader = createReader(contentBaseDir, {
+  ...keystaticConfig,
+  storage: { kind: 'local' }
+})
