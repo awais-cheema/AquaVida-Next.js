@@ -12,11 +12,18 @@ export async function GET() {
         reader_test: {},
     }
 
+    // Log what path the reader resolved to
+    const contentCheck = path.join(process.cwd(), 'content')
+    results.content_exists = fs.existsSync(contentCheck)
+    results.content_blogs_files = fs.existsSync(path.join(contentCheck, 'blogs'))
+      ? fs.readdirSync(path.join(contentCheck, 'blogs'), { recursive: true })
+      : 'NOT_FOUND'
+
     try {
         results.reader_test.posts = await reader.collections.posts.list()
         results.reader_test.portfolio = await reader.collections.portfolioProjects.list()
     } catch (e: any) {
-        results.reader_test.error = e.message
+        results.reader_test.error = e.message + '\n' + e.stack
     }
 
     const pathsToCheck = [
