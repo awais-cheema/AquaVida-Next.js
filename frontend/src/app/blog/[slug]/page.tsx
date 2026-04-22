@@ -7,14 +7,14 @@ import { notFound } from 'next/navigation'
 import { Clock, User, Calendar, ArrowLeft } from 'lucide-react'
 
 export async function generateStaticParams() {
-    const slugs = await reader.collections.blogs.list().catch(() => [] as string[])
+    const slugs = await reader.collections.posts.list().catch(() => [] as string[])
     return slugs.map(slug => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const [post, g] = await Promise.all([
-        reader.collections.blogs.read(slug).catch(() => null),
+        reader.collections.posts.read(slug).catch(() => null),
         getGlobalSeo(),
     ])
     if (!post) return {}
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const post = await reader.collections.blogs.read(slug).catch(() => null)
+    const post = await reader.collections.posts.read(slug).catch(() => null)
 
     if (!post) notFound()
 
