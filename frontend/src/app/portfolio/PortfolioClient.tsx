@@ -180,7 +180,7 @@ export type PortfolioProjectItem = {
 }
 
 interface PortfolioClientProps {
-    faqItems?: { question: string; answer: string }[]
+    faqItems?: { question: string; answer: any }[]
     headerLabel?: string
     headerTitle?: string
     headerDescription?: string

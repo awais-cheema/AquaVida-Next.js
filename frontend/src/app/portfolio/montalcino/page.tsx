@@ -36,11 +36,16 @@ export default async function MontalcinoPage() {
     const entry = await reader.collections.portfolioProjects.read('montalcino').catch(() => null)
     const p = entry
         ? {
-            ...DEFAULTS, ...entry, id: 'montalcino',
+            ...DEFAULTS, 
+            ...entry, 
+            id: 'montalcino',
+            description: (entry as any).description as any,
+            philosophyBody: (entry as any).philosophyBody as any,
+            technicalBody: (entry as any).technicalBody as any,
             heroImage: entry.heroImage ?? DEFAULTS.heroImage,
             philosophyImage: entry.philosophyImage ?? DEFAULTS.philosophyImage,
             gallery: entry.gallery?.length ? [...entry.gallery].map(g => ({ ...g, url: g.url ?? '' })) as any : DEFAULTS.gallery,
-            faqItems: entry.faqItems?.length ? [...entry.faqItems].map(f => ({ ...f })) : undefined,
+            faqItems: entry.faqItems?.length ? [...entry.faqItems].map(f => ({ ...f, answer: f.answer as any })) : undefined,
           }
         : DEFAULTS
     return <PortfolioProjectShell p={p} />

@@ -7,7 +7,7 @@ import CmsContent from '@/components/cms/CmsContent';
 
 interface FAQItem {
     question: string;
-    answer: string;
+    answer: any;
 }
 
 interface FAQProps {

@@ -7,13 +7,14 @@ import { useRef } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Calendar, Layers, ShieldCheck, Zap } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
 import { getAssetUrl } from '@/lib/constants';
+import CmsContent from '@/components/cms/CmsContent';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 export interface ProjectDetail {
     id: string;
     title: string;
-    description: string;
+    description: any;
     heroImage: string;
     location: string;
     year: string;
@@ -21,7 +22,7 @@ export interface ProjectDetail {
     
     // Detailed Content
     philosophyTitle: string;
-    philosophyBody: string;
+    philosophyBody: any;
     philosophyImage: string; // The "Atmosphere" image
     
     // Gallery Items (Irregular Grid)
@@ -33,10 +34,10 @@ export interface ProjectDetail {
     }[];
 
     technicalTitle: string;
-    technicalBody: string;
+    technicalBody: any;
     
     accentColor: string;
-    faqItems?: { question: string, answer: string }[];
+    faqItems?: { question: string, answer: any }[];
 }
 
 // ── Animation Presets ──────────────────────────────────────────────────────────
@@ -106,12 +107,10 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
             {/* ── OVERVIEW STORY ── */}
             <section className="px-6 md:px-16 lg:px-24 max-w-[1900px] mx-auto pt-0 pb-32 lg:py-32 pb[0vw] md:mb-32 border-b border-white/5">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-                    <motion.p 
-                        {...kineticEntry}
-                        className=" text-[4vw] md:text-[3vw] font-normal leading-relaxed text-white/90 tracking-normal"
-                    >
-                        {p.description}
-                    </motion.p>
+                    <CmsContent 
+                        content={p.description}
+                        className="text-[4vw] md:text-[3vw] font-normal leading-relaxed text-white/90 tracking-normal"
+                    />
                     
                     <motion.div 
                         {...kineticEntry}
@@ -120,9 +119,10 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                     >
                         <div className="h-px w-32 bg-[#A68A33]" />
                         <h3 className="text-[5vw] md:text-[1.9vw]  font-bold uppercase tracking-widest text-[#A68A33]">The Architectural Intent</h3>
-                        <p className="text-[4vw] md:text-[1.6vw] text-white/80 leading-normal font-normal">
-                            {p.technicalBody}
-                        </p>
+                        <CmsContent 
+                            content={p.technicalBody}
+                            className="text-[4vw] md:text-[1.6vw] text-white/80 leading-normal font-normal"
+                        />
                     </motion.div>
                 </div>
             </section>
@@ -169,9 +169,10 @@ export default function PortfolioProjectShell({ p }: { p: ProjectDetail }) {
                         <h2 className="text-[8vw] md:text-[5vw] font-black leading-[1] uppercase mb-16" style={{ letterSpacing: '0.1em' }}>
                             {p.philosophyTitle}
                         </h2>
-                        <p className=" text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-relaxed">
-                            {p.philosophyBody}
-                        </p>
+                        <CmsContent 
+                            content={p.philosophyBody}
+                            className="text-[4vw] lg:text-[1.6vw] text-white/90 font-normal leading-relaxed"
+                        />
                     </div>
                 </motion.div>
             </section>
