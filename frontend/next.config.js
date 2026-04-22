@@ -113,14 +113,14 @@ const nextConfig = {
         return config;
     },
 
+    // Include CMS content files in serverless functions
+    outputFileTracingIncludes: {
+        '/**': ['./content/**/*'],
+    },
+
     // Experimental
     experimental: {
         optimizePackageImports: ['lucide-react', 'three', '@react-three/drei'],
-        outputFileTracingIncludes: {
-            '/blog': ['./content/**/*'],
-            '/blog/[slug]': ['./content/**/*'],
-            '/api/debug-content': ['./content/**/*'],
-        },
     },
 };
 
