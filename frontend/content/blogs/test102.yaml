@@ -1,7 +1,6 @@
 slug: test102
 title: Testing Blog Post
 excerpt: This is a test blog post to verify Keystatic reader synchronization correctly.
-content: [{ "type": "paragraph", "children": [{ "text": "Body content here." }] }]
 category: Blog
 author_name: AquaVida Team
 published_at: '2026-04-22'
