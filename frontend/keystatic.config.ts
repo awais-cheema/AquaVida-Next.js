@@ -121,7 +121,31 @@ export default config({
         }),
         content: fields.document({
           label: 'Body Content',
-          formatting: true,
+          formatting: {
+            headingLevels: [1, 2, 3, 4, 5, 6],
+            inlineMarks: {
+              bold: true,
+              italic: true,
+              underline: true,
+              strikethrough: true,
+              code: true,
+              superscript: true,
+              subscript: true,
+            },
+            listTypes: {
+              ordered: true,
+              unordered: true,
+            },
+            alignment: {
+              center: true,
+              end: true,
+            },
+            blockTypes: {
+              blockquote: true,
+              code: true,
+            },
+            softBreaks: true,
+          },
           dividers: true,
           links: true,
           images: {
@@ -132,12 +156,9 @@ export default config({
         category: fields.select({
           label: 'Category',
           options: [
-            { label: 'Design', value: 'Design' },
-            { label: 'Engineering', value: 'Engineering' },
-            { label: 'Lighting', value: 'Lighting' },
-            { label: 'Sustainability', value: 'Sustainability' },
+            { label: 'Blog', value: 'Blog' },
           ],
-          defaultValue: 'Design',
+          defaultValue: 'Blog',
         }),
         author_name: fields.text({ label: 'Author Name' }),
         published_at: fields.text({
@@ -392,6 +413,7 @@ export default config({
         }),
         bingVerification: fields.text({ label: 'Bing Webmaster Verification' }),
         googleAnalyticsId: fields.text({ label: 'Google Analytics ID', description: 'e.g. G-XXXXXXXXXX' }),
+        googleTagManagerId: fields.text({ label: 'Google Tag Manager ID', description: 'e.g. GTM-XXXXXXX' }),
         clarityId: fields.text({ label: 'Microsoft Clarity ID', defaultValue: 'vke7bmqua4' }),
         defaultRobots: fields.select({
           label: 'Default Robots Directive',
