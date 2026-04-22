@@ -21,10 +21,15 @@ export default function CmsContent({ content, className, renderers: customRender
     inline: {
       ...customRenderers?.inline,
       link: ({ href, children }) => {
-        const isInternal = href.startsWith('/') || href.startsWith('https://aquavidapools.com');
+        let url = href;
+        // Auto-prefix URLs that start with www.
+        if (/^www\./i.test(url)) {
+          url = `https://${url}`;
+        }
+        const isInternal = url.startsWith('/') || url.startsWith('https://aquavidapools');
         return (
           <Link 
-            href={href} 
+            href={url} 
             target={isInternal ? undefined : '_blank'}
             rel={isInternal ? undefined : 'noopener noreferrer'}
           >

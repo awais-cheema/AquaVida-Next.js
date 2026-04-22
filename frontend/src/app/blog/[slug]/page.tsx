@@ -124,7 +124,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     prose-a:text-[#0D5699] prose-a:no-underline hover:prose-a:underline
                     prose-strong:text-white prose-hr:border-white/10
                     prose-img:rounded-[24px]">
-                    <DocumentRenderer document={await post.content()} />
+                    <DocumentRenderer
+                        document={await post.content()}
+                        renderers={{
+                            inline: {
+                                link: ({ href, children }) => {
+                                    let url = href
+                                    // Auto-prefix URLs that start with www.
+                                    if (url && /^www\./i.test(url)) {
+                                        url = `https://${url}`
+                                    }
+                                    const isExternal = url?.startsWith('http')
+                                    return (
+                                        <a
+                                            href={url}
+                                            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                        >
+                                            {children}
+                                        </a>
+                                    )
+                                },
+                            },
+                        }}
+                    />
                 </div>
 
                 {/* Footer nav */}
