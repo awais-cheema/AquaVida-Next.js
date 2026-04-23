@@ -68,6 +68,9 @@ const MOBILE_MAX_DELTA         = 20;        // mobile: max frames/tick during ac
 const MOBILE_MOMENTUM_DECAY    = 0.88;      // velocity multiplier per tick in momentum coast — ~400ms of glide after scroll ends
 const MOBILE_MIN_MOMENTUM      = 0.2;       // frames/tick below which momentum coast stops
 const MOBILE_SETTLE_LERP       = 0.15;      // lerp factor for final approach to proxy after momentum exhausts
+const DESKTOP_MAX_DELTA        = 10;        // desktop: max frames/tick during scroll follow (keeps recorded velocity sensible)
+const MAX_COAST_VEL            = 8;         // cap velocity entering coast so overshoot is always bounded
+const MAX_OVERSHOOT            = 7;         // frames allowed past proxy.targetFrame on momentum coast (both devices)
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -292,39 +295,44 @@ export default function HeroSection() {
                 //  2. COAST   — apply decaying velocity after scroll ends (~400ms of glide).
                 //               Clamped: never overshoots proxy.targetFrame.
                 //  3. SETTLE  — gentle lerp (0.15) into exact proxy position once coasting stops.
-                if (isMobile) {
+                {
+                    // ── Unified momentum system (mobile + desktop) ──────────────────────
+                    // Phase 1 SCROLL  — follow proxy capped per-device; records frameVelocity
+                    // Phase 2 COAST   — decaying velocity, allowed to overshoot proxy by MAX_OVERSHOOT
+                    // Phase 3 SETTLE  — gentle lerp back to exact proxy position
                     const raw   = proxy.targetFrame;
                     const delta = raw - smoothedTarget;
+                    const maxDelta = isMobile ? MOBILE_MAX_DELTA : DESKTOP_MAX_DELTA;
 
                     if (isScrolling) {
-                        // Phase 1 — follow proxy, capped to prevent glitch jumps
-                        const step = Math.sign(delta) * Math.min(Math.abs(delta), MOBILE_MAX_DELTA);
+                        const step = Math.sign(delta) * Math.min(Math.abs(delta), maxDelta);
                         const prev = smoothedTarget;
                         smoothedTarget = Math.max(0, Math.min(maxFrame, smoothedTarget + step));
                         frameVelocity  = smoothedTarget - prev;
+                        // Cap so coast is always bounded to MAX_OVERSHOOT frames
+                        frameVelocity  = Math.sign(frameVelocity) * Math.min(Math.abs(frameVelocity), MAX_COAST_VEL);
 
                     } else if (Math.abs(frameVelocity) > MOBILE_MIN_MOMENTUM) {
-                        // Phase 2 — momentum coast: apply decaying velocity toward proxy
                         frameVelocity *= MOBILE_MOMENTUM_DECAY;
-                        const proposed = smoothedTarget + frameVelocity;
-                        // Never overshoot past proxy in the direction of travel
-                        const clamped  = frameVelocity > 0
-                            ? Math.min(proposed, raw)
-                            : Math.max(proposed, raw);
-                        if (Math.abs(clamped - raw) < 0.5) { smoothedTarget = raw; frameVelocity = 0; }
-                        else smoothedTarget = Math.max(0, Math.min(maxFrame, clamped));
+                        const proposed  = smoothedTarget + frameVelocity;
+                        // Allow overshoot up to MAX_OVERSHOOT frames past proxy
+                        const fwdBound  = Math.min(raw + MAX_OVERSHOOT, maxFrame);
+                        const bwdBound  = Math.max(raw - MAX_OVERSHOOT, 0);
+                        const clamped   = frameVelocity > 0
+                            ? Math.min(proposed, fwdBound)
+                            : Math.max(proposed, bwdBound);
+                        // Hit the overshoot wall — kill momentum, let settle take over
+                        if (frameVelocity > 0 && clamped >= fwdBound - 0.5) frameVelocity = 0;
+                        if (frameVelocity < 0 && clamped <= bwdBound + 0.5) frameVelocity = 0;
+                        smoothedTarget = Math.max(0, Math.min(maxFrame, clamped));
 
                     } else {
-                        // Phase 3 — settle: lerp gently to exact proxy position
                         frameVelocity = 0;
                         const settle  = delta * MOBILE_SETTLE_LERP;
                         smoothedTarget = Math.abs(settle) > 0.02
                             ? Math.max(0, Math.min(maxFrame, smoothedTarget + settle))
                             : raw;
                     }
-                } else {
-                    smoothedTarget = proxy.targetFrame;
-                    frameVelocity  = 0;
                 }
 
                 if (mode === 'loop' && activeLoop) {
@@ -382,8 +390,8 @@ export default function HeroSection() {
                             }
                         }
                     } else {
-                        // Desktop: scrub:true = instant proxy; RENDER_LERP trails for cinematic slide.
-                        renderFrame += (proxy.targetFrame - renderFrame) * RENDER_LERP;
+                        // Desktop: smoothedTarget provides momentum trail + coast after scroll ends
+                        renderFrame = smoothedTarget;
                         const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
@@ -401,7 +409,7 @@ export default function HeroSection() {
                     // Mobile: follow smoothedTarget — rate-limited proxy prevents inertia
                     //         overshoot from jumping canvas to frame 0 when flicking from footer.
                     // Desktop: snap clean — scrub:true means proxy is already settled.
-                    renderFrame  = isMobile ? smoothedTarget : proxy.targetFrame;
+                    renderFrame  = smoothedTarget;
                     currentFrame = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                     const snapped = Math.round(currentFrame);
 
