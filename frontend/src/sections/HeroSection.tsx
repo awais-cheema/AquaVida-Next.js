@@ -63,8 +63,9 @@ const MOBILE_SKIP_THRESHOLD  = 0.05;       // skip canvas draw if float frame mo
 const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling after fast reverse swipe
 const RENDER_LERP            = 0.10;       // desktop: renderFrame trails proxy.targetFrame — cinematic slide
 const RENDER_LERP_MOBILE     = 0.14;       // mobile: slightly faster trail — responsive + prevents frame-0 flash on inertia dip
-const MAX_FRAME_DELTA        = 40;         // max frames allowed to change per rAF tick — blocks GSAP scrub direction-change glitch that briefly resets proxy to 0
-const PROXY_BACKWARD_DELTA   = 5;          // mobile: max frames proxy can move backward per tick — prevents inertia swipe from footer jumping instantly to frame 0
+const MAX_FRAME_DELTA          = 40;        // safety clamp: max frames canvas can jump per rAF tick (desktop + loop mode)
+const PROXY_MAX_DELTA_SCROLL   = 8;        // mobile: max smoothedTarget change per tick during scroll — caps GSAP glitch in both directions
+const PROXY_MAX_DELTA_IDLE     = 4;        // mobile: tighter cap while idle/settling — eliminates residual flutter after direction change
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -281,14 +282,19 @@ export default function HeroSection() {
 
                 const truly_idle = !isScrolling && scrollVelocity < IDLE_VELOCITY;
 
-                // Rate-limit proxy backward movement on mobile.
-                // Prevents inertia swipe from footer (scroll→0) from jumping canvas to frame 0
-                // in ~100ms. Forward follows instantly; backward capped at PROXY_BACKWARD_DELTA/tick.
+                // Bidirectional rate-limit on mobile proxy — single source of smoothing truth.
+                // Caps how many frames smoothedTarget can move per tick in EITHER direction.
+                //   • During scroll: 8/tick — fast enough for any realistic swipe, kills GSAP
+                //     direction-change glitch that briefly sends proxy to 0 or far forward.
+                //   • During idle:   4/tick — prevents residual flutter as scrub:0.3 settles.
+                // Forward + backward equally limited → no asymmetric jump artifacts.
                 if (isMobile) {
-                    const pd = proxy.targetFrame - smoothedTarget;
-                    smoothedTarget = pd >= 0
+                    const delta = proxy.targetFrame - smoothedTarget;
+                    const maxD  = isScrolling ? PROXY_MAX_DELTA_SCROLL : PROXY_MAX_DELTA_IDLE;
+                    smoothedTarget = Math.abs(delta) <= maxD
                         ? proxy.targetFrame
-                        : Math.max(proxy.targetFrame, smoothedTarget - PROXY_BACKWARD_DELTA);
+                        : smoothedTarget + Math.sign(delta) * maxD;
+                    smoothedTarget = Math.max(0, Math.min(maxFrame, smoothedTarget));
                 } else {
                     smoothedTarget = proxy.targetFrame;
                 }
