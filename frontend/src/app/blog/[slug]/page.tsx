@@ -50,15 +50,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return meta
 }
 
-import { resolveDraftContent } from '@/lib/shadow-preview'
-
-export default async function BlogPostPage({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams: Promise<{ draftId?: string }> }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const { draftId } = await searchParams
-    let post = await reader.collections.posts.read(slug).catch(() => null)
-
-    // Check for Shadow Preview Draft
-    post = await resolveDraftContent('blog', post, draftId)
+    const post = await reader.collections.posts.read(slug).catch(() => null)
 
     if (!post) notFound()
 

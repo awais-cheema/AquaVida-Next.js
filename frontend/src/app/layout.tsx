@@ -2,7 +2,7 @@
  * Root layout — global providers, nav, footer, and metadata.
  */
 import type { Metadata, Viewport } from 'next';
-import { draftMode } from 'next/headers';
+
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
@@ -11,7 +11,7 @@ import { reader } from '@/lib/keystatic-reader';
 import { getGlobalSeo } from '@/lib/seo';
 import SeoExtras from '@/components/seo/SeoExtras';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import PreviewBanner from '@/components/layout/PreviewBanner';
+
 import '@/styles/globals.css';
 
 // ── Allomira — variable font covers all weights, static files as fallbacks ──
@@ -142,7 +142,7 @@ export default async function RootLayout({
                     navData={navData}
                     seoExtras={<SeoExtras />}
                 >
-                    {(await draftMode()).isEnabled && <PreviewBanner />}
+
                     {children}
                 </SiteShell>
                 <SpeedInsights />

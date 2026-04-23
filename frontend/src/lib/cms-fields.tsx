@@ -1,5 +1,4 @@
 import { fields } from '@keystatic/core'
-import ShadowSaveButton from '../components/cms/fields/ShadowSaveButton'
 
 /**
  * richText
@@ -15,18 +14,6 @@ export const richText = (label: string) => fields.document({
     directory: 'public/images/cms',
     publicPath: '/images/cms/',
   }
-})
-
-/**
- * shadowPreviewField
- * A custom field group that integrates the ShadowSaveButton.
- * This triggers a BroadcastChannel message whenever any field in the group (or form) changes.
- */
-export const shadowPreviewField = fields.object({
-  _trigger: fields.text({ label: 'Shadow Preview Trigger (hidden)', defaultValue: 'update' }),
-}, {
-  label: 'Shadow Live Preview',
-  description: 'Broadcast changes to the live preview window without saving.',
 })
 
 /**

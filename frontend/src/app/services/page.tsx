@@ -3,7 +3,6 @@ import { reader } from '@/lib/keystatic-reader'
 import { buildPageMetadata } from '@/lib/seo'
 import ServicesClient, { type ServiceItem, type TestimonialItem } from './ServicesClient'
 import SeoLinks from '@/components/layout/SeoLinks'
-import { resolveDraftContent } from '@/lib/shadow-preview'
 
 export async function generateMetadata(): Promise<Metadata> {
     const data = await reader.singletons.servicesPage.read().catch(() => null)
@@ -13,12 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
     }, data)
 }
 
-export default async function Page({ searchParams }: { searchParams: Promise<{ draftId?: string }> }) {
-    const { draftId } = await searchParams
-    let data = await reader.singletons.servicesPage.read().catch(() => null)
-    
-    // Check for Shadow Preview Draft
-    data = await resolveDraftContent('services', data, draftId)
+export default async function Page() {
+    const data = await reader.singletons.servicesPage.read().catch(() => null)
+
     return (
         <>
             <ServicesClient

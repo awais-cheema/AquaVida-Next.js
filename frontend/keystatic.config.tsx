@@ -1,7 +1,5 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
-import { richText, shadowPreviewField, seoFieldsDef } from '@/lib/cms-fields'
-import SimplePreview from '@/components/cms/previews/SimplePreview'
-import BlogPostPreview from '@/components/cms/previews/BlogPostPreview'
+import { richText, seoFieldsDef } from '@/lib/cms-fields'
 
 export default config({
   storage: {
@@ -18,7 +16,7 @@ export default config({
       'Portfolio': ['portfolioProjects', 'portfolioListingPage'],
       'Services': ['servicePages', 'servicesPage'],
       'Pages': ['homePage', 'aboutPage', 'contactPage', 'financePage', 'privacyPolicy', 'termsConditions'],
-      'Footer': ['footerSettings'],
+      'Navigation & Footer': ['navigationSettings', 'footerSettings'],
       'SEO — Global': ['globalSeo'],
       'SEO — Per Page': ['pageSeo'],
     },
@@ -31,10 +29,7 @@ export default config({
       slugField: 'slug',
       path: 'content/posts/*',
       format: { contentField: 'content' },
-      // @ts-ignore
-      preview: props => <BlogPostPreview fields={props.fields} />,
       schema: {
-        shadowPreview: shadowPreviewField,
         slug: fields.slug({ name: { label: 'Slug' } }),
         title: fields.text({ label: 'Title' }),
         category: fields.text({ label: 'Category', defaultValue: 'Design' }),
@@ -58,10 +53,7 @@ export default config({
       label: 'Page SEO',
       slugField: 'slug',
       path: 'content/seo/pages/*',
-      // @ts-ignore
-      preview: SimplePreview,
       schema: {
-        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Page', description: 'Route path, e.g. "home", "about", "services/pavers"' },
         }),
@@ -104,11 +96,7 @@ export default config({
       label: 'Service Sub-Pages',
       slugField: 'slug',
       path: 'content/service-pages/*',
-      previewUrl: '/api/preview/start?branch=main&to=/services/{slug}',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/services" type="services" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Service Slug', description: 'Matches the URL, e.g. pool-construction, pavers' },
         }),
@@ -186,11 +174,7 @@ export default config({
       label: 'Portfolio Projects',
       slugField: 'slug',
       path: 'content/portfolio/*',
-      previewUrl: '/api/preview/start?branch=main&to=/portfolio/{slug}',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/portfolio" type="portfolio" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Project Slug', description: 'Matches the URL, e.g. brycewood, montalcino' },
         }),
@@ -240,10 +224,7 @@ export default config({
     globalSeo: singleton({
       label: 'Global SEO Settings',
       path: 'content/seo/global',
-      // @ts-ignore
-      preview: SimplePreview,
       schema: {
-        shadowPreview: shadowPreviewField,
         siteName: fields.text({ label: 'Site Name', defaultValue: 'AquaVida Pools and Spas' }),
         defaultTitle: fields.text({ label: 'Default Title', defaultValue: 'AquaVida Pools and Spas' }),
         titleTemplate: fields.text({
@@ -295,11 +276,7 @@ export default config({
     homePage: singleton({
       label: 'Home Page Content',
       path: 'content/pages/home',
-      previewUrl: '/api/preview/start?branch=main&to=/',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/" type="home" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         title: fields.text({ label: 'Page Title' }),
         ...seoFieldsDef,
       },
@@ -309,11 +286,7 @@ export default config({
     aboutPage: singleton({
       label: 'About Page Content',
       path: 'content/pages/about',
-      previewUrl: '/api/preview/start?branch=main&to=/about',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/about" type="about" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         heroTagline: fields.text({ label: 'Hero Tagline' }),
         manifesto: richText('Manifesto Text'),
         approachQuote: richText('Approach Big Quote'),
@@ -352,11 +325,7 @@ export default config({
     servicesPage: singleton({
       label: 'Services Page Content',
       path: 'content/pages/services',
-      previewUrl: '/api/preview/start?branch=main&to=/services',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/services" type="services" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         /* Hero */
         heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
         heroTitle: fields.text({ label: 'Hero Title (Left)', defaultValue: 'Defining' }),
@@ -384,8 +353,8 @@ export default config({
         corePrinciples: fields.array(
           fields.object({
             label: fields.text({ label: 'Number Label', description: 'e.g. 01' }),
-            line1: fields.text({ label: 'Globe Text \u2014 Line 1' }),
-            line2: fields.text({ label: 'Globe Text \u2014 Line 2' }),
+            line1: fields.text({ label: 'Globe Text — Line 1' }),
+            line2: fields.text({ label: 'Globe Text — Line 2' }),
             title: fields.text({ label: 'Full Title' }),
             sub: richText('Description'),
             image: fields.image({ label: 'Background Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
@@ -401,7 +370,7 @@ export default config({
           fields.object({
             client: fields.text({ label: 'Client Name' }),
             location: fields.text({ label: 'Location', description: 'e.g. Frisco, TX' }),
-            type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction \u00B7 Outdoor Kitchen' }),
+            type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction · Outdoor Kitchen' }),
             quote: richText('Testimonial Quote'),
             image: fields.image({ label: 'Photo Path', directory: 'public/images/testimonials', publicPath: '/images/testimonials/' }),
           }),
@@ -430,11 +399,7 @@ export default config({
     contactPage: singleton({
       label: 'Contact Page Content',
       path: 'content/pages/contact',
-      previewUrl: '/api/preview/start?branch=main&to=/contact',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/contact" type="contact" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         heading: fields.text({
           label: 'Page Heading',
           defaultValue: "Let's Create Spaces That Inspire",
@@ -462,11 +427,7 @@ export default config({
     financePage: singleton({
       label: 'Finance Page Content',
       path: 'content/pages/finance',
-      previewUrl: '/api/preview/start?branch=main&to=/finance',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/finance" type="finance" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         /* Hero */
         heroLabel: fields.text({ label: 'Hero Label', defaultValue: 'Investment Architecture' }),
         heroTitle: fields.text({ label: 'Hero Title', defaultValue: 'Intelligent Investment' }),
@@ -528,11 +489,7 @@ export default config({
     privacyPolicy: singleton({
       label: 'Privacy Policy Content',
       path: 'content/pages/privacy-policy',
-      previewUrl: '/api/preview/start?branch=main&to=/privacy-policy',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/privacy-policy" type="privacy" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         effectiveDate: fields.text({
           label: 'Effective Date',
           defaultValue: 'January 1, 2026',
@@ -554,11 +511,7 @@ export default config({
     termsConditions: singleton({
       label: 'Terms & Conditions Content',
       path: 'content/pages/terms-conditions',
-      previewUrl: '/api/preview/start?branch=main&to=/terms-conditions',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/terms-conditions" type="terms" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         effectiveDate: fields.text({
           label: 'Effective Date',
           defaultValue: 'January 1, 2026',
@@ -580,10 +533,7 @@ export default config({
     footerSettings: singleton({
       label: 'Footer Settings',
       path: 'content/footer/settings',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/" type="footer" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         tagline: fields.text({ label: 'Footer Tagline', defaultValue: 'Designing the Horizon of Luxury' }),
         copyright: fields.text({ label: 'Copyright Text', defaultValue: '\u00A9 2024 AquaVida Pools and Spas' }),
         socialLinks: fields.array(
@@ -607,11 +557,7 @@ export default config({
     portfolioListingPage: singleton({
       label: 'Portfolio Listing Page',
       path: 'content/pages/portfolio-listing',
-      previewUrl: '/api/preview/start?branch=main&to=/portfolio',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/portfolio" type="portfolio" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         /* Header */
         headerLabel: fields.text({ label: 'Header Label', defaultValue: 'ARCHITECTURAL ARCHIVE' }),
         headerTitle: fields.text({ label: 'Header Title', defaultValue: 'The Liquid Portfolio' }),
@@ -624,7 +570,7 @@ export default config({
         /* Project cards */
         projects: fields.array(
           fields.object({
-            slug: fields.text({ label: 'URL Slug', description: 'e.g. brycewood \u2014 must match portfolio route' }),
+            slug: fields.text({ label: 'URL Slug', description: 'e.g. brycewood — must match portfolio route' }),
             name: fields.text({ label: 'Project Name' }),
             category: fields.text({ label: 'Category' }),
             year: fields.text({ label: 'Year' }),
@@ -660,14 +606,12 @@ export default config({
         ...seoFieldsDef,
       },
     }),
+
     /* ── Navigation settings ─────────────────────────────────────────── */
     navigationSettings: singleton({
       label: 'Navigation Settings',
       path: 'content/navigation/settings',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/" type="navigation" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         servicesLinks: fields.array(
           fields.object({
             label: fields.text({ label: 'Label' }),
@@ -705,11 +649,7 @@ export default config({
     blogSettings: singleton({
       label: 'Blog Page Settings',
       path: 'content/pages/blog',
-      previewUrl: '/api/preview/start?branch=main&to=/blog',
-      // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/blog" type="blog" />,
       schema: {
-        shadowPreview: shadowPreviewField,
         /* Header */
         headerLabel: fields.text({ label: 'Header Label', defaultValue: 'THE LIQUID MANIFESTO' }),
         headerTitle: fields.text({ label: 'Header Title', defaultValue: 'Subscribe to Design Intelligence' }),
