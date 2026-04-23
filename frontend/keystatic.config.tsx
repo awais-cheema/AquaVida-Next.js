@@ -5,10 +5,11 @@ import SimplePreview from './src/components/cms/previews/SimplePreview'
 import ShadowSaveButton from './src/components/cms/fields/ShadowSaveButton'
 
 const shadowPreviewField = fields.text({
-  label: 'Shadow Preview (Instant Feedback)',
+  label: '⚠️ ACTION REQUIRED: OPEN PREVIEW PANEL ⚠️',
+  description: 'To see your "Unsaved" changes (like the text you just typed) on the live layout, click the "Preview" button in the TOP-RIGHT of this toolbar, then click the orange "OPEN LIVE PREVIEW" button in the new sidebar.',
   // @ts-ignore
   ui: {
-    views: ShadowSaveButton as any
+    readonly: true,
   }
 })
 
@@ -156,7 +157,7 @@ export default config({
       path: 'content/blogs/*',
       previewUrl: '/api/preview/start?branch=main&to=/blog/{slug}',
       // @ts-ignore
-      preview: props => <BlogPostPreview {...props} />,
+      preview: props => <BlogPostPreview {...props} to="/blog" />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -286,7 +287,7 @@ export default config({
       path: 'content/service-pages/*',
       previewUrl: '/api/preview/start?branch=main&to=/services/{slug}',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/services" />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -368,7 +369,7 @@ export default config({
       path: 'content/portfolio/*',
       previewUrl: '/api/preview/start?branch=main&to=/portfolio/{slug}',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/portfolio" />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -477,7 +478,7 @@ export default config({
       path: 'content/pages/home',
       previewUrl: '/api/preview/start?branch=main&to=/',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/" />,
       schema: {
         shadowPreview: shadowPreviewField,
         ...seoFieldsDef,
@@ -490,7 +491,7 @@ export default config({
       path: 'content/pages/about',
       previewUrl: '/api/preview/start?branch=main&to=/about',
       // @ts-ignore
-      preview: props => <AboutPreview {...props} />,
+      preview: props => <AboutPreview {...props} to="/about" />,
       schema: {
         shadowPreview: shadowPreviewField,
         heroTagline: fields.text({
@@ -544,7 +545,7 @@ export default config({
       path: 'content/pages/services',
       previewUrl: '/api/preview/start?branch=main&to=/services',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/services" />,
       schema: {
         shadowPreview: shadowPreviewField,
         /* Hero */
@@ -645,7 +646,7 @@ export default config({
       path: 'content/pages/contact',
       previewUrl: '/api/preview/start?branch=main&to=/contact',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/contact" />,
       schema: {
         shadowPreview: shadowPreviewField,
         heading: fields.text({
@@ -680,7 +681,7 @@ export default config({
       path: 'content/pages/finance',
       previewUrl: '/api/preview/start?branch=main&to=/finance',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/finance" />,
       schema: {
         shadowPreview: shadowPreviewField,
         partners: fields.array(
@@ -723,7 +724,7 @@ export default config({
       path: 'content/pages/privacy-policy',
       previewUrl: '/api/preview/start?branch=main&to=/privacy-policy',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/privacy-policy" />,
       schema: {
         shadowPreview: shadowPreviewField,
         effectiveDate: fields.text({
@@ -755,7 +756,7 @@ export default config({
       path: 'content/pages/terms-conditions',
       previewUrl: '/api/preview/start?branch=main&to=/terms-conditions',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/terms-conditions" />,
       schema: {
         shadowPreview: shadowPreviewField,
         sections: fields.array(
@@ -838,7 +839,7 @@ export default config({
       path: 'content/pages/portfolio-listing',
       previewUrl: '/api/preview/start?branch=main&to=/portfolio',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/portfolio" />,
       schema: {
         shadowPreview: shadowPreviewField,
         /* Header */
@@ -896,7 +897,7 @@ export default config({
       path: 'content/pages/blog',
       previewUrl: '/api/preview/start?branch=main&to=/blog',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/blog" />,
       schema: {
         shadowPreview: shadowPreviewField,
         faqItems: fields.array(

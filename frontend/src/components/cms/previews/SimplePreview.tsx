@@ -9,12 +9,13 @@ import ShadowSaveButton from '../fields/ShadowSaveButton';
  * Used for pages that don't have a full visual preview yet.
  */
 export default function SimplePreview(props: any) {
-  const { fields } = props;
+  const { fields, to = '/' } = props;
 
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A] flex flex-col items-center justify-start pt-20 px-8 text-center">
       <div className="max-w-md w-full">
-        <ShadowSaveButton data={fields} type="generic" />
+        {/* Pass the 'to' prop so the button knows where to redirect */}
+        <ShadowSaveButton data={fields} type="generic" to={to} />
         
         <div className="mt-12 pt-12 border-t border-white/5">
           <p className="text-white/30 text-xs uppercase tracking-[0.2em] font-black mb-4">

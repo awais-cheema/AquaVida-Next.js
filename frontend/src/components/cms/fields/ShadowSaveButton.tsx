@@ -7,7 +7,7 @@ import React from 'react';
  * A button that takes the current live fields from Keystatic,
  * saves them to a temporary cache, and opens a full-page live preview.
  */
-export default function ShadowSaveButton({ data, type }: { data?: any, type?: string }) {
+export default function ShadowSaveButton({ data, type, to = '/' }: { data?: any, type?: string, to?: string }) {
   const [status, setStatus] = React.useState<'idle' | 'saving' | 'success' | 'error'>('idle');
 
   const handleShadowSave = async () => {
@@ -34,8 +34,8 @@ export default function ShadowSaveButton({ data, type }: { data?: any, type?: st
       const { draftId } = await res.json();
 
       // 2. Open the Live Preview route with this draft ID
-      // This allows seeing the ACTUAL site layout with unsaved CMS data
-      const previewUrl = `/api/preview/live?draftId=${draftId}`;
+      // Pass the 'to' parameter so we land on the right page
+      const previewUrl = `/api/preview/live?draftId=${draftId}&to=${encodeURIComponent(to)}`;
       window.open(previewUrl, '_blank');
       
       setStatus('success');
@@ -78,6 +78,15 @@ export default function ShadowSaveButton({ data, type }: { data?: any, type?: st
           Error: Could not generate draft. Please try again.
         </p>
       )}
+      
+      <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+        <span className="text-[9px] text-white/20 uppercase font-bold tracking-widest">
+          Target: {to}
+        </span>
+        <span className="text-[9px] text-amber-500/30 uppercase font-black">
+          Session Active
+        </span>
+      </div>
     </div>
   );
 }
