@@ -2,9 +2,11 @@ import { config, fields, collection, singleton } from '@keystatic/core'
 import { richText, seoFieldsDef } from '@/lib/cms-fields'
 
 export default config({
-  storage: {
-    kind: 'cloud',
-  },
+  storage: process.env.NODE_ENV === 'development'
+    ? { kind: 'local' }
+    : {
+        kind: 'cloud',
+      },
   cloud: {
     project: 'aquavida/aquavida-site',
   },

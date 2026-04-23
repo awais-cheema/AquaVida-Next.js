@@ -6,40 +6,40 @@ expertiseTitle: Our Area of Expertise Space
 expertiseDescription: [{ "type": "paragraph", "children": [{ "text": "AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners." }] }]
 services:
   - title: Pool Design
-    sub: [{ "type": "paragraph", "children": [{ "text": "Design Consultation" }] }]
-    href: /services/pool-design
+    description: [{ "type": "paragraph", "children": [{ "text": "Design Consultation" }] }]
+    slug: pool-design
     image: 'pool_design_hero.avif'
-    accent: '#0d5699'
+    
   - title: Pool Construction
-    sub: [{ "type": "paragraph", "children": [{ "text": "Full Build Management" }] }]
-    href: /services/pool-construction
+    description: [{ "type": "paragraph", "children": [{ "text": "Full Build Management" }] }]
+    slug: pool-construction
     image: 'pool_construction_hero.avif'
-    accent: '#0a447a'
+    
   - title: Outdoor Kitchens
-    sub: [{ "type": "paragraph", "children": [{ "text": "Custom Outdoor Fabrication" }] }]
-    href: /services/outdoor-grill
+    description: [{ "type": "paragraph", "children": [{ "text": "Custom Outdoor Fabrication" }] }]
+    slug: outdoor-grill
     image: 'outdoor_kitchen_hero.avif'
-    accent: '#91792c'
+    
   - title: Fire Pits
-    sub: [{ "type": "paragraph", "children": [{ "text": "Stone Masonry & Gas" }] }]
-    href: /services/fire-pit
+    description: [{ "type": "paragraph", "children": [{ "text": "Stone Masonry & Gas" }] }]
+    slug: fire-pit
     image: 'fire_pit_hero.avif'
-    accent: '#a68a33'
+    
   - title: Pool Remodeling
-    sub: [{ "type": "paragraph", "children": [{ "text": "Renovation & Refresh" }] }]
-    href: /services/pool-remodeling
+    description: [{ "type": "paragraph", "children": [{ "text": "Renovation & Refresh" }] }]
+    slug: pool-remodeling
     image: 'pool_remodeling_hero.avif'
-    accent: '#63b589'
+    
   - title: Pergola Design
-    sub: [{ "type": "paragraph", "children": [{ "text": "Shade Structures" }] }]
-    href: /services/pergola-design
+    description: [{ "type": "paragraph", "children": [{ "text": "Shade Structures" }] }]
+    slug: pergola-design
     image: 'pergola_design_hero.avif'
-    accent: '#0d5699'
+    
   - title: Patio Extensions
-    sub: [{ "type": "paragraph", "children": [{ "text": "Hardscape Solutions" }] }]
-    href: /services/pavers
+    description: [{ "type": "paragraph", "children": [{ "text": "Hardscape Solutions" }] }]
+    slug: pavers
     image: 'patio_extensions_hero.avif'
-    accent: '#91792c'
+    
 corePrinciplesTitle: Our Core Principles
 corePrinciples:
   - label: '01'

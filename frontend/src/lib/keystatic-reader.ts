@@ -14,7 +14,4 @@ const contentBaseDir = fs.existsSync(path.join(cwd, 'content'))
     ? path.join(cwd, 'frontend')
     : cwd
 
-export const reader = createReader(contentBaseDir, {
-  ...keystaticConfig,
-  storage: { kind: 'local' }
-})
+export const reader = createReader(contentBaseDir, keystaticConfig)

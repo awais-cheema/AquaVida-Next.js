@@ -1,22 +1,16 @@
 sections:
   - heading: Agreement to Terms
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      By accessing our website and engaging our services, you accept and agree to be bound by these Terms and Conditions. These terms govern the use of our digital platforms and form the basis of our consulting and construction agreements. If you do not agree with any part of these terms, you must refrain from using our services.
+    body: [{ "type": "paragraph", "children": [{ "text": "By accessing our website and engaging our services, you accept and agree to be bound by these Terms and Conditions. These terms govern the use of our digital platforms and form the basis of our consulting and construction agreements. If you do not agree with any part of these terms, you must refrain from using our services." }] }]
   - heading: Service Scope and Limitations
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      AquaVida Pools and Spas provides specialized design, engineering, and construction services for luxury aquatic environments and outdoor living spaces. All project specifications, timelines, and deliverables are strictly defined within individual client contracts. Our website content is for informational purposes and does not constitute a binding offer until a formal contract is executed.
+    body: [{ "type": "paragraph", "children": [{ "text": "AquaVida Pools and Spas provides specialized design, engineering, and construction services for luxury aquatic environments and outdoor living spaces. All project specifications, timelines, and deliverables are strictly defined within individual client contracts. Our website content is for informational purposes and does not constitute a binding offer until a formal contract is executed." }] }]
   - heading: Intellectual Property Rights
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      All architectural designs, renderings, photographs, text, and digital assets presented by AquaVida remain our exclusive intellectual property. Unauthorized reproduction, distribution, or commercial use of these materials without explicit written consent is strictly prohibited and subject to legal action.
+    body: [{ "type": "paragraph", "children": [{ "text": "All architectural designs, renderings, photographs, text, and digital assets presented by AquaVida remain our exclusive intellectual property. Unauthorized reproduction, distribution, or commercial use of these materials without explicit written consent is strictly prohibited and subject to legal action." }] }]
   - heading: Financial Obligations
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      Payment terms, including deposits, milestone payments, and final balances, are detailed in the specific project contract. Failure to adhere to the agreed-upon payment schedule may result in project suspension or termination. Clients are responsible for any costs incurred due to late payments, including collection fees.
+    body: [{ "type": "paragraph", "children": [{ "text": "Payment terms, including deposits, milestone payments, and final balances, are detailed in the specific project contract. Failure to adhere to the agreed-upon payment schedule may result in project suspension or termination. Clients are responsible for any costs incurred due to late payments, including collection fees." }] }]
   - heading: Limitation of Liability
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      While we strive for absolute precision, AquaVida Pools and Spas shall not be held liable for indirect, incidental, or consequential damages arising from the use of our services or website. Our liability for direct damages is limited to the terms specified within the executed construction contract.
+    body: [{ "type": "paragraph", "children": [{ "text": "While we strive for absolute precision, AquaVida Pools and Spas shall not be held liable for indirect, incidental, or consequential damages arising from the use of our services or website. Our liability for direct damages is limited to the terms specified within the executed construction contract." }] }]
   - heading: Modifications to Terms
-    body: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      We reserve the right to modify these Terms and Conditions at any time. Changes become effective immediately upon posting to our website. It is the responsibility of the user or client to review these terms periodically. Continued engagement implies acceptance of the revised terms.
+    body: [{ "type": "paragraph", "children": [{ "text": "We reserve the right to modify these Terms and Conditions at any time. Changes become effective immediately upon posting to our website. It is the responsibility of the user or client to review these terms periodically. Continued engagement implies acceptance of the revised terms." }] }]
 seoTitle: 'Terms & Conditions | AquaVida Pools and Spas'
 seoDescription: 'Terms and Conditions for engaging with AquaVida Pools and Spas.'
 seoKeywords: 'terms and conditions, AquaVida terms'
