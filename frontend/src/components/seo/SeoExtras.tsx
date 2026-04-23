@@ -11,7 +11,10 @@ export default async function SeoExtras() {
   const entry = await getPageSeoEntry(slug)
   if (!entry) return null
 
-  const { internalLinks, breadcrumbs, structuredData } = entry
+  const e = entry as any
+  const internalLinks = e.internalLinks as { anchorText: string; href?: string; description?: string }[] | undefined
+  const breadcrumbs = e.breadcrumbs as { label: string; href: string }[] | undefined
+  const structuredData = e.structuredData as string | undefined
 
   const hasBreadcrumbs = breadcrumbs && breadcrumbs.length > 0
   const hasLinks = internalLinks && internalLinks.length > 0
@@ -62,7 +65,7 @@ export default async function SeoExtras() {
               {[...internalLinks].map((link, i) => (
                 <Link
                   key={i}
-                  href={link.href}
+                  href={link.href || '/'}
                   className="group inline-flex flex-col gap-1 px-5 py-3 rounded-full border border-white/10 hover:border-white/30 transition-colors"
                 >
                   <span className="text-sm font-semibold text-white/70 group-hover:text-white transition-colors tracking-wide">

@@ -31,7 +31,7 @@ export default async function BlogPage() {
                             id: i + 1,
                             title: post.title || slug,
                             slug,
-                            excerpt: post.excerpt || '',
+                            excerpt: post.summary || '',
                             content: '',
                             category: post.category || 'Design',
                             author_name: post.author_name || '',

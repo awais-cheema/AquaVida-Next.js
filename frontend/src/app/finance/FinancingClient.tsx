@@ -269,7 +269,11 @@ export default function FinancingClient({
                         <h2 className="text-[clamp(50px,6vw,120px)] font-black tracking-normal leading-[0.85] uppercase">Lending Partners</h2>
                     </motion.div>
 
-                    <div ref={carouselRef} className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+                    <style dangerouslySetInnerHTML={{ __html: `
+                        .fin-carousel::-webkit-scrollbar { display: none; }
+                        .fin-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+                    `}} />
+                    <div ref={carouselRef} className="fin-carousel overflow-x-auto pb-4 -mx-4 px-4">
                         <motion.div
                             variants={staggerContainer}
                             initial="initial"

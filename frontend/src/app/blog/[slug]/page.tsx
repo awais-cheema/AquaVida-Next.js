@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ])
     if (!post) return {}
     const title = post.seoTitle || (post.title ? `${post.title} | AquaVida` : slug)
-    const description = post.seoDescription || post.excerpt || g?.defaultDescription || ''
+    const description = post.seoDescription || post.summary || g?.defaultDescription || ''
     const ogTitleVal = post.ogTitle || title
     const ogDescVal = post.ogDescription || description
     const noIndex = post.seoNoIndex ?? false
@@ -96,9 +96,9 @@ export default async function BlogPostPage({ params, searchParams }: { params: P
                     <h1 className="text-[clamp(36px,5vw,72px)] font-black leading-[0.95] tracking-tighter uppercase mb-10">
                         {post.title}
                     </h1>
-                    {post.excerpt && (
+                    {post.summary && (
                         <p className="text-2xl text-white/50 font-light leading-relaxed mb-10">
-                            {post.excerpt}
+                            {post.summary}
                         </p>
                     )}
                     <div className="flex flex-wrap items-center gap-8 text-sm text-white/30 tracking-widest uppercase font-bold pt-8 border-t border-white/5">

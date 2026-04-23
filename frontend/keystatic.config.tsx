@@ -5,11 +5,10 @@ import BlogPostPreview from '@/components/cms/previews/BlogPostPreview'
 
 export default config({
   storage: {
-    kind: 'github',
-    repo: {
-      owner: 'awais-cheema',
-      name: 'AquaVida-Next.js',
-    },
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'aquavida/aquavida-site',
   },
 
   ui: {
