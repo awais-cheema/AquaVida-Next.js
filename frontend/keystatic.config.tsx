@@ -1,5 +1,5 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
-import { richText, shadowPreviewField, seoFieldsDef } from './src/lib/cms-fields'
+import { richText, shadowPreviewField, seoFieldsDef } from '@/lib/cms-fields'
 import SimplePreview from '@/components/cms/previews/SimplePreview'
 import BlogPostPreview from '@/components/cms/previews/BlogPostPreview'
 
@@ -32,6 +32,7 @@ export default config({
       slugField: 'slug',
       path: 'content/posts/*',
       format: { contentField: 'content' },
+      // @ts-ignore
       preview: props => <BlogPostPreview fields={props.fields} />,
       schema: {
         shadowPreview: shadowPreviewField,
