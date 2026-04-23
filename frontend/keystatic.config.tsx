@@ -47,7 +47,7 @@ export default config({
           directory: 'public/images/blog',
           publicPath: '/images/blog/',
         }),
-        summary: fields.text({ label: 'Summary', multiline: true }),
+        excerpt: fields.text({ label: 'Excerpt', multiline: true }),
         content: richText('Article Content'),
         published_at: fields.date({ label: 'Publish Date', defaultValue: { kind: 'today' } }),
         ...seoFieldsDef,
