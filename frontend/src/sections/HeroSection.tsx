@@ -64,6 +64,7 @@ const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling afte
 const RENDER_LERP            = 0.10;       // desktop: renderFrame trails proxy.targetFrame — cinematic slide
 const RENDER_LERP_MOBILE     = 0.14;       // mobile: slightly faster trail — responsive + prevents frame-0 flash on inertia dip
 const MAX_FRAME_DELTA        = 40;         // max frames allowed to change per rAF tick — blocks GSAP scrub direction-change glitch that briefly resets proxy to 0
+const PROXY_BACKWARD_DELTA   = 5;          // mobile: max frames proxy can move backward per tick — prevents inertia swipe from footer jumping instantly to frame 0
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -139,6 +140,7 @@ export default function HeroSection() {
         const proxy = { targetFrame: 0 };   // GSAP scrub:true writes this instantly
 
         let renderFrame    = 0;             // lerps toward proxy.targetFrame — smooth multi-frame slide
+        let smoothedTarget = 0;             // mobile: rate-limited view of proxy.targetFrame — backward capped at PROXY_BACKWARD_DELTA/tick
         let currentFrame   = 0;
         let loopFrame      = 0;
         let loopDirection  = 1;
@@ -279,6 +281,18 @@ export default function HeroSection() {
 
                 const truly_idle = !isScrolling && scrollVelocity < IDLE_VELOCITY;
 
+                // Rate-limit proxy backward movement on mobile.
+                // Prevents inertia swipe from footer (scroll→0) from jumping canvas to frame 0
+                // in ~100ms. Forward follows instantly; backward capped at PROXY_BACKWARD_DELTA/tick.
+                if (isMobile) {
+                    const pd = proxy.targetFrame - smoothedTarget;
+                    smoothedTarget = pd >= 0
+                        ? proxy.targetFrame
+                        : Math.max(proxy.targetFrame, smoothedTarget - PROXY_BACKWARD_DELTA);
+                } else {
+                    smoothedTarget = proxy.targetFrame;
+                }
+
                 if (mode === 'loop' && activeLoop) {
                     // ── Loop mode: integer ping-pong ──────────────────────────
                     // Mobile: one-cycle stabilization pause on loop entry
@@ -321,8 +335,8 @@ export default function HeroSection() {
                     if (isMobile) {
                         // Mobile: scrub:0.3 is the ONLY smoothing source.
                         // A second lerp creates double-lag that over-dips into low frames on
-                        // direction change, flashing overlay 1. Draw proxy directly.
-                        renderFrame = proxy.targetFrame;
+                        // direction change, flashing overlay 1. Draw smoothedTarget directly.
+                        renderFrame = smoothedTarget;
                         const idx = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                         if (idx !== lastDrawnFrame) {
                             const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
@@ -350,11 +364,10 @@ export default function HeroSection() {
 
                 } else {
                     // ── Idle mode ──────────────────────────────────────────────
-                    // Mobile: follow proxy directly — scrub:0.3 is still animating toward
-                    //         final position; snapping each tick gives smooth frame-by-frame
-                    //         idle animation without double-lag.
+                    // Mobile: follow smoothedTarget — rate-limited proxy prevents inertia
+                    //         overshoot from jumping canvas to frame 0 when flicking from footer.
                     // Desktop: snap clean — scrub:true means proxy is already settled.
-                    renderFrame  = proxy.targetFrame;
+                    renderFrame  = isMobile ? smoothedTarget : proxy.targetFrame;
                     currentFrame = clampFrame(Math.max(0, Math.min(Math.round(renderFrame), maxFrame)));
                     const snapped = Math.round(currentFrame);
 
@@ -457,6 +470,7 @@ export default function HeroSection() {
                 renderer.invalidate();
                 lastDrawnFrame = -1;
                 renderFrame    = proxy.targetFrame;
+                smoothedTarget = proxy.targetFrame;
                 currentFrame   = proxy.targetFrame;
                 const idx = Math.round(Math.max(0, Math.min(proxy.targetFrame, maxFrame)));
                 const img = loader.getFrame(idx) ?? loader.getNearestFrame(idx)?.img ?? null;
