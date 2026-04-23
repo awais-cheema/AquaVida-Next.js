@@ -1,6 +1,7 @@
 'use client';
 
 import AboutClient from '@/app/about/AboutClient';
+import ShadowSaveButton from '../fields/ShadowSaveButton';
 
 export default function AboutPreview(props: any) {
   const { fields } = props;
@@ -28,6 +29,9 @@ export default function AboutPreview(props: any) {
 
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A]">
+      <div className="p-8 pb-0">
+        <ShadowSaveButton />
+      </div>
       <AboutClient data={data} />
     </div>
   );

@@ -1,7 +1,16 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
 import AboutPreview from './src/components/cms/previews/AboutPreview'
 import BlogPostPreview from './src/components/cms/previews/BlogPostPreview'
+import SimplePreview from './src/components/cms/previews/SimplePreview'
 import ShadowSaveButton from './src/components/cms/fields/ShadowSaveButton'
+
+const shadowPreviewField = fields.text({
+  label: 'Shadow Preview (Instant Feedback)',
+  // @ts-ignore
+  ui: {
+    views: ShadowSaveButton as any
+  }
+})
 
 
 /* ── Reusable Rich Text Field (WordPress-Style) ────────────────── */
@@ -149,13 +158,7 @@ export default config({
       // @ts-ignore
       preview: BlogPostPreview,
       schema: {
-        shadowPreview: fields.text({
-          label: 'Shadow Preview (Instant Feedback)',
-          // @ts-ignore
-          ui: {
-            views: ShadowSaveButton as any
-          }
-        }),
+        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Post Title', description: 'Generates the URL slug automatically' },
         }),
@@ -211,7 +214,10 @@ export default config({
       label: 'Page SEO',
       slugField: 'slug',
       path: 'content/seo/pages/*',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Page', description: 'Route path, e.g. "home", "about", "services/pavers"' },
         }),
@@ -279,7 +285,10 @@ export default config({
       slugField: 'slug',
       path: 'content/service-pages/*',
       previewUrl: '/api/preview/start?branch={branch}&to=/services/{slug}',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Service Slug', description: 'Matches the URL, e.g. pool-construction, pavers' },
         }),
@@ -358,7 +367,10 @@ export default config({
       slugField: 'slug',
       path: 'content/portfolio/*',
       previewUrl: '/api/preview/start?branch={branch}&to=/portfolio/{slug}',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         slug: fields.slug({
           name: { label: 'Project Slug', description: 'Matches the URL, e.g. brycewood, montalcino' },
         }),
@@ -408,7 +420,10 @@ export default config({
     globalSeo: singleton({
       label: 'Global SEO Settings',
       path: 'content/seo/global',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         siteName: fields.text({ label: 'Site Name', defaultValue: 'AquaVida Pools and Spas' }),
         defaultTitle: fields.text({ label: 'Default Title', defaultValue: 'AquaVida Pools and Spas' }),
         titleTemplate: fields.text({
@@ -461,7 +476,10 @@ export default config({
       label: 'Home Page',
       path: 'content/pages/home',
       previewUrl: '/api/preview/start?branch={branch}&to=/',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         ...seoFieldsDef,
       },
     }),
@@ -474,13 +492,7 @@ export default config({
       // @ts-ignore
       preview: AboutPreview,
       schema: {
-        shadowPreview: fields.text({
-          label: 'Shadow Preview (Instant Feedback)',
-          // @ts-ignore
-          ui: {
-            views: ShadowSaveButton as any
-          }
-        }),
+        shadowPreview: shadowPreviewField,
         heroTagline: fields.text({
           label: 'Hero Tagline',
           defaultValue: 'Passionately shaping backyards into timeless designs',
@@ -531,7 +543,10 @@ export default config({
       label: 'Services Page Content',
       path: 'content/pages/services',
       previewUrl: '/api/preview/start?branch={branch}&to=/services',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         /* Hero */
         heroImage: fields.text({ label: 'Hero Background Image', description: 'Path or full URL for the hero background image' }),
         heroTitle: fields.text({ label: 'Hero Title (left)', defaultValue: 'Our' }),
@@ -629,7 +644,10 @@ export default config({
       label: 'Contact Page Content',
       path: 'content/pages/contact',
       previewUrl: '/api/preview/start?branch={branch}&to=/contact',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         heading: fields.text({
           label: 'Page Heading',
           defaultValue: "Let's Create Spaces That Inspire",
@@ -661,7 +679,10 @@ export default config({
       label: 'Finance Page Content',
       path: 'content/pages/finance',
       previewUrl: '/api/preview/start?branch={branch}&to=/finance',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         partners: fields.array(
           fields.object({
             key: fields.text({ label: 'Unique Key (no spaces)' }),
@@ -701,7 +722,10 @@ export default config({
       label: 'Privacy Policy Content',
       path: 'content/pages/privacy-policy',
       previewUrl: '/api/preview/start?branch={branch}&to=/privacy-policy',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         effectiveDate: fields.text({
           label: 'Effective Date',
           defaultValue: 'January 1, 2026',
@@ -730,7 +754,10 @@ export default config({
       label: 'Terms & Conditions Content',
       path: 'content/pages/terms-conditions',
       previewUrl: '/api/preview/start?branch={branch}&to=/terms-conditions',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         sections: fields.array(
           fields.object({
             heading: fields.text({ label: 'Section Heading' }),
@@ -749,7 +776,10 @@ export default config({
     footerSettings: singleton({
       label: 'Footer Settings',
       path: 'content/footer',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         address: fields.text({
           label: 'Address',
           defaultValue: '2100 N Greenville Ave., Richardson, TX 75082, USA',
@@ -807,7 +837,10 @@ export default config({
       label: 'Portfolio Listing Page',
       path: 'content/pages/portfolio-listing',
       previewUrl: '/api/preview/start?branch={branch}&to=/portfolio',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         /* Header */
         headerLabel: fields.text({ label: 'Header Label', defaultValue: 'ARCHITECTURAL ARCHIVE' }),
         headerTitle: fields.text({ label: 'Header Title', defaultValue: 'The Liquid Portfolio' }),
@@ -862,7 +895,10 @@ export default config({
       label: 'Blog Page Settings',
       path: 'content/pages/blog',
       previewUrl: '/api/preview/start?branch={branch}&to=/blog',
+      // @ts-ignore
+      preview: SimplePreview,
       schema: {
+        shadowPreview: shadowPreviewField,
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
