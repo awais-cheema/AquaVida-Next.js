@@ -7,14 +7,14 @@ import { notFound } from 'next/navigation'
 import { Clock, User, Calendar, ArrowLeft } from 'lucide-react'
 
 export async function generateStaticParams() {
-    const slugs = await reader.collections.blogs.list().catch(() => [] as string[])
+    const slugs = await reader.collections.posts.list().catch(() => [] as string[])
     return slugs.map(slug => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const [post, g] = await Promise.all([
-        reader.collections.blogs.read(slug).catch(() => null),
+        reader.collections.posts.read(slug).catch(() => null),
         getGlobalSeo(),
     ])
     if (!post) return {}
@@ -50,9 +50,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return meta
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+import { resolveDraftContent } from '@/lib/shadow-preview'
+
+export default async function BlogPostPage({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams: Promise<{ draftId?: string }> }) {
     const { slug } = await params
-    const post = await reader.collections.blogs.read(slug).catch(() => null)
+    const { draftId } = await searchParams
+    let post = await reader.collections.posts.read(slug).catch(() => null)
+
+    // Check for Shadow Preview Draft
+    post = await resolveDraftContent('blog', post, draftId)
 
     if (!post) notFound()
 
@@ -124,7 +130,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     prose-a:text-[#0D5699] prose-a:no-underline hover:prose-a:underline
                     prose-strong:text-white prose-hr:border-white/10
                     prose-img:rounded-[24px]">
-                    <DocumentRenderer document={await post.content()} />
+                    <DocumentRenderer
+                        document={await post.content()}
+                        renderers={{
+                            inline: {
+                                link: ({ href, children }) => {
+                                    let url = href
+                                    // Auto-prefix URLs that start with www.
+                                    if (url && /^www\./i.test(url)) {
+                                        url = `https://${url}`
+                                    }
+                                    const isExternal = url?.startsWith('http')
+                                    return (
+                                        <a
+                                            href={url}
+                                            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                        >
+                                            {children}
+                                        </a>
+                                    )
+                                },
+                            },
+                        }}
+                    />
                 </div>
 
                 {/* Footer nav */}

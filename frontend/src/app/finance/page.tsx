@@ -14,11 +14,33 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
     const data = await reader.singletons.financePage.read().catch(() => null)
+    
+    // Resolve rich text and complex nested fields
+    const partners = (data as any)?.partners?.length 
+        ? await Promise.all([...(data as any).partners].map(async (p: any) => ({ 
+            ...p, 
+            insight: await p.insight()
+          }))) 
+        : undefined
+
+    const faqItems = (data as any)?.faqItems?.length 
+        ? await Promise.all([...(data as any).faqItems].map(async (f: any) => ({ 
+            ...f, 
+            answer: await f.answer() 
+          }))) 
+        : undefined
+
     return (
         <>
-            <FinancingClient
-                partners={data?.partners?.length ? data.partners : null}
-                faqItems={data?.faqItems?.length ? data.faqItems : null}
+            <FinancingClient 
+                partners={partners} 
+                faqItems={faqItems} 
+                comparison={(data as any)?.comparison}
+                // Pass new hero/cta fields
+                heroLabel={data?.heroLabel}
+                heroTitle={data?.heroTitle}
+                heroDescription={data?.heroDescription}
+                heroImage={data?.heroImage}
             />
             <SeoLinks internalLinks={data?.internalLinks} externalLinks={data?.externalLinks} />
         </>

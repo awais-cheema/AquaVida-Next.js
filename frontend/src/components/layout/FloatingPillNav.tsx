@@ -37,6 +37,7 @@ const NAV_LINKS_BEFORE: { href: string; label: string }[] = [
 
 const NAV_LINKS_AFTER: { href: string; label: string }[] = [
     { href: '/finance',   label: 'Finance' },
+    { href: '/blog',      label: 'Blog' },
     { href: '/contact',   label: 'Contact Us' },
 ];
 

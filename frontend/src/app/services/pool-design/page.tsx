@@ -3,6 +3,7 @@ import { reader } from '@/lib/keystatic-reader'
 import { buildPageMetadata } from '@/lib/seo'
 import PoolDesignClient from './PoolDesignClient'
 import SeoLinks from '@/components/layout/SeoLinks'
+import { resolveServicePage } from '@/lib/service-override'
 
 export async function generateMetadata(): Promise<Metadata> {
     const entry = await reader.collections.servicePages.read('pool-design').catch(() => null)
@@ -14,9 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
     const entry = await reader.collections.servicePages.read('pool-design').catch(() => null)
+    const resolvedEntry = await resolveServicePage(entry)
+    
     return (
         <>
-            <PoolDesignClient override={entry ?? null} />
+            <PoolDesignClient override={resolvedEntry} />
             <SeoLinks internalLinks={entry?.internalLinks} externalLinks={entry?.externalLinks} />
         </>
     )

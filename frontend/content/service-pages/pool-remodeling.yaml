@@ -1,54 +1,178 @@
 slug: pool-remodeling
-accentColor: '#2860a0'
-accentRgb: 40,96,160
-heroLabel: Pool Remodeling & Renovation — Dallas, TX
-heroTitle: Pool
-heroHighlight: Remodeling.
-heroBody: "Your pool deserves a second life. AquaVida\u2019s pool remodeling experts transform outdated, worn, or underperforming pools into stunning modern retreats \u2014 without the cost and disruption of complete demolition and rebuild."
-heroImage: /images/services/pool_remodeling_hero.avif
-overviewTitle: Expert Pool Remodeling Solutions in Dallas
-overviewBody: "Over time, even the best-built pools show their age \u2014 cracked plaster, faded tile, outdated equipment, and inefficient systems. AquaVida specializes in comprehensive pool remodeling projects that address structural issues, aesthetic upgrades, and technology improvements simultaneously. Our Dallas remodeling crews work efficiently to minimize downtime, getting you back in the water faster with a pool that looks and performs like new."
-overviewImage: /images/services/pool_remodeling_overview.avif
-processTitle: Our Remodeling Process
+accentColor: '#118ab2'
+accentRgb: 17,138,178
+heroLabel: Modernist Elevation — AquaVida Remodeling
+heroTitle: Transformation.
+heroHighlight: Translucency.
+heroBody:
+  - type: paragraph
+    children:
+      - text: >-
+          Reimagine your horizon. We provide deep architectural restoration 
+          of legacy pools — injecting contemporary engineering and refined 
+          aesthetics into aged structures to create a next-generation aquatic 
+          sanctuary.
+heroImage: pool_remodel_hero.avif
+overviewTitle: The Restoration of Artistry
+overviewBody:
+  - type: paragraph
+    children:
+      - text: >-
+          At AquaVida, we view pool remodeling as a structural second life. 
+          Our team specializes in the complex architectural and mechanical 
+          upgrading of existing pools. We go beyond simple resurfacing, 
+          often reconfiguring geometries, integrating vanishing edges, and 
+          completely overhaul the hydraulic systems to meet modern energy and 
+          aesthetic standards. We turn the outdated into the iconic, ensuring 
+          your pool environment is technically superior and visually 
+          stunning for its next decade of life.
+overviewImage: pool_remodel_overview.avif
+processTitle: The Transformation Path
 processSteps:
-  - title: Pool Assessment & Diagnosis
-    body: "Our remodeling specialists conduct a thorough structural, mechanical, and aesthetic assessment of your existing pool \u2014 identifying all issues, prioritizing repairs, and documenting the current state before any work begins."
-  - title: Demolition & Structural Repair
-    body: Existing failing plaster, tile, and damaged structural elements are carefully removed. Any cracks, leaks, or structural deficiencies are fully repaired before new finishes are applied — ensuring decades of longevity.
-  - title: Refinishing & Equipment Upgrade
-    body: "New plaster or pebble finishes, tile, coping, decking, and modern equipment are installed. We can add water features, LED lighting, automation, and energy-efficient pumps during the remodel at minimal additional cost."
-investmentTitle: Remodeling Investment vs. Rebuilding
-investmentBody: "Pool remodeling typically costs 30\u201360% less than full demolition and replacement \u2014 making it one of the highest-ROI home improvement investments available to Dallas homeowners. A remodel also avoids the extended timeline and landscaping disruption of new construction. Financing is available for all remodeling projects, and most remodels are complete within 2\u20134 weeks depending on scope."
-investmentImage: /images/services/pool_remodeling_investment.avif
-servicesTitle: Comprehensive Remodeling Services
+  - title: Site Integrity Assessment
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Every remodel begins with a structural audit. We pressure test 
+              existing plumbing and assess shell integrity to ensure a solid 
+              foundation for our architectural updates.
+  - title: Design & Aesthetic Injection
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We reimagine the pool’s silhouette. We propose material 
+              upgrades — from glass tiles to natural pebble finishes — and 
+              explore how to integrate new features like sun shelves or water 
+              walls.
+  - title: Mechanical & Smart Overhaul
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We strip away the old and install state-of-the-art hydraulics 
+              and automation. We integrate saltwater purification and smart 
+              controls, making an old pool operate with the efficiency of a 
+              modern build.
+investmentTitle: Elevating Your Asset
+investmentBody: >-
+  Remodeling a luxury pool is a strategic investment that radically updates 
+  your property’s aesthetic and technical profile. In Dallas, where pool 
+  environments are central to the home’s appeal, a high-end remodel can provide 
+  a similar ROI to a new build while bypassing the extensive earthwork of 
+  groundbreaking.
+investmentImage: pool_remodel_investment.avif
+servicesTitle: Remodeling Design Solutions
 servicesItems:
-  - title: Full Plaster & Surface Refinishing
-    body: "White plaster, colored plaster, quartz aggregate, and pebble finishes \u2014 we resurface your pool with premium materials that last 15\u201325 years and dramatically transform its appearance."
-  - title: Tile, Coping & Deck Replacement
-    body: Waterline tile, coping stones, and surrounding deck surfaces are replaced using premium materials that complement your home and withstand Dallas heat and freeze cycles.
-  - title: Equipment Modernization
-    body: "Variable-speed pumps, LED color lighting, salt chlorination, automation systems, and energy-efficient heaters are installed during the remodel \u2014 upgrading your pool\u2019s performance for decades."
-featuresTitle: Why Remodel with AquaVida
+  - title: Surface & Tile Restoration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Complete removal of aged finishes and installation of 
+              premium-tier plaster (like PebbleSheen) and hand-laid glass 
+              tiles that redefine the water’s color and texture.
+  - title: Feature Integration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Transforming a standard pool by building in tanning ledges, 
+              spillover spas, or fire-water features that provide modern 
+              functional and visual scale.
+  - title: Decking & Hardscape Overlays
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Replacing old concrete or cracked pavers with high-end porcelain 
+              or natural stone surfaces that expand the project’s 
+              architectural impact.
+featuresTitle: Technical Remodeling Excellence
 features:
-  - title: Complete Transformation
-    body: "From structural repairs to surface finishes to equipment upgrades \u2014 we handle every aspect of the remodel in one coordinated project."
-  - title: Fast Turnaround
-    body: "Most standard remodeling projects are completed within 2\u20134 weeks \u2014 significantly faster than new pool construction timelines."
-  - title: Warranty on All Work
-    body: "Full warranty on new plaster, tile, and equipment installations \u2014 giving you complete confidence in the quality and longevity of your remodel."
-  - title: Energy Efficiency Upgrades
-    body: Variable-speed pumps and LED systems reduce operating costs by up to 70% compared to outdated single-speed equipment — paying for themselves over time.
-  - title: Surface Options
-    body: "White plaster, Diamond Brite, pebble finishes, and glass tile \u2014 we offer the full spectrum of premium pool interior finishes to suit every style and budget."
-  - title: Water Feature Additions
-    body: "Waterfalls, deck jets, bubblers, and grottos can be added during the remodel \u2014 transforming your existing pool into a luxury resort-style retreat."
-standardsTitle: Quality & Care Standards
+  - title: Advanced Leak Detection
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We utilize technical sonar and pressure testing to identify and 
+              resolve Every hidden technical flaw before the new aesthetic 
+              layers are applied.
+  - title: Low-Energy Pump Upgrades
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Replacement of old single-speed pumps with variable-speed 
+              intelligence, reducing energy consumption and noise levels by 
+              up to 60%.
+  - title: Smart Saltwater Conversion
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integration of modern saltwater chlorination systems for 
+              silky-smooth water that is gentler on eyes, skin, and 
+              swimming gear.
+  - title: Architectural Lighting Scenes
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Removal of old, standard lights and installation of 
+              multi-zone LED color systems that can be programmed for specific 
+              moods and nocturnal events.
+  - title: Hydraulic Re-Engineering
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Updating internal plumbing to improve circulation and heating 
+              efficiency, ensuring the entire pool volume stays balanced and 
+              comfortable.
+  - title: Coping & Edge Refinement
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Replacing old coping with modern materials like mitered corners 
+              or cantilevered edges for a more sophisticated, contemporary 
+              silhouette.
+standardsTitle: Standards of Renewal
 standards:
-  - title: Structural Integrity First
-    body: Every remodel begins with a full structural assessment. We never simply cover up existing problems with new finishes — all cracks, leaks, and structural issues are fully repaired before new surfaces are applied.
-  - title: Manufacturer-Certified Installers
-    body: Our remodeling crews are certified applicators for all major plaster and pebble finish manufacturers — ensuring your new surface is installed to exact specification and backed by full manufacturer warranty.
-ctaTitle: Transform Your Existing Pool Today
-ctaBody: "AquaVida\u2019s pool remodeling specialists serve all of Dallas and surrounding communities. Contact us for a free remodeling assessment \u2014 we\u2019ll document your pool\u2019s current condition, outline all recommended improvements, and provide a detailed written proposal with no obligation."
-ctaImage: /images/services/pool_remodeling_cta.avif
+  - title: Structural Shell Warranty
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our structural repairs and new finishes include solid 
+              warranties, ensuring your remodeled pool stands the test of 
+              time.
+  - title: Complete System Walkthrough
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Once the water is back in, we provide a full orientation on 
+              your new mechanical systems and smart controls, ensuring a 
+              smooth transition to your upgraded lifestyle.
+ctaTitle: Redefine Your Legacy
+ctaBody: >-
+  Connect with our studio to discuss your pool’s transformation. Our 
+  specialists will provide a site assessment and visioning consultation to explore 
+  your property’s potential for restoration.
+ctaImage: pool_remodel_cta.avif
 faqItems: []
+seoTitle: ''
+seoDescription: ''
+seoKeywords: ''
+ogTitle: ''
+ogDescription: ''
+ogImage: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []
+shadowPreview: ''

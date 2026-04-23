@@ -1,18 +1,16 @@
 heroTagline: Passionately shaping backyards into timeless designs
-manifesto: >-
-  AquaVida transforms architectural vision into built reality. We specialise in
-  luxury pool environments that shape water, define space, and elevate design.
-  Every project is guided by precision, craftsmanship, and a commitment to
-  enduring beauty.
-approachQuote: >-
-  Each phase of our work carries the same intent; to understand before we
-  create, to refine before we build, and to craft with care that lasts.
-approachDescription: >-
-  We're a collective of craftsmen, engineers, and thinkers united by a deep
-  respect for detail. Our culture is built on collaboration and care. Every
-  project begins with understanding and ends with precision. Guided by clarity
-  in how we think, communicate, and build, we turn complex ideas into seamless
-  architectural experiences that endure.
+manifesto:
+  - type: paragraph
+    children:
+      - text: "AquaVida transforms architectural vision into built reality. We specialise in luxury pool environments that shape water, define space, and elevate design. Every project is guided by precision, craftsmanship, and a commitment to enduring beauty."
+approachQuote:
+  - type: paragraph
+    children:
+      - text: "Each phase of our work carries the same intent; to understand before we create, to refine before we build, and to craft with care that lasts."
+approachDescription:
+  - type: paragraph
+    children:
+      - text: "We're a collective of craftsmen, engineers, and thinkers united by a deep respect for detail. Our culture is built on collaboration and care. Every project begins with understanding and ends with precision. Guided by clarity in how we think, communicate, and build, we turn complex ideas into seamless architectural experiences that endure."
 beliefs:
   - word: Authenticity
     pill: A fundamental trust in materials
@@ -21,33 +19,31 @@ beliefs:
   - word: Advocacy
     pill: Standards you can trust
 valuesHeading: >-
-  Everything we create is rooted in our values, we do not just build, we build
-  with purpose
+  Everything we create is rooted in our values, we do not just build, we build with purpose
 values:
   - title: Authenticity
-    desc: >-
-      At our company, authenticity means transparency and structural integrity.
-      Beginning each project with an honest assessment of your outdoor space and
-      using top-grade materials and proven construction techniques will guarantee
-      not just beauty on opening day, but lasting value in your home for years to
-      come.
+    desc:
+      - type: paragraph
+        children:
+          - text: >-
+              At our company, authenticity means transparency and structural integrity. Beginning each project with an honest assessment of your outdoor space and using top-grade materials and proven construction techniques will guarantee not just beauty on opening day, but lasting value in your home for years to come.
   - title: Aesthetic
-    desc: >-
-      The pool needs to flow into the architecture of your house. Our designers
-      incorporate those materials found in their surrounds so that each project
-      is a study in visual harmony — sleek infinity edges, natural stone, custom
-      lighting fixtures, and water features that make something truly bespoke.
+    desc:
+      - type: paragraph
+        children:
+          - text: >-
+              The pool needs to flow into the architecture of your house. Our designers incorporate those materials found in their surrounds so that each project is a study in visual harmony — sleek infinity edges, natural stone, custom lighting fixtures, and water features that make something truly bespoke.
   - title: Advocacy
-    desc: >-
-      As your construction partners, we serve as your ardent representatives
-      throughout every stage of this intricate building process. From navigating
-      local permits to post-build maintenance education, our aim is to make your
-      journey from groundbreaking to first splash as stress-free and rewarding as
-      possible.
-founderBio: >-
-  Hassan Bari, CEO and Founder of AquaVida Pools and Spas. He specializes in
-  designing luxury outdoor living spaces while offering premium custom pool
-  construction with unparalleled craftsmanship for homeowners across America.
+    desc:
+      - type: paragraph
+        children:
+          - text: >-
+              As your construction partners, we serve as your ardent representatives throughout every stage of this intricate building process. From navigating local permits to post-build maintenance education, our aim is to make your journey from groundbreaking to first splash as stress-free and rewarding as possible.
+founderBio:
+  - type: paragraph
+    children:
+      - text: >-
+          Hassan Bari, CEO and Founder of AquaVida Pools and Spas. He specializes in designing luxury outdoor living spaces while offering premium custom pool construction with unparalleled craftsmanship for homeowners across America.
 founderName: Hassan Bari
 founderRole: CEO & Founder
 founderImage: /Hassan-Bari-(Aquavida).avif

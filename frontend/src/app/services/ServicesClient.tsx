@@ -8,14 +8,15 @@ import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { getAssetUrl } from '@/lib/constants';
 import CorePrinciplesGlobe from './CorePrinciplesGlobe';
 import FAQ from '@/components/layout/FAQ';
+import CmsContent from '@/components/cms/CmsContent';
 
 /* ── data ─────────────────────────────────────────────────────────────── */
 
 export type ServiceItem = {
-    title: string; sub: string; href: string; image: string; accent: string;
+    title: string; sub: any; href: string; image: string; accent: string;
 }
 export type TestimonialItem = {
-    client: string; location: string; type: string; quote: string; image: string;
+    client: string; location: string; type: string; quote: any; image: string;
 }
 
 const SERVICES: ServiceItem[] = [
@@ -179,9 +180,15 @@ function TrustedPartnerships({ testimonials }: { testimonials: TestimonialItem[]
                             {t.type}
                         </p>
                     </div>
-                    <p className="leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)', fontSize: 'clamp(18px,1.2vw,17px)' }}>
-                        {t.quote}
-                    </p>
+                        <CmsContent
+                            content={t.quote}
+                            className="leading-relaxed"
+                            renderers={{
+                                block: {
+                                    paragraph: ({ children }) => <span className="block mb-2 last:mb-0">{children}</span>
+                                }
+                            }}
+                        />
                     <p className="text-md uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.28)' }}>
                         {t.location}
                     </p>
@@ -284,19 +291,19 @@ function FloatingCTA({ ctaLabel, ctaHeading, ctaButtonText, ctaButtonHref }: { c
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
 export type CorePrincipleItem = {
-    label: string; line1: string; line2: string; title: string; sub: string; image: string;
+    label: string; line1: string; line2: string; title: string; sub: any; image: string;
 }
 
 export interface ServicesClientProps {
     initialServices?: ServiceItem[]
     initialTestimonials?: TestimonialItem[]
-    initialFaqItems?: { question: string; answer: string }[]
+    initialFaqItems?: { question: string; answer: any }[]
     heroImage?: string
     heroTitle?: string
     heroTitleRight?: string
     expertiseLabel?: string
     expertiseTitle?: string
-    expertiseDescription?: string
+    expertiseDescription?: any
     corePrinciplesTitle?: string
     corePrinciples?: CorePrincipleItem[]
     ctaLabel?: string
@@ -412,10 +419,10 @@ export default function ServicesClient({
                                 style={{ fontSize: 'clamp(32px, 4.5vw, 58px)' }}>
                                 {expertiseTitle || 'Our Area of Expertise Space'}
                             </h2>
-                            <p className="text-white/40 leading-relaxed max-w-md md:text-left"
-                               style={{ fontSize: 'clamp(20px, 1.2vw, 17px)' }}>
-                                {expertiseDescription || 'AquaVida: A trusted leader in pool construction and outdoor living, providing seamless experiences to Dallas homeowners.'}
-                            </p>
+                            <CmsContent
+                                content={expertiseDescription}
+                                className="text-white/40 leading-relaxed max-w-md md:text-left text-[clamp(20px,1.2vw,17px)]"
+                            />
                         </div>
                     </Reveal>
 
@@ -451,6 +458,10 @@ export default function ServicesClient({
                                         style={{ fontSize: 'clamp(36px, 2.2vw, 30px)' }}>
                                         {s.title}
                                     </h3>
+                                    <CmsContent 
+                                        content={s.sub}
+                                        className="text-white/60 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    />
                                 </div>
                             </Link>
                         ))}

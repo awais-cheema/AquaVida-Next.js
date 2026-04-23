@@ -1,11 +1,13 @@
 'use client'
 
-type Section = { heading: string; body: string; items?: ReadonlyArray<string> | string[] }
+import CmsContent from '@/components/cms/CmsContent'
+
+type Section = { heading: string; body: any; items?: ReadonlyArray<string> | string[] }
 
 interface PrivacyData {
     effectiveDate?: string
-    intro?: string
-    sections?: ReadonlyArray<{ readonly heading: string; readonly body: string; readonly items?: ReadonlyArray<string> }> | Section[]
+    intro?: any
+    sections?: ReadonlyArray<{ readonly heading: string; readonly body: any; readonly items?: ReadonlyArray<string> }> | Section[]
 }
 
 const DEFAULT_EFFECTIVE_DATE = 'January 1, 2026'
@@ -62,8 +64,8 @@ export default function PrivacyPolicyClient({ data }: { data?: PrivacyData | nul
                         Legal
                     </span>
 
-                    <h1 className="font-black text-white leading-tight mb-5 sm:mb-7"
-                        style={{ fontSize: 'clamp(2.4rem, 7vw, 5rem)' }}>
+                    <h1 className="font-black text-white leading-tight mb-5 sm:mb-7 uppercase"
+                        style={{ fontSize: 'clamp(2.4rem, 7vw, 5.5rem)' }}>
                         Privacy{' '}
                         <span style={{ color: '#00d4aa' }}>Policy</span>
                     </h1>
@@ -98,34 +100,34 @@ export default function PrivacyPolicyClient({ data }: { data?: PrivacyData | nul
                                 <span className="font-bold text-white">Effective Date:</span>&nbsp;{effectiveDate}
                             </p>
                         </div>
-                        <p className="font-medium leading-relaxed"
-                           style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                            {intro}
-                        </p>
+                        <CmsContent
+                            content={intro}
+                            className="font-medium leading-relaxed text-[#8ba3bc]"
+                        />
                     </div>
 
                     {/* Policy sections */}
                     <div className="flex flex-col gap-10 sm:gap-14">
                         {sections.map((sec, idx) => (
                             <article key={idx}>
-                                <h2 className="font-black text-white mb-3 sm:mb-4"
-                                    style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)' }}>
+                                <h2 className="font-black text-white mb-3 sm:mb-4 uppercase"
+                                    style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}>
                                     {sec.heading}
                                 </h2>
                                 <div className="h-px mb-4 sm:mb-5"
                                      style={{ background: 'rgba(0,212,170,0.12)' }} />
                                 <div className="flex flex-col gap-4">
                                     {sec.body && (
-                                        <p className="font-medium leading-relaxed"
-                                           style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                                            {sec.body}
-                                        </p>
+                                        <CmsContent
+                                            content={sec.body}
+                                            className="font-medium leading-relaxed text-[#8ba3bc]"
+                                        />
                                     )}
                                     {sec.items?.length ? (
                                         <ul className="flex flex-col gap-2 pl-1">
                                             {sec.items.map((item, j) => (
-                                                <li key={j} className="flex items-start gap-3 font-medium"
-                                                    style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.8 }}>
+                                                <li key={j} className="flex items-start gap-3 font-medium text-[#8ba3bc]"
+                                                    style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.8 }}>
                                                     <span className="mt-[0.45em] shrink-0 w-1.5 h-1.5 rounded-full"
                                                           style={{ background: '#00d4aa' }} aria-hidden="true" />
                                                     {item}

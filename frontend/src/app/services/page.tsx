@@ -3,6 +3,7 @@ import { reader } from '@/lib/keystatic-reader'
 import { buildPageMetadata } from '@/lib/seo'
 import ServicesClient, { type ServiceItem, type TestimonialItem } from './ServicesClient'
 import SeoLinks from '@/components/layout/SeoLinks'
+import { resolveDraftContent } from '@/lib/shadow-preview'
 
 export async function generateMetadata(): Promise<Metadata> {
     const data = await reader.singletons.servicesPage.read().catch(() => null)
@@ -12,22 +13,26 @@ export async function generateMetadata(): Promise<Metadata> {
     }, data)
 }
 
-export default async function Page() {
-    const data = await reader.singletons.servicesPage.read().catch(() => null)
+export default async function Page({ searchParams }: { searchParams: Promise<{ draftId?: string }> }) {
+    const { draftId } = await searchParams
+    let data = await reader.singletons.servicesPage.read().catch(() => null)
+    
+    // Check for Shadow Preview Draft
+    data = await resolveDraftContent('services', data, draftId)
     return (
         <>
             <ServicesClient
-                initialServices={data?.services?.length ? [...data.services].map(s => ({ ...s, image: s.image ?? '' })) as any : undefined}
-                initialTestimonials={data?.testimonials?.length ? [...data.testimonials].map(t => ({ ...t, image: t.image ?? '' })) as any : undefined}
-                initialFaqItems={data?.faqItems?.length ? [...data.faqItems].map(f => ({ ...f })) : undefined}
+                initialServices={data?.services?.length ? await Promise.all([...data.services].map(async s => ({ ...s, image: s.image ?? '', sub: await s.sub() }))) : undefined}
+                initialTestimonials={data?.testimonials?.length ? await Promise.all([...data.testimonials].map(async t => ({ ...t, image: t.image ?? '', quote: await t.quote() }))) : undefined}
+                initialFaqItems={data?.faqItems?.length ? await Promise.all([...data.faqItems].map(async f => ({ ...f, answer: await f.answer() }))) : undefined}
                 heroImage={data?.heroImage || undefined}
                 heroTitle={data?.heroTitle || undefined}
                 heroTitleRight={data?.heroTitleRight || undefined}
                 expertiseLabel={data?.expertiseLabel || undefined}
                 expertiseTitle={data?.expertiseTitle || undefined}
-                expertiseDescription={data?.expertiseDescription || undefined}
+                expertiseDescription={data?.expertiseDescription ? await data.expertiseDescription() : undefined}
                 corePrinciplesTitle={data?.corePrinciplesTitle || undefined}
-                corePrinciples={data?.corePrinciples?.length ? [...data.corePrinciples].map(p => ({ ...p, image: p.image ?? '' })) as any : undefined}
+                corePrinciples={data?.corePrinciples?.length ? await Promise.all([...data.corePrinciples].map(async p => ({ ...p, image: p.image ?? '', sub: await p.sub() }))) : undefined}
                 ctaLabel={data?.ctaLabel || undefined}
                 ctaHeading={data?.ctaHeading || undefined}
                 ctaButtonText={data?.ctaButtonText || undefined}

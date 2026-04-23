@@ -4,6 +4,8 @@ import { buildPageMetadata } from '@/lib/seo'
 import PoolConstructionClient from './PoolConstructionClient'
 import SeoLinks from '@/components/layout/SeoLinks'
 
+import { resolveServicePage } from '@/lib/service-override'
+
 export async function generateMetadata(): Promise<Metadata> {
     const entry = await reader.collections.servicePages.read('pool-construction').catch(() => null)
     return buildPageMetadata('pool-construction', {
@@ -14,9 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
     const entry = await reader.collections.servicePages.read('pool-construction').catch(() => null)
+    const resolvedEntry = await resolveServicePage(entry)
+    
     return (
         <>
-            <PoolConstructionClient override={entry ?? null} />
+            <PoolConstructionClient override={resolvedEntry} />
             <SeoLinks internalLinks={entry?.internalLinks} externalLinks={entry?.externalLinks} />
         </>
     )

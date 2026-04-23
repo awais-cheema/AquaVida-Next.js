@@ -1,54 +1,171 @@
 slug: pergola-design
-accentColor: '#886030'
-accentRgb: 136,96,48
-heroLabel: Shadow & Structure — Dallas, TX
-heroTitle: Pergola
-heroHighlight: Design.
-heroBody: "From elegant cedar structures to modern aluminum frameworks \u2014 AquaVida designs and builds custom pergolas that define your outdoor space, providing architectural shade and a stunning frame for your garden living."
-heroImage: /images/services/pergola_design_hero.avif
-overviewTitle: Architectural Shade Engineering
-overviewBody: "At AquaVida, we view the pergola as a critical spatial boundary. Our Dallas structures are site-specific \u2014 meticulously calculated for sun angles, prevailing winds, and sight lines. We utilize premium cedar, redwood, architectural aluminum, and composite materials to deliver structures that provide both relief from the Texas sun and a permanent design statement."
-overviewImage: /images/services/pergola_design_overview.avif
-processTitle: The Structural Workflow
+accentColor: '#4f772d'
+accentRgb: 79,119,45
+heroLabel: Modernist Shade — AquaVida Pergolas
+heroTitle: Structure.
+heroHighlight: Silhouette.
+heroBody:
+  - type: paragraph
+    children:
+      - text: >-
+          The architecture of shadow. We engineer custom pergolas and pavillions
+          that provide structural shade while framing the horizon — creating 
+          refined sanctuaries that define the rhythmic movement of light.
+heroImage: pergola_hero.avif
+overviewTitle: The Structural Canopy
+overviewBody:
+  - type: paragraph
+    children:
+      - text: >-
+          At AquaVida, we view pergolas as architectural frames. Our structures 
+          are engineered using high-performance materials like marine-grade 
+          aluminum, sustainably sourced hardwoods, and precision-cut steel. 
+          Each design is tailored to the Dallas sun, providing strategic shade 
+          during peak hours while maintaining an open-air connection to the outdoors. 
+          From motorized louvers to minimalist beam-and-post silos, we craft 
+          shelters that are as resilient as they are visually striking.
+overviewImage: pergola_overview.avif
+processTitle: Framing the Vision
 processSteps:
-  - title: Solar Site Analysis
-    body: "We map your property\u2019s sun patterns to optimize louver and beam placement. This ensure your structure provides maximum shade during peak heat hours while maintaining open-air aesthetics."
-  - title: Engineering & Compliance
-    body: "We manage the entire permitting and engineering phase. Every structure is built to meet Dallas wind-load standards and structural codes, ensuring your investment is both safe and legal."
-  - title: Artisan Construction
-    body: "Our master carpenters and metalworkers execute the build with precision. From deep concrete footings to the final finish coat, we prioritize clean joinery and structural integrity."
-investmentTitle: Investing in Outdoor Volume
-investmentBody: "A professionally designed pergola adds high-value functional square footage to your property. By defining an \u2018outdoor room,\u2019 you create a dedicated zone for entertaining and relaxation. We utilize high-performance materials like Western Red Cedar and powder-coated aluminum to ensure your structure maintains its architectural value with minimal long-term maintenance."
-investmentImage: /images/services/pergola_design_investment.avif
-servicesTitle: Specialized Structure Services
+  - title: Solar Mapping & Orientation
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We begin by analyzing how the sun interacts with your property. We 
+              design shade structures that are perfectly oriented to provide 
+              maximum comfort during Dallas’s hottest months while allowing for 
+              ambient light.
+  - title: Technical Engineering
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our engineers ensure that every structure is wind-rated and 
+              structurally sound. We integrate hidden mechanical components 
+              for motorized systems and ensure all electrical routing for 
+              lighting and heating is concealed.
+  - title: Precision Installation
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our specialized crews hand-assemble every component, ensuring 
+              millimeter-precise tolerances and flawless finishes. We 
+              prioritize clean, rapid site execution to minimize disruption 
+              to your landscape.
+investmentTitle: Extending the Season
+investmentBody: >-
+  A high-end pergola is a structural asset that transforms an exposed patio 
+  into a year-round usable room. In the luxury Dallas market, integrated shade 
+  is a critical feature for elite homes, providing both physical relief from 
+  the elements and a sophisticated architectural focal point that drives 
+  property value.
+investmentImage: pergola_investment.avif
+servicesTitle: Shade Design Solutions
 servicesItems:
-  - title: Architectural Frameworks
-    body: "Custom freestanding and house-attached structures designed to scale with your home\u2019s geometry. We specialize in hidden-fastener methods for a clean, furniture-grade finish."
-  - title: Dynamic Shade Systems
-    body: "Integration of motorized louvered roofs, retractable canopies, and privacy screens. These systems allow you to control light levels and wind exposure at the touch of a button."
-  - title: Atmospheric Integration
-    body: "Full-service lighting, cooling, and sound integration. We pre-wire structures for recessed LED scenes, outdoor fans, and high-fidelity audio during the frame phase."
-featuresTitle: The AquaVida Standard
+  - title: Motorized Louvered Roofs
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              State-of-the-art aluminum structures with automated louvers that 
+              can rotate to provide total sun block or open to the stars, with 
+              integrated rain sensors and heating.
+  - title: Minimalist Steel Pavillions
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Architectural statement pieces featuring slender steel columns and 
+              floating roofs, designed to frame specific site views and provide 
+              a modern sanctuary.
+  - title: Custom Hardwood Arbors
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Warm, organic structures utilizing Ipe or cedar, designed with 
+              technical jointing and precision finishing for a timeless 
+              aesthetic.
+featuresTitle: Technical Shade Excellence
 features:
-  - title: Select Timber & Metal
-    body: "Grade-A Western Red Cedar or aerospace-grade aluminum \u2014 each material chosen for its ability to withstand the Dallas climate without warping or rust."
-  - title: Thermal Management
-    body: We engineer beam depth and spacing to reduce direct UV exposure by up to 60%, creating a significantly cooler micro-climate beneath the structure.
-  - title: Seismic & Wind Load
-    body: "Our structures are built with deep-pour footings and reinforced steel connections, rated for the heavy wind gusts and soil movement common in North Texas."
-  - title: Concealed Utilities
-    body: "We route all electrical and control wiring through the internal structure of the posts and beams, maintaining a clean architectural profile with no visible conduit."
-  - title: Precision Blueprinting
-    body: "Detailed 3D models allow you to visualize the structure on your property before construction begins, ensuring perfect alignment with your pool and patio."
-  - title: Landscape Harmony
-    body: "Pergolas designed to host climbing greenery or frame specific views, integrating seamlessly with your broader garden and hardscape vision."
-standardsTitle: Structural Governance
+  - title: Wind-Rated Engineering
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Every structure is designed to meet or exceed local Dallas 
+              building codes for wind resistance, ensuring safety and 
+              permanence.
+  - title: Integrated Gutter Systems
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Hidden drainage within the louvered systems ensures that water is 
+              discretely managed even during sudden Texas storms.
+  - title: Nocturnal Light Scenes
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We integrate high-end LED lighting directly into the structural 
+              beams, creating a refined ambiance for evening entertainment.
+  - title: Concealed Mechanicals
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              No visible wires or motors. All technical components are hidden 
+              within the architectural silhouette of the structure.
+  - title: Sustainable Material Sourcing
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We prioritize FSC-certified woods and recyclable aluminum, 
+              ensuring your structure is as responsible as it is beautiful.
+  - title: Climate Control Integration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Option for integrated infrared heaters and cooling fans that 
+              extend the usability of the space through all seasons.
+standardsTitle: Standards of Longevity
 standards:
-  - title: Code & Safety Protocol
-    body: "Every structure is designed to meet Dallas building codes for structural load and foundation depth. We provide all necessary technical documentation for resale and insurance purposes."
-  - title: Longevity Assurance
-    body: "Beyond the build, we provide specific maintenance protocols for your material type \u2014 ensuring your structure ages gracefully and maintains its structural integrity for decades."
-ctaTitle: Define Your Outdoor Room
-ctaBody: "Start your architectural shade project with an AquaVida site analysis. Contact us today to schedule a consultation with our structural design team."
-ctaImage: /images/services/pergola_design_cta.avif
+  - title: Structural Finish Warranty
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our pergolas come with long-term warranties on both the structural 
+              integrity and the high-performance finishes, protecting your 
+              investment.
+  - title: Maintenance Handoff
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We provide full orientation on operating louvered systems and 
+              guidance on maintaining the beauty of the materials used.
+ctaTitle: Define Your Silhouette
+ctaBody: >-
+  Connect with our studio to begin designing your custom pergola. Our 
+  specialists will provide a site survey and technical design tailored to your 
+  estate’s solar profile.
+ctaImage: pergola_cta.avif
 faqItems: []
+seoTitle: ''
+seoDescription: ''
+seoKeywords: ''
+ogTitle: ''
+ogDescription: ''
+ogImage: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []
+shadowPreview: ''

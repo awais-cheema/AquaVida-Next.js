@@ -1,15 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Clock, User, Calendar, Search } from 'lucide-react';
+import { ArrowRight, Clock, User, Calendar } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
 import { BlogPost } from '@/lib/api';
 
 interface BlogClientProps {
     initialPosts: BlogPost[];
-    faqItems?: { question: string; answer: string }[];
+    faqItems?: { question: string; answer: any }[];
+    categories?: string[];
+    headerLabel?: string | null;
+    headerTitle?: string | null;
+    headerDescription?: string | null;
 }
 
 const BLOG_FAQS = [
@@ -34,34 +39,28 @@ const kineticEntry = {
     viewport: { once: true } as any
 };
 
-export default function BlogClient({ initialPosts = [], faqItems }: BlogClientProps) {
+export default function BlogClient({ 
+    initialPosts = [], 
+    faqItems, 
+    categories,
+    headerLabel,
+    headerTitle,
+    headerDescription
+}: BlogClientProps) {
     const activeFaqs = faqItems?.length ? faqItems : BLOG_FAQS
+    
+    // Default Header Values
+    const displayLabel = headerLabel || "THE LIQUID MANIFESTO"
+    const displayTitle = headerTitle || "Subscribe to Design Intelligence"
+    const displayDesc  = headerDescription || "Curated monthly architectural insights and technological breakthroughs in aquatic engineering delivered to your inbox."
+
     const featuredPost = initialPosts.find(p => p.is_featured) || initialPosts[0];
-    const secondaryPosts = initialPosts.filter(p => p.id !== featuredPost?.id);
+    const filteredPosts = initialPosts.filter(p => p.id !== featuredPost?.id);
 
     return (
         <div className="min-h-screen bg-[#05070A] text-[#DCE3F0] font-allomira selection:bg-[#0D5699] selection:text-white select-text pt-[12vh]">
             
-            {/* ── SEARCH & FILTER BAR ────────────────────────────────────────── */}
-            <div className="max-w-[1800px] mx-auto px-6 md:px-16 lg:px-24 mb-24">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-12 p-8 rounded-[40px] border border-white/5 bg-white/[0.02] backdrop-blur-3xl">
-                    <div className="relative w-full md:w-1/2">
-                        <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/30" size={20} />
-                        <input 
-                            type="text" 
-                            placeholder="Search articles, engineering, design..." 
-                            className="w-full bg-white/5 border border-white/10 rounded-full py-5 pl-16 pr-8 focus:outline-none focus:border-[#0D5699] transition-all text-xl font-light"
-                        />
-                    </div>
-                    <div className="flex gap-4 overflow-x-auto w-full md:w-auto scrollbar-hide">
-                        {['All', 'Design', 'Engineering', 'Lighting', 'Sustainability'].map(cat => (
-                            <button key={cat} className="btn px-8 py-4 rounded-full border border-white/10 hover:border-white/40 text-lg font-medium transition-all whitespace-nowrap">
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
+            <div className="h-[4vh]" />
 
             {/* ── EMPTY STATE ────────────────────────────────────────────────── */}
             {initialPosts.length === 0 && (
@@ -106,7 +105,7 @@ export default function BlogClient({ initialPosts = [], faqItems }: BlogClientPr
             {/* ── POSTS GRID ───────────────────────────────────────────────── */}
             <section className="px-6 md:px-16 lg:px-24 max-w-[1800px] mx-auto mb-64">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    {secondaryPosts.map((post, i) => (
+                    {filteredPosts.map((post, i) => (
                         <motion.div 
                             key={post.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -152,12 +151,12 @@ export default function BlogClient({ initialPosts = [], faqItems }: BlogClientPr
                     {...kineticEntry}
                     className="p-16 md:p-32 rounded-[80px] bg-gradient-to-br from-[#0D5699]/20 to-transparent border border-white/5 text-center flex flex-col items-center"
                 >
-                    <span className="text-[#0D5699] font-black tracking-[0.6em] uppercase text-sm mb-8 block">The Liquid Manifesto</span>
+                    <span className="text-[#0D5699] font-black tracking-[0.6em] uppercase text-sm mb-8 block">{displayLabel}</span>
                     <h2 className="text-[clamp(40px,5vw,80px)] font-black tracking-tighter leading-[0.9] mb-12 uppercase">
-                        Subscribe to<br />Design Intelligence
+                        {displayTitle}
                     </h2>
                     <p className="text-2xl text-white/40 font-light max-w-3xl mb-16 leading-relaxed">
-                        Curated monthly architectural insights and technological breakthroughs in aquatic engineering delivered to your inbox.
+                        {displayDesc}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl">
                         <input 

@@ -1,18 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import CmsContent from '@/components/cms/CmsContent';
 
 /* ── Types ──────────────────────────────────────────────────────────────── */
 
 export interface AboutPageData {
     heroTagline?: string | null
-    manifesto?: string | null
-    approachQuote?: string | null
-    approachDescription?: string | null
+    manifesto?: any
+    approachQuote?: any
+    approachDescription?: any
     beliefs?: Array<{ word: string; pill: string }> | null
     valuesHeading?: string | null
-    values?: Array<{ title: string; desc: string }> | null
-    founderBio?: string | null
+    values?: Array<{ title: string; desc: any }> | null
+    founderBio?: any
     founderName?: string | null
     founderRole?: string | null
     founderImage?: string | null
@@ -141,15 +142,10 @@ function AboutHeroSection({ d }: { d: typeof DEFAULTS }) {
                     <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.4em] font-bold text-white/50 uppercase">Manifesto</span>
                 </div>
                 <div className="md:col-span-8 flex justify-end">
-                    <motion.p
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        viewport={{ once: true }}
+                    <CmsContent
+                        content={d.manifesto}
                         className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-white/60 leading-relaxed max-w-2xl text-left"
-                    >
-                        {d.manifesto}
-                    </motion.p>
+                    />
                 </div>
             </div>
             <div className="w-full h-px bg-white/5" />
@@ -161,15 +157,10 @@ function ApproachSection({ d }: { d: typeof DEFAULTS }) {
     return (
         <section className="relative min-h-screen flex flex-col items-center px-6 py-24 md:px-12 lg:px-24 bg-[#05070A] font-sans overflow-hidden">
             <div className="w-full max-w-[90vw] md:max-w-[80vw] mb-20 md:mb-32">
-                <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true }}
+                <CmsContent
+                    content={d.approachQuote}
                     className="text-[7vw] md:text-[clamp(1.5rem,2.8vw,3.8rem)] font-light tracking-tight leading-[1.2] md:leading-[1] text-white max-w-[90vw] md:max-w-[60vw] text-center mx-auto"
-                >
-                    {d.approachQuote}
-                </motion.h2>
+                />
             </div>
 
             <div className="w-full max-w-[90vw] md:max-w-[80vw] grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-start">
@@ -198,15 +189,10 @@ function ApproachSection({ d }: { d: typeof DEFAULTS }) {
                             <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-white/50 uppercase">About AquaVida</span>
                         </motion.div>
 
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 1, delay: 0.2 }}
-                            viewport={{ once: true }}
+                        <CmsContent
+                            content={d.approachDescription}
                             className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-white/50 leading-relaxed"
-                        >
-                            {d.approachDescription}
-                        </motion.p>
+                        />
                     </div>
                 </div>
 
@@ -291,7 +277,10 @@ function MoreAboutSections({ d }: { d: typeof DEFAULTS }) {
                             {values.map((v, i) => (
                                 <div key={i} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pt-10 md:pt-12 border-t border-black/10">
                                     <h4 className="md:col-span-4 text-[4.5vw] md:text-[clamp(0.85rem,1.1vw,1.4rem)] font-bold tracking-widest uppercase text-[#121212]">{v.title}</h4>
-                                    <p className="md:col-span-8 text-[5.5vw] md:text-[clamp(0.85rem,1.1vw,1.35rem)] text-black/60 leading-[1.6] md:leading-[1.5]">{v.desc}</p>
+                                    <CmsContent
+                                        content={v.desc}
+                                        className="md:col-span-8 text-[5.5vw] md:text-[clamp(0.85rem,1.1vw,1.35rem)] text-black/60 leading-[1.6] md:leading-[1.5]"
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -307,9 +296,10 @@ function MoreAboutSections({ d }: { d: typeof DEFAULTS }) {
                             <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] text-black/20">◆</span>
                             <span className="text-[4.5vw] md:text-[clamp(11px,0.85vw,15px)] tracking-[0.3em] font-bold text-black/40 uppercase">Founders Journey</span>
                         </div>
-                        <p className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-black/80 leading-relaxed">
-                            {d.founderBio}
-                        </p>
+                        <CmsContent
+                            content={d.founderBio}
+                            className="text-[5.5vw] md:text-[clamp(0.85rem,1.2vw,1.4rem)] font-light text-black/80 leading-relaxed"
+                        />
                     </div>
                     <div className="w-full max-w-md lg:ml-auto">
                         <TeamCard name={d.founderName} role={d.founderRole} image={d.founderImage} />

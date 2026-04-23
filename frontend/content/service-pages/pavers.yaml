@@ -1,54 +1,169 @@
 slug: pavers
-accentColor: '#7a9e5a'
-accentRgb: 122,158,90
-heroLabel: Precision Hardscaping — Dallas, TX
-heroTitle: Architectural
-heroHighlight: Paver Systems.
-heroBody: "Transforming outdoor spaces with artisanal paver layouts that blend structural integrity with fluid aesthetic harmony. Our curation defines the modern Dallas landscape \u2014 from iconic driveways to seamless pool decks."
-heroImage: /images/services/patio_extensions_hero.avif
-overviewTitle: The Foundation of Outdoor Luxury
-overviewBody: AquaVida provides professional hardscape solutions that anchor your entire outdoor environment. We specialize in precision paver systems that offer superior durability and aesthetic flexibility over standard concrete. Our master installers specialize in site-specific sub-base engineering, ensuring your surfaces remain perfectly level and resistant to the expansive clay soils of North Texas.
-overviewImage: /images/services/patio_extensions_overview.avif
-processTitle: The Hardscape Workflow
+accentColor: '#9c6644'
+accentRgb: 156,102,68
+heroLabel: Hardscape Engineering — AquaVida Surfaces
+heroTitle: Foundation.
+heroHighlight: Form.
+heroBody:
+  - type: paragraph
+    children:
+      - text: >-
+          The surface defines the journey. We engineer custom hardscape
+          systems that combine structural stability with architectural elegance —
+          transforming your estate's terrain into a curated landscape of
+          textures and lines.
+heroImage: pavers_hero.avif
+overviewTitle: The Architecture of the Ground
+overviewBody:
+  - type: paragraph
+    children:
+      - text: >-
+          At AquaVida, we view pavers as more than a walkway; they are a 
+          structural foundation for your outdoor environment. Our hardscapes 
+          are engineered to Dallas soil specifications, ensuring that every 
+          stone remains level and every line remains crisp through years of 
+          shifting and use. We source premium materials — from large-format 
+          porcelain to natural travertine and custom-poured concrete — to create 
+          surfaces that are as resilient as they are visually compelling.
+overviewImage: pavers_overview.avif
+processTitle: Constructing the Surface
 processSteps:
-  - title: Hydraulic & Site Design
-    body: "We map your property\u2019s drainage patterns to ensure water is managed effectively beneath the surface. Our designers help you select a pattern and texture that scales with your home\u2019s architecture."
-  - title: Sub-Base Infrastructure
-    body: Deep excavation followed by high-density aggregate compaction and geotextile stabilization. We build a monolithic foundation that prevents future settling or joint displacement.
-  - title: Artisan Placement & Locking
-    body: Hand-setting each unit with precision cuts and edge restraints. We utilize high-bond polymeric sand to lock the system into a single fluid surface that resists weeds and erosion.
-investmentTitle: Investing in Structural Permanence
-investmentBody: Quality paver systems are a multi-generational investment. Unlike poured concrete, pavers are resistant to cracking and can be easily accessed for utility maintenance. We utilize premium natural stone and architectural concrete units that withstand Dallas UV exposure and heavy vehicle loads, providing a permanent upgrade to your property's curb appeal and functional value.
-investmentImage: /images/services/patio_extensions_investment.avif
-servicesTitle: Comprehensive Hardscape Services
+  - title: Soil & Gradient Analysis
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We begin with a technical survey of your property’s drainage and 
+              soil stability. We design sub-base layers that prevent shifting 
+              in Dallas clay, ensuring the longevity of your investment.
+  - title: Manual Selection & Patterning
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We work with you to select materials that complement the home’s 
+              facade and the pool’s aesthetic. We design intricate patterns — 
+              from minimalist grids to organic mosaics — that provide visual interest 
+              and structural integrity.
+  - title: Precision Laying & Sealing
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our master masons hand-set every stone, ensuring millimeter-precise 
+              spacing and level surfaces. We finish every project with 
+              high-performance sealants that protect the material and enhance its 
+              natural color.
+investmentTitle: Building Lasting Equity
+investmentBody: >-
+  Quality hardscaping is one of the most visible and valuable upgrades for any 
+  estate. In Dallas, where outdoor living is a year-round priority, professionally 
+  installed pavers provide a maintenance-low, high-impact return on investment 
+  that significantly differentiates your property in the luxury market.
+investmentImage: pavers_investment.avif
+servicesTitle: Hardscape Design Solutions
 servicesItems:
-  - title: Bespoke Pattern Installation
-    body: Custom layouts for pool decks, driveways, and expansive patios. We specialize in complex geometric patterns, contrasting borders, and fluid, curved transitions.
-  - title: Surface Restoration
-    body: Professional re-leveling and joint replacement for failing existing hardscapes. We restore the structural integrity and aesthetic clarity of your older paver systems.
-  - title: Technological Maintenance
-    body: Nanotechnology sealing and deep-clean programs designed to protect surfaces from oil, organic stains, and UV fading while enhancing the natural stone color.
-featuresTitle: The Hardscape Masterclass
+  - title: Pool Deck Transitions
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Seamless transitions between water and land, utilizing non-slip, 
+              heat-reflective stones that stay comfortable under the Texas sun.
+  - title: Driveway Masterpieces
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              High-load capacity pavers designed for both durability and 
+              architectural scale, creating a grand entrance for your estate.
+  - title: Garden Path & Patio Grids
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Minimalist grids of large-format stone that guide the eye and 
+              physical movement through your outdoor sanctuary.
+featuresTitle: Technical Surface Excellence
 features:
-  - title: Geometric Curation
-    body: Herringbone, basketweave, or custom concentric patterns designed to direct visual flow and complement your home's architectural lines.
-  - title: Tonal Harmony
-    body: "We source materials in palettes ranging from cool Arctic greys to warm Mediterranean ambers, ensuring perfect integration with your existing landscape."
-  - title: Nanoscale Protection
-    body: Optional protective coatings that molecularly bond with the stone, creating a moisture barrier that prevents fading and thermal degradation.
-  - title: Advanced Permeability
-    body: "Eco-conscious sub-grade systems that return stormwater to the aquifer while maintaining a pristine, dry surface for pedestrian use."
-  - title: Structural Layering
-    body: Multi-stage base preparation involving vibratory compaction and architectural edging to prevent lateral movement over decades of use.
-  - title: Polymeric Bond
-    body: "High-performance jointing sand that hardens into a dense, flexible matrix\u2014eliminating ants, weeds, and joint-washout for good."
-standardsTitle: Technical Standards
+  - title: Expansion-Proof Engineering
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our sub-base designs account for the shifting nature of Dallas 
+              clay, preventing cracking and sinking even during extreme 
+              weather cycles.
+  - title: High-Performance Drainage
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integrated drainage systems that are hidden from view, preventing 
+              water pooling and protecting the structural integrity of the 
+              hardscape and foundation.
+  - title: Slip-Resistant Textures
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We source materials with high friction coefficients for pool 
+              surrounds, ensuring safety without sacrificing architectural elegance.
+  - title: UV & Thermal Resistance
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Light-colored, low-absorption stones that stay cool to the touch 
+              during 100° Dallas days, enhancing the comfort of your pool environment.
+  - title: Precision Jointing
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We utilize high-quality polymeric sands and sealants that prevent 
+              weed growth and maintain clean lines for years to come.
+  - title: Vertical Surface Integration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We coordinate paver patterns with retaining walls and vertical 
+              masonry, creating a unified architectural palette.
+standardsTitle: Standards of Integrity
 standards:
-  - title: Engineering Governance
-    body: "Our installation methods exceed industry standards for base depth and compaction density, specifically calibrated for the high-expansion clay dynamics of Dallas, Texas."
-  - title: Warranty & Maintenance Support
-    body: We provide structured post-install care guidelines and a rock-solid structural warranty, ensuring your hardscape remains a permanent asset to your property.
-ctaTitle: Architect Your Garden Foundation
-ctaBody: "Define your outdoor terrain with AquaVida\u2019s precision paver systems. Contact our hardscape studio today for a technical site analysis and custom layout proposal."
-ctaImage: /images/services/patio_extensions_cta.avif
+  - title: Lifetime Structural Warranty
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our hardscape installations include comprehensive structural 
+              warranties, reflecting our confidence in our technical sub-base 
+              engineering.
+  - title: Quality Material Handoff
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We provide a detailed catalog of the stones used and guidance on 
+              post-installation care to maintain the surface’s pristine 
+              condition.
+ctaTitle: Define Your Terrain
+ctaBody: >-
+  Connect with our studio to begin designing your custom hardscape. Our 
+  specialists will provide a site survey and material consultation tailored to your 
+  estate’s architecture.
+ctaImage: pavers_cta.avif
 faqItems: []
+seoTitle: ''
+seoDescription: ''
+seoKeywords: ''
+ogTitle: ''
+ogDescription: ''
+ogImage: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []
+shadowPreview: ''

@@ -1,23 +1,37 @@
 slug: residential
 title: Residential Archive
-description: A thematic exploration of private luxury water spaces, from hidden
-  courtyard oases to expansive coastal infinity pools.
-heroImage: /images/portfolio/landing/Residential_Category.avif
+description:
+  - type: paragraph
+    children:
+      - text: >-
+          A thematic exploration of private luxury water spaces, from hidden
+          courtyard oases to expansive coastal infinity pools.
+heroImage: Residential_Category.avif
 location: Global
 year: Ongoing
 category: Collection
 philosophyTitle: The Philosophy
-philosophyBody: A thematic exploration of private luxury water spaces, from
-  hidden courtyard oases to expansive coastal infinity pools.
-philosophyImage: /images/portfolio/landing/Residential_Category.avif
+philosophyBody:
+  - type: paragraph
+    children:
+      - text: >-
+          A thematic exploration of private luxury water spaces, from hidden
+          courtyard oases to expansive coastal infinity pools.
+philosophyImage: Residential_Category.avif
 gallery:
   - url: /images/portfolio/landing/Residential_Category.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: Engineered for absolute performance.
-accentColor: "#A68A33"
+technicalBody:
+  - type: paragraph
+    children:
+      - text: Engineered for absolute performance.
+accentColor: '#A68A33'
 faqItems:
   - question: What was the timeline?
-    answer: Completed on schedule.
+    answer:
+      - type: paragraph
+        children:
+          - text: Completed on schedule.

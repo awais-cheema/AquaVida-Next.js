@@ -1,54 +1,173 @@
 slug: fire-pit
-accentColor: '#e8823a'
-accentRgb: 232,130,58
-heroLabel: Elemental Artistry — Dallas, TX
-heroTitle: Fire Pit
-heroHighlight: Installation.
-heroBody: "Transform your outdoor sanctuary with the elemental warmth of natural stone. A fluid blend of primal fire and sophisticated, precision-engineered combustion technology \u2014 designed for year-round gathering."
-heroImage: /images/services/fire_pit_hero.avif
-overviewTitle: The Hearth of the Garden
-overviewBody: "AquaVida\u2019s master stonemasons specialize in custom fire architectures that serve as the anchor of the outdoor experience. Utilizing hand-selected limestone, granite, and local fieldstone, we engineer fire features that integrate seamlessly with your pool and patio layout. Our designs prioritize both the visual drama of the flame and the technical precision of modern gas-delivery systems."
-overviewImage: /images/services/fire_pit_overview.avif
-processTitle: The Elemental Workflow
+accentColor: '#e07a5f'
+accentRgb: 224,122,95
+heroLabel: Outdoor Living — AquaVida Fire Features
+heroTitle: Liquid Light.
+heroHighlight: Eternal Warmth.
+heroBody:
+  - type: paragraph
+    children:
+      - text: >-
+          Transcend the standard backyard fire. We engineer sculptural fire
+          features that integrate seamless gas technology with modernist
+          brutalism — creating the ultimate nocturnal focal point for your
+          Dallas estate.
+heroImage: fire_pit_hero.avif
+overviewTitle: The Architecture of Fire
+overviewBody:
+  - type: paragraph
+    children:
+      - text: >-
+          At AquaVida, we view fire as a structural element. Our custom fire pits
+          and linear burners are designed to interact with water and stone,
+          providing a warm architectural anchor to your outdoor space. From
+          sunken lounges with integrated flame tables to monumental stone hearths, 
+          we craft environments that invite conversation and endure the elements.
+overviewImage: fire_pit_overview.avif
+processTitle: Igniting the Vision
 processSteps:
-  - title: Technical Site Consultation
-    body: "We analyze your property\u2019s wind patterns and utility logistics to determine the optimal placement for safety and comfort. This includes mapping gas lines and ensuring proper fire-code clearances."
-  - title: Masonry Construction
-    body: "Our artisans hand-carve and set every stone, building a structural core that withstands extreme thermal cycles. We emphasize traditional joinery and architectural balance in every build."
-  - title: Combustion Integration
-    body: "Certified technicians install high-output burners and safety valves. We execute rigorous pressure testing and flame calibration to ensure a reliable, smokeless experience every time."
-investmentTitle: Investing in Atmospheric Value
-investmentBody: "A custom fire feature extends the seasonal utility of your outdoor space, providing a year-round destination for entertainment. We utilize indigenous Texas stone and aerospace-grade burner components to ensure your fire pit remains a maintenance-free centerpiece. In Dallas, integrated fire features consistently rank as top-tier landscape additions for property valuation."
-investmentImage: /images/services/fire_pit_investment.avif
-servicesTitle: Specialized Fire Services
+  - title: Visual Conceptualization
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We begin by analyzing the site’s nocturnal dynamics. We design fire
+              features that complement your pool’s lighting and the home’s
+              architectural silhouette, ensuring visual harmony even when the
+              flame is off.
+  - title: Gas & Safety Engineering
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Safety is our structural priority. Our certified technicians
+              integrate high-performance gas plumbing and automated ignition
+              systems that meet rigorous Dallas safety codes while maintaining a
+              hidden technical profile.
+  - title: Material Craftsmanship
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We utilize premium materials — from hand-poured concrete to natural
+              basalt. Every surface is treated to withstand extreme temperatures
+              and Texas weather, ensuring a permanent architectural legacy.
+investmentTitle: Engineering Longevity
+investmentBody: >-
+  A custom fire feature is more than an amenity; it's a structural upgrade that
+  extends the usability of your outdoor space throughout the year. In the Dallas
+  market, high-end fire integrations significantly increase property appeal and
+  nocturnal ambiance, providing a distinct return on architectural investment.
+investmentImage: fire_pit_investment.avif
+servicesTitle: Fire Feature Solutions
 servicesItems:
-  - title: Architectural Stone Fire Pits
-    body: "Custom-engineered fire vessels built into your existing hardscape. We specialize in submerged fire pits, poolside fire bowls, and expansive hearths designed for large-scale entertaining."
-  - title: Technical Restoration
-    body: "Professional recalibration and repair for existing fire features. We replace failing burner systems, repoint masonry, and upgrade ignition controls to modern safety standards."
-  - title: Safety Maintenance Protocols
-    body: "Structured inspection programs for residential gas systems. We provide annual burner cleaning, connection testing, and stonework protective sealing to ensure long-term performance."
-featuresTitle: The AquaVida Warmth
+  - title: Sunken Fire Lounges
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integrated seating areas built into the pool’s structure or
+              surround, featuring hidden gas lines and custom drainage for a
+              seamless architectural experience.
+  - title: Linear Fire Tables
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Modernist stone tables with integrated ribbon burners, designed to
+              serve as both a social hub and a visual bridge between dining and
+              lounging zones.
+  - title: Monumental Hearths
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Free-standing stone structures that provide vertical scale and
+              physical warmth, acting as a structural anchor for the entire
+              outdoor landscape.
+featuresTitle: Technical Fire Excellence
 features:
-  - title: Smokeless Technology
-    body: "Advanced cross-ventilation engineering ensures a clean, oxygen-rich burn\u2014providing the heat of a wood fire without the ash or smoke intrusion."
-  - title: Thermal Resilience
-    body: Every structure is built with a fire-rated internal core and thermal expansion joints to prevent stone cracking during rapid temperature shifts.
-  - title: Radiant Output
-    body: "Our high-performance burner systems deliver up to 125,000 BTUs, creating a consistent warmth radius that defies the Dallas winter chill."
-  - title: Integrated Utility Line
-    body: "We handle the complete sub-base utility routing for natural gas or propane systems\u2014all concealed beneath the patio for a clean architectural profile."
-  - title: Clean Combustion
-    body: "Precision valves and high-efficiency nozzles minimize fuel consumption while maximizing flame height and color consistency."
-  - title: Under-Glow Scenes
-    body: "Optional integrated LED lighting can be recessed into the base masonry, providing a safe and stunning guidance light when the fire is not in use."
-standardsTitle: Operational Safety
+  - title: Automated Ignition
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Full integration with your smart home system, allowing for instant
+              ignition and flame height control via mobile or voice commands.
+  - title: Electronic Safety Sensors
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integrated sensors that monitor gas flow and flame status,
+              providing automatic shutoff and reliable performance in windy
+              Dallas conditions.
+  - title: Thermal-Resistant Masonry
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Internal structural engineering using fire-rated materials to
+              prevent cracking or heat transfer to surrounding architectural
+              elements.
+  - title: Custom Media Finishes
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              From reflective glass crystals to hand-carved lava stone, we curate
+              the internal burner media to match your site’s specific aesthetic
+              palette.
+  - title: High-Output Burners
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Professionally tuned burner systems that ensure even flame
+              distribution and maximum heat output, even on the coldest Texas
+              nights.
+  - title: Concealed Technical Access
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Smart design of paneling and access points allows for easy
+              maintenance without disrupting the clean architectural lines of
+              the structure.
+standardsTitle: Standards of Warmth
 standards:
-  - title: Fire Code Compliance
-    body: "AquaVida adheres strictly to City of Dallas fire safety regulations, ensuring all gas clearances, emergency shut-offs, and ventilation requirements are met and inspected."
-  - title: Safety Hand-Off
-    body: "We provide a complete operational walkthrough for your new fire system, including emergency shutdown procedures and seasonal burner maintenance guidelines."
-ctaTitle: Architect Your Evening Centerpiece
-ctaBody: "Bring the elemental power of a custom fire feature to your Dallas property. Contact AquaVida for a technical site assessment and start planning your night-time sanctuary."
-ctaImage: /images/services/fire_pit_cta.avif
+  - title: Certification & Warranty
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              All fire features are installed to national safety standards and
+              include comprehensive warranties on both the structural masonry and
+              mechanical components.
+  - title: Integrated Design Handoff
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We provide full orientation on your new fire feature’s operation
+              and maintenance, ensuring you feel confident in managing your new
+              architectural anchor.
+ctaTitle: Ignite Your Outdoor Legacy
+ctaBody: >-
+  Connect with our technical design studio to discuss your vision for a custom
+  fire feature. We provide feasibility assessments and structural designs tailored
+  to your estate.
+ctaImage: fire_pit_cta.avif
 faqItems: []
+seoTitle: ''
+seoDescription: ''
+seoKeywords: ''
+ogTitle: ''
+ogDescription: ''
+ogImage: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []
+shadowPreview: ''

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { ArrowUpRight, ArrowRight, Zap, Droplets, MapPin, Calendar, LayoutGrid } from 'lucide-react';
 import FAQ from '@/components/layout/FAQ';
 import { getAssetUrl } from '@/lib/constants';
+import CmsContent from '@/components/cms/CmsContent';
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 
@@ -136,9 +137,10 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0] }) => {
                                 </div>
                             </div>
 
-                            <p className="text-white/80 text-sm md:text-[1.2vw] font-normal leading-relaxed mb-4 line-clamp-2 max-w-2xl">
-                                {project.description}
-                            </p>
+                            <CmsContent
+                                content={project.description}
+                                className="text-white/80 text-sm md:text-[1.2vw] font-normal leading-relaxed mb-4 line-clamp-2 max-w-2xl"
+                            />
 
                             <div className="flex gap-4 items-center">
                                 <div className="flex items-center gap-2 text-[11px] font-bold text-white/50 uppercase tracking-widest">
@@ -173,22 +175,22 @@ const DEFAULT_PORTFOLIO_FAQS = [
 
 export type PortfolioProjectItem = {
     slug: string; name: string; category: string; year: string;
-    location: string; description: string; image: string;
+    location: string; description: any; image: string;
     gridSize: string; color: string;
 }
 
 interface PortfolioClientProps {
-    faqItems?: { question: string; answer: string }[]
+    faqItems?: { question: string; answer: any }[]
     headerLabel?: string
     headerTitle?: string
-    headerDescription?: string
+    headerDescription?: any
     curationLabel?: string
     curationValue?: string
     focusLabel?: string
     focusValue?: string
     projects?: PortfolioProjectItem[]
     ctaTitle?: string
-    ctaDescription?: string
+    ctaDescription?: any
     ctaButtonText?: string
     ctaButtonHref?: string
 }
@@ -230,9 +232,10 @@ export default function PortfolioClient({
                         <h1 className="text-[clamp(50px,8.5vw,160px)] font-black tracking-normal leading-[1] uppercase mb-12">
                             {headerTitle || <>The Liquid<br />Portfolio</>}
                         </h1>
-                        <p className="text-2xl md:text-[1.5vw] text-white/40 font-light max-w-xl leading-normal">
-                            {headerDescription || 'A curated exhibition of high-performance aquatic engineering. Where structural brutalism meets the silent architecture of tranquility.'}
-                        </p>
+                        <CmsContent
+                            content={headerDescription}
+                            className="text-2xl md:text-[1.5vw] text-white/40 font-light max-w-xl leading-normal"
+                        />
                     </motion.div>
 
                     <motion.div
@@ -280,9 +283,10 @@ export default function PortfolioClient({
                     <h2 className="text-[clamp(28px,3.5vw,60px)] font-black leading-none uppercase mb-6 tracking-tighter">
                         {ctaTitle || <>Next Generation<br />Pool Design</>}
                     </h2>
-                    <p className="text-base md:text-[1.3vw] text-white/40 font-light max-w-3xl md:max-w-[40vw] mx-auto mb-8 leading-relaxed">
-                        {ctaDescription || "We don't just build pools. We engineer permanent environmental artifacts that redefine how water interacts with human architecture."}
-                    </p>
+                    <CmsContent
+                        content={ctaDescription}
+                        className="text-base md:text-[1.3vw] text-white/40 font-light max-w-3xl md:max-w-[40vw] mx-auto mb-8 leading-relaxed"
+                    />
                     <Link href={ctaButtonHref || '/contact'} className="btn inline-flex items-center justify-center gap-4 w-[60vw] md:w-auto md:gap-6 bg-[#0D5699] hover:bg-[#A68A33] text-white px-[6vw] py-[3vw] md:px-10 md:py-4 rounded-full text-base font-bold uppercase tracking-normal transition-all hover:scale-105 active:scale-95 group">
                         {ctaButtonText || 'Begin Your Project'}
                         <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />

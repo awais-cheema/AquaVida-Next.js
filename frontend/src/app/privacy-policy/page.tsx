@@ -14,9 +14,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PrivacyPolicyPage() {
     const data = await reader.singletons.privacyPolicy.read().catch(() => null)
+    const resolvedData = data ? {
+        ...data,
+        intro: await data.intro(),
+        sections: await Promise.all((data.sections || []).map(async s => ({
+            ...s,
+            body: await s.body()
+        })))
+    } : null
+
     return (
         <>
-            <PrivacyPolicyClient data={data ?? null} />
+            <PrivacyPolicyClient data={resolvedData as any} />
             <SeoLinks internalLinks={data?.internalLinks} externalLinks={data?.externalLinks} />
         </>
     )
