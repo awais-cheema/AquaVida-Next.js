@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata('about', {
         title: 'About | AquaVida Pools and Spas',
         description: "Meet the team behind AquaVida — architects, engineers, and artisans building Dallas's finest aquatic experiences.",
-    })
+    }, data)
 }
 
 export default async function AboutPage() {
