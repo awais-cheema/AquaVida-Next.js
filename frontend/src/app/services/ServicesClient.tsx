@@ -326,28 +326,7 @@ export default function ServicesClient({
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const yHero = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
     const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-    const [isHovered,    setIsHovered]    = useState(false);
-    const [activeIdx,    setActiveIdx]    = useState(0);
-    const [swipeHint,    setSwipeHint]    = useState(true); // fades out after first swipe
-
-    // Track active card index for dots + dismiss swipe hint on first scroll
-    useEffect(() => {
-        const el = scrollRef.current;
-        if (!el) return;
-        const onScroll = () => {
-            const cardWidth = (el.children[0]?.clientWidth ?? 1) + 24; // card + gap
-            setActiveIdx(Math.round(el.scrollLeft / cardWidth));
-            setSwipeHint(false);
-        };
-        el.addEventListener('scroll', onScroll, { passive: true });
-        return () => el.removeEventListener('scroll', onScroll);
-    }, []);
-
-    // Auto-dismiss swipe hint after 2.5 s even if user doesn't touch
-    useEffect(() => {
-        const t = setTimeout(() => setSwipeHint(false), 2500);
-        return () => clearTimeout(t);
-    }, []);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         if (isHovered) return;
@@ -453,8 +432,7 @@ export default function ServicesClient({
                         {services.map((s, i) => (
                             <Link key={i} href={s.href}
                                 className="flex-none w-[85vw] sm:w-[48vw] md:w-[35vw] lg:w-[calc(25%-18px)] group relative overflow-hidden h-[500px] snap-start block"
-                                onTouchStart={() => setSwipeHint(false)}
-                                style={{
+                                    style={{
                                     background: 'rgba(255,255,255,0.03)',
                                     border: '1px solid rgba(255,255,255,0.09)',
                                     backdropFilter: 'blur(10px)',
@@ -477,58 +455,6 @@ export default function ServicesClient({
                             </Link>
                         ))}
                     </div>
-
-                    {/* ── Mobile-only: swipe hint + dot indicators ── */}
-                    <div className="flex flex-col items-center gap-3 mb-6 md:hidden">
-                        {/* Swipe hint — fades out after first touch or 2.5s */}
-                        <div style={{
-                            opacity: swipeHint ? 1 : 0,
-                            transition: 'opacity 0.5s ease',
-                            pointerEvents: 'none',
-                        }} className="flex items-center gap-2 text-white/40">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
-                                 style={{ animation: 'swipe-nudge 1.2s ease-in-out infinite' }}>
-                                <path d="M19 12H5M12 5l-7 7 7 7" />
-                            </svg>
-                            <span className="text-[11px] uppercase tracking-[0.22em] font-medium">Swipe</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
-                                 style={{ animation: 'swipe-nudge 1.2s ease-in-out infinite', animationDirection: 'reverse' }}>
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </div>
-
-                        {/* Dot indicators */}
-                        <div className="flex gap-2">
-                            {services.map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => {
-                                        if (!scrollRef.current) return;
-                                        const cardWidth = (scrollRef.current.children[0]?.clientWidth ?? 0) + 24;
-                                        scrollRef.current.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
-                                    }}
-                                    aria-label={`Go to slide ${i + 1}`}
-                                    style={{
-                                        width: activeIdx === i ? 20 : 6,
-                                        height: 6,
-                                        borderRadius: 3,
-                                        background: activeIdx === i ? '#63b589' : 'rgba(255,255,255,0.25)',
-                                        transition: 'all 0.3s ease',
-                                        border: 'none',
-                                        padding: 0,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    <style dangerouslySetInnerHTML={{ __html: `
-                        @keyframes swipe-nudge {
-                            0%, 100% { transform: translateX(0); opacity: 0.4; }
-                            50%       { transform: translateX(-4px); opacity: 0.9; }
-                        }
-                    `}} />
 
                     <div className="flex gap-4 items-center">
                         <button
