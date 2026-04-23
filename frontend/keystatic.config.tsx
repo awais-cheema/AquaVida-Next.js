@@ -1,4 +1,8 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
+import AboutPreview from './src/components/cms/previews/AboutPreview'
+import BlogPostPreview from './src/components/cms/previews/BlogPostPreview'
+import ShadowSaveButton from './src/components/cms/fields/ShadowSaveButton'
+
 
 /* ── Reusable Rich Text Field (WordPress-Style) ────────────────── */
 const richText = (label: string, options: any = {}) => fields.document({
@@ -109,6 +113,7 @@ const seoFieldsDef = {
   ),
 }
 
+// @ts-ignore
 export default config({
   storage: {
     kind: 'cloud',
@@ -141,7 +146,15 @@ export default config({
       slugField: 'slug',
       path: 'content/blogs/*',
       previewUrl: '/api/preview/start?branch={branch}&to=/blog/{slug}',
+      // @ts-ignore
+      preview: BlogPostPreview,
       schema: {
+        shadowPreview: fields.text({
+          label: 'Shadow Preview (Instant Feedback)',
+          ui: {
+            views: ShadowSaveButton as any
+          }
+        }),
         slug: fields.slug({
           name: { label: 'Post Title', description: 'Generates the URL slug automatically' },
         }),
@@ -457,7 +470,15 @@ export default config({
       label: 'About Page Content',
       path: 'content/pages/about',
       previewUrl: '/api/preview/start?branch={branch}&to=/about',
+      // @ts-ignore
+      preview: AboutPreview,
       schema: {
+        shadowPreview: fields.text({
+          label: 'Shadow Preview (Instant Feedback)',
+          ui: {
+            views: ShadowSaveButton as any
+          }
+        }),
         heroTagline: fields.text({
           label: 'Hero Tagline',
           defaultValue: 'Passionately shaping backyards into timeless designs',
