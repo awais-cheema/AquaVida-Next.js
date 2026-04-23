@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend  = new Resend(process.env.RESEND_API_KEY);
+const resend  = new Resend(process.env.RESEND_API_KEY || 're_123456789');
 const TO_EMAIL = 'info@aquavidapoolsandspas.com';
 
 const RATE_LIMIT_MS = 5 * 60 * 1000; // 5 minutes

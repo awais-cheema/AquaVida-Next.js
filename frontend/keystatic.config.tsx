@@ -151,6 +151,7 @@ export default config({
       schema: {
         shadowPreview: fields.text({
           label: 'Shadow Preview (Instant Feedback)',
+          // @ts-ignore
           ui: {
             views: ShadowSaveButton as any
           }
@@ -475,6 +476,7 @@ export default config({
       schema: {
         shadowPreview: fields.text({
           label: 'Shadow Preview (Instant Feedback)',
+          // @ts-ignore
           ui: {
             views: ShadowSaveButton as any
           }
