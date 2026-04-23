@@ -347,18 +347,9 @@ export default function HeroSection() {
                         smoothedTarget = Math.max(0, Math.min(maxFrame, clamped));
 
                     } else {
+                        // Coast exhausted — hold wherever smoothedTarget landed.
+                        // No settle, no snap-back. Proxy catches up on next scroll.
                         frameVelocity = 0;
-                        if (delta > 0.5) {
-                            // smoothedTarget is behind proxy — catch up gently
-                            const settle = delta * MOBILE_SETTLE_LERP;
-                            smoothedTarget = Math.abs(settle) > 0.02
-                                ? Math.max(0, Math.min(maxFrame, smoothedTarget + settle))
-                                : raw;
-                        } else if (delta > -0.5) {
-                            smoothedTarget = raw; // close enough — snap cleanly
-                        }
-                        // delta < -0.5: smoothedTarget is ahead of proxy from coast overshoot.
-                        // Hold position — don't pull back. Proxy catches up on next scroll.
                     }
                 }
 
