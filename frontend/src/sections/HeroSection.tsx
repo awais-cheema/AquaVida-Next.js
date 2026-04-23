@@ -279,9 +279,15 @@ export default function HeroSection() {
 
         window.addEventListener('scroll', onScroll, { passive: true });
 
-        // Capture animation velocity the instant the finger lifts, before native
-        // inertia decelerates it — used to seed the post-inertia coast on mobile.
-        const onTouchEnd = () => { coastSeedVelocity = frameVelocity; };
+        // Capture scroll speed at finger-lift (before native inertia decelerates it).
+        // scrollVelocity (px/ms) * scale gives a frames/tick coast seed that's
+        // noticeably larger than the raw frameVelocity (which is only 1-3 frames/tick).
+        const onTouchEnd = () => {
+            if (!isScrolling) return;
+            const dir = Math.sign(frameVelocity) || (proxy.targetFrame >= smoothedTarget ? 1 : -1);
+            const mag = Math.min(scrollVelocity * 8, MAX_COAST_VEL);
+            if (mag > MOBILE_MIN_MOMENTUM) coastSeedVelocity = dir * mag;
+        };
         window.addEventListener('touchend', onTouchEnd, { passive: true });
 
         // ── Single rAF render loop ─────────────────────────────────────────────
