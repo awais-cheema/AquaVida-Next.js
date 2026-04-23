@@ -28,18 +28,13 @@ export function extractValues(fields: any): any {
     return val;
   }
 
-  // If it's a plain object (like a Keystatic object field's .fields container)
-  if (fields.fields) {
+  // If it's a plain object, recurse into its keys
+  if (typeof fields === 'object' && fields !== null) {
     const result: any = {};
-    for (const key in fields.fields) {
-      result[key] = extractValues(fields.fields[key]);
+    for (const key in fields) {
+      result[key] = extractValues(fields[key]);
     }
     return result;
-  }
-
-  // If it's an array
-  if (Array.isArray(fields)) {
-    return fields.map(v => extractValues(v));
   }
 
   // If it's just a value

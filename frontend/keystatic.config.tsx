@@ -297,7 +297,7 @@ export default config({
       path: 'content/pages/home',
       previewUrl: '/api/preview/start?branch=main&to=/',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/" type="home" />,
       schema: {
         shadowPreview: shadowPreviewField,
         title: fields.text({ label: 'Page Title' }),
@@ -581,7 +581,7 @@ export default config({
       label: 'Footer Settings',
       path: 'content/footer/settings',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/" type="footer" />,
       schema: {
         shadowPreview: shadowPreviewField,
         tagline: fields.text({ label: 'Footer Tagline', defaultValue: 'Designing the Horizon of Luxury' }),
@@ -665,7 +665,7 @@ export default config({
       label: 'Navigation Settings',
       path: 'content/navigation/settings',
       // @ts-ignore
-      preview: SimplePreview,
+      preview: props => <SimplePreview {...props} to="/" type="navigation" />,
       schema: {
         shadowPreview: shadowPreviewField,
         servicesLinks: fields.array(
