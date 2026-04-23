@@ -136,7 +136,7 @@ export default async function RootLayout({
                         />
                     </noscript>
                 )}
-                <SiteShell footerData={footerData ?? null} seoExtras={<SeoExtras />}>
+                <SiteShell footerData={footerData as unknown as import('@/components/layout/FloatingFooter').FooterData ?? null} seoExtras={<SeoExtras />}>
                     {(await draftMode()).isEnabled && <PreviewBanner />}
                     {children}
                 </SiteShell>

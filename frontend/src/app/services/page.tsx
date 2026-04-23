@@ -22,7 +22,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ d
     return (
         <>
             <ServicesClient
-                initialServices={data?.services?.length ? await Promise.all([...data.services].map(async s => ({ ...s, image: s.image ?? '', sub: await s.sub() }))) : undefined}
+                initialServices={data?.services?.length ? await Promise.all([...data.services].map(async s => ({ title: s.title, sub: s.description ? await s.description() : [], href: `/services/${s.slug}`, image: s.image ?? '', accent: '#0d5699' }))) : undefined}
                 initialTestimonials={data?.testimonials?.length ? await Promise.all([...data.testimonials].map(async t => ({ ...t, image: t.image ?? '', quote: await t.quote() }))) : undefined}
                 initialFaqItems={data?.faqItems?.length ? await Promise.all([...data.faqItems].map(async f => ({ ...f, answer: await f.answer() }))) : undefined}
                 heroImage={data?.heroImage || undefined}
