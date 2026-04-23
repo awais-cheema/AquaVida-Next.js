@@ -1,91 +1,91 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 /**
  * ShadowSaveButton
- * A button that takes the current live fields from Keystatic,
- * saves them to a temporary cache, and opens a full-page live preview.
+ * Broadcasts the current session data to any open preview windows.
+ * Implements a handshake system to ensure new windows get the current data immediately.
  */
 export default function ShadowSaveButton({ data, type, to = '/' }: { data?: any, type?: string, to?: string }) {
-  const [status, setStatus] = React.useState<'idle' | 'saving' | 'success' | 'error'>('idle');
+  const [status, setStatus] = React.useState<'idle' | 'broadcasting' | 'success'>('idle');
+  const channelRef = useRef<BroadcastChannel | null>(null);
 
-  const handleShadowSave = async () => {
-    if (!data) {
-      console.error('No data provided to ShadowSaveButton');
-      return;
+  // 1. Setup Channel and Listener for requests
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const channel = new BroadcastChannel('keystatic-shadow-preview');
+    channelRef.current = channel;
+
+    channel.onmessage = (event) => {
+      if (event.data === 'REQUEST_DATA' && data) {
+        console.log('[ShadowStream] Preview window requested data. Sending...');
+        channel.postMessage({ type, data, to });
+      }
+    };
+
+    return () => {
+      channel.close();
+      channelRef.current = null;
+    };
+  }, [data, type, to]);
+
+  // 2. Broadcast data whenever it changes
+  useEffect(() => {
+    if (channelRef.current && data) {
+      channelRef.current.postMessage({ type, data, to });
     }
+  }, [data, type, to]);
 
-    setStatus('saving');
-    try {
-      // 1. POST the current live data to our temporary cache
-      const res = await fetch('/api/preview/cache', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type,
-          data,
-          timestamp: Date.now()
-        }),
-      });
-
-      if (!res.ok) throw new Error('Failed to cache draft');
-      
-      const { draftId } = await res.json();
-
-      // 2. Open the Live Preview route with this draft ID
-      // Pass the 'to' parameter so we land on the right page
-      const previewUrl = `/api/preview/live?draftId=${draftId}&to=${encodeURIComponent(to)}`;
-      window.open(previewUrl, '_blank');
-      
-      setStatus('success');
-      setTimeout(() => setStatus('idle'), 2000);
-    } catch (e) {
-      console.error(e);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
+  const handleOpenPreview = () => {
+    setStatus('broadcasting');
+    
+    // Open viewer
+    const previewUrl = `/preview/live?to=${encodeURIComponent(to)}&type=${type}`;
+    window.open(previewUrl, '_blank');
+    
+    setStatus('success');
+    setTimeout(() => setStatus('idle'), 2000);
   };
 
   return (
-    <div className="p-5 border border-amber-500/30 bg-amber-500/5 rounded-xl mb-10 backdrop-blur-sm">
+    <div className="p-5 border border-amber-500/30 bg-amber-500/5 rounded-xl mb-10 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h3 className="text-amber-500 font-black text-xs uppercase tracking-[0.2em] mb-1">
-            Shadow Preview System
-          </h3>
+          <div className="flex items-center gap-2 mb-1">
+             <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+             <h3 className="text-amber-500 font-black text-[10px] uppercase tracking-[0.2em]">
+               Shadow Live Engine
+             </h3>
+          </div>
           <p className="text-white/40 text-[10px] leading-relaxed max-w-[240px]">
-            View your changes on the actual site layout <span className="text-amber-500/50 italic">without</span> a Git commit.
+            Syncing live with your preview windows. No Git commits required.
           </p>
         </div>
         
         <button
-          onClick={handleShadowSave}
-          disabled={status === 'saving'}
+          onClick={handleOpenPreview}
           className={`
             px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300
-            ${status === 'saving' ? 'bg-amber-500/20 text-amber-500 animate-pulse' : 
-              status === 'success' ? 'bg-green-500 text-white' : 
+            ${status === 'success' ? 'bg-green-500 text-white' : 
               'bg-amber-500 text-black hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.3)]'}
           `}
         >
-          {status === 'saving' ? 'GENERATING...' : status === 'success' ? 'OPENED!' : 'OPEN LIVE PREVIEW'}
+          {status === 'success' ? 'SYNCED!' : 'OPEN LIVE PREVIEW'}
         </button>
       </div>
       
-      {status === 'error' && (
-        <p className="text-red-500 text-[10px] mt-2 font-bold uppercase tracking-tighter">
-          Error: Could not generate draft. Please try again.
-        </p>
-      )}
-      
       <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
         <span className="text-[9px] text-white/20 uppercase font-bold tracking-widest">
-          Target: {to}
+          Route: {to}
         </span>
-        <span className="text-[9px] text-amber-500/30 uppercase font-black">
-          Session Active
-        </span>
+        <button 
+          onClick={() => channelRef.current?.postMessage({ type, data, to })}
+          className="text-[9px] text-amber-500/50 hover:text-amber-500 uppercase font-black transition-colors"
+        >
+          Force Manual Sync
+        </button>
       </div>
     </div>
   );

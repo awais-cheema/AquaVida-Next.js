@@ -12,6 +12,9 @@ interface BlogClientProps {
     initialPosts: BlogPost[];
     faqItems?: { question: string; answer: any }[];
     categories?: string[];
+    headerLabel?: string | null;
+    headerTitle?: string | null;
+    headerDescription?: string | null;
 }
 
 const BLOG_FAQS = [
@@ -36,9 +39,21 @@ const kineticEntry = {
     viewport: { once: true } as any
 };
 
-export default function BlogClient({ initialPosts = [], faqItems, categories }: BlogClientProps) {
+export default function BlogClient({ 
+    initialPosts = [], 
+    faqItems, 
+    categories,
+    headerLabel,
+    headerTitle,
+    headerDescription
+}: BlogClientProps) {
     const activeFaqs = faqItems?.length ? faqItems : BLOG_FAQS
     
+    // Default Header Values
+    const displayLabel = headerLabel || "THE LIQUID MANIFESTO"
+    const displayTitle = headerTitle || "Subscribe to Design Intelligence"
+    const displayDesc  = headerDescription || "Curated monthly architectural insights and technological breakthroughs in aquatic engineering delivered to your inbox."
+
     const featuredPost = initialPosts.find(p => p.is_featured) || initialPosts[0];
     const filteredPosts = initialPosts.filter(p => p.id !== featuredPost?.id);
 
@@ -136,12 +151,12 @@ export default function BlogClient({ initialPosts = [], faqItems, categories }: 
                     {...kineticEntry}
                     className="p-16 md:p-32 rounded-[80px] bg-gradient-to-br from-[#0D5699]/20 to-transparent border border-white/5 text-center flex flex-col items-center"
                 >
-                    <span className="text-[#0D5699] font-black tracking-[0.6em] uppercase text-sm mb-8 block">The Liquid Manifesto</span>
+                    <span className="text-[#0D5699] font-black tracking-[0.6em] uppercase text-sm mb-8 block">{displayLabel}</span>
                     <h2 className="text-[clamp(40px,5vw,80px)] font-black tracking-tighter leading-[0.9] mb-12 uppercase">
-                        Subscribe to<br />Design Intelligence
+                        {displayTitle}
                     </h2>
                     <p className="text-2xl text-white/40 font-light max-w-3xl mb-16 leading-relaxed">
-                        Curated monthly architectural insights and technological breakthroughs in aquatic engineering delivered to your inbox.
+                        {displayDesc}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl">
                         <input 

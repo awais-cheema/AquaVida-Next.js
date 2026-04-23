@@ -51,10 +51,14 @@ const DEFAULT_SECTIONS = [
 ]
 
 interface TermsData {
+    effectiveDate?: string
+    intro?: any
     sections?: ReadonlyArray<{ readonly heading: string; readonly body: any }> | { heading: string; body: any }[]
 }
 
 export default function TermsConditionsClient({ data }: { data?: TermsData | null }) {
+    const effectiveDate = data?.effectiveDate || "January 1, 2026"
+    const intro = data?.intro || "These Terms & Conditions cover Aquavida Pools and Spas website services and websites provided. By using all or any part of our services, you indicate your acceptance and agreement to these terms of use."
     const sections = data?.sections?.length ? data.sections : DEFAULT_SECTIONS
 
     return (
@@ -75,8 +79,8 @@ export default function TermsConditionsClient({ data }: { data?: TermsData | nul
                         Legal
                     </span>
 
-                    <h1 className="font-black text-white leading-tight mb-5 sm:mb-7"
-                        style={{ fontSize: 'clamp(2.4rem, 7vw, 5rem)' }}>
+                    <h1 className="font-black text-white leading-tight mb-5 sm:mb-7 uppercase"
+                        style={{ fontSize: 'clamp(2.4rem, 7vw, 5.5rem)' }}>
                         Terms &amp;{' '}
                         <span style={{ color: '#00d4aa' }}>Conditions</span>
                     </h1>
@@ -108,38 +112,36 @@ export default function TermsConditionsClient({ data }: { data?: TermsData | nul
                                 <line x1="3" y1="10" x2="21" y2="10" />
                             </svg>
                             <p style={{ color: '#8ba3bc', fontSize: '0.875rem' }}>
-                                <span className="font-bold text-white">Effective Date:</span>&nbsp;January 1, 2026
+                                <span className="font-bold text-white">Effective Date:</span>&nbsp;{effectiveDate}
                             </p>
                         </div>
-                        <p className="font-medium leading-relaxed"
-                           style={{ color: '#8ba3bc', fontSize: 'clamp(0.875rem, 1.8vw, 1rem)', lineHeight: 1.85 }}>
-                            These Terms &amp; Conditions cover Aquavida Pools and Spas website services and websites
-                            provided. By using all or any part of our services, you indicate your acceptance and
-                            agreement to these terms of use.
-                        </p>
+                        <CmsContent
+                            content={intro}
+                            className="font-medium leading-relaxed text-[#8ba3bc]"
+                        />
                     </div>
 
                     {/* Numbered sections */}
                     <div className="flex flex-col gap-10 sm:gap-14">
                         {sections.map((sec, idx) => (
                             <article key={idx}>
-                                <h2 className="font-black text-white mb-3 sm:mb-4"
-                                    style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)' }}>
+                                <h2 className="font-black text-white mb-3 sm:mb-4 uppercase"
+                                    style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}>
                                     {sec.heading}
                                 </h2>
                                 <div className="h-px mb-4 sm:mb-5"
                                      style={{ background: 'rgba(0,212,170,0.12)' }} />
                                 <CmsContent
                                    content={sec.body}
-                                   className="font-medium leading-relaxed"
+                                   className="font-medium leading-relaxed text-[#8ba3bc]"
                                 />
                             </article>
                         ))}
 
                         {/* Contact section */}
                         <article>
-                            <h2 className="font-black text-white mb-3 sm:mb-4"
-                                style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)' }}>
+                            <h2 className="font-black text-white mb-3 sm:mb-4 uppercase"
+                                style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}>
                                 Contact Information
                             </h2>
                             <div className="h-px mb-5 sm:mb-6"

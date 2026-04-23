@@ -1,140 +1,19 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
-import AboutPreview from './src/components/cms/previews/AboutPreview'
-import BlogPostPreview from './src/components/cms/previews/BlogPostPreview'
-import SimplePreview from './src/components/cms/previews/SimplePreview'
-import ShadowSaveButton from './src/components/cms/fields/ShadowSaveButton'
+import { richText, shadowPreviewField, seoFieldsDef } from './src/lib/cms-fields'
+import SimplePreview from '@/components/cms/previews/SimplePreview'
+import BlogPostPreview from '@/components/cms/previews/BlogPostPreview'
 
-const shadowPreviewField = fields.text({
-  label: '⚠️ ACTION REQUIRED: OPEN PREVIEW PANEL ⚠️',
-  description: 'To see your "Unsaved" changes (like the text you just typed) on the live layout, click the "Preview" button in the TOP-RIGHT of this toolbar, then click the orange "OPEN LIVE PREVIEW" button in the new sidebar.',
-  // @ts-ignore
-  ui: {
-    readonly: true,
-  }
-})
-
-
-/* ── Reusable Rich Text Field (WordPress-Style) ────────────────── */
-const richText = (label: string, options: any = {}) => fields.document({
-  label,
-  formatting: {
-    headingLevels: [1, 2, 3, 4, 5, 6],
-    inlineMarks: {
-      bold: true,
-      italic: true,
-      underline: true,
-      strikethrough: true,
-      code: true,
-      superscript: true,
-      subscript: true,
-    },
-    listTypes: {
-      ordered: true,
-      unordered: true,
-    },
-    alignment: {
-      center: true,
-      end: true,
-    },
-    blockTypes: {
-      blockquote: true,
-      code: true,
-    },
-    softBreaks: true,
-  },
-  dividers: true,
-  links: true,
-  ...options,
-})
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Shared SEO fields — embedded in every content type (WordPress-style).
-   Priority: inline SEO > per-page SEO collection entry > fallback defaults
-   ═══════════════════════════════════════════════════════════════════════════ */
-const seoFieldsDef = {
-  seoTitle: fields.text({
-    label: 'SEO — Meta Title',
-    description: '50–60 characters recommended. Leave blank to use page default.',
-  }),
-  seoDescription: fields.text({
-    label: 'SEO — Meta Description',
-    multiline: true,
-    description: '150–160 characters recommended.',
-  }),
-  seoKeywords: fields.text({
-    label: 'SEO — Focus Keywords',
-    description: 'Comma-separated, e.g. "pool construction, fiberglass pools"',
-  }),
-  ogTitle: fields.text({
-    label: 'SEO — Open Graph Title',
-    description: 'Falls back to Meta Title if blank',
-  }),
-  ogDescription: fields.text({
-    label: 'SEO — Open Graph Description',
-    multiline: true,
-  }),
-  ogImage: fields.image({
-    label: 'SEO — Open Graph Image (1200×630)',
-    directory: 'public/seo-images',
-    publicPath: '/seo-images/',
-  }),
-  seoNoIndex: fields.checkbox({ label: 'SEO — No Index', defaultValue: false }),
-  seoNoFollow: fields.checkbox({ label: 'SEO — No Follow', defaultValue: false }),
-  seoCanonicalUrl: fields.text({
-    label: 'SEO — Canonical URL',
-    description: 'Leave blank to use the automatic page URL',
-  }),
-
-  /* ── Internal Linking (interlinking between site pages) ──────────── */
-  internalLinks: fields.array(
-    fields.object({
-      anchorText: fields.text({ label: 'Anchor Text', description: 'The clickable link text (keyword-rich)' }),
-      targetUrl: fields.text({ label: 'Target Page URL', description: 'Internal path, e.g. /services/pool-construction' }),
-      context: fields.text({ label: 'Context / Placement Note', description: 'Where this link should appear (e.g. "in introduction paragraph")' }),
-    }),
-    {
-      label: 'Internal Links (SEO Interlinking)',
-      itemLabel: props => `${props.fields.anchorText.value} → ${props.fields.targetUrl.value}`,
-    },
-  ),
-
-  /* ── External Linking (outbound authority links) ────────────────── */
-  externalLinks: fields.array(
-    fields.object({
-      anchorText: fields.text({ label: 'Anchor Text' }),
-      url: fields.text({ label: 'External URL', description: 'Full URL, e.g. https://example.com' }),
-      rel: fields.select({
-        label: 'Rel Attribute',
-        options: [
-          { label: 'Follow (passes SEO juice)', value: 'follow' },
-          { label: 'No Follow (no SEO juice)', value: 'nofollow' },
-          { label: 'Sponsored', value: 'sponsored' },
-          { label: 'UGC (User Generated Content)', value: 'ugc' },
-        ],
-        defaultValue: 'nofollow',
-      }),
-      newTab: fields.checkbox({ label: 'Open in New Tab', defaultValue: true }),
-      context: fields.text({ label: 'Context / Placement Note' }),
-    }),
-    {
-      label: 'External Links (Outbound)',
-      itemLabel: props => `${props.fields.anchorText.value} → ${props.fields.url.value}`,
-    },
-  ),
-}
-
-// @ts-ignore
 export default config({
   storage: {
-    kind: 'cloud',
-    pathPrefix: 'frontend',
-  },
-  cloud: {
-    project: 'aquavida/aquavida-site',
+    kind: 'github',
+    repo: {
+      owner: 'awais-cheema',
+      name: 'AquaVida-Next.js',
+    },
   },
 
   ui: {
-    brand: { name: 'AquaVida Admin' },
+    brand: { name: 'AquaVida' },
     navigation: {
       'Blog': ['posts', 'blogSettings'],
       'Portfolio': ['portfolioProjects', 'portfolioListingPage'],
@@ -146,66 +25,30 @@ export default config({
     },
   },
 
-  /* ═══════════════════════════════════════════════════════ COLLECTIONS ═══ */
-
   collections: {
-
-    /* ── Blog posts ────────────────────────────────────────────────────── */
+    /* ── Posts ────────────────────────────────────────────────────────── */
     posts: collection({
       label: 'Blog Posts',
       slugField: 'slug',
-      path: 'content/blogs/*',
-      previewUrl: '/api/preview/start?branch=main&to=/blog/{slug}',
-      // @ts-ignore
-      preview: props => <BlogPostPreview {...props} to="/blog" />,
+      path: 'content/posts/*',
+      format: { contentField: 'content' },
+      preview: props => <BlogPostPreview fields={props.fields} />,
       schema: {
         shadowPreview: shadowPreviewField,
-        slug: fields.slug({
-          name: { label: 'Post Title', description: 'Generates the URL slug automatically' },
-        }),
-        title: fields.text({
-          label: 'Display Title',
-          description: 'Full title shown to readers (can differ from the slug)',
-        }),
-        excerpt: fields.text({
-          label: 'Excerpt',
-          multiline: true,
-          description: '1–2 sentence summary shown in the blog listing',
-        }),
-        content: richText('Body Content', {
-          images: {
-            directory: 'public/blog-images',
-            publicPath: '/blog-images/',
-          },
-        }),
-        category: fields.select({
-          label: 'Category',
-          options: [
-            { label: 'Blog', value: 'Blog' },
-          ],
-          defaultValue: 'Blog',
-        }),
-        author_name: fields.text({ label: 'Author Name' }),
-        published_at: fields.text({
-          label: 'Publish Date',
-          description: 'ISO 8601 format, e.g. 2025-04-20',
-        }),
-        read_time: fields.text({
-          label: 'Read Time',
-          description: 'e.g. 5 min read',
-          defaultValue: '5 min read',
-        }),
+        slug: fields.slug({ name: { label: 'Slug' } }),
+        title: fields.text({ label: 'Title' }),
+        category: fields.text({ label: 'Category', defaultValue: 'Design' }),
+        author_name: fields.text({ label: 'Author Name', defaultValue: 'Hassan Bari' }),
+        read_time: fields.text({ label: 'Read Time', defaultValue: '5 min read' }),
+        is_featured: fields.checkbox({ label: 'Is Featured Post?', defaultValue: false }),
         featured_image: fields.image({
           label: 'Featured Image',
-          description: 'Cover image shown in the blog listing and at the top of the post',
-          directory: 'public/blog-images',
-          publicPath: '/blog-images/',
+          directory: 'public/images/blog',
+          publicPath: '/images/blog/',
         }),
-        is_featured: fields.checkbox({
-          label: 'Featured Post',
-          description: 'Displays this post as the hero card on the blog listing page',
-          defaultValue: false,
-        }),
+        summary: fields.text({ label: 'Summary', multiline: true }),
+        content: richText('Article Content'),
+        published_at: fields.date({ label: 'Publish Date', defaultValue: { kind: 'today' } }),
         ...seoFieldsDef,
       },
     }),
@@ -249,34 +92,10 @@ export default config({
         }),
         canonicalUrl: fields.text({
           label: 'Canonical URL',
-          description: 'Leave blank to use the page URL. Set only when this page duplicates another.',
+          description: 'Full URL, e.g. https://aquavidapools.com/about',
         }),
-        noIndex: fields.checkbox({ label: 'No Index', defaultValue: false }),
-        noFollow: fields.checkbox({ label: 'No Follow', defaultValue: false }),
-        structuredData: fields.text({
-          label: 'Page JSON-LD',
-          multiline: true,
-          description: 'Custom schema.org markup for this page only',
-        }),
-        internalLinks: fields.array(
-          fields.object({
-            anchorText: fields.text({ label: 'Anchor Text', description: 'Visible link label, e.g. "Pool Construction"' }),
-            href: fields.text({ label: 'URL', description: 'Internal path, e.g. /services/pool-construction' }),
-            description: fields.text({ label: 'Short Description (optional)', multiline: true }),
-          }),
-          { label: 'Internal Links (Related Pages)', itemLabel: props => props.fields.anchorText.value }
-        ),
-        breadcrumbs: fields.array(
-          fields.object({
-            label: fields.text({ label: 'Label' }),
-            href: fields.text({ label: 'URL' }),
-          }),
-          { label: 'Breadcrumb Trail', description: 'Used for BreadcrumbList schema — list from Home → … → This Page', itemLabel: props => props.fields.label.value }
-        ),
-        lastReviewed: fields.text({
-          label: 'Last SEO Review Date',
-          description: 'Internal tracking, e.g. 2025-04-20',
-        }),
+        noIndex: fields.checkbox({ label: 'No Index (Hide from search engines)' }),
+        noFollow: fields.checkbox({ label: 'No Follow (Tell engines not to follow links)' }),
       },
     }),
 
@@ -287,7 +106,7 @@ export default config({
       path: 'content/service-pages/*',
       previewUrl: '/api/preview/start?branch=main&to=/services/{slug}',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/services" />,
+      preview: props => <SimplePreview {...props} to="/services" type="services" />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -369,7 +188,7 @@ export default config({
       path: 'content/portfolio/*',
       previewUrl: '/api/preview/start?branch=main&to=/portfolio/{slug}',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/portfolio" />,
+      preview: props => <SimplePreview {...props} to="/portfolio" type="portfolio" />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -472,15 +291,16 @@ export default config({
       },
     }),
 
-    /* ── Home page ──────────────────────────────────────────────────────── */
+    /* ── Home page content ─────────────────────────────────────────────── */
     homePage: singleton({
-      label: 'Home Page',
+      label: 'Home Page Content',
       path: 'content/pages/home',
       previewUrl: '/api/preview/start?branch=main&to=/',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/" />,
+      preview: SimplePreview,
       schema: {
         shadowPreview: shadowPreviewField,
+        title: fields.text({ label: 'Page Title' }),
         ...seoFieldsDef,
       },
     }),
@@ -491,49 +311,38 @@ export default config({
       path: 'content/pages/about',
       previewUrl: '/api/preview/start?branch=main&to=/about',
       // @ts-ignore
-      preview: props => <AboutPreview {...props} to="/about" />,
+      preview: props => <SimplePreview {...props} to="/about" type="about" />,
       schema: {
         shadowPreview: shadowPreviewField,
-        heroTagline: fields.text({
-          label: 'Hero Tagline',
-          defaultValue: 'Passionately shaping backyards into timeless designs',
-        }),
+        heroTagline: fields.text({ label: 'Hero Tagline' }),
         manifesto: richText('Manifesto Text'),
-        approachQuote: richText('Approach Section Quote'),
+        approachQuote: richText('Approach Big Quote'),
         approachDescription: richText('Approach Description'),
+
         beliefs: fields.array(
           fields.object({
-            word: fields.text({ label: 'Belief Word' }),
-            pill: fields.text({ label: 'Floating Pill Text' }),
+            word: fields.text({ label: 'Core Word' }),
+            pill: fields.text({ label: 'Pill Label' }),
           }),
-          {
-            label: 'Beliefs',
-            itemLabel: props => props.fields.word.value,
-          },
+          { label: 'Beliefs', itemLabel: props => props.fields.word.value }
         ),
-        valuesHeading: fields.text({
-          label: 'Values Section Heading',
-          multiline: true,
-          defaultValue:
-            'Everything we create is rooted in our values, we do not just build, we build with purpose',
-        }),
+
+        valuesHeading: fields.text({ label: 'Values Section Heading' }),
         values: fields.array(
           fields.object({
             title: fields.text({ label: 'Value Title' }),
             desc: richText('Description'),
           }),
-          {
-            label: 'Values',
-            itemLabel: props => props.fields.title.value,
-          },
+          { label: 'Our Values', itemLabel: props => props.fields.title.value }
         ),
+
         founderBio: richText('Founder Bio'),
         founderName: fields.text({ label: 'Founder Name', defaultValue: 'Hassan Bari' }),
         founderRole: fields.text({ label: 'Founder Role', defaultValue: 'CEO & Founder' }),
         founderImage: fields.image({
-          label: 'Founder Image Path',
-          directory: 'public/images/founder',
-          publicPath: '/images/founder/',
+          label: 'Founder Photo',
+          directory: 'public/images/about',
+          publicPath: '/images/about/',
         }),
         ...seoFieldsDef,
       },
@@ -545,27 +354,24 @@ export default config({
       path: 'content/pages/services',
       previewUrl: '/api/preview/start?branch=main&to=/services',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/services" />,
+      preview: props => <SimplePreview {...props} to="/services" type="services" />,
       schema: {
         shadowPreview: shadowPreviewField,
         /* Hero */
-        heroImage: fields.text({ label: 'Hero Background Image', description: 'Path or full URL for the hero background image' }),
-        heroTitle: fields.text({ label: 'Hero Title (left)', defaultValue: 'Our' }),
-        heroTitleRight: fields.text({ label: 'Hero Title (right)', defaultValue: 'Services' }),
+        heroImage: fields.image({ label: 'Hero Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
+        heroTitle: fields.text({ label: 'Hero Title (Left)', defaultValue: 'Defining' }),
+        heroTitleRight: fields.text({ label: 'Hero Title (Right)', defaultValue: 'Silhouettes' }),
 
-        /* Expertise heading */
-        expertiseLabel: fields.text({ label: 'Expertise Label', defaultValue: 'Services' }),
-        expertiseTitle: fields.text({ label: 'Expertise Heading', defaultValue: 'Our Area of Expertise Space' }),
-        expertiseDescription: richText('Expertise Description'),
-
-        /* Service cards */
+        /* Expertise */
+        expertiseLabel: fields.text({ label: 'Expertise Label', defaultValue: 'Architectural Domain' }),
+        expertiseTitle: fields.text({ label: 'Expertise Title', defaultValue: 'Ocean-Inspired Modernism' }),
+        expertiseDescription: richText('Expertise Introduction'),
         services: fields.array(
           fields.object({
+            slug: fields.text({ label: 'Link Slug', description: 'URL part, e.g. "pool-construction"' }),
             title: fields.text({ label: 'Service Name' }),
-            sub: richText('Subtitle'),
-            href: fields.text({ label: 'URL Path', description: 'e.g. /services/pool-construction' }),
-            image: fields.image({ label: 'Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
-            accent: fields.text({ label: 'Accent Color (hex)', description: 'e.g. #0d5699' }),
+            description: richText('Brief Description'),
+            image: fields.image({ label: 'Card Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
           }),
           {
             label: 'Service Cards',
@@ -578,8 +384,8 @@ export default config({
         corePrinciples: fields.array(
           fields.object({
             label: fields.text({ label: 'Number Label', description: 'e.g. 01' }),
-            line1: fields.text({ label: 'Globe Text — Line 1' }),
-            line2: fields.text({ label: 'Globe Text — Line 2' }),
+            line1: fields.text({ label: 'Globe Text \u2014 Line 1' }),
+            line2: fields.text({ label: 'Globe Text \u2014 Line 2' }),
             title: fields.text({ label: 'Full Title' }),
             sub: richText('Description'),
             image: fields.image({ label: 'Background Image Path', directory: 'public/images/services', publicPath: '/images/services/' }),
@@ -595,21 +401,12 @@ export default config({
           fields.object({
             client: fields.text({ label: 'Client Name' }),
             location: fields.text({ label: 'Location', description: 'e.g. Frisco, TX' }),
-            type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction · Outdoor Kitchen' }),
+            type: fields.text({ label: 'Service Type', description: 'e.g. Pool Construction \u00B7 Outdoor Kitchen' }),
             quote: richText('Testimonial Quote'),
             image: fields.image({ label: 'Photo Path', directory: 'public/images/testimonials', publicPath: '/images/testimonials/' }),
           }),
-          {
-            label: 'Testimonials',
-            itemLabel: props => props.fields.client.value,
-          },
+          { label: 'Client Testimonials', itemLabel: props => props.fields.client.value }
         ),
-
-        /* CTA section */
-        ctaLabel: fields.text({ label: 'CTA Label', defaultValue: 'What We Do' }),
-        ctaHeading: fields.text({ label: 'CTA Heading', defaultValue: 'Bring Your Vision to Life— Connect with AquaVida Today' }),
-        ctaButtonText: fields.text({ label: 'CTA Button Text', defaultValue: 'Send Your Inquiry' }),
-        ctaButtonHref: fields.text({ label: 'CTA Button Link', defaultValue: '/contact' }),
 
         /* FAQ */
         faqItems: fields.array(
@@ -617,25 +414,14 @@ export default config({
             question: fields.text({ label: 'Question' }),
             answer: richText('Answer'),
           }),
-          {
-            label: 'FAQ Items',
-            itemLabel: props => props.fields.question.value,
-          },
+          { label: 'FAQ Items', itemLabel: props => props.fields.question.value }
         ),
-        comparison: fields.array(
-          fields.object({
-            feature: fields.text({ label: 'Feature Name' }),
-            vistafi: fields.text({ label: 'Vistafi Value' }),
-            lyon: fields.text({ label: 'Lyon Value' }),
-            hfs: fields.text({ label: 'HFS Value' }),
-            viking: fields.text({ label: 'Viking Value' }),
-            heloc: fields.text({ label: 'HELOC Value' }),
-          }),
-          {
-            label: 'Comparison Table',
-            itemLabel: props => props.fields.feature.value,
-          },
-        ),
+
+        /* CTA */
+        ctaLabel: fields.text({ label: 'CTA Sub-label', defaultValue: 'COMMENCE PROJECT' }),
+        ctaHeading: fields.text({ label: 'CTA Heading', defaultValue: 'Defining the Horizon of Luxury' }),
+        ctaButtonText: fields.text({ label: 'CTA Button Text', defaultValue: 'Consult Advisor' }),
+        ctaButtonHref: fields.text({ label: 'CTA Button Link', defaultValue: '/contact' }),
         ...seoFieldsDef,
       },
     }),
@@ -646,7 +432,7 @@ export default config({
       path: 'content/pages/contact',
       previewUrl: '/api/preview/start?branch=main&to=/contact',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/contact" />,
+      preview: props => <SimplePreview {...props} to="/contact" type="contact" />,
       schema: {
         shadowPreview: shadowPreviewField,
         heading: fields.text({
@@ -658,18 +444,15 @@ export default config({
           defaultValue: '2100 N Greenville Ave, Richardson, TX 75082, USA',
         }),
         phone: fields.text({
-          label: 'Phone Number',
+          label: 'Phone',
           defaultValue: '+1 469-587-6255',
         }),
         services: fields.array(
           fields.object({
-            id: fields.text({ label: 'Service ID (URL slug)' }),
-            label: fields.text({ label: 'Display Label' }),
+            id: fields.text({ label: 'ID (slug)', description: 'e.g. pool-construction' }),
+            label: fields.text({ label: 'Label' }),
           }),
-          {
-            label: 'Service Dropdown Options',
-            itemLabel: props => props.fields.label.value,
-          },
+          { label: 'Service Dropdown Options', itemLabel: props => props.fields.label.value }
         ),
         ...seoFieldsDef,
       },
@@ -681,9 +464,15 @@ export default config({
       path: 'content/pages/finance',
       previewUrl: '/api/preview/start?branch=main&to=/finance',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/finance" />,
+      preview: props => <SimplePreview {...props} to="/finance" type="finance" />,
       schema: {
         shadowPreview: shadowPreviewField,
+        /* Hero */
+        heroLabel: fields.text({ label: 'Hero Label', defaultValue: 'Investment Architecture' }),
+        heroTitle: fields.text({ label: 'Hero Title', defaultValue: 'Intelligent Investment' }),
+        heroDescription: fields.text({ label: 'Hero Description', multiline: true }),
+        heroImage: fields.image({ label: 'Hero Image', directory: 'public/images/finance', publicPath: '/images/finance/' }),
+
         partners: fields.array(
           fields.object({
             key: fields.text({ label: 'Unique Key (no spaces)' }),
@@ -704,6 +493,23 @@ export default config({
             itemLabel: props => props.fields.name.value,
           },
         ),
+
+        /* Comparison Table */
+        comparison: fields.array(
+          fields.object({
+            feature: fields.text({ label: 'Feature Name' }),
+            vistafi: fields.text({ label: 'Vistafi Value' }),
+            lyon: fields.text({ label: 'Lyon Value' }),
+            hfs: fields.text({ label: 'HFS Value' }),
+            viking: fields.text({ label: 'Viking Value' }),
+            heloc: fields.text({ label: 'HELOC Value' }),
+          }),
+          {
+            label: 'Comparison Table',
+            itemLabel: props => props.fields.feature.value,
+          },
+        ),
+
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
@@ -724,27 +530,21 @@ export default config({
       path: 'content/pages/privacy-policy',
       previewUrl: '/api/preview/start?branch=main&to=/privacy-policy',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/privacy-policy" />,
+      preview: props => <SimplePreview {...props} to="/privacy-policy" type="privacy" />,
       schema: {
         shadowPreview: shadowPreviewField,
         effectiveDate: fields.text({
           label: 'Effective Date',
           defaultValue: 'January 1, 2026',
         }),
-        intro: richText('Intro Paragraph'),
+        intro: richText('Introductory Paragraph'),
         sections: fields.array(
           fields.object({
             heading: fields.text({ label: 'Section Heading' }),
-            body: richText('Main Paragraph'),
-            items: fields.array(
-              fields.text({ label: 'List Item' }),
-              { label: 'List Items (optional)', itemLabel: props => props.value }
-            ),
+            body: richText('Section Content'),
+            items: fields.array(fields.text({ label: 'List Item' }), { label: 'Bullet Points' }),
           }),
-          {
-            label: 'Policy Sections',
-            itemLabel: props => props.fields.heading.value,
-          },
+          { label: 'Policy Sections', itemLabel: props => props.fields.heading.value }
         ),
         ...seoFieldsDef,
       },
@@ -756,77 +556,47 @@ export default config({
       path: 'content/pages/terms-conditions',
       previewUrl: '/api/preview/start?branch=main&to=/terms-conditions',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/terms-conditions" />,
+      preview: props => <SimplePreview {...props} to="/terms-conditions" type="terms" />,
       schema: {
         shadowPreview: shadowPreviewField,
+        effectiveDate: fields.text({
+          label: 'Effective Date',
+          defaultValue: 'January 1, 2026',
+        }),
+        intro: richText('Introductory Paragraph'),
         sections: fields.array(
           fields.object({
             heading: fields.text({ label: 'Section Heading' }),
-            body: richText('Section Body'),
+            body: richText('Section Content'),
+            items: fields.array(fields.text({ label: 'List Item' }), { label: 'Bullet Points' }),
           }),
-          {
-            label: 'Sections',
-            itemLabel: props => props.fields.heading.value,
-          },
+          { label: 'Terms Sections', itemLabel: props => props.fields.heading.value }
         ),
         ...seoFieldsDef,
       },
     }),
 
-    /* ── Footer settings ───────────────────────────────────────────────── */
+    /* ── Footer settings ────────────────────────────────────────────────── */
     footerSettings: singleton({
       label: 'Footer Settings',
-      path: 'content/footer',
+      path: 'content/footer/settings',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
         shadowPreview: shadowPreviewField,
-        address: fields.text({
-          label: 'Address',
-          defaultValue: '2100 N Greenville Ave., Richardson, TX 75082, USA',
-        }),
-        googleMapsUrl: fields.text({
-          label: 'Google Maps URL',
-          defaultValue: 'https://maps.app.goo.gl/Vv5TYqKWVKtWKj4q7',
-        }),
-        phone: fields.text({
-          label: 'Phone (display)',
-          defaultValue: '+1 469-587-6255',
-        }),
-        phoneHref: fields.text({
-          label: 'Phone (tel: href)',
-          defaultValue: 'tel:+14695876255',
-        }),
-        instagramUrl: fields.text({
-          label: 'Instagram URL',
-          defaultValue: 'https://www.instagram.com/aquavida.us?igsh=MWxxOGE1a3I3MGp5',
-        }),
-        facebookUrl: fields.text({
-          label: 'Facebook URL',
-          defaultValue: 'https://www.facebook.com/share/17zSuCHyWT/',
-        }),
-        copyrightText: fields.text({
-          label: 'Copyright Text',
-          defaultValue: '© 2026 AQUAVIDA POOLS AND SPAS. ALL RIGHTS RESERVED.',
-        }),
-        exploreLinks: fields.array(
+        tagline: fields.text({ label: 'Footer Tagline', defaultValue: 'Designing the Horizon of Luxury' }),
+        copyright: fields.text({ label: 'Copyright Text', defaultValue: '\u00A9 2024 AquaVida Pools and Spas' }),
+        socialLinks: fields.array(
           fields.object({
-            label: fields.text({ label: 'Label' }),
-            href: fields.text({ label: 'Link URL' }),
+            platform: fields.text({ label: 'Platform Name' }),
+            url: fields.text({ label: 'Profile URL' }),
           }),
-          { label: 'Explore Column Links', itemLabel: props => props.fields.label.value }
+          { label: 'Social Media Links', itemLabel: props => props.fields.platform.value }
         ),
-        serviceLinks: fields.array(
+        infoLinks: fields.array(
           fields.object({
-            label: fields.text({ label: 'Label' }),
-            href: fields.text({ label: 'Link URL' }),
-          }),
-          { label: 'Services Column Links', itemLabel: props => props.fields.label.value }
-        ),
-        informationLinks: fields.array(
-          fields.object({
-            label: fields.text({ label: 'Label' }),
-            href: fields.text({ label: 'Link URL' }),
+            label: fields.text({ label: 'Link Label' }),
+            url: fields.text({ label: 'Link URL' }),
           }),
           { label: 'Information Column Links', itemLabel: props => props.fields.label.value }
         ),
@@ -839,7 +609,7 @@ export default config({
       path: 'content/pages/portfolio-listing',
       previewUrl: '/api/preview/start?branch=main&to=/portfolio',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/portfolio" />,
+      preview: props => <SimplePreview {...props} to="/portfolio" type="portfolio" />,
       schema: {
         shadowPreview: shadowPreviewField,
         /* Header */
@@ -854,7 +624,7 @@ export default config({
         /* Project cards */
         projects: fields.array(
           fields.object({
-            slug: fields.text({ label: 'URL Slug', description: 'e.g. brycewood — must match portfolio route' }),
+            slug: fields.text({ label: 'URL Slug', description: 'e.g. brycewood \u2014 must match portfolio route' }),
             name: fields.text({ label: 'Project Name' }),
             category: fields.text({ label: 'Category' }),
             year: fields.text({ label: 'Year' }),
@@ -891,15 +661,20 @@ export default config({
       },
     }),
 
-    /* ── Blog listing page FAQ ─────────────────────────────────────────── */
+    /* ── Blog listing page ─────────────────────────────────────────── */
     blogSettings: singleton({
       label: 'Blog Page Settings',
       path: 'content/pages/blog',
       previewUrl: '/api/preview/start?branch=main&to=/blog',
       // @ts-ignore
-      preview: props => <SimplePreview {...props} to="/blog" />,
+      preview: props => <SimplePreview {...props} to="/blog" type="blog" />,
       schema: {
         shadowPreview: shadowPreviewField,
+        /* Header */
+        headerLabel: fields.text({ label: 'Header Label', defaultValue: 'THE LIQUID MANIFESTO' }),
+        headerTitle: fields.text({ label: 'Header Title', defaultValue: 'Subscribe to Design Intelligence' }),
+        headerDescription: fields.text({ label: 'Header Description', multiline: true }),
+        
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Question' }),
