@@ -447,7 +447,7 @@ export default function HeroSection() {
                         trigger: section,
                         start:   'top top',
                         end:     scrollEnd,
-                        scrub:   isMobile ? 0.3 : true, // mobile: 0.3s lag prevents inertia-swipe jump-to-start; desktop: instant (RENDER_LERP handles smoothness)
+                        scrub:   true, // instant proxy on all devices — smoothedTarget (8/tick) is the sole smoother on mobile; prevents scrub:0.3 backward-drift on direction change
                         pin:     true,
                         pinSpacing:          true,
                         anticipatePin:       1,
