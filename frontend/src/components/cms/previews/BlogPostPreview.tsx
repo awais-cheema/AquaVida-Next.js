@@ -7,14 +7,14 @@ import ShadowSaveButton from '../fields/ShadowSaveButton';
 export default function BlogPostPreview(props: any) {
   const { fields } = props;
   
-  const title = fields.title.value;
-  const excerpt = fields.excerpt.value;
-  const content = fields.content.value;
-  const featuredImage = fields.featured_image.value;
-  const category = fields.category.value;
-  const authorName = fields.author_name.value;
-  const publishedAt = fields.published_at.value;
-  const readTime = fields.read_time.value;
+  const title = fields.title?.value ?? fields.title;
+  const excerpt = fields.excerpt?.value ?? fields.excerpt;
+  const content = fields.content?.value ?? fields.content;
+  const featuredImage = fields.featured_image?.value ?? fields.featured_image;
+  const category = fields.category?.value ?? fields.category;
+  const authorName = fields.author_name?.value ?? fields.author_name;
+  const publishedAt = fields.published_at?.value ?? fields.published_at;
+  const readTime = fields.read_time?.value ?? fields.read_time;
 
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A] text-[#DCE3F0] font-sans selection:bg-white/20">

@@ -41,7 +41,14 @@ const NAV_LINKS_AFTER: { href: string; label: string }[] = [
     { href: '/contact',   label: 'Contact Us' },
 ];
 
-export default function FloatingPillNav() {
+export default function FloatingPillNav({ data }: { data?: any }) {
+    const services = data?.servicesLinks?.length ? data.servicesLinks : SERVICES;
+    const projects = data?.portfolioLinks?.length ? data.portfolioLinks : PROJECTS;
+    const beforeLinks = data?.beforeLinks?.length ? data.beforeLinks : NAV_LINKS_BEFORE;
+    const afterLinks = data?.afterLinks?.length ? data.afterLinks : NAV_LINKS_AFTER;
+    const ctaLabel = data?.ctaLabel || 'Get a Quote';
+    const ctaHref = data?.ctaHref || '/contact';
+
     const [servicesOpen, setServicesOpen]   = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
     const [mobileOpen, setMobileOpen]       = useState(false);
@@ -127,7 +134,7 @@ export default function FloatingPillNav() {
 
                 {/* Desktop Nav */}
                 <ul className="hidden md:flex items-center gap-[clamp(12px,1.6vw,32px)] flex-1 justify-center" role="list">
-                    {NAV_LINKS_BEFORE.map(({ href, label }) => (
+                    {beforeLinks.map(({ href, label }: any) => (
                         <li key={href}><Link href={href} className={linkCls}>{label}</Link></li>
                     ))}
 
@@ -153,7 +160,7 @@ export default function FloatingPillNav() {
                                 exit="exit"
                             >
                                 <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
-                                    {PROJECTS.map((p) => (
+                                    {projects.map((p: any) => (
                                         <li key={p.label}>
                                             <Link href={p.href} onClick={() => setPortfolioOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(14px,1.15vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {p.label}
@@ -188,7 +195,7 @@ export default function FloatingPillNav() {
                                 exit="exit"
                             >
                                 <ul className="rounded-2xl p-4 flex flex-col gap-1 bg-black/90 backdrop-blur-[60px] border border-white/15 shadow-[0_20px_80px_rgba(0,0,0,0.9)]">
-                                    {SERVICES.map((s) => (
+                                    {services.map((s: any) => (
                                         <li key={s.label}>
                                             <Link href={s.href} onClick={() => setServicesOpen(false)} className="block px-4 py-2 rounded-xl text-[clamp(14px,1.15vw,20px)] text-white/70 hover:text-white hover:bg-white/10 transition-colors font-allomira">
                                                 {s.label}
@@ -201,14 +208,14 @@ export default function FloatingPillNav() {
                         </AnimatePresence>
                     </li>
 
-                    {NAV_LINKS_AFTER.map(({ href, label }) => (
+                    {afterLinks.map(({ href, label }: any) => (
                         <li key={href}><Link href={href} className={linkCls}>{label}</Link></li>
                     ))}
                 </ul>
 
                 {/* Desktop CTA */}
-                <Link href="/contact" className="btn hidden md:inline-flex items-center px-[clamp(10px,1vw,20px)] py-[clamp(6px,0.6vw,12px)] rounded-full text-[clamp(14px,1.1vw,19px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
-                    Get a Quote
+                <Link href={ctaHref} className="btn hidden md:inline-flex items-center px-[clamp(10px,1vw,20px)] py-[clamp(6px,0.6vw,12px)] rounded-full text-[clamp(14px,1.1vw,19px)] font-semibold text-white bg-[#0d5699] transition-all hover:scale-110 active:scale-95 font-allomira whitespace-nowrap">
+                    {ctaLabel}
                 </Link>
 
                 {/* Mobile Menu Toggle */}
@@ -232,7 +239,7 @@ export default function FloatingPillNav() {
                     </div>
                     {mobileProjectsOpen && (
                         <div className="pl-6 flex flex-col gap-1">
-                            {PROJECTS.map(p => <Link key={p.label} href={p.href} onClick={closeMobile} className="py-2 text-white/50 text-lg">{p.label}</Link>)}
+                            {projects.map((p: any) => <Link key={p.label} href={p.href} onClick={closeMobile} className="py-2 text-white/50 text-lg">{p.label}</Link>)}
                         </div>
                     )}
 
@@ -243,11 +250,11 @@ export default function FloatingPillNav() {
                     </div>
                     {mobileServicesOpen && (
                         <div className="pl-6 flex flex-col gap-1">
-                            {SERVICES.map(s => <Link key={s.label} href={s.href} onClick={closeMobile} className="py-2 text-white/50 text-lg">{s.label}</Link>)}
+                            {services.map((s: any) => <Link key={s.label} href={s.href} onClick={closeMobile} className="py-2 text-white/50 text-lg">{s.label}</Link>)}
                         </div>
                     )}
 
-                    {NAV_LINKS_AFTER.map(({href, label}) => (
+                    {afterLinks.map(({href, label}: any) => (
                         <Link key={href} href={href} onClick={closeMobile} className={mobileLinkCls}>{label}</Link>
                     ))}
                 </div>

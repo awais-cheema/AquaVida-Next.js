@@ -32,7 +32,7 @@ export async function GET() {
                     results.reader_test.first_post = {
                         title: post.title,
                         slug: post.slug,
-                        excerpt: post.summary,
+                        excerpt: post.excerpt,
                         category: post.category,
                         has_content: typeof post.content === 'function',
                         featured_image: post.featured_image,

@@ -660,6 +660,46 @@ export default config({
         ...seoFieldsDef,
       },
     }),
+    /* ── Navigation settings ─────────────────────────────────────────── */
+    navigationSettings: singleton({
+      label: 'Navigation Settings',
+      path: 'content/navigation/settings',
+      // @ts-ignore
+      preview: SimplePreview,
+      schema: {
+        shadowPreview: shadowPreviewField,
+        servicesLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'HREF (/services/...)' }),
+          }),
+          { label: 'Services Dropdown', itemLabel: props => props.fields.label.value }
+        ),
+        portfolioLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'HREF (/portfolio/...)' }),
+          }),
+          { label: 'Portfolio Dropdown', itemLabel: props => props.fields.label.value }
+        ),
+        beforeLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'HREF' }),
+          }),
+          { label: 'Links (Before Dropdowns)', itemLabel: props => props.fields.label.value }
+        ),
+        afterLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            href: fields.text({ label: 'HREF' }),
+          }),
+          { label: 'Links (After Dropdowns)', itemLabel: props => props.fields.label.value }
+        ),
+        ctaLabel: fields.text({ label: 'CTA Button Label', defaultValue: 'Get a Quote' }),
+        ctaHref: fields.text({ label: 'CTA Button HREF', defaultValue: '/contact' }),
+      },
+    }),
 
     /* ── Blog listing page ─────────────────────────────────────────── */
     blogSettings: singleton({

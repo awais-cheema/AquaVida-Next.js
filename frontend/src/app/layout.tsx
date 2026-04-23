@@ -78,8 +78,9 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const [footerData, g] = await Promise.all([
+    const [footerData, navData, g] = await Promise.all([
         reader.singletons.footerSettings.read().catch(() => null),
+        reader.singletons.navigationSettings.read().catch(() => null),
         getGlobalSeo(),
     ])
 
@@ -136,7 +137,11 @@ export default async function RootLayout({
                         />
                     </noscript>
                 )}
-                <SiteShell footerData={footerData as unknown as import('@/components/layout/FloatingFooter').FooterData ?? null} seoExtras={<SeoExtras />}>
+                <SiteShell 
+                    footerData={footerData as unknown as import('@/components/layout/FloatingFooter').FooterData ?? null} 
+                    navData={navData}
+                    seoExtras={<SeoExtras />}
+                >
                     {(await draftMode()).isEnabled && <PreviewBanner />}
                     {children}
                 </SiteShell>

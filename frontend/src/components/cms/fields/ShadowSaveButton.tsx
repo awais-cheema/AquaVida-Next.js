@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { extractValues } from '@/lib/cms-utils';
 
 /**
  * ShadowSaveButton
@@ -21,7 +22,8 @@ export default function ShadowSaveButton({ data, type, to = '/' }: { data?: any,
     channel.onmessage = (event) => {
       if (event.data === 'REQUEST_DATA' && data) {
         console.log('[ShadowStream] Preview window requested data. Sending...');
-        channel.postMessage({ type, data, to });
+        const flatData = extractValues(data);
+        channel.postMessage({ type, data: flatData, to });
       }
     };
 
@@ -34,7 +36,8 @@ export default function ShadowSaveButton({ data, type, to = '/' }: { data?: any,
   // 2. Broadcast data whenever it changes
   useEffect(() => {
     if (channelRef.current && data) {
-      channelRef.current.postMessage({ type, data, to });
+      const flatData = extractValues(data);
+      channelRef.current.postMessage({ type, data: flatData, to });
     }
   }, [data, type, to]);
 
@@ -81,7 +84,10 @@ export default function ShadowSaveButton({ data, type, to = '/' }: { data?: any,
           Route: {to}
         </span>
         <button 
-          onClick={() => channelRef.current?.postMessage({ type, data, to })}
+          onClick={() => {
+            const flatData = extractValues(data);
+            channelRef.current?.postMessage({ type, data: flatData, to });
+          }}
           className="text-[9px] text-amber-500/50 hover:text-amber-500 uppercase font-black transition-colors"
         >
           Force Manual Sync

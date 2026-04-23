@@ -10,6 +10,8 @@ import ContactClient from '@/app/contact/ContactClient';
 import PrivacyPolicyClient from '@/app/privacy-policy/PrivacyPolicyClient';
 import TermsConditionsClient from '@/app/terms-conditions/TermsConditionsClient';
 import BlogClient from '@/app/blog/BlogClient';
+import PortfolioClient from '@/app/portfolio/PortfolioClient';
+import PortfolioProjectShell from '@/components/portfolio/PortfolioProjectShell';
 
 /**
  * LivePreviewContent
@@ -145,6 +147,44 @@ function LivePreviewContent() {
         <AboutClient data={previewData} />
       </div>
      );
+  }
+
+  // 4a. Portfolio Listing
+  if (type === 'portfolio' || type === 'portfolioListingPage') {
+    return (
+      <div className="min-h-screen">
+        <PreviewStatus type="Portfolio Archive" />
+        <PortfolioClient 
+          faqItems={previewData?.faqItems}
+          headerLabel={previewData?.headerLabel}
+          headerTitle={previewData?.headerTitle}
+          headerDescription={previewData?.headerDescription}
+          curationLabel={previewData?.curationLabel}
+          curationValue={previewData?.curationValue}
+          focusLabel={previewData?.focusLabel}
+          focusValue={previewData?.focusValue}
+          projects={previewData?.projects}
+          ctaTitle={previewData?.ctaTitle}
+          ctaDescription={previewData?.ctaDescription}
+          ctaButtonText={previewData?.ctaButtonText}
+          ctaButtonHref={previewData?.ctaButtonHref}
+        />
+      </div>
+    );
+  }
+
+  // 4b. Portfolio Project
+  if (type === 'portfolioProject' || (type === 'portfolio' && previewData?.philosophyTitle)) {
+    return (
+      <div className="min-h-screen">
+        <PreviewStatus type="Portfolio Project" />
+        <PortfolioProjectShell p={{
+          ...previewData,
+          id: previewData?.slug || 'preview',
+          // Ensure description and bodies are treated correctly by CmsContent inside the shell
+        }} />
+      </div>
+    );
   }
 
   // 5. Finance Page

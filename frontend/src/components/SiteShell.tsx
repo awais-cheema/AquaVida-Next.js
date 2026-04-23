@@ -8,7 +8,7 @@ import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 
 const ADMIN_PATHS = ['/keystatic', '/keystatic-login']
 
-export default function SiteShell({ children, footerData, seoExtras }: { children: React.ReactNode; footerData?: FooterData | null; seoExtras?: React.ReactNode }) {
+export default function SiteShell({ children, footerData, navData, seoExtras }: { children: React.ReactNode; footerData?: FooterData | null; navData?: any; seoExtras?: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin = ADMIN_PATHS.some(p => pathname.startsWith(p))
 
@@ -25,7 +25,7 @@ export default function SiteShell({ children, footerData, seoExtras }: { childre
        * behavior and scrolls off-screen with the transform.
        */}
       <LoaderScreen />
-      <FloatingPillNav />
+      <FloatingPillNav data={navData} />
       <SmoothScrollProvider>
         <div id="app-root" className="flex min-h-screen flex-col overflow-x-hidden">
           <main id="main-content" role="main" className="flex-1 w-full relative">
