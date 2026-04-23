@@ -147,7 +147,8 @@ export default function HeroSection() {
 
         let renderFrame    = 0;             // lerps toward proxy.targetFrame — smooth multi-frame slide
         let smoothedTarget = 0;             // mobile: smoothed view of proxy — momentum + settle system
-        let frameVelocity  = 0;            // mobile: frames/tick velocity of smoothedTarget — drives momentum coast
+        let frameVelocity  = 0;            // frames/tick velocity of smoothedTarget — drives momentum coast
+        let coastSeedVelocity = 0;         // mobile: frameVelocity at touchend — seeds post-inertia coast
         let currentFrame   = 0;
         let loopFrame      = 0;
         let loopDirection  = 1;
@@ -230,6 +231,14 @@ export default function HeroSection() {
                 isScrolling    = false;
                 scrollVelocity = 0;
 
+                // Mobile: native inertia decelerates to ~0 by the time this fires.
+                // Re-seed frameVelocity from the velocity captured at touchend so
+                // Phase 2 coast has something to work with after inertia ends.
+                if (isMobile && Math.abs(coastSeedVelocity) > MOBILE_MIN_MOMENTUM) {
+                    frameVelocity = Math.sign(coastSeedVelocity) * Math.min(Math.abs(coastSeedVelocity), MAX_COAST_VEL);
+                }
+                coastSeedVelocity = 0;
+
                 // Snap to next overlay — only from transition / dead zones, never from hold zones.
                 // This lets the user rest on content (e.g. scroll through service cards)
                 // without being ejected to the next overlay.
@@ -269,6 +278,11 @@ export default function HeroSection() {
         };
 
         window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Capture animation velocity the instant the finger lifts, before native
+        // inertia decelerates it — used to seed the post-inertia coast on mobile.
+        const onTouchEnd = () => { coastSeedVelocity = frameVelocity; };
+        window.addEventListener('touchend', onTouchEnd, { passive: true });
 
         // ── Single rAF render loop ─────────────────────────────────────────────
         const startRenderLoop = () => {
@@ -588,6 +602,7 @@ export default function HeroSection() {
             if (resizeHandler) window.removeEventListener('resize', resizeHandler);
             if (visHandler)    document.removeEventListener('visibilitychange', visHandler);
             window.removeEventListener('scroll',     onScroll);
+            window.removeEventListener('touchend',   onTouchEnd);
             window.removeEventListener('wheel',      cancelSnap);
             window.removeEventListener('touchstart', cancelSnap);
         };
