@@ -64,8 +64,10 @@ const MOBILE_SETTLE_SPEED    = 8;          // max frames/tick when settling afte
 const RENDER_LERP            = 0.10;       // desktop: renderFrame trails proxy.targetFrame — cinematic slide
 const RENDER_LERP_MOBILE     = 0.14;       // mobile: slightly faster trail — responsive + prevents frame-0 flash on inertia dip
 const MAX_FRAME_DELTA          = 40;        // safety clamp: max frames canvas can jump per rAF tick (desktop + loop mode)
-const PROXY_MAX_DELTA_SCROLL   = 8;        // mobile: max smoothedTarget change per tick during scroll — caps GSAP glitch in both directions
-const PROXY_MAX_DELTA_IDLE     = 4;        // mobile: tighter cap while idle/settling — eliminates residual flutter after direction change
+const MOBILE_MAX_DELTA         = 20;        // mobile: max frames/tick during active scroll — responsive while still blocking extreme glitch jumps
+const MOBILE_MOMENTUM_DECAY    = 0.88;      // velocity multiplier per tick in momentum coast — ~400ms of glide after scroll ends
+const MOBILE_MIN_MOMENTUM      = 0.2;       // frames/tick below which momentum coast stops
+const MOBILE_SETTLE_LERP       = 0.15;      // lerp factor for final approach to proxy after momentum exhausts
 const SCROLL_TIMEOUT_MS          = 150;   // ms after last scroll event → isScrolling = false
 const LOOP_READY_DELAY_MS        = 400;   // mobile: ms of stillness before loops activate
 const DESKTOP_LOOP_READY_DELAY_MS = 200;  // desktop: 0.2s stillness before loop activates
@@ -141,7 +143,8 @@ export default function HeroSection() {
         const proxy = { targetFrame: 0 };   // GSAP scrub:true writes this instantly
 
         let renderFrame    = 0;             // lerps toward proxy.targetFrame — smooth multi-frame slide
-        let smoothedTarget = 0;             // mobile: rate-limited view of proxy.targetFrame — backward capped at PROXY_BACKWARD_DELTA/tick
+        let smoothedTarget = 0;             // mobile: smoothed view of proxy — momentum + settle system
+        let frameVelocity  = 0;            // mobile: frames/tick velocity of smoothedTarget — drives momentum coast
         let currentFrame   = 0;
         let loopFrame      = 0;
         let loopDirection  = 1;
@@ -282,21 +285,46 @@ export default function HeroSection() {
 
                 const truly_idle = !isScrolling && scrollVelocity < IDLE_VELOCITY;
 
-                // Bidirectional rate-limit on mobile proxy — single source of smoothing truth.
-                // Caps how many frames smoothedTarget can move per tick in EITHER direction.
-                //   • During scroll: 8/tick — fast enough for any realistic swipe, kills GSAP
-                //     direction-change glitch that briefly sends proxy to 0 or far forward.
-                //   • During idle:   4/tick — prevents residual flutter as scrub:0.3 settles.
-                // Forward + backward equally limited → no asymmetric jump artifacts.
+                // ── Mobile butter-smooth momentum system ────────────────────────────
+                // Three phases:
+                //  1. SCROLL  — follow proxy proportionally, capped at MOBILE_MAX_DELTA/tick
+                //               Records frameVelocity so phase 2 knows how fast we were moving.
+                //  2. COAST   — apply decaying velocity after scroll ends (~400ms of glide).
+                //               Clamped: never overshoots proxy.targetFrame.
+                //  3. SETTLE  — gentle lerp (0.15) into exact proxy position once coasting stops.
                 if (isMobile) {
-                    const delta = proxy.targetFrame - smoothedTarget;
-                    const maxD  = isScrolling ? PROXY_MAX_DELTA_SCROLL : PROXY_MAX_DELTA_IDLE;
-                    smoothedTarget = Math.abs(delta) <= maxD
-                        ? proxy.targetFrame
-                        : smoothedTarget + Math.sign(delta) * maxD;
-                    smoothedTarget = Math.max(0, Math.min(maxFrame, smoothedTarget));
+                    const raw   = proxy.targetFrame;
+                    const delta = raw - smoothedTarget;
+
+                    if (isScrolling) {
+                        // Phase 1 — follow proxy, capped to prevent glitch jumps
+                        const step = Math.sign(delta) * Math.min(Math.abs(delta), MOBILE_MAX_DELTA);
+                        const prev = smoothedTarget;
+                        smoothedTarget = Math.max(0, Math.min(maxFrame, smoothedTarget + step));
+                        frameVelocity  = smoothedTarget - prev;
+
+                    } else if (Math.abs(frameVelocity) > MOBILE_MIN_MOMENTUM) {
+                        // Phase 2 — momentum coast: apply decaying velocity toward proxy
+                        frameVelocity *= MOBILE_MOMENTUM_DECAY;
+                        const proposed = smoothedTarget + frameVelocity;
+                        // Never overshoot past proxy in the direction of travel
+                        const clamped  = frameVelocity > 0
+                            ? Math.min(proposed, raw)
+                            : Math.max(proposed, raw);
+                        if (Math.abs(clamped - raw) < 0.5) { smoothedTarget = raw; frameVelocity = 0; }
+                        else smoothedTarget = Math.max(0, Math.min(maxFrame, clamped));
+
+                    } else {
+                        // Phase 3 — settle: lerp gently to exact proxy position
+                        frameVelocity = 0;
+                        const settle  = delta * MOBILE_SETTLE_LERP;
+                        smoothedTarget = Math.abs(settle) > 0.02
+                            ? Math.max(0, Math.min(maxFrame, smoothedTarget + settle))
+                            : raw;
+                    }
                 } else {
                     smoothedTarget = proxy.targetFrame;
+                    frameVelocity  = 0;
                 }
 
                 if (mode === 'loop' && activeLoop) {
