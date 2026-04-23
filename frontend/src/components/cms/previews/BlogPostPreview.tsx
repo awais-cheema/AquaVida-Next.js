@@ -19,7 +19,7 @@ export default function BlogPostPreview(props: any) {
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A] text-[#DCE3F0] font-sans selection:bg-white/20">
       <div className="max-w-[900px] mx-auto px-6 md:px-12 py-16">
-        <ShadowSaveButton />
+        <ShadowSaveButton data={fields} type="blog" />
         {/* Mock Navigation */}
         <div className="inline-flex items-center gap-2 text-white/40 text-sm tracking-widest uppercase font-bold mb-16 opacity-50">
           <ArrowLeft size={14} />

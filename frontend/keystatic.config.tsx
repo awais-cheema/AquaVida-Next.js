@@ -154,9 +154,9 @@ export default config({
       label: 'Blog Posts',
       slugField: 'slug',
       path: 'content/blogs/*',
-      previewUrl: '/api/preview/start?branch={branch}&to=/blog/{slug}',
+      previewUrl: '/api/preview/start?branch=main&to=/blog/{slug}',
       // @ts-ignore
-      preview: BlogPostPreview,
+      preview: props => <BlogPostPreview {...props} />,
       schema: {
         shadowPreview: shadowPreviewField,
         slug: fields.slug({
@@ -284,7 +284,7 @@ export default config({
       label: 'Service Sub-Pages',
       slugField: 'slug',
       path: 'content/service-pages/*',
-      previewUrl: '/api/preview/start?branch={branch}&to=/services/{slug}',
+      previewUrl: '/api/preview/start?branch=main&to=/services/{slug}',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -366,7 +366,7 @@ export default config({
       label: 'Portfolio Projects',
       slugField: 'slug',
       path: 'content/portfolio/*',
-      previewUrl: '/api/preview/start?branch={branch}&to=/portfolio/{slug}',
+      previewUrl: '/api/preview/start?branch=main&to=/portfolio/{slug}',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -475,7 +475,7 @@ export default config({
     homePage: singleton({
       label: 'Home Page',
       path: 'content/pages/home',
-      previewUrl: '/api/preview/start?branch={branch}&to=/',
+      previewUrl: '/api/preview/start?branch=main&to=/',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -488,9 +488,9 @@ export default config({
     aboutPage: singleton({
       label: 'About Page Content',
       path: 'content/pages/about',
-      previewUrl: '/api/preview/start?branch={branch}&to=/about',
+      previewUrl: '/api/preview/start?branch=main&to=/about',
       // @ts-ignore
-      preview: AboutPreview,
+      preview: props => <AboutPreview {...props} />,
       schema: {
         shadowPreview: shadowPreviewField,
         heroTagline: fields.text({
@@ -542,7 +542,7 @@ export default config({
     servicesPage: singleton({
       label: 'Services Page Content',
       path: 'content/pages/services',
-      previewUrl: '/api/preview/start?branch={branch}&to=/services',
+      previewUrl: '/api/preview/start?branch=main&to=/services',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -643,7 +643,7 @@ export default config({
     contactPage: singleton({
       label: 'Contact Page Content',
       path: 'content/pages/contact',
-      previewUrl: '/api/preview/start?branch={branch}&to=/contact',
+      previewUrl: '/api/preview/start?branch=main&to=/contact',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -678,7 +678,7 @@ export default config({
     financePage: singleton({
       label: 'Finance Page Content',
       path: 'content/pages/finance',
-      previewUrl: '/api/preview/start?branch={branch}&to=/finance',
+      previewUrl: '/api/preview/start?branch=main&to=/finance',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -721,7 +721,7 @@ export default config({
     privacyPolicy: singleton({
       label: 'Privacy Policy Content',
       path: 'content/pages/privacy-policy',
-      previewUrl: '/api/preview/start?branch={branch}&to=/privacy-policy',
+      previewUrl: '/api/preview/start?branch=main&to=/privacy-policy',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -753,7 +753,7 @@ export default config({
     termsConditions: singleton({
       label: 'Terms & Conditions Content',
       path: 'content/pages/terms-conditions',
-      previewUrl: '/api/preview/start?branch={branch}&to=/terms-conditions',
+      previewUrl: '/api/preview/start?branch=main&to=/terms-conditions',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -836,7 +836,7 @@ export default config({
     portfolioListingPage: singleton({
       label: 'Portfolio Listing Page',
       path: 'content/pages/portfolio-listing',
-      previewUrl: '/api/preview/start?branch={branch}&to=/portfolio',
+      previewUrl: '/api/preview/start?branch=main&to=/portfolio',
       // @ts-ignore
       preview: SimplePreview,
       schema: {
@@ -894,7 +894,7 @@ export default config({
     blogSettings: singleton({
       label: 'Blog Page Settings',
       path: 'content/pages/blog',
-      previewUrl: '/api/preview/start?branch={branch}&to=/blog',
+      previewUrl: '/api/preview/start?branch=main&to=/blog',
       // @ts-ignore
       preview: SimplePreview,
       schema: {

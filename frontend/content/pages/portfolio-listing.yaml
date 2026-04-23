@@ -1,8 +1,11 @@
 headerLabel: ARCHITECTURAL ARCHIVE
 headerTitle: The Liquid Portfolio
-headerDescription: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-  A curated exhibition of high-performance aquatic engineering. Where structural
-  brutalism meets the silent architecture of tranquility.
+headerDescription:
+  - type: paragraph
+    children:
+      - text: >-
+          A curated exhibition of high-performance aquatic engineering. Where
+          structural brutalism meets the silent architecture of tranquility.
 curationLabel: Curation
 curationValue: Volume III
 focusLabel: Focus
@@ -13,11 +16,14 @@ projects:
     category: Residential Architecture
     year: '2024'
     location: 'Seattle, WA'
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      An intimate architectural enclosure featuring silent water walls and
-      high-fidelity aquatic illumination. Designed for ultimate privacy and
-      crystalline reflection.
-    image: 'Brycewood_Cover.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              An intimate architectural enclosure featuring silent water walls
+              and high-fidelity aquatic illumination. Designed for ultimate
+              privacy and crystalline reflection.
+    image: Brycewood_Cover.avif
     gridSize: col-span-2 row-span-2
     color: '#91792C'
   - slug: spruce-hills
@@ -25,10 +31,14 @@ projects:
     category: Luxury Estate
     year: '2023'
     location: 'Los Angeles, CA'
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      A multi-level structural masterpiece featuring a zero-edge infinity pool
-      and natural stone masonry. Brutalist concrete meets organic tranquility.
-    image: 'Spruce_Hills_Cover.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              A multi-level structural masterpiece featuring a zero-edge
+              infinity pool and natural stone masonry. Brutalist concrete meets
+              organic tranquility.
+    image: Spruce_Hills_Cover.avif
     gridSize: col-span-1 row-span-1
     color: '#0D5699'
   - slug: montalcino
@@ -36,10 +46,13 @@ projects:
     category: Modernist Landscape
     year: '2023'
     location: 'Austin, TX'
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      Modernist approach integrating extreme topography with custom
-      bio-filtration systems and a sunken fire-feature focal point.
-    image: 'Montalcino_Cove.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              Modernist approach integrating extreme topography with custom
+              bio-filtration systems and a sunken fire-feature focal point.
+    image: Montalcino_Cove.avif
     gridSize: col-span-1 row-span-1
     color: '#63B589'
   - slug: residential
@@ -47,10 +60,13 @@ projects:
     category: Collection
     year: Ongoing
     location: Global
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      A thematic exploration of private luxury water spaces, from hidden
-      courtyard oases to expansive coastal infinity pools.
-    image: 'Residential_Category.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              A thematic exploration of private luxury water spaces, from hidden
+              courtyard oases to expansive coastal infinity pools.
+    image: Residential_Category.avif
     gridSize: col-span-2 row-span-2
     color: '#A68A33'
   - slug: commercial
@@ -58,10 +74,13 @@ projects:
     category: Hospitality & Wellness
     year: Ongoing
     location: Global
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      Scale and performance engineered for the world's most demanding
-      environments. Spas, luxury hotels, and civic water features.
-    image: 'Commercial_Category.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              Scale and performance engineered for the world's most demanding
+              environments. Spas, luxury hotels, and civic water features.
+    image: Commercial_Category.avif
     gridSize: col-span-2 row-span-1
     color: '#0A447A'
   - slug: vault
@@ -69,37 +88,43 @@ projects:
     category: Conceptual
     year: Archive
     location: AquaVida R&D
-    description: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-      Experimental designs and architectural artifacts focusing on the future of
-      hydraulic precision and liquid light.
-    image: 'Vault_Hero.avif'
+    description:
+      - type: paragraph
+        children:
+          - text: >-
+              Experimental designs and architectural artifacts focusing on the
+              future of hydraulic precision and liquid light.
+    image: Vault_Hero.avif
     gridSize: col-span-1 row-span-1
     color: '#000000'
 ctaTitle: Next Generation Pool Design
-ctaDescription: [{ "type": "paragraph", "children": [{ "text": ">-" }] }]
-  We don't just build pools. We engineer permanent environmental artifacts that
-  redefine how water interacts with human architecture.
+ctaDescription:
+  - type: paragraph
+    children:
+      - text: >-
+          We don't just build pools. We engineer permanent environmental
+          artifacts that redefine how water interacts with human architecture.
 ctaButtonText: Begin Your Project
 ctaButtonHref: /contact
 faqItems:
   - question: How are projects selected for the archive?
     answer: >-
       We feature projects that push the boundaries of hydraulic engineering,
-      material innovation, and architectural integration. Each entry represents a
-      unique structural challenge solved.
+      material innovation, and architectural integration. Each entry represents
+      a unique structural challenge solved.
   - question: Can I request a custom design based on an archive entry?
     answer: >-
-      Absolutely. Our portfolio serves as a catalog of possibilities. While every
-      design is bespoke to its site, the principles can be integrated into any
-      new project.
+      Absolutely. Our portfolio serves as a catalog of possibilities. While
+      every design is bespoke to its site, the principles can be integrated into
+      any new project.
   - question: Do you offer private consultations at featured sites?
     answer: >-
-      Due to client privacy, we do not offer public tours. However, we maintain a
-      small number of Signature Reference sites where private viewings can be
+      Due to client privacy, we do not offer public tours. However, we maintain
+      a small number of Signature Reference sites where private viewings can be
       arranged for serious inquiries.
-seoTitle: 'Portfolio | AquaVida Pools and Spas'
-seoDescription: 'Explore our curated archive of high-end aquatic architecture and luxury outdoor living spaces.'
-seoKeywords: 'luxury pool portfolio, aquatic architecture, pool design gallery, AquaVida projects'
+seoTitle: Portfolio | AquaVida Pools and Spas
+seoDescription: Explore our curated archive of high-end aquatic architecture and luxury outdoor living spaces.
+seoKeywords: luxury pool portfolio, aquatic architecture, pool design gallery, AquaVida projects
 ogTitle: ''
 ogDescription: ''
 seoNoIndex: false

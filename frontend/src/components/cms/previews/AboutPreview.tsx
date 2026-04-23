@@ -30,7 +30,7 @@ export default function AboutPreview(props: any) {
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A]">
       <div className="p-8 pb-0">
-        <ShadowSaveButton />
+        <ShadowSaveButton data={fields} type="about" />
       </div>
       <AboutClient data={data} />
     </div>

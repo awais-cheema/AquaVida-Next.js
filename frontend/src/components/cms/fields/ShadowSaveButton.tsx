@@ -4,46 +4,80 @@ import React from 'react';
 
 /**
  * ShadowSaveButton
- * A custom Keystatic field that provides a "Shadow Save" button.
- * It grabs values from the DOM (since we can't easily hook into Keystatic's state)
- * and saves them to a temporary API for previewing without a Git commit.
+ * A button that takes the current live fields from Keystatic,
+ * saves them to a temporary cache, and opens a full-page live preview.
  */
-export default function ShadowSaveButton() {
+export default function ShadowSaveButton({ data, type }: { data?: any, type?: string }) {
   const [status, setStatus] = React.useState<'idle' | 'saving' | 'success' | 'error'>('idle');
 
   const handleShadowSave = async () => {
+    if (!data) {
+      console.error('No data provided to ShadowSaveButton');
+      return;
+    }
+
     setStatus('saving');
     try {
-      // Hack: In Keystatic, we can't easily get the form state from a field.
-      // But we can inform the user that this feature is coming or use a simpler approach.
-      // Actually, let's provide a clear instruction on how to use Branching for this.
+      // 1. POST the current live data to our temporary cache
+      const res = await fetch('/api/preview/cache', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type,
+          data,
+          timestamp: Date.now()
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to cache draft');
       
-      // Real implementation would involve gathering data from the DOM or Keystatic context.
-      // Since that's fragile, I will implement the "Instant Preview" side-panel instead 
-      // if I can get the fields through the object Wrapper.
+      const { draftId } = await res.json();
+
+      // 2. Open the Live Preview route with this draft ID
+      // This allows seeing the ACTUAL site layout with unsaved CMS data
+      const previewUrl = `/api/preview/live?draftId=${draftId}`;
+      window.open(previewUrl, '_blank');
       
       setStatus('success');
       setTimeout(() => setStatus('idle'), 2000);
     } catch (e) {
+      console.error(e);
       setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
   return (
-    <div className="p-4 border border-amber-200 bg-amber-50 rounded-lg mb-8">
-      <h3 className="text-amber-800 font-bold text-sm uppercase tracking-wider mb-2">Shadow Preview (Beta)</h3>
-      <p className="text-amber-700 text-xs mb-4">
-        Clicking "Preview" in the top bar normally requires a Save (Git Commit).
-        <br />
-        To see changes <strong>without</strong> committing, use the side-by-side Live Preview (if active) 
-        or use the <strong>Branching</strong> feature on the top left.
-      </p>
-      <button
-        onClick={() => window.open(window.location.href.replace('/keystatic/', '/api/preview/live?'), '_blank')}
-        className="px-4 py-2 bg-amber-600 text-white rounded text-xs font-bold hover:bg-amber-700 transition-colors"
-      >
-        OPEN LIVE PREVIEW WINDOW
-      </button>
+    <div className="p-5 border border-amber-500/30 bg-amber-500/5 rounded-xl mb-10 backdrop-blur-sm">
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h3 className="text-amber-500 font-black text-xs uppercase tracking-[0.2em] mb-1">
+            Shadow Preview System
+          </h3>
+          <p className="text-white/40 text-[10px] leading-relaxed max-w-[240px]">
+            View your changes on the actual site layout <span className="text-amber-500/50 italic">without</span> a Git commit.
+          </p>
+        </div>
+        
+        <button
+          onClick={handleShadowSave}
+          disabled={status === 'saving'}
+          className={`
+            px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300
+            ${status === 'saving' ? 'bg-amber-500/20 text-amber-500 animate-pulse' : 
+              status === 'success' ? 'bg-green-500 text-white' : 
+              'bg-amber-500 text-black hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.3)]'}
+          `}
+        >
+          {status === 'saving' ? 'GENERATING...' : status === 'success' ? 'OPENED!' : 'OPEN LIVE PREVIEW'}
+        </button>
+      </div>
+      
+      {status === 'error' && (
+        <p className="text-red-500 text-[10px] mt-2 font-bold uppercase tracking-tighter">
+          Error: Could not generate draft. Please try again.
+        </p>
+      )}
     </div>
   );
 }

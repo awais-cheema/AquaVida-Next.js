@@ -1,54 +1,169 @@
 slug: outdoor-grill
-accentColor: '#7a9638'
-accentRgb: 122,150,56
-heroLabel: Culinary Architecture — Dallas, TX
-heroTitle: Outdoor Grill
-heroHighlight: Installation.
-heroBody: [{ "type": "paragraph", "children": [{ "text": "Seamless integration of smart appliances and artisan textures \\u2014 designed for the elements. Our outdoor stations feature weather-sealed cabinetry, marine-grade steel, and the culinary power your lifestyle demands." }] }]
-heroImage: 'outdoor_kitchen_hero.avif'
-overviewTitle: The Epicurean Standard
-overviewBody: [{ "type": "paragraph", "children": [{ "text": "AquaVida transforms your backyard into a master-class entertaining environment. We specialize in custom culinary suites that combine architectural masonry with pro-series appliances. Every installation is engineered to withstand the North Texas climate while providing a seamless transition from your internal grill to a gourmet alfresco paradise." }] }]
-overviewImage: 'outdoor_kitchen_overview.avif'
-processTitle: The Culinary Workflow
+accentColor: '#d4a373'
+accentRgb: 212,163,115
+heroLabel: Culinary Architecture — AquaVida Outdoor Kitchens
+heroTitle: Precision.
+heroHighlight: Palate.
+heroBody:
+  - type: paragraph
+    children:
+      - text: >-
+          Elevate the outdoor culinary experience. We engineer high-performance
+          outdoor kitchens that combine professional-grade appliances with
+          modernist structural design — creating a seamless bridge between
+          gastronomy and architecture.
+heroImage: outdoor_grill_hero.avif
+overviewTitle: The Structural Kitchen
+overviewBody:
+  - type: paragraph
+    children:
+      - text: >-
+          At AquaVida, we treat the outdoor kitchen as a primary architectural
+          zone. Our kitchens are built with the same precision as our pools, 
+          utilizing marine-grade materials and technical layouts that optimize 
+          workflow and social interaction. From custom basalt countertops to 
+          integrated lighting and climate control, we build kitchens that endure 
+          the Texas heat and the demands of high-end entertainment.
+overviewImage: outdoor_grill_overview.avif
+processTitle: Designing the Experience
 processSteps:
-  - title: Gourmet Site Design
-    body: [{ "type": "paragraph", "children": [{ "text": "We map your outdoor space to optimize workflow, appliance placement, and service access. Our designers help you select textures and utilities that harmonize with your existing architecture." }] }]
-  - title: Masonry & Framework
-    body: [{ "type": "paragraph", "children": [{ "text": "Our master masons construct custom bases using natural stone, architectural concrete, or premium stucco. Every structure is built with reinforced internal framing for decade-long durability." }] }]
-  - title: Utility & Appliance Set
-    body: [{ "type": "paragraph", "children": [{ "text": "Technicians handle all precision gas, plumbing, and electrical integrations. We execute the final appliance fitting and surface polishing to meet manufacturer tolerances." }] }]
-investmentTitle: Investing in Lifestyle Capital
-investmentBody: "A custom outdoor grill is more than a utility; it\u2019s a high-yield property upgrade. We utilize granite, 304 stainless steel, and marine-grade polymers to ensure your investment maintains its aesthetic and functional value. Our design process ensures that your culinary station is scaled correctly to your property, maximizing ROI and entertaining capacity."
-investmentImage: /images/services/outdoor_kitchen_investment.avif
-servicesTitle: Bespoke Culinary Services
+  - title: Culinary Workflow Analysis
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We begin by understanding how you entertain. We design technical 
+              layouts that prioritize the "work triangle," ensuring that prepping, 
+              cooking, and serving flow naturally within the outdoor environment.
+  - title: Appliance & Utility Integration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We coordinate with leading appliance manufacturers to integrate
+              high-output grills, refrigeration, and specialized equipment.
+              Our engineers ensure that all gas, electrical, and plumbing lines
+              are concealed and safely installed to code.
+  - title: Material Selection
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We select materials that are both visually stunning and
+              structurally resilient. From heat-resistant stones to custom-milled
+              cabinetry, every surface is chosen for its ability to withstand the
+              Dallas climate while maintaining its architectural integrity.
+investmentTitle: The Value of Outdoor Living
+investmentBody: >-
+  A professionally engineered outdoor kitchen is a significant driver of
+  property value and lifestyle quality. In Dallas, integrated culinary spaces
+  are among the most sought-after features for high-end homes, providing a 
+  substantial return on investment by expanding the living and entertaining 
+  square footage of the estate.
+investmentImage: outdoor_grill_investment.avif
+servicesTitle: Culinary Design Solutions
 servicesItems:
-  - title: Full Culinary Suite Installation
-    body: [{ "type": "paragraph", "children": [{ "text": "From simple grill stations to full-scale outdoor grills featuring smokers, pizza ovens, wine cooling, and prep zones \\u2014 all executed with technical precision." }] }]
-  - title: Professional Restoration
-    body: [{ "type": "paragraph", "children": [{ "text": "High-end structural repair and service for existing outdoor grills. We recalibrate systems, replace failing masonry, and upgrade internal utilities to modern safety standards." }] }]
-  - title: Prestige Maintenance Plans
-    body: [{ "type": "paragraph", "children": [{ "text": "Structured care programs designed to keep your appliances in showroom condition year-round, including specialized deep cleans and preventative system checks." }] }]
-featuresTitle: The Alfresco Masterclass
+  - title: Professional Grill Stations
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integrated high-output grills with specialized ventilation and
+              lighting, designed for precise temperature control and visual scale.
+  - title: Full-Service Kitchen Bars
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Complete kitchen islands featuring refrigeration, ice makers, and
+              sinks, wrapped in custom masonry that matches your site’s
+              architectural palette.
+  - title: Integrated Pizza Ovens
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Artisan wood-fired or gas ovens built into the structural hearth,
+              providing a specialized culinary focal point for social gatherings.
+featuresTitle: Technical Culinary Excellence
 features:
-  - title: Chef-Grade Hardware
-    body: [{ "type": "paragraph", "children": [{ "text": "Pro-series thermal grills, ceramic smokers, and custom pizza ovens\\u2014the same equipment professional chefs rely on, integrated into your backyard." }] }]
-  - title: Elite Materials
-    body: [{ "type": "paragraph", "children": [{ "text": "Marine-grade 316 stainless steel and weather-stable polymers engineered to deny the Dallas sun, rain, and humidity\\u2014no warping, no compromise." }] }]
-  - title: Poreless Surfaces
-    body: [{ "type": "paragraph", "children": [{ "text": "Exotic granite and high-density sintered stone that defy stains and heat\\u2014countertops that maintain a perpetual glow under sunlight." }] }]
-  - title: Intelligent Controls
-    body: [{ "type": "paragraph", "children": [{ "text": "Subtle task lighting, integrated USB ports, and Wi-fi enabled appliance management bring modern digital convenience to your flame-fired space." }] }]
-  - title: Atmospheric Balance
-    body: [{ "type": "paragraph", "children": [{ "text": "Optimized ventilation and airflow dynamics ensure heat and smoke are managed effectively, maintaining Guest comfort even during peak use." }] }]
-  - title: Architectural Unity
-    body: [{ "type": "paragraph", "children": [{ "text": "Every grill exterior is matched to your home\\u2019s specific material palette\\u2014creating a cohesive, high-fashion look from deck to door." }] }]
-standardsTitle: Technical Compliance
+  - title: Marine-Grade Durability
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We utilize 316 stainless steel and weather-resistant polymers to
+              ensure that your kitchen remains functional and beautiful through 
+              years of exposure.
+  - title: Custom Task Lighting
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Integrated LED lighting scenes that provide high-visibility illumination 
+              for cooking while maintaining a refined nocturnal ambiance for guests.
+  - title: Climate-Controlled Storage
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Professional-grade refrigeration systems designed to maintain precise
+              temperatures even in extreme Texas heat.
+  - title: Seamless Surface Integration
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Our stonemasons craft continuous countertops with waterfall edges and
+              integrated sinks for a clean, minimalist silhouette.
+  - title: Intelligent Utility Access
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Hidden panels and smart routing of utilities allow for easy technical 
+              updates and maintenance without disrupting the masonry.
+  - title: Automated Shade Systems
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              Option for integrated pergolas or retractable structures that 
+              provide comfort and protection during midday culinary events.
+standardsTitle: Standards of Performance
 standards:
-  - title: Safety & Code Integrity
-    body: [{ "type": "paragraph", "children": [{ "text": "Every project meets City of Dallas fire safety and building codes, ensuring proper gas clearances, ventilation, and weather-proof electrical circuits." }] }]
-  - title: Manufacturer Hand-Off
-    body: [{ "type": "paragraph", "children": [{ "text": "We provide full technical walkthroughs for all new hardware, ensuring you understand the performance parameters and care requirements of your new professional gear." }] }]
-ctaTitle: Elevate Your Entertaining Capacity
-ctaBody: "AquaVida is ready to architect your perfect outdoor culinary experience. Contact us for a technical site assessment and start planning your bespoke garden grill."
-ctaImage: 'outdoor_kitchen_cta.avif'
+  - title: Technical Setup & Testing
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We perform data-driven testing on all gas and electrical systems
+              before handoff, ensuring that every burner and light functions at
+              peak performance.
+  - title: Maintenance Handoff
+    body:
+      - type: paragraph
+        children:
+          - text: >-
+              We provide a comprehensive guide on appliance care and surface 
+              maintenance, ensuring your kitchen stays in professional 
+              condition.
+ctaTitle: Begin Your Culinary Journey
+ctaBody: >-
+  Connect with our studio to begin designing your custom outdoor kitchen. Our
+  specialists will provide a site assessment and conceptual layout tailored to 
+  your entertaining style.
+ctaImage: outdoor_grill_cta.avif
 faqItems: []
+seoTitle: ''
+seoDescription: ''
+seoKeywords: ''
+ogTitle: ''
+ogDescription: ''
+ogImage: ''
+seoNoIndex: false
+seoNoFollow: false
+seoCanonicalUrl: ''
+internalLinks: []
+externalLinks: []
+shadowPreview: ''

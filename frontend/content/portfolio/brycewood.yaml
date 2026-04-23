@@ -1,25 +1,39 @@
 slug: brycewood
 title: Brycewood Courtyard
-description: [{ "type": "paragraph", "children": [{ "text": "An intimate architectural enclosure featuring silent water walls" }] }]
-  and high-fidelity aquatic illumination. Designed for ultimate privacy and
-  crystalline reflection.
-heroImage: 'Brycewood_Cover.avif'
+description:
+  - type: paragraph
+    children:
+      - text: >-
+          An intimate architectural enclosure featuring silent water walls and
+          high-fidelity aquatic illumination. Designed for ultimate privacy and
+          crystalline reflection.
+heroImage: Brycewood_Cover.avif
 location: Seattle, WA
-year: "2024"
+year: '2024'
 category: Residential Architecture
 philosophyTitle: The Philosophy
-philosophyBody: [{ "type": "paragraph", "children": [{ "text": "An intimate architectural enclosure featuring silent water walls" }] }]
-  and high-fidelity aquatic illumination. Designed for ultimate privacy and
-  crystalline reflection.
-philosophyImage: 'Brycewood_Cover.avif'
+philosophyBody:
+  - type: paragraph
+    children:
+      - text: >-
+          An intimate architectural enclosure featuring silent water walls and
+          high-fidelity aquatic illumination. Designed for ultimate privacy and
+          crystalline reflection.
+philosophyImage: Brycewood_Cover.avif
 gallery:
   - url: /images/portfolio/landing/Brycewood_Cover.avif
     title: Concept
     spec: Initial Layout
     size: col-span-2 row-span-2
 technicalTitle: Technical Specs
-technicalBody: [{ "type": "paragraph", "children": [{ "text": "Engineered for absolute performance." }] }]
-accentColor: "#91792C"
+technicalBody:
+  - type: paragraph
+    children:
+      - text: Engineered for absolute performance.
+accentColor: '#91792C'
 faqItems:
   - question: What was the timeline?
-    answer: [{ "type": "paragraph", "children": [{ "text": "Completed on schedule." }] }]
+    answer:
+      - type: paragraph
+        children:
+          - text: Completed on schedule.

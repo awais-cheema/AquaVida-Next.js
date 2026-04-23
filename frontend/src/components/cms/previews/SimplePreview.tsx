@@ -8,11 +8,13 @@ import ShadowSaveButton from '../fields/ShadowSaveButton';
  * A minimal preview component that just shows the Shadow Save button.
  * Used for pages that don't have a full visual preview yet.
  */
-export default function SimplePreview() {
+export default function SimplePreview(props: any) {
+  const { fields } = props;
+
   return (
     <div className="w-full h-full overflow-auto bg-[#05070A] flex flex-col items-center justify-start pt-20 px-8 text-center">
       <div className="max-w-md w-full">
-        <ShadowSaveButton />
+        <ShadowSaveButton data={fields} type="generic" />
         
         <div className="mt-12 pt-12 border-t border-white/5">
           <p className="text-white/30 text-xs uppercase tracking-[0.2em] font-black mb-4">
