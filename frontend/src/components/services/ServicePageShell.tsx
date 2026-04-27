@@ -304,7 +304,7 @@ export default function ServicePageShell({ d }: { d: ServiceData }) {
                                     </div>
                                     <div className="space-y-4">
                                         <h3 className="text-[6vw] md:text-[2vw] font-bold text-white tracking-tight group-hover:text-[#A68A33] transition-colors">{f.title}</h3>
-                                        <p className="text-[4vw] md:text-[1.2vw] text-white/40 leading-normal font-light">{f.body}</p>
+                                        <CmsContent content={f.body} className="text-[4vw] md:text-[1.2vw] text-white/40 leading-normal font-light" />
                                     </div>
                                 </motion.div>
                             ))}
