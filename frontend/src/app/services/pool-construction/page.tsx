@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
     const entry = await reader.collections.servicePages.read('pool-construction').catch(() => null)
-    const resolvedEntry = await resolveServicePage(entry)
+    const resolvedEntry = await resolveServicePage(entry).catch(() => null)
     
     return (
         <>

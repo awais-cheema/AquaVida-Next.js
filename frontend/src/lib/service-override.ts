@@ -70,28 +70,37 @@ export function mergeServiceData(base: ServiceData, override?: ServicePageOverri
       : base.faqItems,
   }
 }
+const safeDoc = async (fn: any) => {
+  if (typeof fn !== 'function') return null
+  try { return await fn() } catch { return null }
+}
+
 export async function resolveServicePage(entry: any): Promise<ServicePageOverride | null> {
   if (!entry) return null
-  return {
-    ...entry,
-    heroBody: await entry.heroBody(),
-    overviewBody: await entry.overviewBody(),
-    processSteps: await Promise.all(
-      (entry.processSteps || []).map(async (s: any) => ({ ...s, body: await s.body() }))
-    ),
-    investmentBody: await entry.investmentBody(),
-    servicesItems: await Promise.all(
-      (entry.servicesItems || []).map(async (s: any) => ({ ...s, body: await s.body() }))
-    ),
-    features: await Promise.all(
-      (entry.features || []).map(async (f: any) => ({ ...f, body: await f.body() }))
-    ),
-    standards: await Promise.all(
-      (entry.standards || []).map(async (s: any) => ({ ...s, body: await s.body() }))
-    ),
-    ctaBody: await entry.ctaBody(),
-    faqItems: entry.faqItems?.length
-      ? await Promise.all(entry.faqItems.map(async (f: any) => ({ ...f, answer: await f.answer() })))
-      : undefined,
+  try {
+    return {
+      ...entry,
+      heroBody: await safeDoc(entry.heroBody),
+      overviewBody: await safeDoc(entry.overviewBody),
+      processSteps: await Promise.all(
+        (entry.processSteps || []).map(async (s: any) => ({ ...s, body: await safeDoc(s.body) }))
+      ),
+      investmentBody: await safeDoc(entry.investmentBody),
+      servicesItems: await Promise.all(
+        (entry.servicesItems || []).map(async (s: any) => ({ ...s, body: await safeDoc(s.body) }))
+      ),
+      features: await Promise.all(
+        (entry.features || []).map(async (f: any) => ({ ...f, body: await safeDoc(f.body) }))
+      ),
+      standards: await Promise.all(
+        (entry.standards || []).map(async (s: any) => ({ ...s, body: await safeDoc(s.body) }))
+      ),
+      ctaBody: await safeDoc(entry.ctaBody),
+      faqItems: entry.faqItems?.length
+        ? await Promise.all(entry.faqItems.map(async (f: any) => ({ ...f, answer: await safeDoc(f.answer) })))
+        : undefined,
+    }
+  } catch {
+    return null
   }
 }
