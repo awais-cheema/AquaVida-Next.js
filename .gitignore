@@ -52,3 +52,4 @@ frontend/dev_output.txt
 *.bak
 *.tmp
 .cache/
+.vercel
